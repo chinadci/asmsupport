@@ -9,18 +9,18 @@ import cn.wensiqun.asmsupport.block.ProgramBlock;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class SeriesBlock extends ProgramBlock {
+public abstract class EpisodeBlock extends ProgramBlock {
     
 	/**
 	 * 程序块的前一个程序块
 	 */
-	private SeriesBlock previous;
+	private EpisodeBlock previous;
 
 	/**
 	 * 获取前一个程序块
 	 * @return
 	 */
-	public SeriesBlock getPrevious() {
+	public EpisodeBlock getPrevious() {
 		return previous;
 	}
 
@@ -28,7 +28,7 @@ public abstract class SeriesBlock extends ProgramBlock {
 	 * 设置前一个程序块
 	 * @param previous
 	 */
-	public void setPrevious(SeriesBlock previous) {
+	public void setPrevious(EpisodeBlock previous) {
 		this.previous = previous;
 	}
 

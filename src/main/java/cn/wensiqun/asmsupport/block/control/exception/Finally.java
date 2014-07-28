@@ -1,20 +1,21 @@
 /**
  * 
  */
-package cn.wensiqun.asmsupport.block.control;
+package cn.wensiqun.asmsupport.block.control.exception;
 
 
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.block.body.Body;
+import cn.wensiqun.asmsupport.block.control.EpisodeBlock;
 
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class Finally extends SeriesBlock implements Body {
+public abstract class Finally extends EpisodeBlock implements Body {
     
     Label startLbl;
     Label endLbl;

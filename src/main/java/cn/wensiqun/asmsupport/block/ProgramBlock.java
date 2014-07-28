@@ -17,14 +17,14 @@ import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.control.Catch;
-import cn.wensiqun.asmsupport.block.control.DoWhileLoop;
-import cn.wensiqun.asmsupport.block.control.Finally;
-import cn.wensiqun.asmsupport.block.control.ForEachLoop;
-import cn.wensiqun.asmsupport.block.control.IF;
-import cn.wensiqun.asmsupport.block.control.ILoop;
-import cn.wensiqun.asmsupport.block.control.Try;
-import cn.wensiqun.asmsupport.block.control.WhileLoop;
+import cn.wensiqun.asmsupport.block.control.condition.IF;
+import cn.wensiqun.asmsupport.block.control.exception.Catch;
+import cn.wensiqun.asmsupport.block.control.exception.Finally;
+import cn.wensiqun.asmsupport.block.control.exception.Try;
+import cn.wensiqun.asmsupport.block.control.loop.DoWhileLoop;
+import cn.wensiqun.asmsupport.block.control.loop.ForEachLoop;
+import cn.wensiqun.asmsupport.block.control.loop.ILoop;
+import cn.wensiqun.asmsupport.block.control.loop.WhileLoop;
 import cn.wensiqun.asmsupport.block.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
@@ -91,9 +91,9 @@ import cn.wensiqun.asmsupport.operators.relational.LessThan;
 import cn.wensiqun.asmsupport.operators.relational.NotEqual;
 import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
-import cn.wensiqun.asmsupport.operators.util.ThrowExceptionContainer;
 import cn.wensiqun.asmsupport.operators.variable.LocalVariableCreator;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupport.utils.common.ThrowExceptionContainer;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
 
@@ -109,21 +109,27 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     private static Log log = LogFactory.getLog(ProgramBlock.class);
 
     /**执行Block, 通过当前Block所创建的操作，实际是executeBlock的代理*/
-	private   ProgramBlock                 executeBlock = this;
-    protected Scope                        scope;
-    private   Label                        start;
-    private   Label                        end;
+	private   ProgramBlock                executeBlock = this;
+    
+	private   Scope                       scope;
+    
     /** 属于哪个block。父block */
-    protected ProgramBlock                 ownerBlock;
+    private   ProgramBlock                parent;
+    
     /** 该程序块中所有可执行的指令 */
-    private   List<Executable>             executeQueue;
-    protected InstructionHelper            insnHelper;
-    protected AMethod                      method;
+    private   List<Executable>            executeQueue;
+    
+    private  AMethod                      method;
+    
     /** 当前block是否已经返回 或者已经抛出异常了 */
-    protected boolean                      returned;
+    private  boolean                      returned;
+    
     /** 是否需要检测UnreachableCode, 即在创建一个操作的时候是否需要检测程序能够成功的运行到该操作 */
-    private   boolean                      needCheckUnreachableCode = true;
-    private   ThrowExceptionContainer      throwExceptions;
+    private   boolean                     needCheckUnreachableCode = true;
+    
+    protected InstructionHelper           insnHelper;
+    
+    private   ThrowExceptionContainer     throwExceptions;
 
     /******************* Getter Setter ************************/
     
@@ -229,8 +235,6 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
      */
     protected ProgramBlock() {
     	executeQueue = new ArrayList<Executable>();
-    	start = new Label();
-        end = new Label();
     }
 
     /**
@@ -372,11 +376,11 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     }
 
     public void setOwnerBlock(ProgramBlock block) {
-        this.ownerBlock = block;
+        this.parent = block;
     }
 
     public ProgramBlock getOwnerBlock() {
-        return this.ownerBlock;
+        return this.parent;
     }
     
     public AMethod getMethod() {
@@ -391,7 +395,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
         if(this instanceof GenericMethodBody){
             return (GenericMethodBody) this;
         }
-        return ownerBlock.getMethodBody();
+        return parent.getMethodBody();
     }
     
     /**
@@ -994,7 +998,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
                 new GOTO(getExecuteBlock(), ((ILoop)pb).getBreakLabel());
                 return;
             }
-            pb = pb.ownerBlock;
+            pb = pb.parent;
         }
         throw new InternalError("there is on loop!");
     }
@@ -1007,7 +1011,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
                 new GOTO(getExecuteBlock(), ((ILoop)pb).getContinueLabel());
                 return;
             }
-            pb = pb.ownerBlock;
+            pb = pb.parent;
         }
         throw new InternalError("there is on loop!");
     }

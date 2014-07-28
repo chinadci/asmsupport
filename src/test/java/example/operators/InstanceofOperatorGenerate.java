@@ -3,8 +3,8 @@ package example.operators;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.control.Else;
-import cn.wensiqun.asmsupport.block.control.IF;
+import cn.wensiqun.asmsupport.block.control.condition.Else;
+import cn.wensiqun.asmsupport.block.control.condition.IF;
 import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;

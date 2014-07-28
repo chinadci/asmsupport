@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.operators.util;
+package cn.wensiqun.asmsupport.utils.common;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -11,6 +11,7 @@ import org.objectweb.asm.Type;
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
@@ -52,6 +53,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
 
 	@Override
     protected void init() {
+	    AMethod method = getMethod();
     	AMethodMeta me = method.getMethodMeta(); 
         if (!method.isStatic()) {
             OperatorFactory.newOperator(LocalVariableCreator.class, 
@@ -63,7 +65,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
         AClass[] argClsses = me.getArgClasses();
         argments = new LocalVariable[argNames.length];
         for (int i = 0; i < argNames.length; i++) {
-            ScopeLogicVariable slv = new ScopeLogicVariable(argNames[i], scope, argClsses[i].getType(),
+            ScopeLogicVariable slv = new ScopeLogicVariable(argNames[i], getScope(), argClsses[i].getType(),
                     argClsses[i].getType());
             LocalVariableMeta lve = new LocalVariableMeta(argNames[i], 0, argClsses[i]);
             LocalVariable lv = new LocalVariable(lve);
@@ -75,6 +77,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
     
     @Override
     public final void executing() {
+        AMethod method = getMethod();
         if (log.isDebugEnabled()) {
             StringBuilder str = new StringBuilder("create method: ------------");
             str.append(method.getMethodMeta().getMethodString());
@@ -102,9 +105,9 @@ public abstract class GenericMethodBody extends ProgramBlock {
      */
     public void endMethodBody() {
         checkNoReturnBlock();
-        declarationVariable(scope);
-        int s = method.getStack().getMaxSize();
-        int l = scope.getLocals().getSize();
+        declarationVariable(getScope());
+        int s = getMethod().getStack().getMaxSize();
+        int l = getScope().getLocals().getSize();
         insnHelper.maxs(s, l);
     }
 

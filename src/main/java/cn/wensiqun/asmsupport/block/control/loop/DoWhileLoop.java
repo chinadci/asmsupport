@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.block.control;
+package cn.wensiqun.asmsupport.block.control.loop;
 
 import cn.wensiqun.asmsupport.Parameterized;
 

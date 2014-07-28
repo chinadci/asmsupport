@@ -1,14 +1,16 @@
-package cn.wensiqun.asmsupport.block.control;
+package cn.wensiqun.asmsupport.block.control.condition;
 
 
 import org.objectweb.asm.Label;
+
+import cn.wensiqun.asmsupport.block.control.EpisodeBlock;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ConditionBranchBlock extends SeriesBlock {
+public abstract class ConditionBranchBlock extends EpisodeBlock {
 
     private Label end;
 

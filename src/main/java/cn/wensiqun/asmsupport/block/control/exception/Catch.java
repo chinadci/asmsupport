@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.block.control;
+package cn.wensiqun.asmsupport.block.control.exception;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
 import cn.wensiqun.asmsupport.block.body.LocalVariableBody;
+import cn.wensiqun.asmsupport.block.control.EpisodeBlock;
 import cn.wensiqun.asmsupport.block.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -29,7 +30,7 @@ import cn.wensiqun.asmsupport.utils.memory.Stack;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class Catch extends SeriesBlock implements LocalVariableBody {
+public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
 
     private static Log log = LogFactory.getLog(Catch.class);
     
@@ -259,7 +260,7 @@ public abstract class Catch extends SeriesBlock implements LocalVariableBody {
 		super.setReturned(returned);
 		
     	boolean superReturned = true;
-    	SeriesBlock previous = getPrevious();
+    	EpisodeBlock previous = getPrevious();
     	while(previous != null){
     		if(!previous.isReturned()){
     			superReturned = false;

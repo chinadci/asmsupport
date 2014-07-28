@@ -4,8 +4,8 @@ import java.util.Random;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.control.Else;
-import cn.wensiqun.asmsupport.block.control.IF;
+import cn.wensiqun.asmsupport.block.control.condition.Else;
+import cn.wensiqun.asmsupport.block.control.condition.IF;
 import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
 import cn.wensiqun.asmsupport.block.method.common.ModifiedMethodBody;
 import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;

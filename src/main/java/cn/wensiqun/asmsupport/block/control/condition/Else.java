@@ -1,13 +1,14 @@
 /**
  * 
  */
-package cn.wensiqun.asmsupport.block.control;
+package cn.wensiqun.asmsupport.block.control.condition;
 
 
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.block.body.Body;
+import cn.wensiqun.asmsupport.block.control.EpisodeBlock;
 
 
 /**
@@ -39,7 +40,7 @@ public abstract class Else extends ConditionBranchBlock implements Body {
 	public void setReturned(boolean returned) {
     	super.setReturned(returned);
     	boolean superReturned = true;
-    	SeriesBlock previous = getPrevious();
+    	EpisodeBlock previous = getPrevious();
     	while(previous != null){
     		if(!previous.isReturned()){
     			superReturned = false;

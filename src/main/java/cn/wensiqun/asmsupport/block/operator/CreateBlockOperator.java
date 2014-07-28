@@ -1,11 +1,11 @@
 package cn.wensiqun.asmsupport.block.operator;
 
 import cn.wensiqun.asmsupport.block.Synchronized;
-import cn.wensiqun.asmsupport.block.control.DoWhileLoop;
-import cn.wensiqun.asmsupport.block.control.ForEachLoop;
-import cn.wensiqun.asmsupport.block.control.IF;
-import cn.wensiqun.asmsupport.block.control.Try;
-import cn.wensiqun.asmsupport.block.control.WhileLoop;
+import cn.wensiqun.asmsupport.block.control.condition.IF;
+import cn.wensiqun.asmsupport.block.control.exception.Try;
+import cn.wensiqun.asmsupport.block.control.loop.DoWhileLoop;
+import cn.wensiqun.asmsupport.block.control.loop.ForEachLoop;
+import cn.wensiqun.asmsupport.block.control.loop.WhileLoop;
 
 
 /**
@@ -21,12 +21,12 @@ public interface CreateBlockOperator {
      * 创建if程序块.
      * <ul>
      * <li>通过{@link IF#elsethan(cn.wensiqun.asmsupport.block.control.Else)}或者
-     * {@link cn.wensiqun.asmsupport.block.control.ElseIF#elsethan(cn.wensiqun.asmsupport.block.control.Else)}
+     * {@link cn.wensiqun.asmsupport.block.control.condition.ElseIF#elsethan(cn.wensiqun.asmsupport.block.control.Else)}
      * 创建else程序块
      * </li>
      * <li>
-     * 通过{@link IF#elseif(cn.wensiqun.asmsupport.block.control.ElseIF)}或者
-     * {@link cn.wensiqun.asmsupport.block.control.ElseIF#elseif(cn.wensiqun.asmsupport.block.control.ElseIF)}
+     * 通过{@link IF#elseif(cn.wensiqun.asmsupport.block.control.condition.ElseIF)}或者
+     * {@link cn.wensiqun.asmsupport.block.control.condition.ElseIF#elseif(cn.wensiqun.asmsupport.block.control.condition.ElseIF)}
      * 创建else if程序块
      *</li>
      * </ul>
@@ -34,9 +34,9 @@ public interface CreateBlockOperator {
      * @param ifs IF对象
      * @return {@link IF}
      * @see IF#elsethan(cn.wensiqun.asmsupport.block.control.Else)
-     * @see IF#elseif(cn.wensiqun.asmsupport.block.control.ElseIF)
-     * @see cn.wensiqun.asmsupport.block.control.ElseIF#elsethan(cn.wensiqun.asmsupport.block.control.Else)
-     * @see cn.wensiqun.asmsupport.block.control.ElseIF#elseif(cn.wensiqun.asmsupport.block.control.ElseIF)
+     * @see IF#elseif(cn.wensiqun.asmsupport.block.control.condition.ElseIF)
+     * @see cn.wensiqun.asmsupport.block.control.condition.ElseIF#elsethan(cn.wensiqun.asmsupport.block.control.Else)
+     * @see cn.wensiqun.asmsupport.block.control.condition.ElseIF#elseif(cn.wensiqun.asmsupport.block.control.condition.ElseIF)
      */
     public IF ifthan(IF ifs);
     
@@ -70,12 +70,12 @@ public interface CreateBlockOperator {
      * 创建try程序块.
      * 
      * <ul>
-     * <li>通过{@link Try#catchException(cn.wensiqun.asmsupport.block.control.Catch)}或者
-     * {@link cn.wensiqun.asmsupport.block.control.Catch#catchException(cn.wensiqun.asmsupport.block.control.Catch)}创建
+     * <li>通过{@link Try#catchException(cn.wensiqun.asmsupport.block.control.exception.Catch)}或者
+     * {@link cn.wensiqun.asmsupport.block.control.exception.Catch#catchException(cn.wensiqun.asmsupport.block.control.exception.Catch)}创建
      * catch程序块
      * </li>
      * <li>通过{@link Try#finallyThan(cn.wensiqun.asmsupport.block.control.Finally)}或者
-     * {@link cn.wensiqun.asmsupport.block.control.Catch#finallyThan(cn.wensiqun.asmsupport.block.control.Finally)}创建
+     * {@link cn.wensiqun.asmsupport.block.control.exception.Catch#finallyThan(cn.wensiqun.asmsupport.block.control.Finally)}创建
      * finally程序块
      * </li>
      * </ul>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.wensiqun.asmsupport.block.control;
+package cn.wensiqun.asmsupport.block.control.loop;
 
 import org.objectweb.asm.Label;
 
