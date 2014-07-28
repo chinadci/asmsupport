@@ -10,12 +10,5 @@ public abstract class StaticMethodBody extends GenericMethodBody implements Argu
 	    body(argments);
     }
 	
-    @Override
-	public void setReturned(boolean returned) {
-		super.setReturned(returned);
-	}
-
-
-
 
 }

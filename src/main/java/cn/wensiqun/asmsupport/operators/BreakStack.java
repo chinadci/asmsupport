@@ -19,15 +19,6 @@ public abstract class BreakStack extends AbstractOperator {
 	protected BreakStack(ProgramBlock block) {
 		super(block);
 	}
-	
-	@Override
-	public void checkUnreachableCode() {
-		super.checkUnreachableCode();
-		//如果是跳出栈的操作 比如return或者break则这是一个标志表示当前block已经跳出
-        if(!autoCreate){
-    		block.setReturned(true);
-		}
-	}
 
 	@Override
 	protected final void executing() {

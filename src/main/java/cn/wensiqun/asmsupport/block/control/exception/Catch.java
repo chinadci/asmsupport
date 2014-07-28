@@ -171,8 +171,6 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
      *  
      */
     private void generateThrowableCatch(){
-        boolean currentCheckUnrechableCode = getExecuteBlock().isNeedCheckUnreachableCode();
-        getExecuteBlock().setNeedCheckUnreachableCode(false);
         
         new Marker(this.getExecuteBlock(), implicitCatchStartLbl);
         
@@ -184,7 +182,6 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         OperatorFactory.newOperator(Throw.class, 
                 new Class<?>[]{ProgramBlock.class, Parameterized.class, boolean.class}, getExecuteBlock(), exception, true);
         
-        getExecuteBlock().setNeedCheckUnreachableCode(currentCheckUnrechableCode);
     }
     
     void setEntityTry(Try t){
@@ -254,25 +251,6 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         
         return fly;
     }
-    
-    @Override
-	public void setReturned(boolean returned) {
-		super.setReturned(returned);
-		
-    	boolean superReturned = true;
-    	EpisodeBlock previous = getPrevious();
-    	while(previous != null){
-    		if(!previous.isReturned()){
-    			superReturned = false;
-    			break;
-    		}
-    		previous = previous.getPrevious();
-    	}
-    	if(superReturned){
-    		getOwnerBlock().setReturned(returned);
-    	}
-    	
-	}
 
 	/**
      * get finally block

@@ -125,8 +125,6 @@ public abstract class OperatorFactory {
 			checkAsArgument.invoke(instance);
 			checkAsArgument.setAccessible(accessable);
 			
-			instance.checkUnreachableCode();
-			
 			instance.prepare();
 			
 			if(foundOneTimeListeners != null){

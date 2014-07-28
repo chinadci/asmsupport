@@ -13,9 +13,6 @@ import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
-import cn.wensiqun.asmsupport.exception.UnreachableCode;
-import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
-import cn.wensiqun.asmsupport.operators.asmdirect.NOP;
 import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
@@ -45,19 +42,6 @@ public abstract class AbstractOperator extends AbstractExecuteable {
     
     public ProgramBlock getBlock() {
         return block;
-    }
-    
-    //判断当前操作程序是否能够到达
-    public void checkUnreachableCode(){
-    	if(block.isNeedCheckUnreachableCode()){
-        	if(block.getExecuteQueue().contains(this) && 
-        	  !(this instanceof Marker) && !(this instanceof NOP) && !(this instanceof BlockEndFlag)){
-        	   boolean unreach = block.isReturned();
-        	    if(unreach){
-        	        throw new UnreachableCode("Unreachable code when " + this, block, this);
-        	    }
-        	}
-        }
     }
 
 	@Override

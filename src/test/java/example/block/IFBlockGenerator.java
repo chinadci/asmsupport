@@ -5,8 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.control.condition.Else;
-import cn.wensiqun.asmsupport.block.control.condition.ElseIF;
-import cn.wensiqun.asmsupport.block.control.condition.IF;
+import cn.wensiqun.asmsupport.block.control.condition.ElseIf;
+import cn.wensiqun.asmsupport.block.control.condition.If;
 import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -78,10 +78,10 @@ public class IFBlockGenerator extends AbstractExample{
 						final LocalVariable str = argus[0];
 						final LocalVariable i = argus[1];
 						
-						ifthan(new IF(invoke(str, "equals", Value.value("A"))){
+						ifthan(new If(invoke(str, "equals", Value.value("A"))){
 							@Override
 							public void body() {
-								ifthan(new IF(equal(i, Value.value(0))){
+								ifthan(new If(equal(i, Value.value(0))){
 
 									@Override
 									public void body() {
@@ -97,11 +97,11 @@ public class IFBlockGenerator extends AbstractExample{
 									
 								});
 							}
-						}).elseif(new ElseIF(invoke(str, "equals", Value.value("B"))){
+						}).elseif(new ElseIf(invoke(str, "equals", Value.value("B"))){
 
 							@Override
 							public void body() {
-								ifthan(new IF(equal(i, Value.value(0))){
+								ifthan(new If(equal(i, Value.value(0))){
 
 									@Override
 									public void body() {
@@ -122,7 +122,7 @@ public class IFBlockGenerator extends AbstractExample{
 
 							@Override
 							public void body() {
-								ifthan(new IF(equal(i, Value.value(0))){
+								ifthan(new If(equal(i, Value.value(0))){
 
 									@Override
 									public void body() {

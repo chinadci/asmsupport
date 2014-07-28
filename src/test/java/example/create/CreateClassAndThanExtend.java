@@ -5,7 +5,7 @@ import java.util.Random;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.control.condition.Else;
-import cn.wensiqun.asmsupport.block.control.condition.IF;
+import cn.wensiqun.asmsupport.block.control.condition.If;
 import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
 import cn.wensiqun.asmsupport.block.method.common.ModifiedMethodBody;
 import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
@@ -73,7 +73,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 				
 				AClass randomClass = AClassFactory.getProductClass(Random.class);
 				LocalVariable random = this.createVariable("random", randomClass, false, this.invokeConstructor(randomClass, Value.value(1L)));
-				ifthan(new IF(invoke(random, "nextBoolean")){
+				ifthan(new If(invoke(random, "nextBoolean")){
 					@Override
 					public void body() {
 						invokeOriginalMethod();

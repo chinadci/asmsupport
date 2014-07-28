@@ -242,8 +242,6 @@ public abstract class Try extends EpisodeBlock implements Body {
      *  
      */
     private void generateThrowableCatch(){
-        boolean currentCheckUnrechableCode = getExecuteBlock().isNeedCheckUnreachableCode();
-        getExecuteBlock().setNeedCheckUnreachableCode(false);
         
         new Marker(this.getExecuteBlock(), implicitCatchStartLbl);
         
@@ -257,7 +255,6 @@ public abstract class Try extends EpisodeBlock implements Body {
         OperatorFactory.newOperator(UnAddExceptionThrow.class, 
                 new Class<?>[]{ProgramBlock.class, Parameterized.class}, getExecuteBlock(), exception);
         
-        getExecuteBlock().setNeedCheckUnreachableCode(currentCheckUnrechableCode);
     }
     
     /**

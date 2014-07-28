@@ -19,7 +19,7 @@ import cn.wensiqun.asmsupport.operators.Jumpable;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ElseIF extends ConditionBranchBlock implements Body {
+public abstract class ElseIf extends ConditionBranchBlock implements Body {
 	
     private Parameterized condition;
 
@@ -28,7 +28,7 @@ public abstract class ElseIF extends ConditionBranchBlock implements Body {
     /** 该程序块中所有可执行的指令 */
     private List<Executable> parentExes;
     
-    public ElseIF(Parameterized condition) {
+    public ElseIf(Parameterized condition) {
         super();
         this.condition = condition;
         condition.asArgument();
@@ -82,7 +82,7 @@ public abstract class ElseIF extends ConditionBranchBlock implements Body {
         elseblock.setPrevious(this);
     }
 
-    public ElseIF elseif(ElseIF elseblock){
+    public ElseIf elseif(ElseIf elseblock){
         elseblock.setParentExes(parentExes);
         
         parentExes.add(elseblock);

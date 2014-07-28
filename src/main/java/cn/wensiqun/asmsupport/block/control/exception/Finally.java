@@ -42,12 +42,6 @@ public abstract class Finally extends EpisodeBlock implements Body {
         insnHelper.mark(endLbl);
     }
 
-    @Override
-	public void setReturned(boolean returned) {
-		super.setReturned(returned);
-		getOwnerBlock().setReturned(returned);
-	}
-
 	@Override
 	public String toString() {
 		return "Finally Block:" + super.toString();

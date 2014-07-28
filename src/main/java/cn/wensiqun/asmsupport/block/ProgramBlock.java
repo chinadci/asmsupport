@@ -9,7 +9,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.Label;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.AbstractExecuteable;
@@ -17,7 +16,7 @@ import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.control.condition.IF;
+import cn.wensiqun.asmsupport.block.control.condition.If;
 import cn.wensiqun.asmsupport.block.control.exception.Catch;
 import cn.wensiqun.asmsupport.block.control.exception.Finally;
 import cn.wensiqun.asmsupport.block.control.exception.Try;
@@ -119,14 +118,6 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     /** 该程序块中所有可执行的指令 */
     private   List<Executable>            executeQueue;
     
-    private  AMethod                      method;
-    
-    /** 当前block是否已经返回 或者已经抛出异常了 */
-    private  boolean                      returned;
-    
-    /** 是否需要检测UnreachableCode, 即在创建一个操作的时候是否需要检测程序能够成功的运行到该操作 */
-    private   boolean                     needCheckUnreachableCode = true;
-    
     protected InstructionHelper           insnHelper;
     
     private   ThrowExceptionContainer     throwExceptions;
@@ -155,25 +146,6 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     public ThrowExceptionContainer getThrowExceptions() {
 		return throwExceptions;
 	}
-    
-    public boolean isNeedCheckUnreachableCode() {
-        return needCheckUnreachableCode;
-    }
-
-    public void setNeedCheckUnreachableCode(boolean whetherCheckUnreachableCode) {
-        this.needCheckUnreachableCode = whetherCheckUnreachableCode;
-    }
-
-    public boolean isReturned() {
-        return returned;
-    }
-    
-    public void setReturned(boolean returned){
-        if(this.returned && returned == false){
-        }else{
-            this.returned = returned;
-        }
-    }
 
     public List<Executable> getExecuteQueue(){
         return this.executeQueue;
@@ -260,7 +232,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
      */
     protected void subBlockPrepare(ProgramBlock pb, ProgramBlock parentBlock){
     	pb.setInsnHelper(insnHelper);
-    	pb.setScope(new Scope(method.getLocals(), parentBlock.getScope()));
+    	pb.setScope(new Scope(getMethod().getLocals(), parentBlock.getScope()));
     	//设置父类的Block
     	pb.setOwnerBlock(parentBlock.getExecuteBlock());
     	if(pb instanceof Try || pb instanceof Catch || pb instanceof Finally){
@@ -370,7 +342,6 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     
     public void setInsnHelper(InstructionHelper insnHelper) {
         this.insnHelper = insnHelper;
-        this.method = insnHelper.getMethod();
     }
 
     public void setOwnerBlock(ProgramBlock block) {
@@ -382,18 +353,15 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     }
     
     public AMethod getMethod() {
-        return method;
+        return insnHelper.getMethod();
     }
     
     public LocalVariable[] getMethodArguments(){
-    	return method.getArguments();
+    	return getMethod().getArguments();
     }
     
     protected GenericMethodBody getMethodBody(){
-        if(this instanceof GenericMethodBody){
-            return (GenericMethodBody) this;
-        }
-        return parent.getMethodBody();
+        return getMethod().getMethodBody();
     }
     
     /**
@@ -402,7 +370,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
      * @return
      */
     public NewMemberClass getMethodOwner() {
-        return method.getMethodOwner();
+        return getMethod().getMethodOwner();
     }
 
     public InstructionHelper getInsnHelper() {
@@ -421,7 +389,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
         		new Class<?>[]{ProgramBlock.class, String.class, Type.class, Type.class}, 
         		getExecuteBlock(), anonymous ? null : name, aClass.getType(), aClass.getType());
         ScopeLogicVariable slv = lvc.getScopeLogicVariable();
-        slv.setCompileOrder(insnHelper.getMethod().nextInsNumber());
+        slv.setCompileOrder(getMethod().nextInsNumber());
         LocalVariable lv = new LocalVariable(lve);
         lv.setScopeLogicVar(slv);
         return lv;
@@ -960,7 +928,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     //*******************************************************************************************//
 
     @Override
-    public final IF ifthan(IF ifs){
+    public final If ifthan(If ifs){
         addExe(ifs);
         ifs.setParentExes(getExecuteQueue());
         subBlockPrepare(ifs);
@@ -1041,7 +1009,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     	if(getMethod().isStatic()){
     		throw new ASMSupportException("cannot use \"this\" keyword in static block");
     	}
-        return method.getMethodOwner().getThisVariable();
+        return getMethodOwner().getThisVariable();
     }
     
     @Override
@@ -1049,7 +1017,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     	if(getMethod().isStatic()){
     		throw new ASMSupportException("cannot use \"super\" keyword in static block");
     	}
-        return method.getMethodOwner().getSuperVariable();
+        return getMethodOwner().getSuperVariable();
     }
     
     @Override
@@ -1078,7 +1046,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
      */
     @Override
     public final Return runReturn() {
-        if (!method.getMethodMeta().getReturnType().equals(Type.VOID_TYPE)) {
+        if (!getMethod().getMethodMeta().getReturnType().equals(Type.VOID_TYPE)) {
             throw new VerifyErrorException("Do not specify a return type! ");
         }
         return OperatorFactory.newOperator(Return.class, 

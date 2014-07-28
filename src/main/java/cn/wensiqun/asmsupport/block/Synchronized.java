@@ -46,12 +46,6 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
 	}
 	
 	@Override
-	public void setReturned(boolean returned) {
-		super.setReturned(returned);
-		getOwnerBlock().setReturned(returned);
-	}
-
-	@Override
 	protected void init() {
 		if (lock.getParamterizedType() == null ||
 		    lock.getParamterizedType().isPrimitive() || 

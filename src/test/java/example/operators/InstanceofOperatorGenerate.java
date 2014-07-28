@@ -4,7 +4,7 @@ package example.operators;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.control.condition.Else;
-import cn.wensiqun.asmsupport.block.control.condition.IF;
+import cn.wensiqun.asmsupport.block.control.condition.If;
 import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -130,7 +130,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				
 				/*if (a instanceof A)
 				      System.out.println("a is instance of A");*/
-				ifthan(new IF(instanceOf(a, A_AClass)){
+				ifthan(new If(instanceOf(a, A_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("a is instance of A"));
@@ -139,7 +139,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				
 				/*if (b instanceof B)
 				    System.out.println("b is instance of B");*/
-				ifthan(new IF(instanceOf(b, B_AClass)){
+				ifthan(new If(instanceOf(b, B_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("b is instance of B"));
@@ -148,7 +148,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				
 				/*if (c instanceof C)
 				    System.out.println("b is instance of B");*/
-				ifthan(new IF(instanceOf(c, C_AClass)){
+				ifthan(new If(instanceOf(c, C_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("c is instance of C"));
@@ -158,7 +158,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				
 				/*if (c instanceof A)
 				    System.out.println("c can be cast to A");*/
-				ifthan(new IF(instanceOf(c, A_AClass)){
+				ifthan(new If(instanceOf(c, A_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("c can be cast to A"));
@@ -167,7 +167,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 
 				/*if (a instanceof C)
 				    System.out.println("a can be cast to C");*/
-				ifthan(new IF(instanceOf(a, C_AClass)){
+				ifthan(new If(instanceOf(a, C_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("a can be cast to C"));
@@ -183,7 +183,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				/* if (ob instanceof D)
 		               System.out.println("ob is instance of D");
 		           System.out.println();*/
-				ifthan(new IF(instanceOf(ob, D_AClass)){
+				ifthan(new If(instanceOf(ob, D_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("ob is instance of D"));
@@ -200,7 +200,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				 */
 				assign(ob, c);
 				invoke(systemOut, "println", Value.value("ob now refers to c"));
-				ifthan(new IF(instanceOf(ob, D_AClass)){
+				ifthan(new If(instanceOf(ob, D_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("ob can be cast to D"));
@@ -217,7 +217,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				 *     	   System.out.println("ob can be cast to A");
 				 *     System.out.println();
 				 */
-				ifthan(new IF(instanceOf(ob, A_AClass)){
+				ifthan(new If(instanceOf(ob, A_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("ob can be cast to A"));
@@ -229,7 +229,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				/*     if (a instanceof Object)
 				 *     	   System.out.println("a may be cast to Object");
 				 */
-				ifthan(new IF(instanceOf(a, AClass.OBJECT_ACLASS)){
+				ifthan(new If(instanceOf(a, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("a may be cast to Object"));
@@ -240,7 +240,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				/*     if (b instanceof Object)
 				 *     	   System.out.println("b may be cast to Object");
 				 */
-				ifthan(new IF(instanceOf(b, AClass.OBJECT_ACLASS)){
+				ifthan(new If(instanceOf(b, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("b may be cast to Object"));
@@ -251,7 +251,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				/*     if (c instanceof Object)
 				 *     	   System.out.println("c may be cast to Object");
 				 */
-				ifthan(new IF(instanceOf(c, AClass.OBJECT_ACLASS)){
+				ifthan(new If(instanceOf(c, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("c may be cast to Object"));
@@ -262,7 +262,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				/*     if (d instanceof Object)
 				 *     	   System.out.println("d may be cast to Object");
 				 */
-				ifthan(new IF(instanceOf(d, AClass.OBJECT_ACLASS)){
+				ifthan(new If(instanceOf(d, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("d may be cast to Object"));
