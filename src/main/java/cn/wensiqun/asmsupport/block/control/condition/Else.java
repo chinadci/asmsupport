@@ -26,10 +26,6 @@ public abstract class Else extends ConditionBranchBlock implements Body {
         }
         insnHelper.mark(getEndLabel());
     }
-	
-    @Override
-    protected void init() {
-    }
 
     @Override
     Label getLastLabel() {

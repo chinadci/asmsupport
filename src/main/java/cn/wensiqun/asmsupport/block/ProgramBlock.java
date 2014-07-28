@@ -130,8 +130,19 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     protected InstructionHelper           insnHelper;
     
     private   ThrowExceptionContainer     throwExceptions;
+    
+    /**
+     * create a logic program block
+     * 
+     * @param mv
+     * @param scope
+     * @param parent
+     */
+    protected ProgramBlock() {
+        executeQueue = new ArrayList<Executable>();
+    }
 
-    /******************* Getter Setter ************************/
+    /*<<<<<<<<<<<<<<<<<<< Getter Setter <<<<<<<<<<<<<<<<<<<<<<<<*/
     
     public void setExecuteBlock(ProgramBlock exeBlock) {
         this.executeBlock = exeBlock;
@@ -145,9 +156,30 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
 		return throwExceptions;
 	}
     
-    
+    public boolean isNeedCheckUnreachableCode() {
+        return needCheckUnreachableCode;
+    }
 
-    /******************* Getter Setter ************************/
+    public void setNeedCheckUnreachableCode(boolean whetherCheckUnreachableCode) {
+        this.needCheckUnreachableCode = whetherCheckUnreachableCode;
+    }
+
+    public boolean isReturned() {
+        return returned;
+    }
+    
+    public void setReturned(boolean returned){
+        if(this.returned && returned == false){
+        }else{
+            this.returned = returned;
+        }
+    }
+
+    public List<Executable> getExecuteQueue(){
+        return this.executeQueue;
+    }
+
+    /* >>>>>>>>>>>>>>>>>> Getter Setter >>>>>>>>>>>>>>>>>>>>>>>*/
     
     /**
      * 添加抛出的异常到方法签名中
@@ -165,14 +197,6 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
         	throwExceptions.remove(exception);
     	}
     }
-    
-	public boolean isNeedCheckUnreachableCode() {
-		return needCheckUnreachableCode;
-	}
-
-	public void setNeedCheckUnreachableCode(boolean whetherCheckUnreachableCode) {
-		this.needCheckUnreachableCode = whetherCheckUnreachableCode;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -185,23 +209,6 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     	}
 		return false;
 	}
-
-	public boolean isReturned() {
-		return returned;
-	}
-    
-	public void setReturned(boolean returned){
-		if(this.returned && returned == false){
-		}else{
-			this.returned = returned;
-		}
-	}
-
-    public List<Executable> getExecuteQueue(){
-    	return this.executeQueue;
-    }
-    
-    protected abstract void init();
 
     /**
      * 获取当前程序块的克隆拷贝
@@ -225,18 +232,9 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
         clone.setExecuteBlock(cloneTo);
         clone.generateInsn();
 	}
-    
-    /**
-     * create a logic program block
-     * 
-     * @param mv
-     * @param scope
-     * @param parent
-     */
-    protected ProgramBlock() {
-    	executeQueue = new ArrayList<Executable>();
-    }
 
+    protected void init(){};
+    
     /**
      * override this method if want create a new block
      * 生成操作到执行队列中去。

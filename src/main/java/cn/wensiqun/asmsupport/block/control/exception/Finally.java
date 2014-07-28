@@ -26,14 +26,6 @@ public abstract class Finally extends EpisodeBlock implements Body {
         endLbl = new Label();
 	}
 
-	@Override
-    public void prepare() {
-        super.prepare();
-    }
-
-    @Override
-    protected final void init() {}
-
     @Override
     public final void generateInsn()
     {

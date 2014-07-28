@@ -70,11 +70,6 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
         }
         insnHelper.mark(endLbl);
     }
-
-    @Override
-    protected void init() {
-    	
-    }
     
     @Override
     public final void generateInsn() {
