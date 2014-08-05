@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.block.control.loop;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.Executable;
+import cn.wensiqun.asmsupport.ByteCodeExecutable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
@@ -54,7 +54,7 @@ public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
         
         insnHelper.mark(startLbl);
         insnHelper.nop();
-        for(Executable exe : getExecuteQueue()){
+        for(ByteCodeExecutable exe : getExecuteQueue()){
             exe.execute();
         }
 

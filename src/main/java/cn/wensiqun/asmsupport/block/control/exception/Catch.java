@@ -6,7 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.Executable;
+import cn.wensiqun.asmsupport.ByteCodeExecutable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
 import cn.wensiqun.asmsupport.block.body.LocalVariableBody;
@@ -54,7 +54,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
     private Store implicitCatchThrowableStore;
     
     /** 该程序块中所有可执行的指令 */
-    private List<Executable> parentExes;
+    private List<ByteCodeExecutable> parentExes;
     
     public Catch(AClass exception) {
         super();
@@ -80,7 +80,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         stack.push(exception.getType());
         insnHelper.nop();
         
-        for(Executable exe : getExecuteQueue()){
+        for(ByteCodeExecutable exe : getExecuteQueue()){
             if(exe.equals(implicitCatchThrowableStore)){
                 stack.push(AClass.THROWABLE_ACLASS.getType());
             }
@@ -271,7 +271,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
      * 设置父类
      * @param parentExes
      */
-    public void setParentExes(List<Executable> parentExes) {
+    public void setParentExes(List<ByteCodeExecutable> parentExes) {
         this.parentExes = parentExes;
     }
     

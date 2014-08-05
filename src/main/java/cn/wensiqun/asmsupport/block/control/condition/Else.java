@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.block.control.condition;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.Executable;
+import cn.wensiqun.asmsupport.ByteCodeExecutable;
 import cn.wensiqun.asmsupport.block.body.Body;
 
 /**
@@ -19,7 +19,7 @@ public abstract class Else extends ConditionBranchBlock implements Body {
 	@Override
     public void executing() {
         insnHelper.nop();
-        for(Executable exe : getExecuteQueue()){
+        for(ByteCodeExecutable exe : getExecuteQueue()){
             exe.execute();
         }
         insnHelper.mark(getEndLabel());

@@ -6,7 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.Executable;
+import cn.wensiqun.asmsupport.ByteCodeExecutable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
 import cn.wensiqun.asmsupport.block.body.Body;
@@ -48,7 +48,7 @@ public abstract class Try extends EpisodeBlock implements Body {
     private ThrowExceptionContainer catchedExceptions;
 
     /** 该程序块中所有可执行的指令 */
-    private List<Executable> parentExes;
+    private List<ByteCodeExecutable> parentExes;
     
     /** Finally Block*/
     private Finally finallyBlock;
@@ -116,7 +116,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         insnHelper.nop();
         //boolean endMarked = false;
         Stack stack = insnHelper.getMv().getStack();
-        for(Executable exe : getExecuteQueue()){
+        for(ByteCodeExecutable exe : getExecuteQueue()){
             if(exe.equals(implicitCatchThrowableStore)){
                 insnHelper.mark(end);
                 stack.push(AClass.THROWABLE_ACLASS.getType());
@@ -187,7 +187,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         return fny;
     }
 
-    public void setParentExes(List<Executable> parentExes) {
+    public void setParentExes(List<ByteCodeExecutable> parentExes) {
         this.parentExes = parentExes;
     }
     

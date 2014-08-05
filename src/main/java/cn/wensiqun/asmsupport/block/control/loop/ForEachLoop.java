@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.block.control.loop;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.Executable;
+import cn.wensiqun.asmsupport.ByteCodeExecutable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
@@ -55,7 +55,7 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     @Override
     public void executing() {
     	
-        for(Executable exe : getExecuteQueue()){
+        for(ByteCodeExecutable exe : getExecuteQueue()){
             exe.execute();
         }
         
