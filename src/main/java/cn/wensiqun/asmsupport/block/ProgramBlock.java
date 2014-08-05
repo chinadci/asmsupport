@@ -234,7 +234,7 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
     	pb.setInsnHelper(insnHelper);
     	pb.setScope(new Scope(getMethod().getLocals(), parentBlock.getScope()));
     	//设置父类的Block
-    	pb.setOwnerBlock(parentBlock.getExecuteBlock());
+    	pb.setParent(parentBlock.getExecuteBlock());
     	if(pb instanceof Try || pb instanceof Catch || pb instanceof Finally){
     		if(pb instanceof Try){
     			this.getMethod().setNearlyTryBlock((Try)pb);
@@ -344,11 +344,11 @@ public abstract class ProgramBlock extends AbstractExecuteable implements IBlock
         this.insnHelper = insnHelper;
     }
 
-    public void setOwnerBlock(ProgramBlock block) {
+    public void setParent(ProgramBlock block) {
         this.parent = block;
     }
 
-    public ProgramBlock getOwnerBlock() {
+    public ProgramBlock getParent() {
         return this.parent;
     }
     

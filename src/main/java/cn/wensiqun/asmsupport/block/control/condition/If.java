@@ -87,7 +87,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         parentExes.add(elseblock);
         this.elseOrElseIFBlock = elseblock;
         
-        subBlockPrepare(elseblock, getOwnerBlock());
+        subBlockPrepare(elseblock, getParent());
         
         elseblock.setPrevious(this);
     }
@@ -98,7 +98,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         
         parentExes.add(elseIfBlock);
 
-        subBlockPrepare(elseIfBlock, getOwnerBlock());
+        subBlockPrepare(elseIfBlock, getParent());
         
         elseIfBlock.setPrevious(this);
         

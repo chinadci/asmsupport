@@ -110,7 +110,7 @@ public class AMethod {
             // 设置method属性
             this.methodBody = methodBody;
             this.methodBody.setScope(new Scope(this.locals, null));
-            this.methodBody.setOwnerBlock(null);
+            this.methodBody.setParent(null);
             this.methodBody.setInsnHelper(insnHelper);
         }
     }

@@ -34,7 +34,7 @@ public class ReturnOperatoInCatchWithFinallyListener extends NewOperatorListener
 			if(block instanceof Try){
 				return (Try) block;
 			}else{
-				block = block.getOwnerBlock();
+				block = block.getParent();
 			}
 		}
 		return null;
@@ -51,7 +51,7 @@ public class ReturnOperatoInCatchWithFinallyListener extends NewOperatorListener
 			if(block instanceof Catch){
 				return (Catch) block;
 			}else{
-				block = block.getOwnerBlock();
+				block = block.getParent();
 			}
 		}
 		return null;

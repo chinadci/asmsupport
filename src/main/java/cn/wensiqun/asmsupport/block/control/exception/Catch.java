@@ -233,7 +233,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         ca.setEntityTry(this.entityTry);
         ca.setPrevious(this);
         
-        subBlockPrepare(ca, getOwnerBlock());
+        subBlockPrepare(ca, getParent());
         
         return ca;
     }
@@ -245,7 +245,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         setFinallyBlock(fly);
         fly.setPrevious(this);
 
-        subBlockPrepare(fly, getOwnerBlock());
+        subBlockPrepare(fly, getParent());
         
         parentExes.add(fly);
         

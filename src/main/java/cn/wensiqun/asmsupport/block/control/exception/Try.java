@@ -104,7 +104,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         if(finallyBlock != null){
             generateThrowableCatch();
             if(returnInTry){
-                finallyBlock.getOwnerBlock().removeExe(finallyBlock);
+                finallyBlock.getParent().removeExe(finallyBlock);
             }
         }
 	}
@@ -164,7 +164,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         ca.setParentExes(parentExes);
         ca.setPrevious(this);
         addCatchedException(ca.getException());
-        subBlockPrepare(ca, getOwnerBlock());
+        subBlockPrepare(ca, getParent());
         return ca;
     }
     
@@ -181,7 +181,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         setFinallyBlock(fny);
         fny.setPrevious(this);
 
-        subBlockPrepare(fny, getOwnerBlock());
+        subBlockPrepare(fny, getParent());
         
         parentExes.add(fny);
         return fny;
