@@ -10,8 +10,9 @@ import java.util.Iterator;
  * @author 温斯群(Joe Wen)
  *
  */
-public interface ByteCodeExecutable extends Executable, Iterator<ByteCodeExecutable>, Iterable<ByteCodeExecutable> {
+public interface ByteCodeExecutable extends Executable, Iterator<ByteCodeExecutable> {
     
     void setNext(ByteCodeExecutable next);
     
+    ByteCodeExecutable previous();
 }

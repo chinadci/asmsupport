@@ -3,7 +3,6 @@
  */
 package cn.wensiqun.asmsupport;
 
-import java.util.Iterator;
 
 
 /**
@@ -19,12 +18,6 @@ public abstract class SuperByteCodeExecutable implements ByteCodeExecutable{
     protected SuperByteCodeExecutable() {}
 
     @Override
-    public Iterator<ByteCodeExecutable> iterator()
-    {
-        return this;
-    }
-
-    @Override
     public boolean hasNext()
     {
         return next != null;
@@ -34,6 +27,13 @@ public abstract class SuperByteCodeExecutable implements ByteCodeExecutable{
     public ByteCodeExecutable next()
     {
         return next;
+    }
+
+    
+    @Override
+    public ByteCodeExecutable previous()
+    {
+        return previous;
     }
 
     @Override
@@ -53,19 +53,26 @@ public abstract class SuperByteCodeExecutable implements ByteCodeExecutable{
     }
 
     @Override
-    public void setNext(ByteCodeExecutable next)
+    public void setNext(ByteCodeExecutable sub)
     {
-        SuperByteCodeExecutable newNext = (SuperByteCodeExecutable) next;
-        SuperByteCodeExecutable oldNext = this.next;
-        
-        if(oldNext != null)
+        SuperByteCodeExecutable subHead = (SuperByteCodeExecutable)sub;
+        if(next == null)
         {
-            oldNext.previous = newNext;
-            newNext.next = oldNext;
+            this.next = subHead;
+            subHead.previous = this;
+            return;
         }
         
-        newNext.previous = this;
-        this.next = newNext;
+        SuperByteCodeExecutable subLast = (SuperByteCodeExecutable)sub;
+        while(subLast.hasNext())
+        {
+            subLast = (SuperByteCodeExecutable)subLast.next();
+        }
+
+        subLast.next = next;
+        next.previous = subLast;
+        next = subHead;
     }
+    
     
 }

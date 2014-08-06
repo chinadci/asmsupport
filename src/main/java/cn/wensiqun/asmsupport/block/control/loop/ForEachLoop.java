@@ -48,7 +48,7 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
         AClass cls = member.getParamterizedType();
         if(!cls.isArray() &&
            !cls.isChildOrEqual(AClassFactory.getProductClass(Iterable.class))){
-            throw new ASMSupportException("The object must be an array or an object that implements the new Iterable interface.");
+            throw new ASMSupportException("Can only iterate over an array or an instance of java.lang.Iterable.");
         }
     }
 
