@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.block.control.exception;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.ByteCodeExecutable;
+import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.block.body.Body;
 import cn.wensiqun.asmsupport.block.control.EpisodeBlock;
 
@@ -36,7 +36,7 @@ public abstract class Finally extends EpisodeBlock implements Body {
     public final void executing() {
         insnHelper.mark(startLbl);
         insnHelper.nop();
-        for(ByteCodeExecutable exe : getExecuteQueue()){
+        for(Executable exe : getExecuteQueue()){
             exe.execute();
         }
         insnHelper.mark(endLbl);

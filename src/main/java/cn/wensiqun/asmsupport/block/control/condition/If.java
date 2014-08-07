@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.ByteCodeExecutable;
+import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.body.Body;
@@ -26,7 +26,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
     private ConditionBranchBlock elseOrElseIFBlock;
 
     /** 该程序块中所有可执行的指令 */
-    private List<ByteCodeExecutable> parentExes;
+    private List<Executable> parentExes;
     
     public If(Parameterized condition) {
         super();
@@ -54,7 +54,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         }
         
         insnHelper.nop();
-        for(ByteCodeExecutable exe : getExecuteQueue()){
+        for(Executable exe : getExecuteQueue()){
             exe.execute();
         }
         
@@ -107,7 +107,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         return elseIfBlock;
     }
 
-    public void setParentExes(List<ByteCodeExecutable> parentExes) {
+    public void setParentExes(List<Executable> parentExes) {
         this.parentExes = parentExes;
     }
 

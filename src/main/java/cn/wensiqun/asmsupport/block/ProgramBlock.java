@@ -11,9 +11,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Type;
 
-import cn.wensiqun.asmsupport.SuperByteCodeExecutable;
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.ByteCodeExecutable;
+import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.control.condition.If;
@@ -103,7 +103,7 @@ import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
  * @author wensiqun(at)gmail
  * 
  */
-public abstract class ProgramBlock extends SuperByteCodeExecutable implements IBlockOperators, Cloneable  {
+public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOperators, Cloneable  {
 
     private static Log log = LogFactory.getLog(ProgramBlock.class);
 
@@ -116,7 +116,7 @@ public abstract class ProgramBlock extends SuperByteCodeExecutable implements IB
     private   ProgramBlock                parent;
     
     /** 该程序块中所有可执行的指令 */
-    private   List<ByteCodeExecutable>            executeQueue;
+    private   List<Executable>            executeQueue;
     
     protected InstructionHelper           insnHelper;
     
@@ -130,7 +130,7 @@ public abstract class ProgramBlock extends SuperByteCodeExecutable implements IB
      * @param parent
      */
     protected ProgramBlock() {
-        executeQueue = new ArrayList<ByteCodeExecutable>();
+        executeQueue = new ArrayList<Executable>();
     }
 
     /*<<<<<<<<<<<<<<<<<<< Getter Setter <<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -147,7 +147,7 @@ public abstract class ProgramBlock extends SuperByteCodeExecutable implements IB
 		return throwExceptions;
 	}
 
-    public List<ByteCodeExecutable> getExecuteQueue(){
+    public List<Executable> getExecuteQueue(){
         return this.executeQueue;
     }
 
@@ -296,11 +296,11 @@ public abstract class ProgramBlock extends SuperByteCodeExecutable implements IB
      * 
      * @param exe
      */
-    public void addExe(ByteCodeExecutable exe) {
+    public void addExe(Executable exe) {
         getExecuteQueue().add(exe);
     }
     
-    public void addAllExe(int index, List<ByteCodeExecutable> exes) {
+    public void addAllExe(int index, List<Executable> exes) {
         getExecuteQueue().addAll(index, exes);
     }
     
@@ -308,7 +308,7 @@ public abstract class ProgramBlock extends SuperByteCodeExecutable implements IB
      * 
      * @param exe
      */
-    public void removeExe(ByteCodeExecutable exe) {
+    public void removeExe(Executable exe) {
         for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
             if (getExecuteQueue().get(i).equals(exe)) {
                 getExecuteQueue().remove(i);
@@ -322,7 +322,7 @@ public abstract class ProgramBlock extends SuperByteCodeExecutable implements IB
      * @param old
      * @param newp
      */
-    public void replaceExe(ByteCodeExecutable old, ByteCodeExecutable newp){
+    public void replaceExe(Executable old, Executable newp){
         for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
             if (getExecuteQueue().get(i).equals(old)) {
                 getExecuteQueue().remove(i);

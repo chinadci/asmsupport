@@ -7,7 +7,7 @@ package cn.wensiqun.asmsupport.block;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Type;
 
-import cn.wensiqun.asmsupport.ByteCodeExecutable;
+import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.body.ParameterizedBody;
 import cn.wensiqun.asmsupport.block.method.GenericMethodBody;
@@ -63,10 +63,10 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
 
 	@Override
 	public void executing() {
-        ByteCodeExecutable returnInsn = null;
+        Executable returnInsn = null;
         
 		lock.loadToStack(this);
-		for (ByteCodeExecutable e : getExecuteQueue()) {
+		for (Executable e : getExecuteQueue()) {
 			if(e.equals(flag1)){
 				//e.execute();
 				insnHelper.monitorEnter();

@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.objectweb.asm.Type;
 
-import cn.wensiqun.asmsupport.SuperByteCodeExecutable;
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -22,7 +22,7 @@ import cn.wensiqun.asmsupport.utils.AClassUtils;
  * @author 温斯群(Joe Wen)
  * 
  */
-public abstract class AbstractOperator extends SuperByteCodeExecutable {
+public abstract class AbstractOperator extends ByteCodeExecutor {
 
     protected ProgramBlock block;
     

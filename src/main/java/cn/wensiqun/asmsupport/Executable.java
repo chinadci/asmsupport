@@ -3,6 +3,7 @@
  */
 package cn.wensiqun.asmsupport;
 
+
 /**
  * 此接口表示可以执行。
  * @author 温斯群(Joe Wen)
@@ -96,13 +97,13 @@ public interface Executable {
      * </pre>
      * 
      */
-    public void prepare();
+    void prepare();
     
     /**
      * 执行
      * 
      * @return
      */
-    public void execute();
+    void execute();
     
 }

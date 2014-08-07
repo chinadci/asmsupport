@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.block;
 
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.SuperByteCodeExecutable;
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.control.condition.If;
 import cn.wensiqun.asmsupport.block.control.exception.Try;
 import cn.wensiqun.asmsupport.block.control.loop.DoWhileLoop;
@@ -54,7 +54,7 @@ import cn.wensiqun.asmsupport.operators.relational.LessThan;
 import cn.wensiqun.asmsupport.operators.relational.NotEqual;
 import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
 
-public class ProgramBlockAdapter extends SuperByteCodeExecutable implements IBlockOperators
+public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOperators
 {
 
     private ProgramBlock proxy;
