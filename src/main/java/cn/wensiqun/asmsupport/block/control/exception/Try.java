@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
 
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.ProgramBlock;
@@ -22,6 +23,7 @@ import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
+import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 import cn.wensiqun.asmsupport.utils.common.ThrowExceptionContainer;
 import cn.wensiqun.asmsupport.utils.memory.Stack;
 
@@ -48,7 +50,7 @@ public abstract class Try extends EpisodeBlock implements Body {
     private ThrowExceptionContainer catchedExceptions;
 
     /** 该程序块中所有可执行的指令 */
-    private List<Executable> parentExes;
+    private CommonLinkedList<ByteCodeExecutor> parentExes;
     
     /** Finally Block*/
     private Finally finallyBlock;
@@ -187,7 +189,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         return fny;
     }
 
-    public void setParentExes(List<Executable> parentExes) {
+    public void setParentExes(CommonLinkedList<ByteCodeExecutor> parentExes) {
         this.parentExes = parentExes;
     }
     

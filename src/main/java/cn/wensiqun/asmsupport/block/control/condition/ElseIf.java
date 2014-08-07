@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.objectweb.asm.Label;
 
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
@@ -12,6 +13,7 @@ import cn.wensiqun.asmsupport.block.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
+import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
 
 /**
@@ -26,7 +28,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
     private ConditionBranchBlock elseifOrIfBlock;
 
     /** 该程序块中所有可执行的指令 */
-    private List<Executable> parentExes;
+    private CommonLinkedList<ByteCodeExecutor> parentExes;
     
     public ElseIf(Parameterized condition) {
         super();
@@ -105,7 +107,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
         }
     }
 
-    public void setParentExes(List<Executable> parentExes) {
+    public void setParentExes(CommonLinkedList<ByteCodeExecutor> parentExes) {
         this.parentExes = parentExes;
     }
 }

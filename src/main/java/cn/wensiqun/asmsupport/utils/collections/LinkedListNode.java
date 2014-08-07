@@ -1,6 +1,5 @@
 package cn.wensiqun.asmsupport.utils.collections;
 
-import java.util.Iterator;
 
 public abstract class LinkedListNode implements Cloneable
 {
@@ -27,7 +26,7 @@ public abstract class LinkedListNode implements Cloneable
         return previous;
     }
     
-    public void remove()
+    void remove()
     {
         /*
         Unsupported index operation now!

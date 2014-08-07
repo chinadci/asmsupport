@@ -3,9 +3,6 @@
  */
 package cn.wensiqun.asmsupport.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +10,6 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.control.condition.If;
@@ -92,6 +88,7 @@ import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 import cn.wensiqun.asmsupport.operators.variable.LocalVariableCreator;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 import cn.wensiqun.asmsupport.utils.common.ThrowExceptionContainer;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
@@ -116,7 +113,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
     private   ProgramBlock                parent;
     
     /** 该程序块中所有可执行的指令 */
-    private   List<Executable>            executeQueue;
+    private   CommonLinkedList<ByteCodeExecutor>            executeQueue;
     
     protected InstructionHelper           insnHelper;
     
@@ -130,7 +127,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
      * @param parent
      */
     protected ProgramBlock() {
-        executeQueue = new ArrayList<Executable>();
+        executeQueue = new CommonLinkedList<ByteCodeExecutor>();
     }
 
     /*<<<<<<<<<<<<<<<<<<< Getter Setter <<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -147,7 +144,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
 		return throwExceptions;
 	}
 
-    public List<Executable> getExecuteQueue(){
+    public CommonLinkedList<ByteCodeExecutor> getExecuteQueue(){
         return this.executeQueue;
     }
 
@@ -296,25 +293,26 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
      * 
      * @param exe
      */
-    public void addExe(Executable exe) {
+    public void addExe(ByteCodeExecutor exe) {
         getExecuteQueue().add(exe);
     }
     
-    public void addAllExe(int index, List<Executable> exes) {
+    /*public void addAllExe(int index, List<Executable> exes) {
         getExecuteQueue().addAll(index, exes);
-    }
+    }*/
     
     /**
      * 
      * @param exe
      */
-    public void removeExe(Executable exe) {
-        for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
+    public void removeExe(ByteCodeExecutor exe) {
+        getExecuteQueue().remove(exe);
+        /*for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
             if (getExecuteQueue().get(i).equals(exe)) {
                 getExecuteQueue().remove(i);
                 break;
             }
-        }
+        }*/
     }
 
     /**
@@ -322,14 +320,15 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
      * @param old
      * @param newp
      */
-    public void replaceExe(Executable old, Executable newp){
-        for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
+    public void replaceExe(ByteCodeExecutor old, ByteCodeExecutor newp){
+        getExecuteQueue().replace(old, newp);
+        /*for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
             if (getExecuteQueue().get(i).equals(old)) {
                 getExecuteQueue().remove(i);
                 getExecuteQueue().add(i, newp);
                 break;
             }
-        }
+        }*/
     }
 
     public void setScope(Scope scope) {
