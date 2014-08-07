@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.utils.collections;
 
 import java.util.Iterator;
 
-public abstract class LinkedListNode implements Iterator<LinkedListNode>
+public abstract class LinkedListNode implements Cloneable
 {
 
     private LinkedListNode next;
@@ -12,13 +12,11 @@ public abstract class LinkedListNode implements Iterator<LinkedListNode>
     //Unsupported index operation now!
     //private int index;
     
-    @Override
     public boolean hasNext()
     {
         return next != null;
     }
 
-    @Override
     public LinkedListNode next()
     {
         return next;
@@ -29,7 +27,6 @@ public abstract class LinkedListNode implements Iterator<LinkedListNode>
         return previous;
     }
     
-    @Override
     public void remove()
     {
         /*
@@ -109,11 +106,6 @@ public abstract class LinkedListNode implements Iterator<LinkedListNode>
             }
         }*/
         
-    }
-    
-    void setPrevious(LinkedListNode pre)
-    {
-        previous = pre;
     }
     
     void replace(LinkedListNode newly)

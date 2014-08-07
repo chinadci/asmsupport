@@ -56,6 +56,11 @@ public interface LinkedList<E> extends Iterable<E>, Cloneable
      */
     boolean addBefore(E original, E after);
     
+    
+    boolean setHead(E head);
+    
+    boolean setLast(E last);
+    
     /**
      * 
      * @param start
