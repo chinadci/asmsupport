@@ -1,7 +1,5 @@
 package cn.wensiqun.asmsupport.block.control.exception;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
@@ -233,7 +231,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         ca.setParentExes(parentExes);
         //设置当前catch对应的try
         ca.setEntityTry(this.entityTry);
-        ca.setPrevious(this);
+        ca.setPreviousBlock(this);
         
         subBlockPrepare(ca, getParent());
         
@@ -245,7 +243,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
             throw new ASMSupportException("cannot declare finally block before catch");
         }
         setFinallyBlock(fly);
-        fly.setPrevious(this);
+        fly.setPreviousBlock(this);
 
         subBlockPrepare(fly, getParent());
         

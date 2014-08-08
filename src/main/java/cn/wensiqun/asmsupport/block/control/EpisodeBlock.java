@@ -14,52 +14,49 @@ public abstract class EpisodeBlock extends ProgramBlock {
 	/**
 	 * 程序块的前一个程序块
 	 */
-	private EpisodeBlock previous;
+	private EpisodeBlock previousBlock;
 	
 	/**
 	 * 
 	 */
-	private EpisodeBlock next;
+	private EpisodeBlock nextBlock;
 
 	
 	public void append(EpisodeBlock block)
 	{
-	    
-	    if(next != null)
+	    if(nextBlock != null)
         {
-            block.next = next;
-            next.previous = block;
+            block.nextBlock = nextBlock;
+            nextBlock.previousBlock = block;
         }
 	    
-	    next = block;
-	    block.previous = this;
+	    nextBlock = block;
+	    block.previousBlock = this;
 	    
 	}
-	
-	/**
-	 * 获取前一个程序块
-	 * @return
-	 */
-	public EpisodeBlock getPrevious() {
-		return previous;
-	}
 
-	/**
-	 * 设置前一个程序块
-	 * @param previous
-	 */
-	public void setPrevious(EpisodeBlock previous) {
-		this.previous = previous;
-	}
 
-    public EpisodeBlock getNext()
+    public EpisodeBlock previousBlock()
     {
-        return next;
+        return previousBlock;
     }
 
-    public void setNext(EpisodeBlock next)
+
+    public void setPreviousBlock(EpisodeBlock previousBlock)
     {
-        this.next = next;
+        this.previousBlock = previousBlock;
+    }
+
+
+    public EpisodeBlock nextBlock()
+    {
+        return nextBlock;
+    }
+
+
+    public void setNextBlock(EpisodeBlock nextBlock)
+    {
+        this.nextBlock = nextBlock;
     }
 
 }

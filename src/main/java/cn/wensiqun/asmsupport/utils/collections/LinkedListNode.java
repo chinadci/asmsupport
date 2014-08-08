@@ -16,7 +16,7 @@ public abstract class LinkedListNode implements Cloneable
         return next != null;
     }
 
-    public LinkedListNode next()
+    LinkedListNode next()
     {
         return next;
     }

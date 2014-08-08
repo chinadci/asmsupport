@@ -1,7 +1,5 @@
 package cn.wensiqun.asmsupport.block.control.condition;
 
-import java.util.List;
-
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
@@ -81,7 +79,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
         
         subBlockPrepare(elseblock, getParent());
         
-        elseblock.setPrevious(this);
+        elseblock.setPreviousBlock(this);
     }
 
     public ElseIf elseif(ElseIf elseblock){
@@ -91,7 +89,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
 
         subBlockPrepare(elseblock, getParent());
         
-        elseblock.setPrevious(this);
+        elseblock.setPreviousBlock(this);
         
         this.elseifOrIfBlock = elseblock;
         

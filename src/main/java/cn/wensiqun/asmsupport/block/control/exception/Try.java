@@ -1,7 +1,5 @@
 package cn.wensiqun.asmsupport.block.control.exception;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
@@ -164,7 +162,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         ca.setEntityTry(this);
         parentExes.add(ca);
         ca.setParentExes(parentExes);
-        ca.setPrevious(this);
+        ca.setPreviousBlock(this);
         addCatchedException(ca.getException());
         subBlockPrepare(ca, getParent());
         return ca;
@@ -181,7 +179,7 @@ public abstract class Try extends EpisodeBlock implements Body {
             throw new ASMSupportException("has been catch exception. please create finally block by Catch");
         }
         setFinallyBlock(fny);
-        fny.setPrevious(this);
+        fny.setPreviousBlock(this);
 
         subBlockPrepare(fny, getParent());
         
