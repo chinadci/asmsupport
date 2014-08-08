@@ -101,7 +101,6 @@ public abstract class AClass implements GetGlobalVariabled{//, MethodInvokeable 
     /** java.lang.Void of AClass */
     public static final AClass VOID_ACLASS = AClassFactory.getProductClass(void.class);
     
-    
     /**
      * Class name
      */

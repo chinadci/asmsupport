@@ -89,7 +89,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         
         subBlockPrepare(elseblock, getParent());
         
-        elseblock.setPreviousBlock(this);
+        elseblock.setPreviousEpisode(this);
     }
 
     public ElseIf elseif(ElseIf elseIfBlock){
@@ -100,7 +100,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
 
         subBlockPrepare(elseIfBlock, getParent());
         
-        elseIfBlock.setPreviousBlock(this);
+        elseIfBlock.setPreviousEpisode(this);
         
         this.elseOrElseIFBlock = elseIfBlock;
         

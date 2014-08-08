@@ -35,9 +35,9 @@ public class Throw extends BreakStack {
 
 	@Override
     protected void verifyArgument() {
-        AClass excAcls = exception.getParamterizedType();
-        if(!excAcls.isChildOrEqual(AClass.THROWABLE_ACLASS)){
-            throw new ASMSupportException("the throw type " + excAcls + " is not assign from java.lang.Throwable.class");
+        AClass type = exception.getParamterizedType();
+        if(!type.isChildOrEqual(AClass.THROWABLE_ACLASS)){
+            throw new ASMSupportException("No exception of type " + type + " can be thrown; an exception type must be a subclass of Throwable");
         }
     }
 

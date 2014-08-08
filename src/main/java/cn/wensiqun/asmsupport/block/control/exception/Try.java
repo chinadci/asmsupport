@@ -162,7 +162,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         ca.setEntityTry(this);
         parentExes.add(ca);
         ca.setParentExes(parentExes);
-        ca.setPreviousBlock(this);
+        ca.setPreviousEpisode(this);
         addCatchedException(ca.getException());
         subBlockPrepare(ca, getParent());
         return ca;
@@ -179,7 +179,7 @@ public abstract class Try extends EpisodeBlock implements Body {
             throw new ASMSupportException("has been catch exception. please create finally block by Catch");
         }
         setFinallyBlock(fny);
-        fny.setPreviousBlock(this);
+        fny.setPreviousEpisode(this);
 
         subBlockPrepare(fny, getParent());
         
@@ -248,7 +248,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         LocalVariable exception = getLocalAnonymousVariableModel(AClass.THROWABLE_ACLASS);
         implicitCatchThrowableStore = new Store(getExecuteBlock(), exception);
         
-        finallyBlock.clonerGenerate(getExecuteBlock());
+        finallyBlock.generateInsnTo(getExecuteBlock());
         
         //throwException(exception);
         

@@ -9,7 +9,7 @@ public class SerialBlockAdapterContainer extends ProgramBlockAdapter
     /**
      * 程序块的前一个程序块
      */
-    private EpisodeBlock head;
+    private EpisodeBlock header;
     
     /**
      * 
@@ -20,11 +20,11 @@ public class SerialBlockAdapterContainer extends ProgramBlockAdapter
     public SerialBlockAdapterContainer(ProgramBlock block, EpisodeBlock header)
     {
         super(block);
-        tail = head = header;
+        tail = this.header = header;
         
     }
 
-    public void append(EpisodeBlock block)
+    /*public void append(EpisodeBlock block)
     {
         tail.append(block);
     }
@@ -33,18 +33,16 @@ public class SerialBlockAdapterContainer extends ProgramBlockAdapter
     {
         previousBlock.append(afterBlock);
     }
-    
-    public EpisodeBlock getHead()
+    */
+    public EpisodeBlock getHeader()
     {
-        return head;
+        return header;
     }
 
-
-    public void setHead(EpisodeBlock head)
+    public void setHeader(EpisodeBlock header)
     {
-        this.head = head;
+        this.header = header;
     }
-
 
     public EpisodeBlock getTail()
     {

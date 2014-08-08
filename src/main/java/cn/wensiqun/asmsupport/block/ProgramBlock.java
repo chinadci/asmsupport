@@ -6,6 +6,7 @@ package cn.wensiqun.asmsupport.block;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.objectweb.asm.Label;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
@@ -119,6 +120,10 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
     
     private   ThrowExceptionContainer     throwExceptions;
     
+    private   Label                       start;
+    
+    private   Label                       end;
+    
     /**
      * create a logic program block
      * 
@@ -196,7 +201,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
      * 克隆当前的程序块的执行队列到给定程序块执行队列中
      * @param owner 克隆至此
      */
-	public void clonerGenerate(ProgramBlock cloneTo){
+	public void generateInsnTo(ProgramBlock cloneTo){
         ProgramBlock clone = getCopy();
         clone.setExecuteBlock(cloneTo);
         clone.generateInsn();
@@ -333,12 +338,24 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
 
     public void setScope(Scope scope) {
         this.scope = scope;
+        this.start = scope.getStart();
+        this.end = scope.getEnd();
     }
 
     public Scope getScope() {
         return this.scope;
     }
     
+    public Label getStart()
+    {
+        return start;
+    }
+
+    public Label getEnd()
+    {
+        return end;
+    }
+
     public void setInsnHelper(InstructionHelper insnHelper) {
         this.insnHelper = insnHelper;
     }

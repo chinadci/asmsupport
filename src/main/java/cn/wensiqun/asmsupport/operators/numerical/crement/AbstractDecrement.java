@@ -33,7 +33,7 @@ public abstract class AbstractDecrement extends AbstractCrement {
             		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
             		block, factor, getValue());
             
-            arithOperator.prepare();
+            //arithOperator.prepare();
             
             ExplicitVariable variable = (ExplicitVariable) factor;
             assigner = block.assign(variable, arithOperator);

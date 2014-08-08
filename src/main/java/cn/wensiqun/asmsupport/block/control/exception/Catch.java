@@ -137,7 +137,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
             	//空操作 判读程序是否可以继续执行下去
         	    OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecuteBlock());
         	    //如果程序能够走到这里 表示之前没有return或者throw操作，则将finally内容copy至当前catch块的末尾
-        	    finallyBlock.clonerGenerate(getExecuteBlock());
+        	    finallyBlock.generateInsnTo(getExecuteBlock());
             }catch(UnreachableCode uc){
                 log.debug(uc.getMessage());
             }catch(RuntimeException e){
@@ -177,7 +177,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         LocalVariable exception = getLocalAnonymousVariableModel(AClass.THROWABLE_ACLASS);
         implicitCatchThrowableStore = new Store(getExecuteBlock(), exception);
         
-        finallyBlock.clonerGenerate(getExecuteBlock());
+        finallyBlock.generateInsnTo(getExecuteBlock());
         //throwException(exception);
         OperatorFactory.newOperator(Throw.class, 
                 new Class<?>[]{ProgramBlock.class, Parameterized.class, boolean.class}, getExecuteBlock(), exception, true);
@@ -231,7 +231,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         ca.setParentExes(parentExes);
         //设置当前catch对应的try
         ca.setEntityTry(this.entityTry);
-        ca.setPreviousBlock(this);
+        ca.setPreviousEpisode(this);
         
         subBlockPrepare(ca, getParent());
         
@@ -243,7 +243,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
             throw new ASMSupportException("cannot declare finally block before catch");
         }
         setFinallyBlock(fly);
-        fly.setPreviousBlock(this);
+        fly.setPreviousEpisode(this);
 
         subBlockPrepare(fly, getParent());
         
