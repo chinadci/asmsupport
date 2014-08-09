@@ -92,7 +92,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
         	log.debug("");
         }
         
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             exe.execute();
         }
         

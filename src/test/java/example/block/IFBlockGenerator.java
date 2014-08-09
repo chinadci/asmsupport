@@ -67,7 +67,7 @@ public class IFBlockGenerator extends AbstractExample{
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {/*
 		
 		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.IFBlockGeneratorExample", null, null);
 		
@@ -162,6 +162,6 @@ public class IFBlockGenerator extends AbstractExample{
 			
 		});
 		generate(creator);
-	}
+	*/}
 
 }

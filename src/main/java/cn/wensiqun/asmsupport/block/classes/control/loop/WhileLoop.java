@@ -54,7 +54,7 @@ public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
         
         insnHelper.mark(startLbl);
         insnHelper.nop();
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             exe.execute();
         }
 

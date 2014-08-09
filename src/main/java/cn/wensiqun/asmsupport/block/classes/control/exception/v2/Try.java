@@ -16,7 +16,7 @@ public abstract class Try extends ProgramBlock implements Body
     @Override
     public void executing()
     {
-        for(ByteCodeExecutor exe : getExecuteQueue()){
+        for(ByteCodeExecutor exe : getQueue()){
             exe.execute();
         }
     }

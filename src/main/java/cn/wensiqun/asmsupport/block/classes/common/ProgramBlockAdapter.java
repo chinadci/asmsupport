@@ -446,7 +446,7 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
         return proxy.not(factor);
     }
 
-    @Override
+    /*@Override
     public If ifthan(If ifs)
     {
         return proxy.ifthan(ifs);
@@ -482,7 +482,7 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
     public Synchronized syn(Synchronized sync)
     {
         return proxy.syn(sync);
-    }
+    }*/
 
     @Override
     public CheckCast checkCast(Parameterized cc, AClass to)

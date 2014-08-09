@@ -1,0 +1,805 @@
+Index: main/java/cn/wensiqun/asmsupport/block/classes/common/AbstractBlock.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/common/AbstractBlock.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/common/AbstractBlock.java	(working copy)
+@@ -9,9 +9,21 @@
+     
+     protected CommonLinkedList<ByteCodeExecutor> queue;
+ 
+-	public AbstractBlock(AbstractBlock parent) {
+-		this.parent = parent;
++	public AbstractBlock() {
+ 		this.queue = new CommonLinkedList<ByteCodeExecutor>();
+ 	}
++
++	public AbstractBlock getParent() {
++		return parent;
++	}
++
++	public void setParent(AbstractBlock parent) {
++		this.parent = parent;
++	}
++
++	public CommonLinkedList<ByteCodeExecutor> getQueue() {
++		return queue;
++	}
++
+ 	
+ }
+Index: main/java/cn/wensiqun/asmsupport/block/classes/common/ProgramBlock.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/common/ProgramBlock.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/common/ProgramBlock.java	(working copy)
+@@ -102,7 +102,7 @@
+  * @author wensiqun(at)gmail
+  * 
+  */
+-public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOperators, Cloneable  {
++public abstract class ProgramBlock extends AbstractBlock implements IBlockOperators  {
+ 
+     private static Log log = LogFactory.getLog(ProgramBlock.class);
+ 
+@@ -111,12 +111,6 @@
+     
+ 	private   Scope                       scope;
+     
+-    /** 属于哪个block。父block */
+-    private   ProgramBlock                parent;
+-    
+-    /** 该程序块中所有可执行的指令 */
+-    private   CommonLinkedList<ByteCodeExecutor>            executeQueue;
+-    
+     protected InstructionHelper           insnHelper;
+     
+     private   ThrowExceptionContainer     throwExceptions;
+@@ -125,17 +119,6 @@
+     
+     private   Label                       end;
+     
+-    /**
+-     * create a logic program block
+-     * 
+-     * @param mv
+-     * @param scope
+-     * @param parent
+-     */
+-    protected ProgramBlock() {
+-        executeQueue = new CommonLinkedList<ByteCodeExecutor>();
+-    }
+-
+     /*<<<<<<<<<<<<<<<<<<< Getter Setter <<<<<<<<<<<<<<<<<<<<<<<<*/
+     
+     public void setExecuteBlock(ProgramBlock exeBlock) {
+@@ -150,10 +133,6 @@
+ 		return throwExceptions;
+ 	}
+ 
+-    public CommonLinkedList<ByteCodeExecutor> getExecuteQueue(){
+-        return this.executeQueue;
+-    }
+-
+     /* >>>>>>>>>>>>>>>>>> Getter Setter >>>>>>>>>>>>>>>>>>>>>>>*/
+     
+     /**
+@@ -223,17 +202,17 @@
+         new BlockEndFlag(getExecuteBlock());
+     }
+     
+-    protected void subBlockPrepare(ProgramBlock pb){
++    /*protected void subBlockPrepare(ProgramBlock pb){
+     	subBlockPrepare(pb, this);
+-    }
++    }*/
+     
+-    /**
++    /*
+      * 通常情况下的prepare
+      * 
+      * @param pb
+      * @param parentBlock
+      */
+-    protected void subBlockPrepare(ProgramBlock pb, ProgramBlock parentBlock){
++    /*protected void subBlockPrepare(ProgramBlock pb, ProgramBlock parentBlock){
+     	pb.setInsnHelper(insnHelper);
+     	pb.setScope(new Scope(getMethod().getLocals(), parentBlock.getScope()));
+     	//设置父类的Block
+@@ -247,7 +226,7 @@
+         	pb.prepare();
+     	}
+         new BlockEndFlag(pb);
+-    }
++    }*/
+     
+     public void tiggerTryCatchPrepare(){
+     	Try nearlyTryBlock = getMethod().getNearlyTryBlock();
+@@ -300,25 +279,14 @@
+      * @param exe
+      */
+     public void addExe(ByteCodeExecutor exe) {
+-        getExecuteQueue().add(exe);
++        getQueue().add(exe);
+     }
+-    
+-    /*public void addAllExe(int index, List<Executable> exes) {
+-        getExecuteQueue().addAll(index, exes);
+-    }*/
+-    
+     /**
+      * 
+      * @param exe
+      */
+     public void removeExe(ByteCodeExecutor exe) {
+-        getExecuteQueue().remove(exe);
+-        /*for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
+-            if (getExecuteQueue().get(i).equals(exe)) {
+-                getExecuteQueue().remove(i);
+-                break;
+-            }
+-        }*/
++        getQueue().remove(exe);
+     }
+ 
+     /**
+@@ -327,14 +295,7 @@
+      * @param newp
+      */
+     public void replaceExe(ByteCodeExecutor old, ByteCodeExecutor newp){
+-        getExecuteQueue().replace(old, newp);
+-        /*for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
+-            if (getExecuteQueue().get(i).equals(old)) {
+-                getExecuteQueue().remove(i);
+-                getExecuteQueue().add(i, newp);
+-                break;
+-            }
+-        }*/
++        getQueue().replace(old, newp);
+     }
+ 
+     public void setScope(Scope scope) {
+@@ -364,10 +325,6 @@
+     public void setParent(ProgramBlock block) {
+         this.parent = block;
+     }
+-
+-    public ProgramBlock getParent() {
+-        return this.parent;
+-    }
+     
+     public AMethod getMethod() {
+         return insnHelper.getMethod();
+@@ -944,10 +901,10 @@
+     //                                  control Operator                                      //
+     //*******************************************************************************************//
+ 
+-    @Override
++    /*@Override
+     public final If ifthan(If ifs){
+         addExe(ifs);
+-        ifs.setParentExes(getExecuteQueue());
++        ifs.setParentExes(getQueue());
+         subBlockPrepare(ifs);
+         return ifs;
+     }
+@@ -971,17 +928,17 @@
+         addExe(forEach);
+         subBlockPrepare(forEach);
+         return forEach;
+-    }
++    }*/
+ 
+     @Override
+     public final void breakOut(){
+-        ProgramBlock pb = getExecuteBlock();
++    	AbstractBlock pb = getExecuteBlock();
+         while(pb != null){
+             if(pb instanceof ILoop){
+                 new GOTO(getExecuteBlock(), ((ILoop)pb).getBreakLabel());
+                 return;
+             }
+-            pb = pb.parent;
++            pb = pb.getParent();
+         }
+         throw new InternalError("there is on loop!");
+     }
+@@ -988,13 +945,13 @@
+ 
+     @Override
+     public final void continueOut(){
+-        ProgramBlock pb = getExecuteBlock();
++        AbstractBlock pb = getExecuteBlock();
+         while(pb != null){
+             if(pb instanceof ILoop){
+                 new GOTO(getExecuteBlock(), ((ILoop)pb).getContinueLabel());
+                 return;
+             }
+-            pb = pb.parent;
++            pb = pb.getParent();
+         }
+         throw new InternalError("there is on loop!");
+     }
+@@ -1006,9 +963,9 @@
+                 new Class<?>[]{ProgramBlock.class, Parameterized.class}, getExecuteBlock(), exception);
+     }
+     
+-    @Override
++    /*@Override
+     public final Try tryDo(final Try t){
+-        t.setParentExes(getExecuteQueue());
++        t.setParentExes(getQueue());
+         addExe(t);
+         subBlockPrepare(t);
+         return t;
+@@ -1019,7 +976,7 @@
+ 		addExe(s);
+         subBlockPrepare(s);
+ 		return s;
+-	}
++	}*/
+     
+     @Override
+     public final ThisVariable getThis() {
+Index: main/java/cn/wensiqun/asmsupport/block/classes/common/ProgramBlockAdapter.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/common/ProgramBlockAdapter.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/common/ProgramBlockAdapter.java	(working copy)
+@@ -446,7 +446,7 @@
+         return proxy.not(factor);
+     }
+ 
+-    @Override
++    /*@Override
+     public If ifthan(If ifs)
+     {
+         return proxy.ifthan(ifs);
+@@ -482,7 +482,7 @@
+     public Synchronized syn(Synchronized sync)
+     {
+         return proxy.syn(sync);
+-    }
++    }*/
+ 
+     @Override
+     public CheckCast checkCast(Parameterized cc, AClass to)
+Index: main/java/cn/wensiqun/asmsupport/block/classes/common/Synchronized.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/common/Synchronized.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/common/Synchronized.java	(working copy)
+@@ -66,7 +66,7 @@
+         Executable returnInsn = null;
+         
+ 		lock.loadToStack(this);
+-		for (Executable e : getExecuteQueue()) {
++		for (Executable e : getQueue()) {
+ 			if(e.equals(flag1)){
+ 				//e.execute();
+ 				insnHelper.monitorEnter();
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/condition/Else.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/condition/Else.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/condition/Else.java	(working copy)
+@@ -19,7 +19,7 @@
+ 	@Override
+     public void executing() {
+         insnHelper.nop();
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+         insnHelper.mark(getEndLabel());
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/condition/ElseIf.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/condition/ElseIf.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/condition/ElseIf.java	(working copy)
+@@ -53,7 +53,7 @@
+             insnHelper.ifZCmp(InstructionHelper.EQ, getEndLabel());
+         }
+     	insnHelper.nop();
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+         
+@@ -77,7 +77,7 @@
+         this.elseifOrIfBlock = elseblock;
+         parentExes.add(elseblock);
+         
+-        subBlockPrepare(elseblock, getParent());
++        //subBlockPrepare(elseblock, getParent());
+         
+         elseblock.setPreviousEpisode(this);
+     }
+@@ -87,7 +87,7 @@
+         
+         parentExes.add(elseblock);
+ 
+-        subBlockPrepare(elseblock, getParent());
++        //subBlockPrepare(elseblock, getParent());
+         
+         elseblock.setPreviousEpisode(this);
+         
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/condition/If.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/condition/If.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/condition/If.java	(working copy)
+@@ -54,7 +54,7 @@
+         }
+         
+         insnHelper.nop();
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+         
+@@ -87,7 +87,7 @@
+         parentExes.add(elseblock);
+         this.elseOrElseIFBlock = elseblock;
+         
+-        subBlockPrepare(elseblock, getParent());
++        //subBlockPrepare(elseblock, getParent());
+         
+         elseblock.setPreviousEpisode(this);
+     }
+@@ -98,7 +98,7 @@
+         
+         parentExes.add(elseIfBlock);
+ 
+-        subBlockPrepare(elseIfBlock, getParent());
++        //subBlockPrepare(elseIfBlock, getParent());
+         
+         elseIfBlock.setPreviousEpisode(this);
+         
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Catch.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Catch.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Catch.java	(working copy)
+@@ -80,7 +80,7 @@
+         stack.push(exception.getType());
+         insnHelper.nop();
+         
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             if(exe.equals(implicitCatchThrowableStore)){
+                 stack.push(AClass.THROWABLE_ACLASS.getType());
+             }
+@@ -233,7 +233,7 @@
+         ca.setEntityTry(this.entityTry);
+         ca.setPreviousEpisode(this);
+         
+-        subBlockPrepare(ca, getParent());
++        //subBlockPrepare(ca, getParent());
+         
+         return ca;
+     }
+@@ -245,7 +245,7 @@
+         setFinallyBlock(fly);
+         fly.setPreviousEpisode(this);
+ 
+-        subBlockPrepare(fly, getParent());
++        //subBlockPrepare(fly, getParent());
+         
+         parentExes.add(fly);
+         
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Finally.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Finally.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Finally.java	(working copy)
+@@ -36,7 +36,7 @@
+     public final void executing() {
+         insnHelper.mark(startLbl);
+         insnHelper.nop();
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+         insnHelper.mark(endLbl);
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Try.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Try.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/Try.java	(working copy)
+@@ -104,7 +104,7 @@
+         if(finallyBlock != null){
+             generateThrowableCatch();
+             if(returnInTry){
+-                finallyBlock.getParent().removeExe(finallyBlock);
++                finallyBlock.getParent().getQueue().remove(finallyBlock);
+             }
+         }
+ 	}
+@@ -116,7 +116,7 @@
+         insnHelper.nop();
+         //boolean endMarked = false;
+         Stack stack = insnHelper.getMv().getStack();
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             if(exe.equals(implicitCatchThrowableStore)){
+                 insnHelper.mark(end);
+                 stack.push(AClass.THROWABLE_ACLASS.getType());
+@@ -164,7 +164,7 @@
+         ca.setParentExes(parentExes);
+         ca.setPreviousEpisode(this);
+         addCatchedException(ca.getException());
+-        subBlockPrepare(ca, getParent());
++        //subBlockPrepare(ca, getParent());
+         return ca;
+     }
+     
+@@ -181,7 +181,7 @@
+         setFinallyBlock(fny);
+         fny.setPreviousEpisode(this);
+ 
+-        subBlockPrepare(fny, getParent());
++        //subBlockPrepare(fny, getParent());
+         
+         parentExes.add(fny);
+         return fny;
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Catch.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Catch.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Catch.java	(working copy)
+@@ -34,7 +34,7 @@
+     @Override
+     public void executing()
+     {
+-        for(ByteCodeExecutor exe : getExecuteQueue()){
++        for(ByteCodeExecutor exe : getQueue()){
+             exe.execute();
+         }
+     }
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/ExceptionSerialContainer.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/ExceptionSerialContainer.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/ExceptionSerialContainer.java	(working copy)
+@@ -184,7 +184,7 @@
+         public void executing()
+         {
+             insnHelper.getMv().getStack().push(AnyException.ANY.getType());
+-            for(ByteCodeExecutor exe : getExecuteQueue())
++            for(ByteCodeExecutor exe : getQueue())
+             {
+                 exe.execute();
+             }
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Finally.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Finally.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Finally.java	(working copy)
+@@ -16,7 +16,7 @@
+     @Override
+     public void executing()
+     {
+-        for(ByteCodeExecutor exe : getExecuteQueue()){
++        for(ByteCodeExecutor exe : getQueue()){
+             exe.execute();
+         }
+     }
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Try.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Try.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/exception/v2/Try.java	(working copy)
+@@ -16,7 +16,7 @@
+     @Override
+     public void executing()
+     {
+-        for(ByteCodeExecutor exe : getExecuteQueue()){
++        for(ByteCodeExecutor exe : getQueue()){
+             exe.execute();
+         }
+     }
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/loop/ForEachLoop.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/loop/ForEachLoop.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/loop/ForEachLoop.java	(working copy)
+@@ -55,7 +55,7 @@
+     @Override
+     public void executing() {
+     	
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+         
+Index: main/java/cn/wensiqun/asmsupport/block/classes/control/loop/WhileLoop.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/control/loop/WhileLoop.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/control/loop/WhileLoop.java	(working copy)
+@@ -54,7 +54,7 @@
+         
+         insnHelper.mark(startLbl);
+         insnHelper.nop();
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+ 
+Index: main/java/cn/wensiqun/asmsupport/block/classes/method/GenericMethodBody.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/classes/method/GenericMethodBody.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/classes/method/GenericMethodBody.java	(working copy)
+@@ -92,7 +92,7 @@
+         	log.debug("");
+         }
+         
+-        for(Executable exe : getExecuteQueue()){
++        for(Executable exe : getQueue()){
+             exe.execute();
+         }
+         
+Index: main/java/cn/wensiqun/asmsupport/block/interfaces/operator/IBlockOperators.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/block/interfaces/operator/IBlockOperators.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/block/interfaces/operator/IBlockOperators.java	(working copy)
+@@ -24,8 +24,9 @@
+ Bitwise, 
+ CrementOperator,
+ RelationalOperator,
+-LogicalOperator,
+-CreateBlockOperator {
++LogicalOperator/*,
++CreateBlockOperator */
++{
+     
+     /**
+      * 转换类，将对象cc转换成目标类型to,对应下面的红色java代码
+Index: main/java/cn/wensiqun/asmsupport/definition/method/AMethod.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/definition/method/AMethod.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/definition/method/AMethod.java	(working copy)
+@@ -127,7 +127,7 @@
+     		}
+     	}
+     	
+-    	for(Executable exe : block.getExecuteQueue()){
++    	for(Executable exe : block.getQueue()){
+     		if(exe instanceof ProgramBlock){
+     			getThrowExceptionsInProgramBlock((ProgramBlock)exe);
+     		}
+@@ -140,7 +140,7 @@
+     private void createMethodVisitor(){
+     	
+     	if(!ModifierUtils.isAbstract(me.getModifier())){
+-            for(Executable exe : getMethodBody().getExecuteQueue()){
++            for(Executable exe : getMethodBody().getQueue()){
+     		    if(exe instanceof ProgramBlock){
+     			    getThrowExceptionsInProgramBlock((ProgramBlock)exe);
+     		    }
+Index: main/java/cn/wensiqun/asmsupport/operators/listener/ReturnOperatoInCatchWithFinallyListener.java
+===================================================================
+--- main/java/cn/wensiqun/asmsupport/operators/listener/ReturnOperatoInCatchWithFinallyListener.java	(revision 92)
++++ main/java/cn/wensiqun/asmsupport/operators/listener/ReturnOperatoInCatchWithFinallyListener.java	(working copy)
+@@ -1,5 +1,6 @@
+ package cn.wensiqun.asmsupport.operators.listener;
+ 
++import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
+ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+ import cn.wensiqun.asmsupport.block.classes.control.exception.Catch;
+ import cn.wensiqun.asmsupport.block.classes.control.exception.Finally;
+@@ -28,7 +29,7 @@
+ 	 * @param block 需要查找的程序块
+ 	 * @return
+ 	 */
+-	private Try directTryBlock(ProgramBlock block){
++	private Try directTryBlock(AbstractBlock block){
+ 		assert block != null;
+ 		while(block != null){
+ 			if(block instanceof Try){
+@@ -45,7 +46,7 @@
+ 	 * @param block
+ 	 * @return
+ 	 */
+-	private Catch directCatchBlock(ProgramBlock block){
++	private Catch directCatchBlock(AbstractBlock block){
+ 		assert block != null;
+ 		while(block != null){
+ 			if(block instanceof Catch){
+Index: test/java/example/block/IFBlockGenerator.java
+===================================================================
+--- test/java/example/block/IFBlockGenerator.java	(revision 92)
++++ test/java/example/block/IFBlockGenerator.java	(working copy)
+@@ -67,7 +67,7 @@
+ 	 * @throws IllegalAccessException 
+ 	 * @throws IllegalArgumentException 
+ 	 */
+-	public static void main(String[] args) {
++	public static void main(String[] args) {/*
+ 		
+ 		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.IFBlockGeneratorExample", null, null);
+ 		
+@@ -162,6 +162,6 @@
+ 			
+ 		});
+ 		generate(creator);
+-	}
++	*/}
+ 
+ }
+Index: test/java/example/create/CreateClassAndThanExtend.java
+===================================================================
+--- test/java/example/create/CreateClassAndThanExtend.java	(revision 92)
++++ test/java/example/create/CreateClassAndThanExtend.java	(working copy)
+@@ -73,7 +73,7 @@
+ 				
+ 				AClass randomClass = AClassFactory.getProductClass(Random.class);
+ 				LocalVariable random = this.createVariable("random", randomClass, false, this.invokeConstructor(randomClass, Value.value(1L)));
+-				ifthan(new If(invoke(random, "nextBoolean")){
++				/*ifthan(new If(invoke(random, "nextBoolean")){
+ 					@Override
+ 					public void body() {
+ 						invokeOriginalMethod();
+@@ -85,7 +85,7 @@
+ 						invoke(out, "println", Value.value("call self"));
+ 					}
+ 					
+-				});
++				});*/
+ 				invoke(out, "println", Value.value("after"));
+ 				runReturn();
+ 			}
+Index: test/java/example/operators/InstanceofOperatorGenerate.java
+===================================================================
+--- test/java/example/operators/InstanceofOperatorGenerate.java	(revision 92)
++++ test/java/example/operators/InstanceofOperatorGenerate.java	(working copy)
+@@ -129,44 +129,44 @@
+ 				LocalVariable d = createVariable("d", D_AClass, false, invokeConstructor(D_AClass));
+ 				
+ 				/*if (a instanceof A)
+-				      System.out.println("a is instance of A");*/
++				      System.out.println("a is instance of A");
+ 				ifthan(new If(instanceOf(a, A_AClass)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("a is instance of A"));
+ 					}
+-				});
++				});*/
+ 				
+ 				/*if (b instanceof B)
+-				    System.out.println("b is instance of B");*/
++				    System.out.println("b is instance of B");
+ 				ifthan(new If(instanceOf(b, B_AClass)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("b is instance of B"));
+ 					}
+-				});
++				});*/
+ 				
+ 				/*if (c instanceof C)
+-				    System.out.println("b is instance of B");*/
++				    System.out.println("b is instance of B");
+ 				ifthan(new If(instanceOf(c, C_AClass)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("c is instance of C"));
+ 					}
+-				});
++				});*/
+ 
+ 				
+ 				/*if (c instanceof A)
+-				    System.out.println("c can be cast to A");*/
++				    System.out.println("c can be cast to A");
+ 				ifthan(new If(instanceOf(c, A_AClass)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("c can be cast to A"));
+ 					}
+-				});
++				});*/
+ 
+ 				/*if (a instanceof C)
+-				    System.out.println("a can be cast to C");*/
++				    System.out.println("a can be cast to C");
+ 				ifthan(new If(instanceOf(a, C_AClass)){
+ 					@Override
+ 					public void body() {
+@@ -173,7 +173,7 @@
+ 						invoke(systemOut, "println", Value.value("a can be cast to C"));
+ 					}
+ 				});
+-				invoke(systemOut, "println");
++				invoke(systemOut, "println");*/
+ 				
+ 				/*A ob = d; // A reference to d
+ 				  System.out.println("ob now refers to d");*/
+@@ -182,7 +182,7 @@
+ 				
+ 				/* if (ob instanceof D)
+ 		               System.out.println("ob is instance of D");
+-		           System.out.println();*/
++		           System.out.println();
+ 				ifthan(new If(instanceOf(ob, D_AClass)){
+ 					@Override
+ 					public void body() {
+@@ -189,7 +189,7 @@
+ 						invoke(systemOut, "println", Value.value("ob is instance of D"));
+ 					}
+ 				});
+-				invoke(systemOut, "println");
++				invoke(systemOut, "println");*/
+ 				
+ 				/*     ob = c; // A reference to c
+ 				 *     System.out.println("ob now refers to c");
+@@ -197,7 +197,7 @@
+ 				 *     	   System.out.println("ob can be cast to D");
+ 				 *     else
+ 				 *     	   System.out.println("ob cannot be cast to D");
+-				 */
++				 
+ 				assign(ob, c);
+ 				invoke(systemOut, "println", Value.value("ob now refers to c"));
+ 				ifthan(new If(instanceOf(ob, D_AClass)){
+@@ -211,12 +211,12 @@
+ 						invoke(systemOut, "println", Value.value("ob cannot be cast to D"));
+ 					}
+ 					
+-				});
++				});*/
+ 				
+ 				/*     if (ob instanceof A)
+ 				 *     	   System.out.println("ob can be cast to A");
+ 				 *     System.out.println();
+-				 */
++				 
+ 				ifthan(new If(instanceOf(ob, A_AClass)){
+ 					@Override
+ 					public void body() {
+@@ -223,51 +223,51 @@
+ 						invoke(systemOut, "println", Value.value("ob can be cast to A"));
+ 					}
+ 				});
+-				invoke(systemOut, "println");
++				invoke(systemOut, "println");*/
+ 				
+ 				
+ 				/*     if (a instanceof Object)
+ 				 *     	   System.out.println("a may be cast to Object");
+-				 */
++				
+ 				ifthan(new If(instanceOf(a, AClass.OBJECT_ACLASS)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("a may be cast to Object"));
+ 					}
+-				});
++				}); */
+ 				
+ 				
+ 				/*     if (b instanceof Object)
+ 				 *     	   System.out.println("b may be cast to Object");
+-				 */
++				 
+ 				ifthan(new If(instanceOf(b, AClass.OBJECT_ACLASS)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("b may be cast to Object"));
+ 					}
+-				});
++				});*/
+ 				
+ 				
+ 				/*     if (c instanceof Object)
+ 				 *     	   System.out.println("c may be cast to Object");
+-				 */
++				
+ 				ifthan(new If(instanceOf(c, AClass.OBJECT_ACLASS)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("c may be cast to Object"));
+ 					}
+-				});
++				}); */
+ 				
+ 				
+ 				/*     if (d instanceof Object)
+ 				 *     	   System.out.println("d may be cast to Object");
+-				 */
++				 
+ 				ifthan(new If(instanceOf(d, AClass.OBJECT_ACLASS)){
+ 					@Override
+ 					public void body() {
+ 						invoke(systemOut, "println", Value.value("d may be cast to Object"));
+ 					}
+-				});
++				});*/
+ 				runReturn();
+ 			}
+         });

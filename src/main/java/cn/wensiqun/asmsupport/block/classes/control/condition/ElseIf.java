@@ -53,7 +53,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
             insnHelper.ifZCmp(InstructionHelper.EQ, getEndLabel());
         }
     	insnHelper.nop();
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             exe.execute();
         }
         
@@ -77,7 +77,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
         this.elseifOrIfBlock = elseblock;
         parentExes.add(elseblock);
         
-        subBlockPrepare(elseblock, getParent());
+        //subBlockPrepare(elseblock, getParent());
         
         elseblock.setPreviousEpisode(this);
     }
@@ -87,7 +87,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
         
         parentExes.add(elseblock);
 
-        subBlockPrepare(elseblock, getParent());
+        //subBlockPrepare(elseblock, getParent());
         
         elseblock.setPreviousEpisode(this);
         

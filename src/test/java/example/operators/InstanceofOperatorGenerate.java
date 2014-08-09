@@ -129,51 +129,51 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				LocalVariable d = createVariable("d", D_AClass, false, invokeConstructor(D_AClass));
 				
 				/*if (a instanceof A)
-				      System.out.println("a is instance of A");*/
+				      System.out.println("a is instance of A");
 				ifthan(new If(instanceOf(a, A_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("a is instance of A"));
 					}
-				});
+				});*/
 				
 				/*if (b instanceof B)
-				    System.out.println("b is instance of B");*/
+				    System.out.println("b is instance of B");
 				ifthan(new If(instanceOf(b, B_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("b is instance of B"));
 					}
-				});
+				});*/
 				
 				/*if (c instanceof C)
-				    System.out.println("b is instance of B");*/
+				    System.out.println("b is instance of B");
 				ifthan(new If(instanceOf(c, C_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("c is instance of C"));
 					}
-				});
+				});*/
 
 				
 				/*if (c instanceof A)
-				    System.out.println("c can be cast to A");*/
+				    System.out.println("c can be cast to A");
 				ifthan(new If(instanceOf(c, A_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("c can be cast to A"));
 					}
-				});
+				});*/
 
 				/*if (a instanceof C)
-				    System.out.println("a can be cast to C");*/
+				    System.out.println("a can be cast to C");
 				ifthan(new If(instanceOf(a, C_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("a can be cast to C"));
 					}
 				});
-				invoke(systemOut, "println");
+				invoke(systemOut, "println");*/
 				
 				/*A ob = d; // A reference to d
 				  System.out.println("ob now refers to d");*/
@@ -182,14 +182,14 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				
 				/* if (ob instanceof D)
 		               System.out.println("ob is instance of D");
-		           System.out.println();*/
+		           System.out.println();
 				ifthan(new If(instanceOf(ob, D_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("ob is instance of D"));
 					}
 				});
-				invoke(systemOut, "println");
+				invoke(systemOut, "println");*/
 				
 				/*     ob = c; // A reference to c
 				 *     System.out.println("ob now refers to c");
@@ -197,7 +197,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				 *     	   System.out.println("ob can be cast to D");
 				 *     else
 				 *     	   System.out.println("ob cannot be cast to D");
-				 */
+				 
 				assign(ob, c);
 				invoke(systemOut, "println", Value.value("ob now refers to c"));
 				ifthan(new If(instanceOf(ob, D_AClass)){
@@ -211,63 +211,63 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 						invoke(systemOut, "println", Value.value("ob cannot be cast to D"));
 					}
 					
-				});
+				});*/
 				
 				/*     if (ob instanceof A)
 				 *     	   System.out.println("ob can be cast to A");
 				 *     System.out.println();
-				 */
+				 
 				ifthan(new If(instanceOf(ob, A_AClass)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("ob can be cast to A"));
 					}
 				});
-				invoke(systemOut, "println");
+				invoke(systemOut, "println");*/
 				
 				
 				/*     if (a instanceof Object)
 				 *     	   System.out.println("a may be cast to Object");
-				 */
+				
 				ifthan(new If(instanceOf(a, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("a may be cast to Object"));
 					}
-				});
+				}); */
 				
 				
 				/*     if (b instanceof Object)
 				 *     	   System.out.println("b may be cast to Object");
-				 */
+				 
 				ifthan(new If(instanceOf(b, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("b may be cast to Object"));
 					}
-				});
+				});*/
 				
 				
 				/*     if (c instanceof Object)
 				 *     	   System.out.println("c may be cast to Object");
-				 */
+				
 				ifthan(new If(instanceOf(c, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("c may be cast to Object"));
 					}
-				});
+				}); */
 				
 				
 				/*     if (d instanceof Object)
 				 *     	   System.out.println("d may be cast to Object");
-				 */
+				 
 				ifthan(new If(instanceOf(d, AClass.OBJECT_ACLASS)){
 					@Override
 					public void body() {
 						invoke(systemOut, "println", Value.value("d may be cast to Object"));
 					}
-				});
+				});*/
 				runReturn();
 			}
         });

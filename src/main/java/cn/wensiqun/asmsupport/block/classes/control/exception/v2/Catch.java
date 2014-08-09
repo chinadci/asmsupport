@@ -34,7 +34,7 @@ public abstract class Catch extends ProgramBlock implements LocalVariableBody
     @Override
     public void executing()
     {
-        for(ByteCodeExecutor exe : getExecuteQueue()){
+        for(ByteCodeExecutor exe : getQueue()){
             exe.execute();
         }
     }

@@ -24,8 +24,9 @@ ArithmeticOperator,
 Bitwise, 
 CrementOperator,
 RelationalOperator,
-LogicalOperator,
-CreateBlockOperator {
+LogicalOperator/*,
+CreateBlockOperator */
+{
     
     /**
      * 转换类，将对象cc转换成目标类型to,对应下面的红色java代码

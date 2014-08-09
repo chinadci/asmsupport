@@ -54,7 +54,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         }
         
         insnHelper.nop();
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             exe.execute();
         }
         
@@ -87,7 +87,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         parentExes.add(elseblock);
         this.elseOrElseIFBlock = elseblock;
         
-        subBlockPrepare(elseblock, getParent());
+        //subBlockPrepare(elseblock, getParent());
         
         elseblock.setPreviousEpisode(this);
     }
@@ -98,7 +98,7 @@ public abstract class If extends ConditionBranchBlock implements Body {
         
         parentExes.add(elseIfBlock);
 
-        subBlockPrepare(elseIfBlock, getParent());
+        //subBlockPrepare(elseIfBlock, getParent());
         
         elseIfBlock.setPreviousEpisode(this);
         

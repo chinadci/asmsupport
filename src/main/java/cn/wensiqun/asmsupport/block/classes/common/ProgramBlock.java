@@ -102,7 +102,7 @@ import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
  * @author wensiqun(at)gmail
  * 
  */
-public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOperators, Cloneable  {
+public abstract class ProgramBlock extends AbstractBlock implements IBlockOperators  {
 
     private static Log log = LogFactory.getLog(ProgramBlock.class);
 
@@ -110,12 +110,6 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
 	private   ProgramBlock                executeBlock = this;
     
 	private   Scope                       scope;
-    
-    /** 属于哪个block。父block */
-    private   ProgramBlock                parent;
-    
-    /** 该程序块中所有可执行的指令 */
-    private   CommonLinkedList<ByteCodeExecutor>            executeQueue;
     
     protected InstructionHelper           insnHelper;
     
@@ -125,17 +119,6 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
     
     private   Label                       end;
     
-    /**
-     * create a logic program block
-     * 
-     * @param mv
-     * @param scope
-     * @param parent
-     */
-    protected ProgramBlock() {
-        executeQueue = new CommonLinkedList<ByteCodeExecutor>();
-    }
-
     /*<<<<<<<<<<<<<<<<<<< Getter Setter <<<<<<<<<<<<<<<<<<<<<<<<*/
     
     public void setExecuteBlock(ProgramBlock exeBlock) {
@@ -149,10 +132,6 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
     public ThrowExceptionContainer getThrowExceptions() {
 		return throwExceptions;
 	}
-
-    public CommonLinkedList<ByteCodeExecutor> getExecuteQueue(){
-        return this.executeQueue;
-    }
 
     /* >>>>>>>>>>>>>>>>>> Getter Setter >>>>>>>>>>>>>>>>>>>>>>>*/
     
@@ -223,17 +202,17 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
         new BlockEndFlag(getExecuteBlock());
     }
     
-    protected void subBlockPrepare(ProgramBlock pb){
+    /*protected void subBlockPrepare(ProgramBlock pb){
     	subBlockPrepare(pb, this);
-    }
+    }*/
     
-    /**
+    /*
      * 通常情况下的prepare
      * 
      * @param pb
      * @param parentBlock
      */
-    protected void subBlockPrepare(ProgramBlock pb, ProgramBlock parentBlock){
+    /*protected void subBlockPrepare(ProgramBlock pb, ProgramBlock parentBlock){
     	pb.setInsnHelper(insnHelper);
     	pb.setScope(new Scope(getMethod().getLocals(), parentBlock.getScope()));
     	//设置父类的Block
@@ -247,7 +226,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
         	pb.prepare();
     	}
         new BlockEndFlag(pb);
-    }
+    }*/
     
     public void tiggerTryCatchPrepare(){
     	Try nearlyTryBlock = getMethod().getNearlyTryBlock();
@@ -300,25 +279,14 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
      * @param exe
      */
     public void addExe(ByteCodeExecutor exe) {
-        getExecuteQueue().add(exe);
+        getQueue().add(exe);
     }
-    
-    /*public void addAllExe(int index, List<Executable> exes) {
-        getExecuteQueue().addAll(index, exes);
-    }*/
-    
     /**
      * 
      * @param exe
      */
     public void removeExe(ByteCodeExecutor exe) {
-        getExecuteQueue().remove(exe);
-        /*for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
-            if (getExecuteQueue().get(i).equals(exe)) {
-                getExecuteQueue().remove(i);
-                break;
-            }
-        }*/
+        getQueue().remove(exe);
     }
 
     /**
@@ -327,14 +295,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
      * @param newp
      */
     public void replaceExe(ByteCodeExecutor old, ByteCodeExecutor newp){
-        getExecuteQueue().replace(old, newp);
-        /*for (int i = getExecuteQueue().size() - 1; i >= 0; i--) {
-            if (getExecuteQueue().get(i).equals(old)) {
-                getExecuteQueue().remove(i);
-                getExecuteQueue().add(i, newp);
-                break;
-            }
-        }*/
+        getQueue().replace(old, newp);
     }
 
     public void setScope(Scope scope) {
@@ -363,10 +324,6 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
 
     public void setParent(ProgramBlock block) {
         this.parent = block;
-    }
-
-    public ProgramBlock getParent() {
-        return this.parent;
     }
     
     public AMethod getMethod() {
@@ -944,10 +901,10 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
     //                                  control Operator                                      //
     //*******************************************************************************************//
 
-    @Override
+    /*@Override
     public final If ifthan(If ifs){
         addExe(ifs);
-        ifs.setParentExes(getExecuteQueue());
+        ifs.setParentExes(getQueue());
         subBlockPrepare(ifs);
         return ifs;
     }
@@ -971,30 +928,30 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
         addExe(forEach);
         subBlockPrepare(forEach);
         return forEach;
-    }
+    }*/
 
     @Override
     public final void breakOut(){
-        ProgramBlock pb = getExecuteBlock();
+    	AbstractBlock pb = getExecuteBlock();
         while(pb != null){
             if(pb instanceof ILoop){
                 new GOTO(getExecuteBlock(), ((ILoop)pb).getBreakLabel());
                 return;
             }
-            pb = pb.parent;
+            pb = pb.getParent();
         }
         throw new InternalError("there is on loop!");
     }
 
     @Override
     public final void continueOut(){
-        ProgramBlock pb = getExecuteBlock();
+        AbstractBlock pb = getExecuteBlock();
         while(pb != null){
             if(pb instanceof ILoop){
                 new GOTO(getExecuteBlock(), ((ILoop)pb).getContinueLabel());
                 return;
             }
-            pb = pb.parent;
+            pb = pb.getParent();
         }
         throw new InternalError("there is on loop!");
     }
@@ -1006,9 +963,9 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
                 new Class<?>[]{ProgramBlock.class, Parameterized.class}, getExecuteBlock(), exception);
     }
     
-    @Override
+    /*@Override
     public final Try tryDo(final Try t){
-        t.setParentExes(getExecuteQueue());
+        t.setParentExes(getQueue());
         addExe(t);
         subBlockPrepare(t);
         return t;
@@ -1019,7 +976,7 @@ public abstract class ProgramBlock extends ByteCodeExecutor implements IBlockOpe
 		addExe(s);
         subBlockPrepare(s);
 		return s;
-	}
+	}*/
     
     @Override
     public final ThisVariable getThis() {

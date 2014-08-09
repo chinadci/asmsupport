@@ -80,7 +80,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         stack.push(exception.getType());
         insnHelper.nop();
         
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             if(exe.equals(implicitCatchThrowableStore)){
                 stack.push(AClass.THROWABLE_ACLASS.getType());
             }
@@ -233,7 +233,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         ca.setEntityTry(this.entityTry);
         ca.setPreviousEpisode(this);
         
-        subBlockPrepare(ca, getParent());
+        //subBlockPrepare(ca, getParent());
         
         return ca;
     }
@@ -245,7 +245,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         setFinallyBlock(fly);
         fly.setPreviousEpisode(this);
 
-        subBlockPrepare(fly, getParent());
+        //subBlockPrepare(fly, getParent());
         
         parentExes.add(fly);
         

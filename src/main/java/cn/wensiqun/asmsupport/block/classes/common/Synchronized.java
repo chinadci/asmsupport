@@ -66,7 +66,7 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
         Executable returnInsn = null;
         
 		lock.loadToStack(this);
-		for (Executable e : getExecuteQueue()) {
+		for (Executable e : getQueue()) {
 			if(e.equals(flag1)){
 				//e.execute();
 				insnHelper.monitorEnter();

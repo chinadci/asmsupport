@@ -127,7 +127,7 @@ public class AMethod {
     		}
     	}
     	
-    	for(Executable exe : block.getExecuteQueue()){
+    	for(Executable exe : block.getQueue()){
     		if(exe instanceof ProgramBlock){
     			getThrowExceptionsInProgramBlock((ProgramBlock)exe);
     		}
@@ -140,7 +140,7 @@ public class AMethod {
     private void createMethodVisitor(){
     	
     	if(!ModifierUtils.isAbstract(me.getModifier())){
-            for(Executable exe : getMethodBody().getExecuteQueue()){
+            for(Executable exe : getMethodBody().getQueue()){
     		    if(exe instanceof ProgramBlock){
     			    getThrowExceptionsInProgramBlock((ProgramBlock)exe);
     		    }

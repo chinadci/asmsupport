@@ -73,7 +73,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 				
 				AClass randomClass = AClassFactory.getProductClass(Random.class);
 				LocalVariable random = this.createVariable("random", randomClass, false, this.invokeConstructor(randomClass, Value.value(1L)));
-				ifthan(new If(invoke(random, "nextBoolean")){
+				/*ifthan(new If(invoke(random, "nextBoolean")){
 					@Override
 					public void body() {
 						invokeOriginalMethod();
@@ -85,7 +85,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 						invoke(out, "println", Value.value("call self"));
 					}
 					
-				});
+				});*/
 				invoke(out, "println", Value.value("after"));
 				runReturn();
 			}

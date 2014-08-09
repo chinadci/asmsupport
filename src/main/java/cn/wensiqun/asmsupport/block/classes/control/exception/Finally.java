@@ -36,7 +36,7 @@ public abstract class Finally extends EpisodeBlock implements Body {
     public final void executing() {
         insnHelper.mark(startLbl);
         insnHelper.nop();
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             exe.execute();
         }
         insnHelper.mark(endLbl);

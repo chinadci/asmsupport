@@ -1,5 +1,6 @@
 package cn.wensiqun.asmsupport.operators.listener;
 
+import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Catch;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Finally;
@@ -28,7 +29,7 @@ public class ReturnOperatoInCatchWithFinallyListener extends NewOperatorListener
 	 * @param block 需要查找的程序块
 	 * @return
 	 */
-	private Try directTryBlock(ProgramBlock block){
+	private Try directTryBlock(AbstractBlock block){
 		assert block != null;
 		while(block != null){
 			if(block instanceof Try){
@@ -45,7 +46,7 @@ public class ReturnOperatoInCatchWithFinallyListener extends NewOperatorListener
 	 * @param block
 	 * @return
 	 */
-	private Catch directCatchBlock(ProgramBlock block){
+	private Catch directCatchBlock(AbstractBlock block){
 		assert block != null;
 		while(block != null){
 			if(block instanceof Catch){

@@ -55,7 +55,7 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     @Override
     public void executing() {
     	
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             exe.execute();
         }
         

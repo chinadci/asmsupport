@@ -9,9 +9,21 @@ public abstract class AbstractBlock extends ByteCodeExecutor implements Cloneabl
     
     protected CommonLinkedList<ByteCodeExecutor> queue;
 
-	public AbstractBlock(AbstractBlock parent) {
-		this.parent = parent;
+	public AbstractBlock() {
 		this.queue = new CommonLinkedList<ByteCodeExecutor>();
 	}
+
+	public AbstractBlock getParent() {
+		return parent;
+	}
+
+	public void setParent(AbstractBlock parent) {
+		this.parent = parent;
+	}
+
+	public CommonLinkedList<ByteCodeExecutor> getQueue() {
+		return queue;
+	}
+
 	
 }

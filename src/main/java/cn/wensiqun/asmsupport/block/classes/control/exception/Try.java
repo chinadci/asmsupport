@@ -104,7 +104,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         if(finallyBlock != null){
             generateThrowableCatch();
             if(returnInTry){
-                finallyBlock.getParent().removeExe(finallyBlock);
+                finallyBlock.getParent().getQueue().remove(finallyBlock);
             }
         }
 	}
@@ -116,7 +116,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         insnHelper.nop();
         //boolean endMarked = false;
         Stack stack = insnHelper.getMv().getStack();
-        for(Executable exe : getExecuteQueue()){
+        for(Executable exe : getQueue()){
             if(exe.equals(implicitCatchThrowableStore)){
                 insnHelper.mark(end);
                 stack.push(AClass.THROWABLE_ACLASS.getType());
@@ -164,7 +164,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         ca.setParentExes(parentExes);
         ca.setPreviousEpisode(this);
         addCatchedException(ca.getException());
-        subBlockPrepare(ca, getParent());
+        //subBlockPrepare(ca, getParent());
         return ca;
     }
     
@@ -181,7 +181,7 @@ public abstract class Try extends EpisodeBlock implements Body {
         setFinallyBlock(fny);
         fny.setPreviousEpisode(this);
 
-        subBlockPrepare(fny, getParent());
+        //subBlockPrepare(fny, getParent());
         
         parentExes.add(fny);
         return fny;

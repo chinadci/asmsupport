@@ -184,7 +184,7 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
         public void executing()
         {
             insnHelper.getMv().getStack().push(AnyException.ANY.getType());
-            for(ByteCodeExecutor exe : getExecuteQueue())
+            for(ByteCodeExecutor exe : getQueue())
             {
                 exe.execute();
             }
