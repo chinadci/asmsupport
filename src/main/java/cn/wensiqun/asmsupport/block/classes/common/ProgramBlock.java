@@ -13,14 +13,10 @@ import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.control.condition.If;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Catch;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Finally;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
-import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -90,7 +86,6 @@ import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 import cn.wensiqun.asmsupport.operators.variable.LocalVariableCreator;
 import cn.wensiqun.asmsupport.utils.ASConstant;
-import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 import cn.wensiqun.asmsupport.utils.common.ThrowExceptionContainer;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
@@ -109,6 +104,8 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     /**执行Block, 通过当前Block所创建的操作，实际是executeBlock的代理*/
 	private   ProgramBlock                executeBlock = this;
     
+	private   ProgramBlock                parent;
+	
 	private   Scope                       scope;
     
     protected InstructionHelper           insnHelper;
@@ -132,10 +129,14 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     public ThrowExceptionContainer getThrowExceptions() {
 		return throwExceptions;
 	}
-
+    
     /* >>>>>>>>>>>>>>>>>> Getter Setter >>>>>>>>>>>>>>>>>>>>>>>*/
     
-    /**
+    public ProgramBlock getParent() {
+		return parent;
+	}
+
+	/**
      * 添加抛出的异常到方法签名中
      * @param exception
      */
@@ -932,7 +933,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final void breakOut(){
-    	AbstractBlock pb = getExecuteBlock();
+    	ProgramBlock pb = getExecuteBlock();
         while(pb != null){
             if(pb instanceof ILoop){
                 new GOTO(getExecuteBlock(), ((ILoop)pb).getBreakLabel());
@@ -945,7 +946,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final void continueOut(){
-        AbstractBlock pb = getExecuteBlock();
+    	ProgramBlock pb = getExecuteBlock();
         while(pb != null){
             if(pb instanceof ILoop){
                 new GOTO(getExecuteBlock(), ((ILoop)pb).getContinueLabel());

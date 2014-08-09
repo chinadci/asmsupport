@@ -29,7 +29,7 @@ public class ReturnOperatoInCatchWithFinallyListener extends NewOperatorListener
 	 * @param block 需要查找的程序块
 	 * @return
 	 */
-	private Try directTryBlock(AbstractBlock block){
+	private Try directTryBlock(ProgramBlock block){
 		assert block != null;
 		while(block != null){
 			if(block instanceof Try){
@@ -46,7 +46,7 @@ public class ReturnOperatoInCatchWithFinallyListener extends NewOperatorListener
 	 * @param block
 	 * @return
 	 */
-	private Catch directCatchBlock(AbstractBlock block){
+	private Catch directCatchBlock(ProgramBlock block){
 		assert block != null;
 		while(block != null){
 			if(block instanceof Catch){

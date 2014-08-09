@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
+import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AnyException;
@@ -17,7 +18,7 @@ import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
 import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
-public class ExceptionSerialContainer extends ByteCodeExecutor
+public class ExceptionSerialContainer extends AbstractBlock
 {
 
     private ProgramBlock parent;
@@ -34,8 +35,6 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
 
     private Label serialEnd;
 
-    private CommonLinkedList<ByteCodeExecutor> queue;
-    
     public ExceptionSerialContainer(ProgramBlock parent, Try tryBlock)
     {
         this.tryBlock = tryBlock;
