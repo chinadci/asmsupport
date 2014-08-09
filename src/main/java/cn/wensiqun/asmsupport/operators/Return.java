@@ -21,15 +21,26 @@ public class Return extends BreakStack {
     private static Log log = LogFactory.getLog(Return.class);
     
     private Parameterized returner;
+    
     private Type returnType;
     
     protected Return(ProgramBlock block, Parameterized returner) {
-        super(block);
+        super(block, false);
         this.returner = returner;
         if(returner != null){
             returner.asArgument();
         }
     }
+    
+    protected Return(ProgramBlock block, Parameterized returner, boolean autoCreate) {
+        super(block, autoCreate);
+        this.returner = returner;
+        if(returner != null){
+            returner.asArgument();
+        }
+    }
+    
+    
 
     @Override
     protected void verifyArgument() {

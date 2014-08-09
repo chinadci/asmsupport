@@ -17,15 +17,13 @@ public class Throw extends BreakStack {
     private Parameterized exception;
     
     protected Throw(ProgramBlock block, Parameterized exception) {
-        super(block);
+        super(block, false);
         this.exception = exception;
-        this.setAutoCreate(false);
     }
 
     protected Throw(ProgramBlock block, Parameterized exception, boolean autoCreate) {
-        super(block);
+        super(block, true);
         this.exception = exception;
-        this.setAutoCreate(autoCreate);
     }
     
     @Override

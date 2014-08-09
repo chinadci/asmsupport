@@ -1,38 +1,48 @@
 package cn.wensiqun.asmsupport.operators;
 
+import java.util.List;
+
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.control.exception.v2.Finally;
 
 public abstract class BreakStack extends AbstractOperator {
-
-	//private boolean affectReturn = true;
 
     /**
      * if exists, this label indicate start position of auto create finally block, 
      * otherwise, indicate the current operator label. 
      */
-    private Label markLabel;
+    private List<CloneFinallyLabelMap> cloneFinallyLabelList;
     
 	private boolean autoCreate;
-	
-	public boolean isAutoCreate() {
-		return autoCreate;
-	}
 
-	public void setAutoCreate(boolean autoCreate) {
+	protected BreakStack(ProgramBlock block, boolean autoCreate) {
+		super(block);
 		this.autoCreate = autoCreate;
 	}
 
-	protected BreakStack(ProgramBlock block) {
-		super(block);
+	public boolean isAutoCreate() {
+		return autoCreate;
 	}
+	
 
 	@Override
 	protected final void executing() {
 	    breakStackExecuting();
 	}
-
-    protected abstract void breakStackExecuting();
 	
+    protected abstract void breakStackExecuting();
+
+    private void checkFinallyBlock()
+    {
+    	
+    }
+    
+    private class CloneFinallyLabelMap
+    {
+    	private Label position;
+    	
+    	private Finally target;
+    }
 }

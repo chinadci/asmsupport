@@ -34,7 +34,7 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
 
     private Label serialEnd;
 
-    private CommonLinkedList<ByteCodeExecutor> executeQueue;
+    private CommonLinkedList<ByteCodeExecutor> queue;
     
     public ExceptionSerialContainer(ProgramBlock parent, Try tryBlock)
     {
@@ -42,10 +42,10 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
         this.parent = parent;
         serialStart = new Label();
         serialEnd = new Label();
-        executeQueue = new CommonLinkedList<ByteCodeExecutor>();
+        queue = new CommonLinkedList<ByteCodeExecutor>();
         
         tryBlock.setParent(parent);
-        executeQueue.add(tryBlock);
+        queue.add(tryBlock);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
         if(catchs == null)
         {
             catchs = new ArrayList<Catch>();
-            executeQueue.addAfter(tryBlock, catchBlock);
+            queue.addAfter(tryBlock, catchBlock);
         }
         else
         {
@@ -142,7 +142,7 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
                     ". It is already handled by the catch block for " + exceptionType);
             }
             
-            executeQueue.addAfter(previous, catchBlock);
+            queue.addAfter(previous, catchBlock);
         }
         catchs.add(catchBlock);
     }
@@ -157,8 +157,8 @@ public class ExceptionSerialContainer extends ByteCodeExecutor
         implicitCatch = new ImplicitCatch();
         this.finallyBlock = finallyBlock;
         
-        executeQueue.setLast(implicitCatch);
-        executeQueue.setLast(finallyBlock);
+        queue.setLast(implicitCatch);
+        queue.setLast(finallyBlock);
     }
     
     private void addTreCatchInfo(Label start, Label end, Label handler, AClass type)
