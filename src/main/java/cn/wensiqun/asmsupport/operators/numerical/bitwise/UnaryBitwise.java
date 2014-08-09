@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.operators.numerical.bitwise;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;

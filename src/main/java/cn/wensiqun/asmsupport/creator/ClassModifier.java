@@ -13,10 +13,10 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.asm.adapter.VisitXInsnAdapter;
-import cn.wensiqun.asmsupport.block.method.clinit.ClinitBody;
-import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.method.common.ModifiedMethodBody;
-import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.ModifiedMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.clazz.ProductClass;

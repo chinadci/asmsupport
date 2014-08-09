@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
-import cn.wensiqun.asmsupport.block.control.exception.v2.Finally;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Finally;
 
 public abstract class BreakStack extends AbstractOperator {
 

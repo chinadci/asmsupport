@@ -9,7 +9,7 @@ import java.util.Vector;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.listener.ReturnOperatoInCatchWithFinallyListener;

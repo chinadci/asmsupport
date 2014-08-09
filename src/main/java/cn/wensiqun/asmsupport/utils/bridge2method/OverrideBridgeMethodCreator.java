@@ -7,7 +7,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.MethodCreator;

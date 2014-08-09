@@ -7,10 +7,10 @@ import org.apache.commons.collections.CollectionUtils;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.method.clinit.EnumClinitBody;
-import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
-import cn.wensiqun.asmsupport.block.method.init.EnumInitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.EnumClinitBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.init.EnumInitBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;

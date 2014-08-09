@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.definition.variable;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
 import cn.wensiqun.asmsupport.definition.variable.meta.VariableMeta;

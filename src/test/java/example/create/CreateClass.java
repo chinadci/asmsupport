@@ -4,10 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.method.clinit.ClinitBody;
-import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
-import cn.wensiqun.asmsupport.block.method.init.InitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.init.InitBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreator;

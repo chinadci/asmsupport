@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.creator;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.method.clinit.ClinitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 

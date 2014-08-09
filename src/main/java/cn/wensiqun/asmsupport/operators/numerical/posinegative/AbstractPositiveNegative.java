@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.operators.numerical.posinegative;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
 import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;

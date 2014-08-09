@@ -5,7 +5,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreator;

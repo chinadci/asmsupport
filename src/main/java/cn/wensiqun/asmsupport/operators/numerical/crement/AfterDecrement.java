@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.operators.numerical.crement;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 
 /**
  * @author 温斯群(Joe Wen)

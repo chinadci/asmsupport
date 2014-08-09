@@ -4,7 +4,7 @@ package cn.wensiqun.asmsupport.operators;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.control.ControlType;
+import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 
 
 public interface Jumpable extends Parameterized {

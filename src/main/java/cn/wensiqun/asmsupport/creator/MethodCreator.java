@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.creator;
 
-import cn.wensiqun.asmsupport.block.method.GenericMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.definition.method.AMethod;

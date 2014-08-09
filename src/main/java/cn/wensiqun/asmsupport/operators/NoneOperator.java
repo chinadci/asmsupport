@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.operators;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 
 public class NoneOperator extends AbstractOperator {
 

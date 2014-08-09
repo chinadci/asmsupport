@@ -3,7 +3,7 @@
  */
 package cn.wensiqun.asmsupport.operators.numerical.bitwise;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;

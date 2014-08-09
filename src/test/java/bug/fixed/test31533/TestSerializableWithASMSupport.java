@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.creator.ClassCreator;
 import cn.wensiqun.asmsupport.definition.value.Value;

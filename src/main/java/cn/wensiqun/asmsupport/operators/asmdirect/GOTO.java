@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.operators.asmdirect;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 
 
 /**

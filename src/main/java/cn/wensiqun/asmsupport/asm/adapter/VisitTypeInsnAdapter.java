@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.asm.adapter;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.operators.asmdirect.VisitTypeInsn;
 
 public class VisitTypeInsnAdapter implements VisitXInsnAdapter {

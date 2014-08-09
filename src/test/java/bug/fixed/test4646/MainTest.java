@@ -12,7 +12,7 @@ import bug.fixed.test4646.entity.Child;
 import bug.fixed.test4646.entity.ChildChild;
 import bug.fixed.test4646.entity.Super;
 import bug.fixed.test4646.parent.AbstractClass;
-import cn.wensiqun.asmsupport.block.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreator;

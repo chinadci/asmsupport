@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.definition.variable;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;

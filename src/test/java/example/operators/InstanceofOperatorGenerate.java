@@ -3,9 +3,9 @@ package example.operators;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.control.condition.Else;
-import cn.wensiqun.asmsupport.block.control.condition.If;
-import cn.wensiqun.asmsupport.block.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.control.condition.Else;
+import cn.wensiqun.asmsupport.block.classes.control.condition.If;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreator;
