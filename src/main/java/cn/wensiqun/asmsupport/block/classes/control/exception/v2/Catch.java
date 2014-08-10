@@ -3,12 +3,11 @@ package cn.wensiqun.asmsupport.block.classes.control.exception.v2;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariableBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 
-public abstract class Catch extends ProgramBlock implements LocalVariableBody
+public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariableBody
 {
 
     private AClass exceptionType;

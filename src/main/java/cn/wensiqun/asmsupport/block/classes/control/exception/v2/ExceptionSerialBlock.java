@@ -18,7 +18,7 @@ import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
 import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
-public class ExceptionSerialContainer extends AbstractBlock
+public class ExceptionSerialBlock extends AbstractBlock
 {
 
     private ProgramBlock parent;
@@ -35,7 +35,7 @@ public class ExceptionSerialContainer extends AbstractBlock
 
     private Label serialEnd;
 
-    public ExceptionSerialContainer(ProgramBlock parent, Try tryBlock)
+    public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
     {
         this.tryBlock = tryBlock;
         this.parent = parent;
@@ -44,6 +44,7 @@ public class ExceptionSerialContainer extends AbstractBlock
         queue = new CommonLinkedList<ByteCodeExecutor>();
         
         tryBlock.setParent(parent);
+        tryBlock.setSerial(this);
         queue.add(tryBlock);
     }
 
@@ -143,6 +144,7 @@ public class ExceptionSerialContainer extends AbstractBlock
             
             queue.addAfter(previous, catchBlock);
         }
+        catchBlock.setSerial(this);
         catchs.add(catchBlock);
     }
     
@@ -152,6 +154,8 @@ public class ExceptionSerialContainer extends AbstractBlock
         {
             throw new ASMSupportException("Finally block already exists.");
         }
+        finallyBlock.setSerial(this);
+        
         //add implicit catch block;
         implicitCatch = new ImplicitCatch();
         this.finallyBlock = finallyBlock;
@@ -160,7 +164,11 @@ public class ExceptionSerialContainer extends AbstractBlock
         queue.setLast(finallyBlock);
     }
     
-    private void addTreCatchInfo(Label start, Label end, Label handler, AClass type)
+    public Finally getFinally() {
+		return finallyBlock;
+	}
+
+	private void addTreCatchInfo(Label start, Label end, Label handler, AClass type)
     {
         parent.getMethod().getMethodBody()
               .addTryCatchInfo(start, end, handler, type);
@@ -174,7 +182,7 @@ public class ExceptionSerialContainer extends AbstractBlock
             LocalVariable exception = getLocalAnonymousVariableModel(AnyException.ANY);
             new Store(this, exception);
             
-            ExceptionSerialContainer.this.finallyBlock.generateInsnTo(this);
+            ExceptionSerialBlock.this.finallyBlock.generateInsnTo(this);
             
             throwException(exception);
         }
@@ -190,4 +198,6 @@ public class ExceptionSerialContainer extends AbstractBlock
         }
         
     }
+    
+    
 }
