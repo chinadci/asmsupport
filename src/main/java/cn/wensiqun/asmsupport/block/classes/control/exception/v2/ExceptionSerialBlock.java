@@ -2,7 +2,6 @@ package cn.wensiqun.asmsupport.block.classes.control.exception.v2;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.objectweb.asm.Label;
@@ -35,11 +34,6 @@ public class ExceptionSerialBlock extends AbstractBlock
 
     private Label serialEnd;
     
-    /*
-     * the implicit finally block joinpoint.
-     */
-    //private List<Label> joinpoints;
-
     private List<Label> anyCatchRange;
     
     public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
@@ -76,49 +70,60 @@ public class ExceptionSerialBlock extends AbstractBlock
         }
         else if(CollectionUtils.isEmpty(catchs) && finallyBlock != null)
         {
-            anyCatchRange.add(tryBlock.getStart());
+        	addAnyExceptionCatchRange(tryBlock.getStart());
             
             tryBlock.prepare();
             new GOTO(tryBlock, finallyBlock.getStart());
 
-            anyCatchRange.add(tryBlock.getEnd());
+            addAnyExceptionCatchRange(tryBlock.getEnd());
             
             implicitCatch.prepare();
             finallyBlock.prepare();
         }
         else
         {
-            anyCatchRange.add(tryBlock.getStart());
+        	addAnyExceptionCatchRange(tryBlock.getStart());
             
             tryBlock.prepare();
             new GOTO(tryBlock, finallyBlock.getStart());
             
             for(Catch c : catchs)
             {
-                c.injectFinally(finallyBlock);
                 c.prepare();
+                
+            	Label finallyStart = new Label();
+            	addAnyExceptionCatchRange(finallyStart);
+            	new Marker(c, finallyStart);
+            	
+                c.injectFinally(finallyBlock);
+                
+                Label finallyEnd = new Label();
+            	addAnyExceptionCatchRange(finallyEnd);
+                
                 new GOTO(c, serialEnd);
+            	new Marker(c, finallyEnd);
             }
             
-            anyCatchRange.add(catchs.get(catchs.size() - 1).getEnd());
+            addAnyExceptionCatchRange(catchs.get(catchs.size() - 1).getEnd());
             
             implicitCatch.prepare();
             
             finallyBlock.prepare();
         }
 
+        /*
+         *  implicitCatch and finallyBlock is not null 
+         *  if finallyBlock is null
+         */
         if(finallyBlock != null)
         {
             //build Exception Table(just for any type)
-            //1. fetch BreakStack type
-            /*List<BreakStack> breaks = null;
-            Label start = tryBlock.getStart();
-            Label end;
-            for(BreakStack brk : breaks)
+            for(int i=0; i<anyCatchRange.size();)
             {
-                end = brk.getImplicitFinallyLabel(finallyBlock);
-                start = brk.getBlock().getEnd();
-            }*/
+            	Label start = anyCatchRange.get(i++);
+            	Label end = anyCatchRange.get(i++);
+            	this.addTreCatchInfo(start, end, implicitCatch.getStart(), AnyException.ANY);
+            }
         }
     }
     
@@ -207,6 +212,13 @@ public class ExceptionSerialBlock extends AbstractBlock
               .addTryCatchInfo(start, end, handler, type);
     }
     
+	public void addAnyExceptionCatchRange(Label label)
+	{
+		if(anyCatchRange == null)
+			anyCatchRange = new ArrayList<Label>();
+		anyCatchRange.add(label);
+	}
+	
 	/**
 	 * 
 	 *

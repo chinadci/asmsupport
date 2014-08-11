@@ -14,8 +14,6 @@ public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariab
 
     private AClass exceptionType;
     
-    private Label  injectFinallyCodeStart;
-    
     public Catch(AClass exceptionType)
     {
         if(exceptionType == null)
@@ -23,7 +21,6 @@ public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariab
             throw new ASMSupportException("missing catch exception type.");
         }
         this.exceptionType = exceptionType;
-        injectFinallyCodeStart = new Label();
     }
 
     @Override
@@ -78,11 +75,5 @@ public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariab
     {
         finallyBlock.generateInsnTo(this);
     }
-
-    Label getInjectFinallyCodeStart()
-    {
-        return injectFinallyCodeStart;
-    }
-    
     
 }

@@ -7,11 +7,11 @@ import org.apache.commons.collections.CollectionUtils;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Catch;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionEpisodeBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Finally;
+import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 
@@ -21,7 +21,7 @@ public abstract class BreakStack extends AbstractOperator {
      * if exists, this label indicate start position of auto create finally block, 
      * otherwise, indicate the current operator label. 
      */
-    private List<CloneFinallyLabelMap> cloneFinallyLabelList;
+    private List<Finally> cloneFinallyList;
     
 	private boolean autoCreate;
 
@@ -37,17 +37,24 @@ public abstract class BreakStack extends AbstractOperator {
 	    if(!method.isCreatingImplicitFinally())
 	    {
 	        checkFinallyBlock();
-	        if(CollectionUtils.isNotEmpty(cloneFinallyLabelList))
+	        if(CollectionUtils.isNotEmpty(cloneFinallyList))
 	        {
-	            boolean oldFinallyCheck = method.isCreatingImplicitFinally();
+	        	boolean creatingImplicitFinally = method.isCreatingImplicitFinally();
 	            method.setCreatingImplicitFinally(true);
-	            for(int i= cloneFinallyLabelList.size() - 1; i>-1; i--)
+	            for(int i= cloneFinallyList.size() - 1; i>-1; i--)
 	            {
-	                CloneFinallyLabelMap map = cloneFinallyLabelList.get(i);
-	                new Marker(block, map.position);
-	                map.getTarget().generateInsnTo(block);
+	            	Label finallyStart = new Label();
+	            	Label finallyEnd = new Label();
+	            	
+	            	Finally finallyBlock = cloneFinallyList.get(i);
+                    finallyBlock.getSerial().addAnyExceptionCatchRange(finallyStart);
+                    finallyBlock.getSerial().addAnyExceptionCatchRange(finallyEnd);
+	            	
+	                new Marker(finallyBlock, finallyStart);
+	            	finallyBlock.generateInsnTo(block);
+	                new Marker(finallyBlock, finallyEnd);
 	            }
-	            method.setCreatingImplicitFinally(oldFinallyCheck);
+	            method.setCreatingImplicitFinally(creatingImplicitFinally);
 	        }
 	    }
 	    
@@ -79,22 +86,18 @@ public abstract class BreakStack extends AbstractOperator {
         		ExceptionSerialBlock serial = episode.getSerial();
         		if(serial.getFinally() != null)
         		{
-            		CloneFinallyLabelMap map = new CloneFinallyLabelMap();
-            		map.position = new Label();
-            		map.target = serial.getFinally();
-            		
-            		if(cloneFinallyLabelList == null)
+            		if(cloneFinallyList == null)
             		{
-            		    cloneFinallyLabelList = new ArrayList<CloneFinallyLabelMap>();
+            			cloneFinallyList = new ArrayList<Finally>();
             		}
-            		cloneFinallyLabelList.add(map);
+            		cloneFinallyList.add(serial.getFinally());
         		}
         	}
     		block = block.getParent();
     	}
     }
     
-    public Label getImplicitFinallyLabel(Finally target)
+    /*public Label getImplicitFinallyLabel(Finally target)
     {
         if(CollectionUtils.isNotEmpty(cloneFinallyLabelList))
         {
@@ -125,5 +128,5 @@ public abstract class BreakStack extends AbstractOperator {
             return target;
         }
     	
-    }
+    }*/
 }
