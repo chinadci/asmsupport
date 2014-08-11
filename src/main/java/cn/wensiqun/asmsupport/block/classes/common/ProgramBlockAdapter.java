@@ -4,7 +4,7 @@ import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.control.condition.If;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
@@ -470,7 +470,7 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
     {
         
         return proxy.forEach(forEach);
-    }
+    }*/
 
     @Override
     public Try tryDo(Try tryPara)
@@ -478,7 +478,7 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
         return proxy.tryDo(tryPara);
     }
 
-    @Override
+    /*@Override
     public Synchronized syn(Synchronized sync)
     {
         return proxy.syn(sync);

@@ -24,8 +24,8 @@ ArithmeticOperator,
 Bitwise, 
 CrementOperator,
 RelationalOperator,
-LogicalOperator/*,
-CreateBlockOperator */
+LogicalOperator,
+CreateBlockOperator 
 {
     
     /**

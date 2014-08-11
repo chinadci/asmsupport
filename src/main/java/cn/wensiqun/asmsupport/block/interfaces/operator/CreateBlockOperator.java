@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.block.interfaces.operator;
 
 import cn.wensiqun.asmsupport.block.classes.common.Synchronized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.If;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
@@ -38,7 +38,7 @@ public interface CreateBlockOperator {
      * @see cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf#elsethan(cn.wensiqun.asmsupport.block.control.Else)
      * @see cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf#elseif(cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf)
      */
-    public If ifthan(If ifs);
+    //public If ifthan(If ifs);
     
     /**
      * 
@@ -47,7 +47,7 @@ public interface CreateBlockOperator {
      * @param whileLoop WhileLoop对象
      * @return {@link WhileLoop}
      */
-    public WhileLoop whileloop(WhileLoop whileLoop);
+    //public WhileLoop whileloop(WhileLoop whileLoop);
     
     /**
      * 创建do...while程序块
@@ -55,7 +55,7 @@ public interface CreateBlockOperator {
      * @param doWhileLoop DoWhileLoop对象
      * @return {@link DoWhileLoop}
      */
-    public WhileLoop dowhile(DoWhileLoop doWhileLoop);
+    //public WhileLoop dowhile(DoWhileLoop doWhileLoop);
     
     /**
      * 创建for each程序块
@@ -63,7 +63,7 @@ public interface CreateBlockOperator {
      * @param forEach ForEachLoop对象
      * @return {@link ForEachLoop}
      */
-    public ForEachLoop forEach(final ForEachLoop forEach);
+    //public ForEachLoop forEach(final ForEachLoop forEach);
     
     
     /**
@@ -90,6 +90,6 @@ public interface CreateBlockOperator {
      * @param sync Synchronized对象
      * @return {@link Synchronized}
      */
-    public Synchronized syn(Synchronized sync);
+    //public Synchronized syn(Synchronized sync);
 	
 }

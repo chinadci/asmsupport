@@ -26,7 +26,7 @@ public abstract class EnumInitBody extends GenericMethodBody implements Argument
     public final void generateBody() {
         OperatorFactory.newOperator(SuperConstructorInvoker.class, 
         		new Class<?>[]{ProgramBlock.class, AClass.class, Parameterized[].class}, 
-        		getExecuteBlock(), getMethodOwner(), new Parameterized[]{argments[0], argments[1]});
+        		getExecutor(), getMethodOwner(), new Parameterized[]{argments[0], argments[1]});
         body((LocalVariable[]) ArrayUtils.subarray(argments, 2, argments.length));
     }
     

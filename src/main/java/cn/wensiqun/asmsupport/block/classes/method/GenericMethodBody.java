@@ -43,7 +43,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
 	public final void generateInsn() {
 		generateBody();
 		//if this method just only contain try catch block, so here we need tigger try catch prepare again;
-		tiggerTryCatchPrepare();
+		//tiggerTryCatchPrepare();
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
         if (!method.isStatic()) {
             OperatorFactory.newOperator(LocalVariableCreator.class, 
             		new Class<?>[]{ProgramBlock.class, String.class, Type.class, Type.class}, 
-            		getExecuteBlock(), ASConstant.THIS, me.getOwner().getType(), method.getMethodMeta().getOwner().getType());
+            		getExecutor(), ASConstant.THIS, me.getOwner().getType(), method.getMethodMeta().getOwner().getType());
         }
 
         String[] argNames = me.getArgNames();

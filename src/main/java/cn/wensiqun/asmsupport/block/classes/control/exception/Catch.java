@@ -118,26 +118,26 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
     	
         Label exceptionLbl = new Label();
         LocalVariable lv = getLocalVariableModel("e", exception);
-        new Store(getExecuteBlock(), lv);
+        new Store(getExecutor(), lv);
         
-        lv.getScopeLogicVar().setSpecifiedStartLabel(exceptionLbl);
-        new Marker(getExecuteBlock(), exceptionLbl);
+        //lv.getScopeLogicVar().setSpecifiedStartLabel(exceptionLbl);
+        new Marker(getExecutor(), exceptionLbl);
         
         body(lv);
         
-        new Marker(getExecuteBlock(), endCatchLbl1);
-        new NOP(getExecuteBlock());
+        new Marker(getExecutor(), endCatchLbl1);
+        new NOP(getExecutor());
         
         Finally finallyOfCurrentTrySeries = getFinally();
         
         
         if(finallyOfCurrentTrySeries != null){
-            new Marker(getExecuteBlock(), endCatchLbl2);
+            new Marker(getExecutor(), endCatchLbl2);
             try{
             	//空操作 判读程序是否可以继续执行下去
-        	    OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecuteBlock());
+        	    OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
         	    //如果程序能够走到这里 表示之前没有return或者throw操作，则将finally内容copy至当前catch块的末尾
-        	    finallyBlock.generateInsnTo(getExecuteBlock());
+        	    finallyBlock.generateInsnTo(getExecutor());
             }catch(UnreachableCode uc){
                 log.debug(uc.getMessage());
             }catch(RuntimeException e){
@@ -147,9 +147,9 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         
         try{
         	//空操作 判读程序是否可以继续执行下去
-            OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecuteBlock());
+            OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
             //如果程序能够走到这里 表示之前没有return或者throw操作，跳转到finally block的起始位置
-            new GOTO(this.getExecuteBlock(), getTerminalEndLabelInCatch()); 
+            new GOTO(this.getExecutor(), getTerminalEndLabelInCatch()); 
         }catch(UnreachableCode uc){
             log.debug("unreachable code");	
         }catch(RuntimeException e){
@@ -172,15 +172,15 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
      */
     private void generateThrowableCatch(){
         
-        new Marker(this.getExecuteBlock(), implicitCatchStartLbl);
+        new Marker(this.getExecutor(), implicitCatchStartLbl);
         
         LocalVariable exception = getLocalAnonymousVariableModel(AClass.THROWABLE_ACLASS);
-        implicitCatchThrowableStore = new Store(getExecuteBlock(), exception);
+        implicitCatchThrowableStore = new Store(getExecutor(), exception);
         
-        finallyBlock.generateInsnTo(getExecuteBlock());
+        finallyBlock.generateInsnTo(getExecutor());
         //throwException(exception);
         OperatorFactory.newOperator(Throw.class, 
-                new Class<?>[]{ProgramBlock.class, Parameterized.class, boolean.class}, getExecuteBlock(), exception, true);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, boolean.class}, getExecutor(), exception, true);
         
     }
     

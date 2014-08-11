@@ -5,6 +5,7 @@ import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
 public abstract class AbstractBlock extends ByteCodeExecutor implements Cloneable {
 
+    
     protected CommonLinkedList<ByteCodeExecutor> queue;
 
 	public AbstractBlock() {

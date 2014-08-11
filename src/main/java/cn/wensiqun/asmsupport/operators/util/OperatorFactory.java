@@ -9,14 +9,16 @@ import java.util.Vector;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
-import cn.wensiqun.asmsupport.operators.listener.ReturnOperatoInCatchWithFinallyListener;
+import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
 public abstract class OperatorFactory {
 	
-	private static List<NewOperatorListener> oneTimeListeners = new Vector<NewOperatorListener>();
+	/*private static List<NewOperatorListener> oneTimeListeners = new Vector<NewOperatorListener>();
 	
 	private static List<NewOperatorListener> multiTimeListeners = new Vector<NewOperatorListener>();
 
@@ -44,7 +46,7 @@ public abstract class OperatorFactory {
 	
 	public static boolean removeMultiTimeListener(NewOperatorListener linstener){
 		return multiTimeListeners.remove(linstener);
-	}
+	}*/
 
 	/**
 	 * 通过反射创建字节码操作
@@ -65,12 +67,18 @@ public abstract class OperatorFactory {
 		    throw new ASMSupportException("first argument type must be ProgramBlock");	
 		}
 		
-		ProgramBlock executeBlock = (ProgramBlock) arguments[0];
+		ProgramBlock block = (ProgramBlock) arguments[0];
+		ByteCodeExecutor last = block.getQueue().getLast();
+		if(last != null &&
+		   last instanceof ExceptionSerialBlock)
+		{
+		    last.prepare();
+		}
+		//executeBlock.tiggerTryCatchPrepare();
 		
-		executeBlock.tiggerTryCatchPrepare();
 		try {
 			//触发一次性任务的监听器
-			List<NewOperatorListener> foundOneTimeListeners = null;
+			/*List<NewOperatorListener> foundOneTimeListeners = null;
 			for(NewOperatorListener linstener : oneTimeListeners){
 				linstener.setExecuteBlock(executeBlock);
 				linstener.setOperatorClass(clazz);
@@ -111,7 +119,7 @@ public abstract class OperatorFactory {
 					linstener.setParameterTypes(null);
 					linstener.setArguments(null);
 				}
-			}
+			}*/
 			
 			Constructor<T> constructor = parameterTypes == null ? clazz.getDeclaredConstructor() : clazz.getDeclaredConstructor(parameterTypes);
 			boolean accessable = constructor.isAccessible();
@@ -127,7 +135,7 @@ public abstract class OperatorFactory {
 			
 			instance.prepare();
 			
-			if(foundOneTimeListeners != null){
+			/*if(foundOneTimeListeners != null){
 				for(NewOperatorListener linstener : foundOneTimeListeners){
 					linstener.afterNew(instance);
 					oneTimeListeners.remove(linstener);
@@ -141,7 +149,7 @@ public abstract class OperatorFactory {
 					linstener.setParameterTypes(null);
 					linstener.setArguments(null);
 				}	
-			}
+			}*/
 			
 			return instance;
 		} catch (NoSuchMethodException e) {

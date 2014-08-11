@@ -73,35 +73,35 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     
     @Override
     public final void generateInsn() {
-        new NOP(getExecuteBlock());
+        new NOP(getExecutor());
         if(iteratorVar.getParamterizedType().isArray()){
             final LocalVariable i = createVariable(null, AClass.INT_ACLASS, true, Value.value(0));
             
-            new GOTO(getExecuteBlock(), conditionLbl);
-            new NOP(getExecuteBlock());
-            new Marker(getExecuteBlock(), startLbl);
-            new NOP(getExecuteBlock());
+            new GOTO(getExecutor(), conditionLbl);
+            new NOP(getExecutor());
+            new Marker(getExecutor(), startLbl);
+            new NOP(getExecutor());
             
             LocalVariable obj = createVariable(null, ((ArrayClass)iteratorVar.getParamterizedType()).getNextDimType(), true, arrayLoad(iteratorVar, i) );
             body(obj);
 
-            new Marker(getExecuteBlock(), continueLbl);
+            new Marker(getExecutor(), continueLbl);
             afterInc(i);
-            new Marker(getExecuteBlock(), conditionLbl);
+            new Marker(getExecutor(), conditionLbl);
             condition = lessThan(i, arrayLength(iteratorVar));
             //((LessThan)condition).setJumpLable(startLbl);
         }else{
         	final LocalVariable itr = createVariable(null, AClass.ITERATOR_ACLASS, true, invoke(iteratorVar, "iterator"));
-            new GOTO(getExecuteBlock(), conditionLbl);
+            new GOTO(getExecutor(), conditionLbl);
         	
-        	new Marker(getExecuteBlock(), startLbl);
-            new NOP(getExecuteBlock());
+        	new Marker(getExecutor(), startLbl);
+            new NOP(getExecutor());
 
             LocalVariable obj = createVariable(null, AClass.OBJECT_ACLASS, true, invoke(itr, "next"));
             body(obj);
 
-            new Marker(getExecuteBlock(), continueLbl);
-            new Marker(getExecuteBlock(), conditionLbl);
+            new Marker(getExecutor(), continueLbl);
+            new Marker(getExecutor(), conditionLbl);
         	condition = invoke(itr, "hasNext");
         }
         condition.asArgument();

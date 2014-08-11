@@ -30,7 +30,7 @@ public abstract class InitBody extends GenericMethodBody implements ArgumentsBod
 
         return OperatorFactory.newOperator(SuperConstructorInvoker.class, 
         		new Class<?>[]{ProgramBlock.class, AClass.class, Parameterized[].class}, 
-        		getExecuteBlock(), owner, arguments);
+        		getExecutor(), owner, arguments);
 	}
     
     @Override

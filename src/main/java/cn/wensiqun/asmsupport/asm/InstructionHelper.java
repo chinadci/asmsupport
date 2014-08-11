@@ -1134,7 +1134,6 @@ public abstract class InstructionHelper {
 
     public void endMethod() {
         getMv().visitEnd();
-    	OperatorFactory.resetListener();
     }
 
 }

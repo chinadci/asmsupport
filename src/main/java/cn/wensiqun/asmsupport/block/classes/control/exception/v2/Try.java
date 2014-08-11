@@ -2,6 +2,7 @@ package cn.wensiqun.asmsupport.block.classes.control.exception.v2;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.interfaces.body.Body;
+import cn.wensiqun.asmsupport.exception.ASMSupportException;
 
 public abstract class Try extends ExceptionEpisodeBlock implements Body
 {
@@ -19,11 +20,17 @@ public abstract class Try extends ExceptionEpisodeBlock implements Body
             exe.execute();
         }
     }
-    
-    void injectFinallyCode(Finally finallyBlock)
-    {
-        
-    }
 
+    public Catch catchException(Catch catchBlock)
+    {
+        ExceptionSerialBlock serial = getSerial();
+        
+        if(serial.getFinally() != null)
+        {
+            throw new ASMSupportException("Exists finally block. please create catch before finally block");
+        }
+        getSerial().appendEpisode(catchBlock);
+        return catchBlock;
+    }
     
 }

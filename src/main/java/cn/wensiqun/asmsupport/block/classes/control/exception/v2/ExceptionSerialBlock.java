@@ -13,15 +13,13 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AnyException;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
-import cn.wensiqun.asmsupport.operators.BreakStack;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
-import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
 public class ExceptionSerialBlock extends AbstractBlock
 {
 
-    private ProgramBlock parent;
+    private ProgramBlock targetParent;
     
     private Try tryBlock;
     
@@ -38,10 +36,11 @@ public class ExceptionSerialBlock extends AbstractBlock
     public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
     {
         this.tryBlock = tryBlock;
-        this.parent = parent;
+        this.targetParent = parent;
         serialStart = new Label();
         serialEnd = new Label();
-        queue = new CommonLinkedList<ByteCodeExecutor>();
+        
+        parent.addExe(this);
         
         tryBlock.setParent(parent);
         tryBlock.setSerial(this);
@@ -64,7 +63,6 @@ public class ExceptionSerialBlock extends AbstractBlock
             {
                 c.prepare();
                 new GOTO(c, serialEnd);
-                addTreCatchInfo(tryBlock.getStart(), tryBlock.getEnd(), c.getStart(), c.getExceptionType());
             }
         }
         else if(CollectionUtils.isEmpty(catchs) && finallyBlock != null)
@@ -75,8 +73,6 @@ public class ExceptionSerialBlock extends AbstractBlock
             implicitCatch.prepare();
             
             finallyBlock.prepare();
-            
-            
         }
         else
         {
@@ -93,19 +89,13 @@ public class ExceptionSerialBlock extends AbstractBlock
             
             finallyBlock.prepare();
         }
-        
-        
-        //process exception table
     }
     
-    private List<BreakStack> checkoutBreakStack()
-    {
-        return null;
-    }
-
     @Override
     public void execute()
     {
+        targetParent.getInsnHelper().mark(serialStart);
+        
         tryBlock.execute();
         
         if(CollectionUtils.isNotEmpty(catchs))
@@ -121,6 +111,8 @@ public class ExceptionSerialBlock extends AbstractBlock
             implicitCatch.execute();
             finallyBlock.execute();
         }
+        
+        targetParent.getInsnHelper().mark(serialEnd);
     }
     
     void appendEpisode(Catch catchBlock)
@@ -144,8 +136,14 @@ public class ExceptionSerialBlock extends AbstractBlock
             
             queue.addAfter(previous, catchBlock);
         }
+        
+        catchBlock.setParent(targetParent);
         catchBlock.setSerial(this);
         catchs.add(catchBlock);
+        
+        //add Exception Table:
+        addTreCatchInfo(tryBlock.getStart(), tryBlock.getEnd(), 
+            catchBlock.getStart(), catchBlock.getExceptionType());
     }
     
     void appendEpisode(Finally  finallyBlock)
@@ -154,6 +152,7 @@ public class ExceptionSerialBlock extends AbstractBlock
         {
             throw new ASMSupportException("Finally block already exists.");
         }
+        finallyBlock.setParent(targetParent);
         finallyBlock.setSerial(this);
         
         //add implicit catch block;
@@ -170,10 +169,14 @@ public class ExceptionSerialBlock extends AbstractBlock
 
 	private void addTreCatchInfo(Label start, Label end, Label handler, AClass type)
     {
-        parent.getMethod().getMethodBody()
+        targetParent.getMethod().getMethodBody()
               .addTryCatchInfo(start, end, handler, type);
     }
     
+	/**
+	 * 
+	 *
+	 */
     private class ImplicitCatch extends ProgramBlock{
 
         @Override

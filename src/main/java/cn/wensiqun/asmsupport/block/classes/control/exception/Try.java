@@ -91,9 +91,9 @@ public abstract class Try extends EpisodeBlock implements Body {
         	 * 创建空操作，其作用是通过newOperator方法判断是否抛出UnreachableCode异常判断当前
         	 * 操作是否可到达。如果不可到达则不执行以下指令
         	 */
-            OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecuteBlock());
+            OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
             //创建GOTO指令。跳到整个try catch的结束部分 如果存在finally 则是finally起始部分
-            new GOTO(getExecuteBlock(), getTerminalEndLabel()); 
+            new GOTO(getExecutor(), getTerminalEndLabel()); 
         }catch(UnreachableCode uc){
             log.debug("unreachable code");
             returnInTry = true;
@@ -243,17 +243,17 @@ public abstract class Try extends EpisodeBlock implements Body {
      */
     private void generateThrowableCatch(){
         
-        new Marker(this.getExecuteBlock(), implicitCatchStartLbl);
+        new Marker(this.getExecutor(), implicitCatchStartLbl);
         
         LocalVariable exception = getLocalAnonymousVariableModel(AClass.THROWABLE_ACLASS);
-        implicitCatchThrowableStore = new Store(getExecuteBlock(), exception);
+        implicitCatchThrowableStore = new Store(getExecutor(), exception);
         
-        finallyBlock.generateInsnTo(getExecuteBlock());
+        finallyBlock.generateInsnTo(getExecutor());
         
         //throwException(exception);
         
         OperatorFactory.newOperator(UnAddExceptionThrow.class, 
-                new Class<?>[]{ProgramBlock.class, Parameterized.class}, getExecuteBlock(), exception);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class}, getExecutor(), exception);
         
     }
     

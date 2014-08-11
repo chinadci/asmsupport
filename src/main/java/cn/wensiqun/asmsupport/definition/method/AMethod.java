@@ -10,6 +10,7 @@ import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.asm.CommonInstructionHelper;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.asm.StackLocalMethodVisitor;
+import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
@@ -110,7 +111,6 @@ public class AMethod {
             // 设置method属性
             this.methodBody = methodBody;
             this.methodBody.setScope(new Scope(this.locals, null));
-            this.methodBody.setParent(null);
             this.methodBody.setInsnHelper(insnHelper);
         }
     }
@@ -119,17 +119,20 @@ public class AMethod {
      * 获取所有需要抛出的异常
      * @param block
      */
-    private void getThrowExceptionsInProgramBlock(ProgramBlock block){
-    	ThrowExceptionContainer blockExceptions = block.getThrowExceptions();
-    	if(blockExceptions != null){
-    		for(AClass exp : blockExceptions){
-    			throwExceptions.add(exp);
-    		}
-    	}
+    private void getThrowExceptionsInProgramBlock(AbstractBlock block){
+        if(block instanceof ProgramBlock)
+        {
+            ThrowExceptionContainer blockExceptions = ((ProgramBlock)block).getThrowExceptions();
+            if(blockExceptions != null){
+                for(AClass exp : blockExceptions){
+                    throwExceptions.add(exp);
+                }
+            }
+        }
     	
     	for(Executable exe : block.getQueue()){
-    		if(exe instanceof ProgramBlock){
-    			getThrowExceptionsInProgramBlock((ProgramBlock)exe);
+    		if(exe instanceof AbstractBlock){
+    			getThrowExceptionsInProgramBlock((AbstractBlock)exe);
     		}
     	}
     }
@@ -141,8 +144,8 @@ public class AMethod {
     	
     	if(!ModifierUtils.isAbstract(me.getModifier())){
             for(Executable exe : getMethodBody().getQueue()){
-    		    if(exe instanceof ProgramBlock){
-    			    getThrowExceptionsInProgramBlock((ProgramBlock)exe);
+    		    if(exe instanceof AbstractBlock){
+    			    getThrowExceptionsInProgramBlock((AbstractBlock)exe);
     		    }
     	    }
     	}
