@@ -13,8 +13,6 @@ import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Catch;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Finally;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
@@ -33,11 +31,9 @@ import cn.wensiqun.asmsupport.definition.variable.ThisVariable;
 import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.MethodInvokeException;
-import cn.wensiqun.asmsupport.exception.UnreachableCode;
 import cn.wensiqun.asmsupport.exception.VerifyErrorException;
 import cn.wensiqun.asmsupport.operators.BlockEndFlag;
 import cn.wensiqun.asmsupport.operators.InstanceofOperator;
-import cn.wensiqun.asmsupport.operators.NoneOperator;
 import cn.wensiqun.asmsupport.operators.Return;
 import cn.wensiqun.asmsupport.operators.StringAppender;
 import cn.wensiqun.asmsupport.operators.Throw;
@@ -364,7 +360,9 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 		if(!anonymous && StringUtils.isBlank(name)){
 			throw new IllegalArgumentException("variable must be non-null if 'anonymous' is false");
 		}
-		LocalVariableMeta lve = new LocalVariableMeta(anonymous ? "anonymous" : name, 0, aClass);
+		
+		LocalVariableMeta lve = new LocalVariableMeta(anonymous || getMethod().isCreatingImplicitFinally() ? "anonymous" : name, 0, aClass);
+		
         LocalVariableCreator lvc = OperatorFactory.newOperator(LocalVariableCreator.class, 
         		new Class<?>[]{ProgramBlock.class, String.class, Type.class, Type.class}, 
         		getExecutor(), anonymous ? null : name, aClass.getType(), aClass.getType());

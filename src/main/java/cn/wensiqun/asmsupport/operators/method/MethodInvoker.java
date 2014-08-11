@@ -92,7 +92,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
     }
 
     @Override
-    protected void beforeInitProperties() {
+    protected void initAdditionalProperties() {
     	AClass[] argumentClasses = new AClass[arguments.length];
         List<AClass> argumentClassList = new ArrayList<AClass>();
         for (int i = 0; i < arguments.length; i++) {
@@ -147,7 +147,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         for (Parameterized argu : arguments) {
             if(argu instanceof AbstractCrement){
                 allCrement.add((AbstractCrement) argu);

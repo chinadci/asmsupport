@@ -39,7 +39,7 @@ public abstract class BinaryBitwise extends AbstractBitwise {
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(factor1 instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor1);
         }
@@ -55,7 +55,7 @@ public abstract class BinaryBitwise extends AbstractBitwise {
     }
 
     @Override
-    protected void afterInitProperties() {
+    protected void initAdditionalProperties() {
         AClass ftrCls1 = factor1.getParamterizedType();
         AClass ftrCls2 = factor2.getParamterizedType();
         

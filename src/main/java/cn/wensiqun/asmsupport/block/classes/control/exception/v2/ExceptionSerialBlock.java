@@ -2,6 +2,7 @@ package cn.wensiqun.asmsupport.block.classes.control.exception.v2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.objectweb.asm.Label;
@@ -14,6 +15,7 @@ import cn.wensiqun.asmsupport.clazz.AnyException;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
+import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
 
 public class ExceptionSerialBlock extends AbstractBlock
@@ -32,7 +34,14 @@ public class ExceptionSerialBlock extends AbstractBlock
     private Label serialStart;
 
     private Label serialEnd;
+    
+    /*
+     * the implicit finally block joinpoint.
+     */
+    //private List<Label> joinpoints;
 
+    private List<Label> anyCatchRange;
+    
     public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
     {
         this.tryBlock = tryBlock;
@@ -67,29 +76,53 @@ public class ExceptionSerialBlock extends AbstractBlock
         }
         else if(CollectionUtils.isEmpty(catchs) && finallyBlock != null)
         {
+            anyCatchRange.add(tryBlock.getStart());
+            
             tryBlock.prepare();
             new GOTO(tryBlock, finallyBlock.getStart());
+
+            anyCatchRange.add(tryBlock.getEnd());
             
             implicitCatch.prepare();
-            
             finallyBlock.prepare();
         }
         else
         {
+            anyCatchRange.add(tryBlock.getStart());
+            
             tryBlock.prepare();
             new GOTO(tryBlock, finallyBlock.getStart());
             
             for(Catch c : catchs)
             {
+                c.injectFinally(finallyBlock);
                 c.prepare();
                 new GOTO(c, serialEnd);
             }
+            
+            anyCatchRange.add(catchs.get(catchs.size() - 1).getEnd());
             
             implicitCatch.prepare();
             
             finallyBlock.prepare();
         }
+
+        if(finallyBlock != null)
+        {
+            //build Exception Table(just for any type)
+            //1. fetch BreakStack type
+            /*List<BreakStack> breaks = null;
+            Label start = tryBlock.getStart();
+            Label end;
+            for(BreakStack brk : breaks)
+            {
+                end = brk.getImplicitFinallyLabel(finallyBlock);
+                start = brk.getBlock().getEnd();
+            }*/
+        }
     }
+    
+    
     
     @Override
     public void execute()
@@ -154,10 +187,11 @@ public class ExceptionSerialBlock extends AbstractBlock
         }
         finallyBlock.setParent(targetParent);
         finallyBlock.setSerial(this);
+        this.finallyBlock = finallyBlock;
         
         //add implicit catch block;
         implicitCatch = new ImplicitCatch();
-        this.finallyBlock = finallyBlock;
+        implicitCatch.setParent(targetParent);
         
         queue.setLast(implicitCatch);
         queue.setLast(finallyBlock);

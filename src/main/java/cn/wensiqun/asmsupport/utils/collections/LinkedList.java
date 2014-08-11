@@ -22,7 +22,7 @@ public interface LinkedList<E> extends Iterable<E>, Cloneable
      * @param e
      * @return
      */
-    boolean add(E e);
+    boolean add(E el);
     
     /**
      * 
@@ -41,20 +41,20 @@ public interface LinkedList<E> extends Iterable<E>, Cloneable
     /**
      * Add element after a special node
      * 
-     * @param original
-     * @param after
+     * @param dest
+     * @param addNode
      * @return
      */
-    boolean addAfter(E original, E after);
+    boolean addAfter(E dest, E addNode);
     
     /**
      * Add element before a special node
      * 
-     * @param original
-     * @param after
+     * @param dest
+     * @param addNode
      * @return
      */
-    boolean addBefore(E original, E after);
+    boolean addBefore(E dest, E addNode);
     
     
     boolean setHead(E head);
@@ -75,6 +75,23 @@ public interface LinkedList<E> extends Iterable<E>, Cloneable
      * @return
      */
     boolean replace(E old, E newly);
+    
+    /**
+     * move src node to after desc node
+     * 
+     * @param src
+     * @param desc
+     * @return
+     */
+    boolean move(E src, E desc);
+    
+    /**
+     * move src node to last
+     * 
+     * @param src
+     * @return
+     */
+    boolean moveToLast(E src);
     
     
     void clear();

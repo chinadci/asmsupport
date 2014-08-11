@@ -33,4 +33,16 @@ public abstract class Try extends ExceptionEpisodeBlock implements Body
         return catchBlock;
     }
     
+    public Finally finallyThan(Finally block)
+    {
+        ExceptionSerialBlock serial = getSerial();
+        if(serial.getFinally() != null)
+        {
+            throw new ASMSupportException("Already exists finally block.");
+        }
+        getSerial().appendEpisode(block);
+        
+        return block;
+    }
+    
 }

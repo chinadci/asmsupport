@@ -61,6 +61,12 @@ public abstract class AbstractCrement extends AbstractNumerical {
     }
 
     @Override
+    protected void initAdditionalProperties() {
+        AClass fatCls = factor.getParamterizedType();
+        resultClass = AClassUtils.getPrimitiveAClass(fatCls);
+    }
+
+    @Override
     protected void verifyArgument() {
         AClass fatCls = factor.getParamterizedType();
         if(!AClassUtils.arithmetical(fatCls)){
@@ -69,7 +75,7 @@ public abstract class AbstractCrement extends AbstractNumerical {
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(factor instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor);
         }
@@ -78,12 +84,6 @@ public abstract class AbstractCrement extends AbstractNumerical {
     @Override
     protected void checkAsArgument() {
         factor.asArgument();
-    }
-
-    @Override
-    protected void afterInitProperties() {
-        AClass fatCls = factor.getParamterizedType();
-        resultClass = AClassUtils.getPrimitiveAClass(fatCls);
     }
 
 }

@@ -30,8 +30,8 @@ public class StaticMethodInvoker extends MethodInvoker {
     }
     
     @Override
-	protected void beforeInitProperties() {
-		super.beforeInitProperties();
+	protected void initAdditionalProperties() {
+		super.initAdditionalProperties();
 		if(!ModifierUtils.isStatic(mtdEntity.getModifier())){
 			throw new IllegalArgumentException("\"" + mtdEntity.toString() + "\" is not a static method ");
 		}

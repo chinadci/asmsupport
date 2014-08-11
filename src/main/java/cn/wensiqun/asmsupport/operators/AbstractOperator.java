@@ -33,56 +33,104 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
     protected List<AbstractCrement> allCrement;
 
     protected AbstractOperator(ProgramBlock block) {
-    	super();
         this.insnHelper = block.getInsnHelper();
         this.block = block;
-        block.addExe(this);
         allCrement = new LinkedList<AbstractCrement>();
+        addQueue();
     }
     
     public ProgramBlock getBlock() {
         return block;
     }
+    
+    protected void addQueue()
+    {
+        block.addExe(this);
+    }
 
 	@Override
     public final void prepare() {
 
-        onStartPrepareProcess();
+        startingPrepare();
         
-        beforeInitProperties();
+        initAdditionalProperties();
         
         verifyArgument();
 
-        checkOutCrement();
+        checkCrement();
         
-        afterInitProperties();
-        
-        onEndPrepareProcess();
+        endingPrepare();
     }
 
-    protected void onStartPrepareProcess() {
-    }
+	/**
+	 * template for {@link #prepare()} method.
+	 * <h4>Order :</h4>
+	 * <ol>
+	 *     <li><b>startPrepare</b></li>
+     *     <li>initAdditionalProperties</li>
+     *     <li>verifyArgument</li>
+     *     <li>checkCrement</li>
+     *     <li>endingPrepare</li>
+	 * </ol>
+	 */
+    protected void startingPrepare() {}
     
-    protected void beforeInitProperties() {
-    }
+    /**
+     * template for {@link #prepare()} method.
+     * <h4>Order :</h4>
+     * <ol>
+     *     <li>startPrepare</li>
+     *     <li><b>initAdditionalProperties</b></li>
+     *     <li>verifyArgument</li>
+     *     <li>checkCrement</li>
+     *     <li>endingPrepare</li>
+     * </ol>
+     */
+    protected void initAdditionalProperties() {}
 
-    protected void verifyArgument() {
-    }
+    /**
+     * template for {@link #prepare()} method.
+     * <h4>Order :</h4>
+     * <ol>
+     *     <li>startPrepare</li>
+     *     <li>initAdditionalProperties</li>
+     *     <li><b>verifyArgument</b></li>
+     *     <li>checkCrement</li>
+     *     <li>endingPrepare</li>
+     * </ol>
+     */
+    protected void verifyArgument() {}
 
-    protected void checkOutCrement() {
-    }
+    /**
+     * template for {@link #prepare()} method.
+     * <h4>Order :</h4>
+     * <ol>
+     *     <li>startPrepare</li>
+     *     <li>initAdditionalProperties</li>
+     *     <li>verifyArgument</li>
+     *     <li><b>checkCrement</b></li>
+     *     <li>endingPrepare</li>
+     * </ol>
+     */
+    protected void checkCrement() {}
+
+    /**
+     * template for {@link #prepare()} method.
+     * <h4>Order :</h4>
+     * <ol>
+     *     <li>startPrepare</li>
+     *     <li>initAdditionalProperties</li>
+     *     <li>verifyArgument</li>
+     *     <li>checkCrement</li>
+     *     <li><b>endingPrepare</b></li>
+     * </ol>
+     */
+    protected void endingPrepare() {}
 
     /**
      * invoke by OperatorFactory
      */
-    protected void checkAsArgument() {
-    }
-
-    protected void afterInitProperties() {
-    }
-
-    protected void onEndPrepareProcess() {
-    }
+    protected void checkAsArgument() {}
 
     @Override
     public void execute() {

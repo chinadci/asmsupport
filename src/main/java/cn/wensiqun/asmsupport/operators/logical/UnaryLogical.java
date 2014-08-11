@@ -41,7 +41,7 @@ public abstract class UnaryLogical extends AbstractLogical {
 	}
 
 	@Override
-	protected void checkOutCrement() {
+	protected void checkCrement() {
 		if(factor instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor);
         }

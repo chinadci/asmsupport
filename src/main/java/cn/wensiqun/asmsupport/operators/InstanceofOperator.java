@@ -32,7 +32,7 @@ public class InstanceofOperator extends AbstractOperator implements Parameterize
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         // TODO Auto-generated method stub
         
     }

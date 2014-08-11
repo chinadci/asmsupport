@@ -56,7 +56,7 @@ public class TernaryOperator extends AbstractOperator implements Parameterized{
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(exp2 instanceof AbstractCrement){
             allCrement.add((AbstractCrement) exp2);
         }

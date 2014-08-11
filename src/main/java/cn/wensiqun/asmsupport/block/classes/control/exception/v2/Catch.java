@@ -57,12 +57,24 @@ public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariab
         return catchBlock;
     }
     
+    public Finally finallyThan(Finally block)
+    {
+        ExceptionSerialBlock serial = getSerial();
+        if(serial.getFinally() != null)
+        {
+            throw new ASMSupportException("Already exists finally block.");
+        }
+        getSerial().appendEpisode(block);
+        
+        return block;
+    }
+    
     AClass getExceptionType()
     {
         return exceptionType;
     }
     
-    void injectFinallyCode(Finally finallyBlock)
+    void injectFinally(Finally finallyBlock)
     {
         finallyBlock.generateInsnTo(this);
     }

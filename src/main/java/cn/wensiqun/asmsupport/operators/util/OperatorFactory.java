@@ -3,9 +3,6 @@ package cn.wensiqun.asmsupport.operators.util;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -14,39 +11,8 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
-import cn.wensiqun.asmsupport.utils.collections.CommonLinkedList;
 
 public abstract class OperatorFactory {
-	
-	/*private static List<NewOperatorListener> oneTimeListeners = new Vector<NewOperatorListener>();
-	
-	private static List<NewOperatorListener> multiTimeListeners = new Vector<NewOperatorListener>();
-
-	static{
-		NewOperatorListener cfListener = new ReturnOperatoInCatchWithFinallyListener();
-        OperatorFactory.addMultiTimeListener(cfListener);
-	}
-	
-	public static void resetListener(){
-		//oneTimeListeners = new Vector<NewOperatorListener>();
-		//multiTimeListeners = new Vector<NewOperatorListener>();
-	}
-	
-	public static void addOneTimeListener(NewOperatorListener linstener){
-		oneTimeListeners.add(linstener);
-	}
-
-	public static boolean removeOneTimeListener(NewOperatorListener linstener){
-		return oneTimeListeners.remove(linstener);
-	}
-	
-	public static void addMultiTimeListener(NewOperatorListener linstener){
-		multiTimeListeners.add(linstener);
-	}
-	
-	public static boolean removeMultiTimeListener(NewOperatorListener linstener){
-		return multiTimeListeners.remove(linstener);
-	}*/
 
 	/**
 	 * 通过反射创建字节码操作
@@ -74,52 +40,8 @@ public abstract class OperatorFactory {
 		{
 		    last.prepare();
 		}
-		//executeBlock.tiggerTryCatchPrepare();
 		
 		try {
-			//触发一次性任务的监听器
-			/*List<NewOperatorListener> foundOneTimeListeners = null;
-			for(NewOperatorListener linstener : oneTimeListeners){
-				linstener.setExecuteBlock(executeBlock);
-				linstener.setOperatorClass(clazz);
-				linstener.setParameterTypes(parameterTypes);
-				linstener.setArguments(arguments);
-				
-				if(linstener.triggerCondition()){
-					if(foundOneTimeListeners == null){
-						foundOneTimeListeners = new ArrayList<NewOperatorListener>();
-					}
-					linstener.beforeNew();
-					foundOneTimeListeners.add(linstener);
-					break;
-				}else{
-					linstener.setOperatorClass(null);
-					linstener.setParameterTypes(null);
-					linstener.setArguments(null);
-				}
-			}
-
-			//触发多次性任务的监听器
-			List<NewOperatorListener> foundMultiTimeListeners = null;
-			for(NewOperatorListener linstener : multiTimeListeners){
-				linstener.setExecuteBlock((ProgramBlock)arguments[0]);
-				linstener.setOperatorClass(clazz);
-				linstener.setParameterTypes(parameterTypes);
-				linstener.setArguments(arguments);
-				
-				if(linstener.triggerCondition()){
-					if(foundMultiTimeListeners == null){
-						foundMultiTimeListeners = new ArrayList<NewOperatorListener>();
-					}
-					linstener.beforeNew();
-					foundMultiTimeListeners.add(linstener);
-					break;
-				}else{
-					linstener.setOperatorClass(null);
-					linstener.setParameterTypes(null);
-					linstener.setArguments(null);
-				}
-			}*/
 			
 			Constructor<T> constructor = parameterTypes == null ? clazz.getDeclaredConstructor() : clazz.getDeclaredConstructor(parameterTypes);
 			boolean accessable = constructor.isAccessible();
@@ -134,22 +56,6 @@ public abstract class OperatorFactory {
 			checkAsArgument.setAccessible(accessable);
 			
 			instance.prepare();
-			
-			/*if(foundOneTimeListeners != null){
-				for(NewOperatorListener linstener : foundOneTimeListeners){
-					linstener.afterNew(instance);
-					oneTimeListeners.remove(linstener);
-				}
-			}
-			
-			if(foundMultiTimeListeners != null){
-				for(NewOperatorListener linstener : foundMultiTimeListeners){
-					linstener.afterNew(instance);
-					linstener.setOperatorClass(null);
-					linstener.setParameterTypes(null);
-					linstener.setArguments(null);
-				}	
-			}*/
 			
 			return instance;
 		} catch (NoSuchMethodException e) {
@@ -170,5 +76,5 @@ public abstract class OperatorFactory {
 		
 		return null;
 	}
-
+	
 }

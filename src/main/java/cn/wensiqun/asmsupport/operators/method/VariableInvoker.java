@@ -38,7 +38,7 @@ public class VariableInvoker extends MethodInvoker {
     }
 
     @Override
-    public void onEndPrepareProcess() {
+    public void endingPrepare() {
         //如果是静态方法那么则创建一个静态方法调用者到执行队列
         if(Modifier.isStatic(getModifiers())){
             //移除当前的方法调用

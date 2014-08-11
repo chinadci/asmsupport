@@ -41,7 +41,7 @@ public class StringAppender extends AbstractOperator implements Parameterized{
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         
     }
 

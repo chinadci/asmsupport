@@ -86,6 +86,33 @@ public class CommonLinkedListTest
             sb.append(n.name);
         }
         Assert.assertEquals("012345678910", sb.toString());
+        
+        list.move(n2, n8);
+        sb = new StringBuilder();
+        for(MyNode n : list)
+        {
+            sb.append(n.name);
+        }
+        Assert.assertEquals("013456782910", sb.toString());
+        
+
+        list.remove(n8);
+        sb = new StringBuilder();
+        for(MyNode n : list)
+        {
+            sb.append(n.name);
+        }
+        Assert.assertEquals("01345672910", sb.toString());
+        
+
+        MyNode n11 = new MyNode("_11");
+        list.replace(n7, n11);
+        sb = new StringBuilder();
+        for(MyNode n : list)
+        {
+            sb.append(n.name);
+        }
+        Assert.assertEquals("013456_112910", sb.toString());
     }
     
     class MyNode extends LinkedListNode{

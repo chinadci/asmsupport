@@ -28,7 +28,7 @@ public class GOTO extends ASMDirect {
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         
     }
 

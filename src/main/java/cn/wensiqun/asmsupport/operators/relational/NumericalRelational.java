@@ -31,7 +31,7 @@ public abstract class NumericalRelational extends AbstractRelational {
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(factor1 instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor1);
         }
@@ -47,7 +47,7 @@ public abstract class NumericalRelational extends AbstractRelational {
     }
 
     @Override
-    protected void afterInitProperties() {
+    protected void initAdditionalProperties() {
         AClass ftrCls1 = AClassUtils.getPrimitiveAClass(factor1.getParamterizedType());
         AClass ftrCls2 = AClassUtils.getPrimitiveAClass(factor2.getParamterizedType());
         if(ftrCls1.getCastOrder() > ftrCls2.getCastOrder()){

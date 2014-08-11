@@ -42,7 +42,7 @@ public abstract class BinaryLogical extends AbstractLogical {
 
 
 	@Override
-	protected void checkOutCrement() {
+	protected void checkCrement() {
         if(factor1 instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor1);
         }

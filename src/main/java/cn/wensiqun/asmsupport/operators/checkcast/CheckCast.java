@@ -36,7 +36,7 @@ public class CheckCast extends AbstractOperator implements Parameterized {
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(orginal instanceof AbstractCrement){
             allCrement.add((AbstractCrement) orginal);
         }

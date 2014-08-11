@@ -69,6 +69,16 @@ public class AMethod {
     /** 当前方法的参数 */
     private LocalVariable[] arguments;
     
+    /**
+     * 
+     */
+    private boolean anonymous;
+    
+    /**
+     * 
+     */
+    private boolean creatingImplicitFinally = false;
+    
     /** 
      * 当在Method中发现需要创建try catch finally程序块的时候将 try语句块的引用保存在此变量中
      * 然后延迟try程序块内的一些操作的创建。 当和当前Try相关的所有catch和finally程序块都创建
@@ -248,6 +258,15 @@ public class AMethod {
 	public void setNearlyTryBlock(Try nearlyTryBlock) {
 		this.nearlyTryBlock = nearlyTryBlock;
 	}
-	
-	
+
+    public boolean isCreatingImplicitFinally()
+    {
+        return creatingImplicitFinally;
+    }
+
+    public void setCreatingImplicitFinally(boolean creatingImplicitFinally)
+    {
+        this.creatingImplicitFinally = creatingImplicitFinally;
+    }
+
 }

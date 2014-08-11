@@ -272,7 +272,7 @@ public abstract class Try extends EpisodeBlock implements Body {
 		}
 
 		@Override
-		protected void beforeInitProperties() {
+		protected void startingPrepare() {
 		    //don't add exception
 		}
     }

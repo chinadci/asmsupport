@@ -11,6 +11,7 @@ import org.objectweb.asm.Type;
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.clazz.AnyException;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -147,7 +148,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
         tci.start = start;
         tci.end = end;
         tci.hander = hander;
-        tci.exception = exception == null ? null : exception.getType();
+        tci.exception = exception == null || exception.getType() == AnyException.ANY.getType() ? null : exception.getType();
         tryCatches.add(tci);
     }
     

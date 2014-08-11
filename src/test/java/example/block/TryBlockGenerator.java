@@ -3,6 +3,7 @@ package example.block;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Catch;
+import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Finally;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -183,6 +184,65 @@ public class TryBlockGenerator extends AbstractExample
             }
             
         });
+
+        
+        creator.createStaticMethod("testTryFinally", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                tryDo(new Try(){
+
+                    @Override
+                    public void body()
+                    {
+                        invoke(systemOut, "println", Value.value("testTryFinally:try"));
+                    }
+                    
+                }).finallyThan(new Finally(){
+
+                    @Override
+                    public void body()
+                    {
+                        invoke(systemOut, "println", Value.value("testTryFinally:finally"));
+                    }
+                    
+                });
+                runReturn();
+            }
+            
+        });
+
+        
+        creator.createStaticMethod("testTryFinallyWithError", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                tryDo(new Try(){
+
+                    @Override
+                    public void body()
+                    {
+                        invoke(systemOut, "println", Value.value("testTryFinallyWithError:try"));
+                        throwException(invokeConstructor(runtime));
+                    }
+                    
+                }).finallyThan(new Finally(){
+
+                    @Override
+                    public void body()
+                    {
+                        invoke(systemOut, "println", Value.value("testTryFinallyWithError:finally"));
+                    }
+                    
+                });
+                runReturn();
+            }
+            
+        });
+        
+        
         creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
             Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
                 @Override
@@ -192,6 +252,9 @@ public class TryBlockGenerator extends AbstractExample
                     invokeStatic(getMethodOwner(), "testTwoCatchForTry");
                     invokeStatic(getMethodOwner(), "testTwoCatchForCatch1");
                     invokeStatic(getMethodOwner(), "testTwoCatchForCatch2");
+                    invoke(systemOut, "println", Value.value("================================="));
+                    invokeStatic(getMethodOwner(), "testTryFinally");
+                    invokeStatic(getMethodOwner(), "testTryFinallyWithError");
                     runReturn();
                 }
         

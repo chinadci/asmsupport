@@ -35,9 +35,9 @@ public class MethodInvokeInvoker extends MethodInvoker {
     
     
     @Override
-    protected void beforeInitProperties() {
+    protected void initAdditionalProperties() {
         methodOwner = caller.getReturnClass();
-        super.beforeInitProperties();
+        super.initAdditionalProperties();
     }
 
     @Override
@@ -55,14 +55,13 @@ public class MethodInvokeInvoker extends MethodInvoker {
     }
 
     @Override
-    public void onEndPrepareProcess() {
+    public void endingPrepare() {
         if(Modifier.isStatic(getModifiers())){
             block.removeExe(caller);
             MethodInvoker mi = new StaticMethodInvoker(block, getActuallyOwner(), name, arguments);
             block.removeExe(mi);
             block.replaceExe(this, mi);
         }
-        super.onEndPrepareProcess();
     }
 
     @Override

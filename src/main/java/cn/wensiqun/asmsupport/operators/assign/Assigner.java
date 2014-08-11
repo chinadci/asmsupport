@@ -40,7 +40,7 @@ public abstract class Assigner extends AbstractOperator implements Parameterized
 	}
 
 	@Override
-	protected void checkOutCrement() {
+	protected void checkCrement() {
         if(value != null && value instanceof AbstractCrement){
             allCrement.add((AbstractCrement) value);
         }

@@ -202,21 +202,21 @@ public class CommonLinkedList<E extends LinkedListNode> implements LinkedList<E>
     }
 
     @Override
-    public boolean addAfter(E original, E after)
+    public boolean addAfter(E desc, E addNode)
     {
-        return commonAdd(original, after);
+        return commonAdd(desc, addNode);
     }
 
     @Override
-    public boolean addBefore(E original, E before)
+    public boolean addBefore(E desc, E addNode)
     {
-        if(original == null)
+        if(desc == null)
         {
-            return commonAdd(original, before);
+            return commonAdd(desc, addNode);
         }
         else
         {
-            return commonAdd(original.previous(), before);
+            return commonAdd(desc.previous(), addNode);
         }
     }
 
@@ -290,6 +290,23 @@ public class CommonLinkedList<E extends LinkedListNode> implements LinkedList<E>
     public boolean replace(E old, E newly)
     {
         old.replace(newly);
+        return true;
+    }
+
+
+    @Override
+    public boolean move(E src, E desc)
+    {
+        remove(src);
+        addAfter(desc, src);
+        return true;
+    }
+
+
+    @Override
+    public boolean moveToLast(E src)
+    {
+        move(src, last);
         return true;
     }
     

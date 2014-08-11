@@ -35,7 +35,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
     }
     
 	@Override
-	protected final void checkOutCrement() {
+	protected final void checkCrement() {
         if(parDims != null){
             for(Parameterized par : parDims){
                 if(par instanceof AbstractCrement){

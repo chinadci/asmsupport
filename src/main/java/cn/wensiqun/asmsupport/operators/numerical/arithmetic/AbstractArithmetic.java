@@ -52,7 +52,7 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(factor1 instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor1);
         }
@@ -68,7 +68,7 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
     }
 
     @Override
-    protected void afterInitProperties() {
+    protected void initAdditionalProperties() {
         AClass f1cls = factor1.getParamterizedType();
         AClass f2cls = factor2.getParamterizedType();
         f1cls = AClassUtils.getPrimitiveAClass(f1cls);

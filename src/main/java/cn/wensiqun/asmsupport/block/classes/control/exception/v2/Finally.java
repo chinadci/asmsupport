@@ -20,5 +20,4 @@ public abstract class Finally extends ExceptionEpisodeBlock implements Body
         }
     }
 
-    
 }

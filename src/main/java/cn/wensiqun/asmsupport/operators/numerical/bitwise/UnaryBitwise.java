@@ -27,7 +27,7 @@ public abstract class UnaryBitwise extends AbstractBitwise {
     }
 
     @Override
-    protected void checkOutCrement() {
+    protected void checkCrement() {
         if(factor instanceof AbstractCrement){
             allCrement.add((AbstractCrement) factor);
         }
@@ -39,7 +39,7 @@ public abstract class UnaryBitwise extends AbstractBitwise {
     }
 
     @Override
-    protected void afterInitProperties() {
+    protected void initAdditionalProperties() {
         AClass ftrCls = factor.getParamterizedType();
         resultClass = AClassUtils.getPrimitiveAClass(ftrCls);
     }
