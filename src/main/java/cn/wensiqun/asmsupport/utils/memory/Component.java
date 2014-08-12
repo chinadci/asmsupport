@@ -45,7 +45,7 @@ public abstract class Component {
     	if(parent == null){
         	this.componentOrder = "1";
     	}else{
-    		this.componentOrder = parent.componentOrder + "." + parent.getComponents().size() + 1;
+    		this.componentOrder = parent.componentOrder + "." + (parent.getComponents().size() + 1);
     	}
     	/*if(parent == null){
         	this.componentOrder = "1";

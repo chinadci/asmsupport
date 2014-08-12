@@ -42,6 +42,8 @@ import cn.wensiqun.asmsupport.operators.array.ArrayLoader;
 import cn.wensiqun.asmsupport.operators.array.ArrayStorer;
 import cn.wensiqun.asmsupport.operators.array.ArrayValue;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
+import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
+import cn.wensiqun.asmsupport.operators.asmdirect.NOP;
 import cn.wensiqun.asmsupport.operators.assign.Assigner;
 import cn.wensiqun.asmsupport.operators.assign.GlobalVariableAssigner;
 import cn.wensiqun.asmsupport.operators.assign.LocalVariableAssigner;
@@ -196,8 +198,12 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public void prepare() {
         init();
+        new Marker(getExecutor(), scope.getStart());
+        new NOP(getExecutor());
         generateInsn();
-        new BlockEndFlag(getExecutor());
+        OperatorFactory.newOperator(Marker.class, 
+            new Class<?>[]{ProgramBlock.class, Label.class}, getExecutor(), scope.getEnd());
+        new NOP(getExecutor());
     }
     
     /*public void subBlockInit(ProgramBlock sub){
@@ -264,11 +270,11 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     
     @Override
     public final void execute() {
-        insnHelper.mark(getScope().getStart());
+        /*insnHelper.mark(getScope().getStart());
         insnHelper.nop();
-        executing();
-        insnHelper.mark(getScope().getEnd());
-        insnHelper.nop();
+        */executing();
+        /*insnHelper.mark(getScope().getEnd());
+        insnHelper.nop();*/
     }
     
     public abstract void executing();
@@ -325,7 +331,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     public void setParent(ProgramBlock block) {
         parent = block;
         setInsnHelper(block.insnHelper);
-        setScope(new Scope(getMethod().getLocals(), this.getScope()));
+        setScope(new Scope(getMethod().getLocals(), block.getScope()));
     }
     
     public AMethod getMethod() {

@@ -100,10 +100,14 @@ public class CommonLinkedList<E extends LinkedListNode> implements LinkedList<E>
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Iterator<E> iterator()
     {
-        return (Iterator<E>) (head == null ? ListUtils.EMPTY_LIST : new Itr(head));
+        /*if(head == null){
+            return (Iterator<E>) ListUtils.EMPTY_LIST;
+        }*/
+        return (Iterator<E>) new Itr(head) ;
     }
 
     /*@Override

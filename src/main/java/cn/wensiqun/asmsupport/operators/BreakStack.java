@@ -34,6 +34,8 @@ public abstract class BreakStack extends AbstractOperator {
     protected void addQueue()
     {
         AMethod method = block.getMethod();
+        List<Label> finallyStartLabels = new ArrayList<Label>();
+        Label endLbl = new Label();
 	    if(!method.isCreatingImplicitFinally())
 	    {
 	        checkFinallyBlock();
@@ -41,24 +43,24 @@ public abstract class BreakStack extends AbstractOperator {
 	        {
 	        	boolean creatingImplicitFinally = method.isCreatingImplicitFinally();
 	            method.setCreatingImplicitFinally(true);
-	            for(int i= cloneFinallyList.size() - 1; i>-1; i--)
+	            for(int i=0, len=cloneFinallyList.size(); i<len; i++)
 	            {
-	            	Label finallyStart = new Label();
-	            	Label finallyEnd = new Label();
+	            	Label startLbl = new Label();
 	            	
 	            	Finally finallyBlock = cloneFinallyList.get(i);
-                    finallyBlock.getSerial().addAnyExceptionCatchRange(finallyStart);
-                    finallyBlock.getSerial().addAnyExceptionCatchRange(finallyEnd);
+	            	finallyStartLabels.add(startLbl);
+	            	finallyBlock.getSerial().addAnyExceptionCatchRange(startLbl);
+                    finallyBlock.getSerial().addAnyExceptionCatchRange(endLbl);
 	            	
-	                new Marker(finallyBlock, finallyStart);
+	                new Marker(block, startLbl);
 	            	finallyBlock.generateInsnTo(block);
-	                new Marker(finallyBlock, finallyEnd);
 	            }
 	            method.setCreatingImplicitFinally(creatingImplicitFinally);
 	        }
 	    }
 	    
         super.addQueue();
+        new Marker(block, endLbl);
     }
 
 
@@ -110,6 +112,11 @@ public abstract class BreakStack extends AbstractOperator {
             }
         }
         return null;
+    }*/
+    
+    /*public Label[] getImplicitFinallyAnyExceptionRange(Finally f)
+    {
+        return new Label[];
     }
     
     public class CloneFinallyLabelMap

@@ -22,7 +22,7 @@ public class TryBlockGenerator extends AbstractExample
         
         ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryBlockGeneratorExample", null, null);
         
-        creator.createStaticMethod("testTry", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
+        /*creator.createStaticMethod("testTry", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -211,10 +211,10 @@ public class TryBlockGenerator extends AbstractExample
                 runReturn();
             }
             
-        });
+        });*/
 
         
-        creator.createStaticMethod("testTryFinallyWithError", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
+        /*creator.createStaticMethod("testTryFinallyWithError", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -240,6 +240,79 @@ public class TryBlockGenerator extends AbstractExample
                 runReturn();
             }
             
+        });*/
+        
+        creator.createStaticMethod("testNestedTryFinallyWithError", null, null, null, null, Opcodes.ACC_PRIVATE, new StaticMethodBody(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                tryDo(new Try(){
+
+                    
+                    public String toString()
+                    {
+                        return "1try";
+                    }
+
+                    @Override
+                    public void body()
+                    {
+                        tryDo(new Try(){
+
+                            
+                            public String toString()
+                            {
+                                return "2try";
+                            }
+                            
+                            @Override
+                            public void body()
+                            {
+                                invoke(systemOut, "println", Value.value("testNestedTryFinallyWithError : try_"));
+                                throwException(invokeConstructor(runtime));
+                            }
+                            
+                        }).finallyThan(new Finally(){
+
+                            public String toString()
+                            {
+                                return "finally_";
+                            }
+                            
+                            @Override
+                            public void body()
+                            {
+                                invoke(systemOut, "println", Value.value("testNestedTryFinallyWithError : finally_"));
+                            }
+                            
+                        });
+                    }
+                    
+                }).finallyThan(new Finally(){
+
+
+
+                    public String toString()
+                    {
+                        return "finally";
+                    }
+                    
+                    @Override
+                    public void body()
+                    {
+                        invoke(systemOut, "println", Value.value("testNestedTryFinallyWithError : finally"));
+                    }
+                    
+                });
+                runReturn();
+            }
+            
+            public String toString()
+            {
+                return "method";
+            }
+            
         });
         
         
@@ -247,14 +320,15 @@ public class TryBlockGenerator extends AbstractExample
             Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
                 @Override
                 public void body(LocalVariable... argus) {
-                    invokeStatic(getMethodOwner(), "testTry");
+                    /*invokeStatic(getMethodOwner(), "testTry");
                     invokeStatic(getMethodOwner(), "testCatch");
                     invokeStatic(getMethodOwner(), "testTwoCatchForTry");
                     invokeStatic(getMethodOwner(), "testTwoCatchForCatch1");
                     invokeStatic(getMethodOwner(), "testTwoCatchForCatch2");
                     invoke(systemOut, "println", Value.value("================================="));
-                    invokeStatic(getMethodOwner(), "testTryFinally");
-                    invokeStatic(getMethodOwner(), "testTryFinallyWithError");
+                    invokeStatic(getMethodOwner(), "testTryFinally");*/
+                    //invokeStatic(getMethodOwner(), "testTryFinallyWithError");
+                    invokeStatic(getMethodOwner(), "testNestedTryFinallyWithError");
                     runReturn();
                 }
         
