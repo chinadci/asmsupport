@@ -125,6 +125,41 @@ public class TryCathcBlockGeneratorSample extends AbstractExample
     
     //============================================================
     
+
+    
+    private static void tryCatchTwo_runtimeBeforePrintInTry()
+    {
+        try
+        {
+            runtimeException();
+            System.out.println("    try");
+        }
+        catch(RuntimeException e)
+        {
+            System.out.println("    runtime exception");
+        }
+        catch(Exception e)
+        {
+            System.out.println("    exception");
+        }
+    }
+    
+    private static void tryCatchTwo_runtimeAfterPrintInTry()
+    {
+        try
+        {
+            System.out.println("    try");
+            runtimeException();
+        }
+        catch(RuntimeException e)
+        {
+            System.out.println("    runtime exception");
+        }
+        catch(Exception e)
+        {
+            System.out.println("    exception");
+        }
+    }
     
     private static void tryCatchTwo_exceptionBeforePrintInTry()
     {
@@ -160,15 +195,15 @@ public class TryCathcBlockGeneratorSample extends AbstractExample
         }
     }
     
-    private static void tryCatchTwo_runtimeBeforePrintInTry()
+    private static void tryCatchTwo_runtimeBeforePrintInRuntimeCatch()
     {
         try
         {
-            runtimeException();
             System.out.println("    try");
         }
         catch(RuntimeException e)
         {
+            runtimeException();
             System.out.println("    runtime exception");
         }
         catch(Exception e)
@@ -177,12 +212,45 @@ public class TryCathcBlockGeneratorSample extends AbstractExample
         }
     }
     
-    private static void tryCatchTwo_runtimeAfterPrintInTry()
+    private static void tryCatchTwo_runtimeAfterPrintInRuntimeCatch()
     {
         try
         {
             System.out.println("    try");
+        }
+        catch(RuntimeException e)
+        {
+            System.out.println("    runtime exception");
             runtimeException();
+        }
+        catch(Exception e)
+        {
+            System.out.println("    exception");
+        }
+    }
+    
+    private static void tryCatchTwo_runtimeBeforePrintInExceptionCatch()
+    {
+        try
+        {
+            System.out.println("    try");
+        }
+        catch(RuntimeException e)
+        {
+            System.out.println("    runtime exception");
+        }
+        catch(Exception e)
+        {
+            runtimeException();
+            System.out.println("    exception");
+        }
+    }
+    
+    private static void tryCatchTwo_runtimeAfterPrintInExceptionCatch()
+    {
+        try
+        {
+            System.out.println("    try");
         }
         catch(RuntimeException e)
         {
@@ -191,8 +259,12 @@ public class TryCathcBlockGeneratorSample extends AbstractExample
         catch(Exception e)
         {
             System.out.println("    exception");
+            runtimeException();
         }
     }
+    
+    
+    
     
     public static void main(String[] args)
     {
