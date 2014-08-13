@@ -96,11 +96,11 @@
 			<version>3.2.1</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.ow2.asm</groupId>
 			<artifactId>asm</artifactId>
 			<version>4.2</version>
-		</dependency>
+		</dependency> -->
 		
 	</dependencies>
 	
