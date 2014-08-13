@@ -1,4 +1,4 @@
-package example.block;
+package cn.wensiqun.asmsupport.utils.block.exception;
 
 import org.objectweb.asm.Opcodes;
 

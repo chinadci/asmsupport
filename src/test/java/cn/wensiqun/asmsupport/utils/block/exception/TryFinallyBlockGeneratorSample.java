@@ -1,4 +1,4 @@
-package example.block;
+package cn.wensiqun.asmsupport.utils.block.exception;
 
 import example.AbstractExample;
 
@@ -205,7 +205,6 @@ public class TryFinallyBlockGeneratorSample extends AbstractExample
     
     public static void main(String[] args)
     {
-        TryFinallyBlockGeneratorSample s = new TryFinallyBlockGeneratorSample();
         System.out.println("=======tryFinally");
         try{tryFinally();}catch(Exception e){}
         System.out.println("=======nestedTryFinally");

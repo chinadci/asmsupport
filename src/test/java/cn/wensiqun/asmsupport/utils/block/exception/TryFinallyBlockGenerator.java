@@ -1,4 +1,4 @@
-package example.block;
+package cn.wensiqun.asmsupport.utils.block.exception;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
         final MyList testMethodNames = new MyList();
         ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryFinallyBlockGeneratorExample", null, null);
         
-        /*creator.createStaticMethod(testMethodNames.put("tryFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("tryFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -107,7 +107,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                 runReturn();
             }
             
-        });*/
+        });
         
         creator.createStaticMethod(testMethodNames.put("tryFinally_TryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
@@ -137,7 +137,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        /*creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerTryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerTryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -461,7 +461,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                 runReturn();
             }
             
-        });*/
+        });
         
         
         creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
