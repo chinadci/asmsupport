@@ -27,8 +27,8 @@ public class Scope extends Component {
 
     public Scope(LocalVariables locals, Scope parent) {
         super(locals);
-        this.start = new Label();
-        this.end = new Label();
+        this.start = new Label("block start");
+        this.end = new Label("block end");
         this.setParent(parent);
         if(parent != null){
             parent.addComponent(this);

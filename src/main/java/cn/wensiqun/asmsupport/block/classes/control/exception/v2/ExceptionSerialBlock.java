@@ -41,8 +41,8 @@ public class ExceptionSerialBlock extends AbstractBlock
     {
         this.tryBlock = tryBlock;
         this.targetParent = parent;
-        serialStart = new Label();
-        serialEnd = new Label();
+        serialStart = new Label("serial start");
+        serialEnd = new Label("serial end");
         
         parent.addExe(this);
         
@@ -102,8 +102,8 @@ public class ExceptionSerialBlock extends AbstractBlock
                 //insert finally for BreakStack operator in try block.
                 insertFinallyBeforeBreakStack(c);
                 
-                Label finallyStart = new Label();
-            	Label finallyEnd = new Label();
+                Label finallyStart = new Label("catch's implicit finally start");
+            	Label finallyEnd = new Label("catch's implicit finally end");
             	
             	addAnyExceptionCatchRange(finallyStart);
             	{
@@ -224,8 +224,8 @@ public class ExceptionSerialBlock extends AbstractBlock
         {
             ProgramBlock breakBlock = b.getBlock();
             
-            Label startLbl = new Label();
-            Label endLbl = new Label();
+            Label startLbl = new Label("implicit finally before break stack start");
+            Label endLbl = new Label("implicit finally before break stack end");
             addAnyExceptionCatchRange(startLbl);
             addAnyExceptionCatchRange(endLbl);
             

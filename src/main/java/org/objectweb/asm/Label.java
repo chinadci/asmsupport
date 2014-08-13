@@ -254,7 +254,24 @@ public class Label {
      */
     public Label() {
     }
+    
+    private String name;
+    
+    public Label(String name)
+    {
+        this.name = name;
+    }
 
+    public String getName()
+    {
+        return name;
+    }
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
     // ------------------------------------------------------------------------
     // Methods to compute offsets and to manage forward references
     // ------------------------------------------------------------------------

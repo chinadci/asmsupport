@@ -198,6 +198,8 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public void prepare() {
         init();
+        scope.getStart().setName(this.getClass().toString() + " start");
+        scope.getEnd().setName(this.getClass().toString() + " end");
         new Marker(getExecutor(), scope.getStart());
         new NOP(getExecutor());
         generateInsn();
