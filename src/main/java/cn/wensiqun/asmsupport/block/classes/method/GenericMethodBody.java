@@ -90,19 +90,13 @@ public abstract class GenericMethodBody extends ProgramBlock {
         }
         
         for(TryCatchInfo tci : tryCatches){
-        	try
+        	if(tci.end.getOffset() - tci.start.getOffset() > 0)
         	{
-            	if(tci.end.getOffset() - tci.start.getOffset() > 0)
-            	{
-                    insnHelper.tryCatchBlock(tci.start, tci.end, tci.hander, tci.exception);
-            	}
-            	else
-            	{
-            		System.out.println(tci);
-            	}
-        	}catch(Exception e)
+                insnHelper.tryCatchBlock(tci.start, tci.end, tci.hander, tci.exception);
+        	}
+        	else
         	{
-        		System.out.println(e);
+        		System.out.println(tci);
         	}
         }
         

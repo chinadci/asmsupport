@@ -3,17 +3,12 @@ package cn.wensiqun.asmsupport.operators;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Catch;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionEpisodeBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Finally;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
-import cn.wensiqun.asmsupport.definition.method.AMethod;
-import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 
 public abstract class BreakStack extends AbstractOperator {
 
@@ -30,7 +25,7 @@ public abstract class BreakStack extends AbstractOperator {
 		this.autoCreate = autoCreate;
 	}
 
-	@Override
+	/*@Override
     protected void addQueue()
     {
         AMethod method = block.getMethod();
@@ -61,7 +56,7 @@ public abstract class BreakStack extends AbstractOperator {
 	    
         super.addQueue();
         new Marker(block, endLbl);
-    }
+    }*/
 
 
 

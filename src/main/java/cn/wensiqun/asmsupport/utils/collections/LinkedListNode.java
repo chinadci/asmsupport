@@ -51,26 +51,37 @@ public abstract class LinkedListNode implements Cloneable
     }
     
     void setNext(LinkedListNode subHead){
-        
-        if(next == null)
+        if(subHead == null)
         {
-            this.next = subHead;
-            subHead.previous = this;
+            if(next != null)
+            {
+                next.previous = null;
+                next = null;
+            }
         }
         else
         {
-            LinkedListNode subLast = subHead;
-            while(subLast.hasNext())
+            if(next == null)
             {
-                subLast = subLast.next();
+                this.next = subHead;
+                subHead.previous = this;
             }
+            else
+            {
+                LinkedListNode subLast = subHead;
+                while(subLast.hasNext())
+                {
+                    subLast = subLast.next();
+                }
 
-            subLast.next = next;
-            next.previous = subLast;
-            
-            next = subHead;
-            subHead.previous = this;
+                subLast.next = next;
+                next.previous = subLast;
+                
+                next = subHead;
+                subHead.previous = this;
+            }
         }
+        
         
         /**
          * For index operator. Unsupported index operation now!

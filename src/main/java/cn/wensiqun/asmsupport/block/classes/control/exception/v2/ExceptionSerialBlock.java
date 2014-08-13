@@ -13,6 +13,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AnyException;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
+import cn.wensiqun.asmsupport.operators.BreakStack;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
@@ -73,8 +74,12 @@ public class ExceptionSerialBlock extends AbstractBlock
         	addAnyExceptionCatchRange(tryBlock.getStart());
             
             tryBlock.prepare();
+            
             new GOTO(tryBlock, finallyBlock.getStart());
 
+            //insert finally for BreakStack operator in try block.
+            insertFinallyBeforeBreakStack(tryBlock);
+            
             addAnyExceptionCatchRange(tryBlock.getEnd());
             
             implicitCatch.prepare();
@@ -87,21 +92,29 @@ public class ExceptionSerialBlock extends AbstractBlock
             tryBlock.prepare();
             new GOTO(tryBlock, finallyBlock.getStart());
             
+            //insert finally for BreakStack operator in try block.
+            insertFinallyBeforeBreakStack(tryBlock);
+            
             for(Catch c : catchs)
             {
                 c.prepare();
                 
-            	Label finallyStart = new Label();
-            	addAnyExceptionCatchRange(finallyStart);
-            	new Marker(c, finallyStart);
+                //insert finally for BreakStack operator in try block.
+                insertFinallyBeforeBreakStack(c);
+                
+                Label finallyStart = new Label();
+            	Label finallyEnd = new Label();
             	
-                c.injectFinally(finallyBlock);
-                
-                Label finallyEnd = new Label();
-            	addAnyExceptionCatchRange(finallyEnd);
-                
+            	addAnyExceptionCatchRange(finallyStart);
+            	{
+        	    //inject implicit finally block code at end of catch
+            	new Marker(c, finallyStart);
+            	finallyBlock.generateInsnTo(c);
                 new GOTO(c, serialEnd);
             	new Marker(c, finallyEnd);
+            	}
+            	addAnyExceptionCatchRange(finallyEnd);
+            	
             }
             
             addAnyExceptionCatchRange(catchs.get(catchs.size() - 1).getEnd());
@@ -201,22 +214,74 @@ public class ExceptionSerialBlock extends AbstractBlock
         queue.setLast(implicitCatch);
         queue.setLast(finallyBlock);
     }
-    
-    public Finally getFinally() {
-		return finallyBlock;
-	}
 
-	private void addTreCatchInfo(Label start, Label end, Label handler, AClass type)
+
+    private void insertFinallyBeforeBreakStack(AbstractBlock block)
+    {
+        List<BreakStack> breaks = fetchAllBreakStack(block, null);
+        
+        for(BreakStack b : breaks)
+        {
+            ProgramBlock breakBlock = b.getBlock();
+            
+            Label startLbl = new Label();
+            Label endLbl = new Label();
+            addAnyExceptionCatchRange(startLbl);
+            addAnyExceptionCatchRange(endLbl);
+            
+            //first remove node start with b from list
+            breakBlock.getQueue().removeFrom(b);
+            
+            new Marker(breakBlock, startLbl);
+            
+            //append finally block code to list
+            finallyBlock.generateInsnTo(breakBlock);
+            
+            //append the b to end of the list
+            breakBlock.addExe(b);
+            
+            new Marker(breakBlock, endLbl);
+        }
+    }
+    
+    
+    private List<BreakStack> fetchAllBreakStack(AbstractBlock block, List<BreakStack> container)
+    {
+        if(container == null)
+        {
+            container = new ArrayList<BreakStack>();
+        }
+        for(ByteCodeExecutor executor : block.getQueue())
+        {
+            if(executor instanceof BreakStack)
+            {
+                container.add((BreakStack) executor);
+            }
+            else if(executor instanceof AbstractBlock)
+            {
+                fetchAllBreakStack((AbstractBlock) executor, container);
+            }
+        }
+        return container;
+    }
+    
+    
+    private void addTreCatchInfo(Label start, Label end, Label handler, AClass type)
     {
         targetParent.getMethod().getMethodBody()
               .addTryCatchInfo(start, end, handler, type);
     }
     
-	public void addAnyExceptionCatchRange(Label label)
-	{
-		if(anyCatchRange == null)
-			anyCatchRange = new ArrayList<Label>();
-		anyCatchRange.add(label);
+    public void addAnyExceptionCatchRange(Label label)
+    {
+        if(anyCatchRange == null)
+            anyCatchRange = new ArrayList<Label>();
+        anyCatchRange.add(label);
+    }
+    
+    
+    public Finally getFinally() {
+		return finallyBlock;
 	}
 	
 	/**

@@ -71,9 +71,4 @@ public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariab
         return exceptionType;
     }
     
-    void injectFinally(Finally finallyBlock)
-    {
-        finallyBlock.generateInsnTo(this);
-    }
-    
 }

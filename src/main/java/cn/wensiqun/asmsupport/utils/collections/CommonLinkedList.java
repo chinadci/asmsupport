@@ -1,11 +1,6 @@
 package cn.wensiqun.asmsupport.utils.collections;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
-import org.apache.commons.collections.ListUtils;
 
 public class CommonLinkedList<E extends LinkedListNode> implements LinkedList<E>
 {
@@ -189,6 +184,7 @@ public class CommonLinkedList<E extends LinkedListNode> implements LinkedList<E>
         else
         {
             last = (E) start.previous();
+            last.setNext(null);
             while(start != null)
             {
                 size--;
@@ -249,7 +245,7 @@ public class CommonLinkedList<E extends LinkedListNode> implements LinkedList<E>
         LinkedListNode cursor = add;
         size++;
         while(cursor.hasNext()){
-            cursor = add.next();
+            cursor = cursor.next();
             size++;
         }
         
