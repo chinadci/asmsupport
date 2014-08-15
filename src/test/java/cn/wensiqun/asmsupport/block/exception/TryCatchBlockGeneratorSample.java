@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.utils.block.exception;
+package cn.wensiqun.asmsupport.block.exception;
 
 import example.AbstractExample;
 
@@ -10,9 +10,6 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     private static void exception() throws Exception{
         throw new Exception();
     }
-    /*private static void commonThrowable() throws Throwable{
-        throw new Exception();
-    }*/
     
     private static void tryCatch_errorBeforePrintInTry()
     {
@@ -571,8 +568,9 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     //}
     
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
+        Thread.sleep(1000);
         System.out.println("=======tryCatch_errorBeforePrintInTry");
         try{tryCatch_errorBeforePrintInTry();}catch(Exception e){}
 
@@ -585,7 +583,89 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         System.out.println("=======tryCatch_runtimeExceptionAfterPrintInCatch");
         try{tryCatch_runtimeExceptionAfterPrintInCatch();}catch(Exception e){}
         
+        System.out.println("=======tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch");
+        try{tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch();}catch(Exception e){}
         
+        System.out.println("=======tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch");
+        try{tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch");
+        try{tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch");
+        try{tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_runtimeBeforePrintInTry");
+        try{tryCatchTwo_runtimeBeforePrintInTry();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_runtimeAfterPrintInTry");
+        try{tryCatchTwo_runtimeAfterPrintInTry();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry");
+        try{tryCatchTwo_exceptionBeforePrintInTry();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry");
+        try{tryCatchTwo_exceptionAfterPrintInTry();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_runtimeBeforePrintInExceptionCatch");
+        try{tryCatchTwo_runtimeBeforePrintInExceptionCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_runtimeAfterPrintInExceptionCatch");
+        try{tryCatchTwo_runtimeAfterPrintInExceptionCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
+        
+        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
     }
     
 }

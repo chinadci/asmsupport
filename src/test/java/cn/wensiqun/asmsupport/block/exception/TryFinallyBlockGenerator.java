@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.utils.block.exception;
+package cn.wensiqun.asmsupport.block.exception;
 
 import java.util.ArrayList;
 import java.util.List;
