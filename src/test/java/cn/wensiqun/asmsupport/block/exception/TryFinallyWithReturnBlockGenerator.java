@@ -14,14 +14,14 @@ import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import example.AbstractExample;
 
-public class TryFinallyBlockGenerator extends AbstractExample
+public class TryFinallyWithReturnBlockGenerator extends AbstractExample
 {
     public static void main(String[] args)
     {
         final AClass runtime = AClassFactory.getProductClass(RuntimeException.class);
         
         final MyList testMethodNames = new MyList();
-        ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryFinallyBlockGeneratorExample", null, null);
+        ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryFinallyWithReturnBlockGeneratorExample", null, null);
         
         creator.createStaticMethod(testMethodNames.put("tryFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
@@ -96,7 +96,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("tryFinally_TryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("tryFinally_TryReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -107,7 +107,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invoke(systemOut, "println", Value.value("    try"));
-                        throwException(invokeConstructor(runtime));
+                        runReturn();
                     }
                     
                     public void setFinish(boolean f)
@@ -129,7 +129,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerTryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerTryReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -146,7 +146,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             public void body()
                             {
                                 invoke(systemOut, "println", Value.value("        try_inner"));
-                                throwException(invokeConstructor(runtime));
+                                runReturn();
                             }
                             
                         }).finallyThan(new Finally(){
@@ -175,7 +175,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerFinallyError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerFinallyReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -200,7 +200,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             public void body()
                             {
                                 invoke(systemOut, "println", Value.value("        finally_inner"));
-                                throwException(invokeConstructor(runtime));
+                                runReturn();
                             }
                             
                         });
@@ -221,7 +221,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterTryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterTryReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -249,7 +249,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             }
                             
                         });
-                        throwException(invokeConstructor(runtime));
+                        runReturn();
                         
                     }
                     
@@ -267,7 +267,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterFinallyError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterFinallyReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -304,7 +304,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invoke(systemOut, "println", Value.value("    finally"));
-                        throwException(invokeConstructor(runtime));
+                        runReturn();
                     }
                     
                 });
@@ -313,7 +313,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerBothError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerBothReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -330,7 +330,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             public void body()
                             {
                                 invoke(systemOut, "println", Value.value("        try_inner"));
-                                throwException(invokeConstructor(runtime));
+                                runReturn();
                             }
                             
                         }).finallyThan(new Finally(){
@@ -339,7 +339,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             public void body()
                             {
                                 invoke(systemOut, "println", Value.value("        finally_inner"));
-                                throwException(invokeConstructor(runtime));
+                                runReturn();
                             }
                             
                         });
@@ -360,7 +360,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterBothError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterBothReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -388,7 +388,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             }
                             
                         });
-                        throwException(invokeConstructor(runtime));
+                        runReturn();
                         
                     }
                     
@@ -398,7 +398,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invoke(systemOut, "println", Value.value("    finally"));
-                        throwException(invokeConstructor(runtime));
+                        runReturn();
                     }
                     
                 });
@@ -407,7 +407,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerBothOuterFinallyError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerBothOuterFinallyReturn"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -424,7 +424,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             public void body()
                             {
                                 invoke(systemOut, "println", Value.value("        try_inner"));
-                                throwException(invokeConstructor(runtime));
+                                runReturn();
                             }
                             
                         }).finallyThan(new Finally(){
@@ -433,7 +433,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                             public void body()
                             {
                                 invoke(systemOut, "println", Value.value("        finally_inner"));
-                                throwException(invokeConstructor(runtime));
+                                runReturn();
                             }
                             
                         });
@@ -446,7 +446,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invoke(systemOut, "println", Value.value("    finally"));
-                        throwException(invokeConstructor(runtime));
+                        runReturn();
                     }
                     
                 });

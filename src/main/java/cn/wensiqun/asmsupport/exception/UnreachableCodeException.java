@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.exception;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 
-public class UnreachableCode extends ASMSupportException {
+public class UnreachableCodeException extends ASMSupportException {
 
 	/**
 	 * 
@@ -16,25 +16,25 @@ public class UnreachableCode extends ASMSupportException {
 	@SuppressWarnings("unused")
 	private AbstractOperator unreachableOperator;
 	
-	public UnreachableCode(ProgramBlock block, AbstractOperator unreachableOperator) {
+	public UnreachableCodeException(ProgramBlock block, AbstractOperator unreachableOperator) {
 		super();
 		this.block = block;
 		this.unreachableOperator = unreachableOperator;
 	}
 
-	public UnreachableCode(String message, Throwable cause, ProgramBlock block, AbstractOperator unreachableOperator) {
+	public UnreachableCodeException(String message, Throwable cause, ProgramBlock block, AbstractOperator unreachableOperator) {
 		super(message, cause);
 		this.block = block;
 		this.unreachableOperator = unreachableOperator;
 	}
 
-	public UnreachableCode(String message, ProgramBlock block, AbstractOperator unreachableOperator) {
+	public UnreachableCodeException(String message, ProgramBlock block, AbstractOperator unreachableOperator) {
 		super(message);
 		this.block = block;
 		this.unreachableOperator = unreachableOperator;
 	}
 
-	public UnreachableCode(Throwable cause, ProgramBlock block, AbstractOperator unreachableOperator) {
+	public UnreachableCodeException(Throwable cause, ProgramBlock block, AbstractOperator unreachableOperator) {
 		super(cause);
 		this.block = block;
 		this.unreachableOperator = unreachableOperator;

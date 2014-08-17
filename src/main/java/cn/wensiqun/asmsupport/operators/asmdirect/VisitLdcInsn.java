@@ -7,7 +7,7 @@ public class VisitLdcInsn extends AbstractOperator {
 
 	private Object cts;
 	
-	public VisitLdcInsn(ProgramBlock block, Object cts) {
+	protected VisitLdcInsn(ProgramBlock block, Object cts) {
 		super(block);
 		this.cts = cts;
 	}

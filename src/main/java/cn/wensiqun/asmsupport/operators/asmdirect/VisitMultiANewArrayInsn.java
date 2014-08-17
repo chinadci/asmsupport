@@ -8,7 +8,7 @@ public class VisitMultiANewArrayInsn extends AbstractOperator {
 	private int dims;
 	private String desc;
 
-	public VisitMultiANewArrayInsn(ProgramBlock block, String desc, int dims) {
+	protected VisitMultiANewArrayInsn(ProgramBlock block, String desc, int dims) {
 		super(block);
 		this.dims = dims;
 		this.desc = desc;

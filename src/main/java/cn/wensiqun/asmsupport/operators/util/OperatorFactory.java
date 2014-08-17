@@ -10,19 +10,33 @@ import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
+import cn.wensiqun.asmsupport.exception.UnreachableCodeException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
+import cn.wensiqun.asmsupport.operators.UnreachableCodeCheckSkipable;
 
 public abstract class OperatorFactory {
-
+	
 	/**
 	 * 通过反射创建字节码操作
-	 * @param <T>
 	 * @param clazz
 	 * @param parameterTypes
 	 * @param arguments
 	 * @return
 	 */
-	public static <T extends AbstractOperator> T newOperator(Class<T> clazz, Class<?>[] parameterTypes, Object... arguments){
+	public static <T extends AbstractOperator> T newOperator(Class<T> clazz, Class<?>[] parameterTypes, Object... arguments)
+	{
+		return newOperator(clazz, true, parameterTypes, arguments);
+	}
+	
+	/**
+	 * 通过反射创建字节码操作
+	 * @param clazz
+	 * @param checkSerial
+	 * @param parameterTypes
+	 * @param arguments
+	 * @return
+	 */
+	public static <T extends AbstractOperator> T newOperator(Class<T> clazz, boolean checkSerial, Class<?>[] parameterTypes, Object... arguments){
 		if(parameterTypes != null && arguments != null){
 			if(!ArrayUtils.isSameLength(parameterTypes, arguments)){//parameterTypes.length != arguments.length){
 				throw new ASMSupportException();
@@ -35,7 +49,8 @@ public abstract class OperatorFactory {
 		
 		ProgramBlock block = (ProgramBlock) arguments[0];
 		ByteCodeExecutor last = block.getQueue().getLast();
-		if(last != null &&
+		if(checkSerial &&
+		   last != null &&
 		   last instanceof ExceptionSerialBlock)
 		{
 		    last.prepare();
@@ -48,6 +63,14 @@ public abstract class OperatorFactory {
 			constructor.setAccessible(true);
 			T instance = parameterTypes == null ? constructor.newInstance() : constructor.newInstance(arguments);
 			constructor.setAccessible(accessable);
+			
+			if(!(instance instanceof UnreachableCodeCheckSkipable))
+			{
+				if(block.isFinish())
+				{
+					throw new UnreachableCodeException("Unreachable code to " + instance, block, instance);
+				}
+			}
 			
 			Method checkAsArgument = AbstractOperator.class.getDeclaredMethod("checkAsArgument");
 			accessable = checkAsArgument.isAccessible();

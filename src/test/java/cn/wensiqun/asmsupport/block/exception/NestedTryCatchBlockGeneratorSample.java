@@ -35,54 +35,56 @@ public class NestedTryCatchBlockGeneratorSample extends AbstractExample
         System.out.println("End");
     }
     
-    /*private static void fullTryCatch2()
+    private static void fullTryCatch2()
     {
-
-        
+        System.out.println("Root");
         try
         {
+            System.out.println("    |-Try");
             try
             {
-                
+                System.out.println("        |-Try");
+                throw new Exception();
             }
-            catch()
+            catch(RuntimeException e)
             {
-                
+                System.out.println("        |-Catch(RuntimeException)");
             }
-            catch()
+            catch(Exception e)
             {
-                
+                System.out.println("        |-Catch(Exception)");
+                throw new RuntimeException();
             }
         }
-        catch()
+        catch(RuntimeException e)
         {
+            System.out.println("    |-Catch(RuntimeException)");
             try
             {
-                
+                System.out.println("        |-Try");
+                throw new Exception();
             }
-            catch()
+            catch(Exception e1)
             {
-                
-            }
-            catch()
-            {
-                
+                System.out.println("        |-Catch(Exception)");
             }
         }
-        catch()
+        catch(Exception e)
         {
-            
+            System.out.println("    |-Catch(Exception)");
         }
-        
-    }*/
+        System.out.println("End");
+    }
     
     
     public static void main(String[] args) throws InterruptedException
     {
         Thread.sleep(1000);
-        
         System.out.println("=======fullTryCatch1");
         try{fullTryCatch1();}catch(Exception e){}
+        
+        System.out.println("=======fullTryCatch2");
+        try{fullTryCatch2();}catch(Exception e){}
     }
     
 }

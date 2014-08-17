@@ -12,7 +12,7 @@ public class Store extends ASMDirect {
 
     private LocalVariable var;
     
-    public Store(ProgramBlock block, LocalVariable var) {
+    protected Store(ProgramBlock block, LocalVariable var) {
         super(block);
         this.var = var;
     }

@@ -10,7 +10,7 @@ public class VisitFieldInsn extends AbstractOperator {
 	private String name;
 	private String desc;
 
-	public VisitFieldInsn(ProgramBlock block, int opcode, String owner,
+	protected VisitFieldInsn(ProgramBlock block, int opcode, String owner,
 			String name, String desc) {
 		super(block);
 		this.opcode = opcode;

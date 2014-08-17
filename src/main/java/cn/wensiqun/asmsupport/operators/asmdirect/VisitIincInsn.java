@@ -8,7 +8,7 @@ public class VisitIincInsn extends AbstractOperator {
 	private int var;
 	private int increment;
 	
-	public VisitIincInsn(ProgramBlock block, int var, int increment) {
+	protected VisitIincInsn(ProgramBlock block, int var, int increment) {
 		super(block);
 		this.var = var;
 		this.increment = increment;

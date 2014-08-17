@@ -8,7 +8,7 @@ public class VisitTypeInsn extends AbstractOperator {
 	private int opcode;
 	private String type;
 	
-	public VisitTypeInsn(ProgramBlock block, int opcode, String type) {
+	protected VisitTypeInsn(ProgramBlock block, int opcode, String type) {
 		super(block);
 		this.opcode = opcode;
 		this.type = type;

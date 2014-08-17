@@ -1,13 +1,13 @@
 package cn.wensiqun.asmsupport.block.classes.control.exception.v2;
 
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariableBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
+import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
 public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariableBody
 {
@@ -27,7 +27,10 @@ public abstract class Catch extends ExceptionEpisodeBlock implements LocalVariab
     public void generateInsn()
     {
         LocalVariable exception = getLocalAnonymousVariableModel(exceptionType);
-        new Store(getExecutor(), exception);
+        OperatorFactory.newOperator(Store.class, 
+				new Class[]{ProgramBlock.class, LocalVariable.class}, 
+				getExecutor(), exception);
+        //new Store(getExecutor(), exception);
         body(exception);
     }
 

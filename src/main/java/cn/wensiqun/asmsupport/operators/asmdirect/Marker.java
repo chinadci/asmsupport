@@ -4,6 +4,7 @@ package cn.wensiqun.asmsupport.operators.asmdirect;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.operators.UnreachableCodeCheckSkipable;
 
 
 /**
@@ -11,15 +12,15 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
  * @author 温斯群(Joe Wen)
  *
  */
-public class Marker extends ASMDirect {
+public class Marker extends ASMDirect implements UnreachableCodeCheckSkipable {
     
     private Label label;
     
-    public Marker(ProgramBlock block) {
+    protected Marker(ProgramBlock block) {
 		super(block);
 	}
 
-	public Marker(ProgramBlock block, Label lbl) {
+    protected Marker(ProgramBlock block, Label lbl) {
         super(block);
         label = lbl;
     }

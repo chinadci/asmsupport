@@ -17,7 +17,7 @@ public class GOTO extends ASMDirect {
     
     private Label to;
 
-    public GOTO(ProgramBlock block, Label label) {
+    protected GOTO(ProgramBlock block, Label label) {
         super(block);
         this.to = label;
     }

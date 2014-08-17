@@ -29,7 +29,10 @@ public class Throw extends BreakStack {
     
     @Override
 	protected void startingPrepare() {
-		block.addException(exception.getParamterizedType());
+    	if(!AnyException.ANY.equals(exception.getParamterizedType()))
+    	{
+    		block.addException(exception.getParamterizedType());
+    	}
 		super.startingPrepare();
 	}
 
@@ -63,4 +66,8 @@ public class Throw extends BreakStack {
 		return " throw " + exception;
 	}
 
+	public AClass getThrowExceptionType()
+	{
+		return exception.getParamterizedType();
+	}
 }

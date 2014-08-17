@@ -14,11 +14,11 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 public class Athrow extends ASMDirect {
     
     
-    public Athrow(ProgramBlock block) {
+	protected Athrow(ProgramBlock block) {
 		super(block);
 	}
 
-	public Athrow(ProgramBlock block, Label lbl) {
+	protected Athrow(ProgramBlock block, Label lbl) {
         super(block);
     }
 

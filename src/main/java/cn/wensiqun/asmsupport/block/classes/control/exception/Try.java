@@ -14,7 +14,7 @@ import cn.wensiqun.asmsupport.block.interfaces.body.Body;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
-import cn.wensiqun.asmsupport.exception.UnreachableCode;
+import cn.wensiqun.asmsupport.exception.UnreachableCodeException;
 import cn.wensiqun.asmsupport.operators.NoneOperator;
 import cn.wensiqun.asmsupport.operators.Throw;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
@@ -94,7 +94,7 @@ public abstract class Try extends EpisodeBlock implements Body {
             OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
             //创建GOTO指令。跳到整个try catch的结束部分 如果存在finally 则是finally起始部分
             new GOTO(getExecutor(), getTerminalEndLabel()); 
-        }catch(UnreachableCode uc){
+        }catch(UnreachableCodeException uc){
             log.debug("unreachable code");
             returnInTry = true;
         }catch(RuntimeException e){

@@ -8,7 +8,7 @@ public class VisitIntInsn extends AbstractOperator {
 	private int opcode;
 	private int operand;
 	
-	public VisitIntInsn(ProgramBlock block, int opcode, int operand) {
+	protected VisitIntInsn(ProgramBlock block, int opcode, int operand) {
 		super(block);
 		this.opcode = opcode;
 		this.operand = operand;

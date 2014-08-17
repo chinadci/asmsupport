@@ -1,22 +1,14 @@
 package cn.wensiqun.asmsupport.operators;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Catch;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionEpisodeBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Finally;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
 
 public abstract class BreakStack extends AbstractOperator {
 
-    /**
+    /*
      * if exists, this label indicate start position of auto create finally block, 
      * otherwise, indicate the current operator label. 
      */
-    private List<Finally> cloneFinallyList;
+    //private List<Finally> cloneFinallyList;
     
 	private boolean autoCreate;
 
@@ -58,9 +50,12 @@ public abstract class BreakStack extends AbstractOperator {
         new Marker(block, endLbl);
     }*/
 
+    @Override
+	protected void startingPrepare() {
+		block.setFinish(true);
+	}
 
-
-    public boolean isAutoCreate() {
+	public boolean isAutoCreate() {
 		return autoCreate;
 	}
 
@@ -71,7 +66,7 @@ public abstract class BreakStack extends AbstractOperator {
 	
     protected abstract void breakStackExecuting();
 
-    private void checkFinallyBlock()
+    /*private void checkFinallyBlock()
     {
     	ProgramBlock block = this.block;
     	while(block != null)
@@ -94,7 +89,7 @@ public abstract class BreakStack extends AbstractOperator {
     	}
     }
     
-    /*public Label getImplicitFinallyLabel(Finally target)
+    public Label getImplicitFinallyLabel(Finally target)
     {
         if(CollectionUtils.isNotEmpty(cloneFinallyLabelList))
         {

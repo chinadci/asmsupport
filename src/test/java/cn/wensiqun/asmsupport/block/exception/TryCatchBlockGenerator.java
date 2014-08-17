@@ -18,15 +18,6 @@ import example.AbstractExample;
 public class TryCatchBlockGenerator extends AbstractExample
 {
     
-    public static class MyList extends ArrayList<String>{
-        
-        public String put(String s){
-            this.add(s);
-            return s;
-        }
-    
-    }
-    
     public static void main(String[] args)
     {
         final AClass runtime = AClassFactory.getProductClass(RuntimeException.class);

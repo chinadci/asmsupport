@@ -9,13 +9,16 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
+import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.body.ParameterizedBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.Return;
 import cn.wensiqun.asmsupport.operators.asmdirect.DUP;
+import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
+import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
 
 /**
@@ -102,9 +105,18 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
 	
 	@Override
 	public void generateInsn() {
-		dupSynArgument = createVariable(null, lock.getParamterizedType(), true, new DUP(this, lock.getParamterizedType()));
-		flag1 = new Marker(this, new Label());
-        body(lock);
+
+        DUP dup = OperatorFactory.newOperator(DUP.class, 
+                new Class<?>[]{ProgramBlock.class, AClass.class}, 
+                this, lock.getParamterizedType());
+        
+		dupSynArgument = createVariable(null, lock.getParamterizedType(), true, dup);
+		
+		flag1 = OperatorFactory.newOperator(Marker.class, 
+                new Class<?>[]{ProgramBlock.class, Label.class}, 
+                this, new Label());
+		//new Marker(this, new Label());
+		body(lock);
 	}
 
 }

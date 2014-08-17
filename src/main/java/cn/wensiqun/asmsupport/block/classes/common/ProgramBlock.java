@@ -32,9 +32,9 @@ import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.MethodInvokeException;
 import cn.wensiqun.asmsupport.exception.VerifyErrorException;
-import cn.wensiqun.asmsupport.operators.BlockEndFlag;
 import cn.wensiqun.asmsupport.operators.InstanceofOperator;
 import cn.wensiqun.asmsupport.operators.Return;
+import cn.wensiqun.asmsupport.operators.SerialTriggerOperator;
 import cn.wensiqun.asmsupport.operators.StringAppender;
 import cn.wensiqun.asmsupport.operators.Throw;
 import cn.wensiqun.asmsupport.operators.array.ArrayLength;
@@ -115,6 +115,9 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     
     private   Label                       end;
     
+    /** 当前block是否已经返回 或者已经抛出异常了 */
+    private   boolean                     finish = false;
+    
     /*<<<<<<<<<<<<<<<<<<< Getter Setter <<<<<<<<<<<<<<<<<<<<<<<<*/
     
     public void setExecutor(ProgramBlock exeBlock) {
@@ -128,10 +131,18 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     public ThrowExceptionContainer getThrowExceptions() {
 		return throwExceptions;
 	}
+
+    public boolean isFinish() {
+		return finish;
+	}
+
+	public void setFinish(boolean finish) {
+		this.finish = finish;
+	}
     
     /* >>>>>>>>>>>>>>>>>> Getter Setter >>>>>>>>>>>>>>>>>>>>>>>*/
-    
-    public ProgramBlock getParent() {
+
+	public ProgramBlock getParent() {
 		return parent;
 	}
 
@@ -185,6 +196,8 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         ProgramBlock clone = getCopy();
         clone.setExecutor(cloneTo);
         clone.generateInsn();
+        //just trigger if the last is SerialBlock in the queue of cloneTo
+        OperatorFactory.newOperator(SerialTriggerOperator.class, new Class[]{ProgramBlock.class}, cloneTo);
 	}
 
     protected void init(){};
@@ -200,12 +213,33 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         init();
         scope.getStart().setName(this.getClass().toString() + " start");
         scope.getEnd().setName(this.getClass().toString() + " end");
-        new Marker(getExecutor(), scope.getStart());
-        new NOP(getExecutor());
-        generateInsn();
+        
         OperatorFactory.newOperator(Marker.class, 
-            new Class<?>[]{ProgramBlock.class, Label.class}, getExecutor(), scope.getEnd());
-        new NOP(getExecutor());
+                new Class<?>[]{ProgramBlock.class, Label.class}, 
+                getExecutor(), scope.getStart());
+
+
+        OperatorFactory.newOperator(NOP.class, 
+                new Class<?>[]{ProgramBlock.class}, 
+                getExecutor());
+        
+        //new NOP(getExecutor());
+        
+        generateInsn();
+        
+        //just trigger if the last is SerialBlock in the queue of cloneTo
+        OperatorFactory.newOperator(SerialTriggerOperator.class, 
+        		new Class[]{ProgramBlock.class}, 
+        		getExecutor());
+        
+        OperatorFactory.newOperator(Marker.class, 
+            new Class<?>[]{ProgramBlock.class, Label.class}, 
+            getExecutor(), scope.getEnd());
+
+        OperatorFactory.newOperator(NOP.class, 
+                new Class<?>[]{ProgramBlock.class}, 
+                getExecutor());
+        //new NOP(getExecutor());
     }
     
     /*public void subBlockInit(ProgramBlock sub){
@@ -947,7 +981,10 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     	ProgramBlock pb = getExecutor();
         while(pb != null){
             if(pb instanceof ILoop){
-                new GOTO(getExecutor(), ((ILoop)pb).getBreakLabel());
+                OperatorFactory.newOperator(GOTO.class, 
+                        new Class<?>[]{ProgramBlock.class, Label.class}, 
+                        getExecutor(), ((ILoop)pb).getBreakLabel());
+                //new GOTO(getExecutor(), ((ILoop)pb).getBreakLabel());
                 return;
             }
             pb = pb.getParent();
@@ -960,7 +997,10 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     	ProgramBlock pb = getExecutor();
         while(pb != null){
             if(pb instanceof ILoop){
-                new GOTO(getExecutor(), ((ILoop)pb).getContinueLabel());
+                OperatorFactory.newOperator(GOTO.class, 
+                        new Class<?>[]{ProgramBlock.class, Label.class}, 
+                        getExecutor(), ((ILoop)pb).getContinueLabel());
+                //new GOTO(getExecutor(), ((ILoop)pb).getContinueLabel());
                 return;
             }
             pb = pb.getParent();
@@ -977,7 +1017,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     
     @Override
     public final Try tryDo(final Try t){
-        new ExceptionSerialBlock(this, t);
+        new ExceptionSerialBlock(getExecutor(), t);
         return t;
     }
 

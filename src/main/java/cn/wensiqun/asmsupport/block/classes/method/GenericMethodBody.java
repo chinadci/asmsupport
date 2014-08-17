@@ -19,6 +19,7 @@ import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 import cn.wensiqun.asmsupport.operators.variable.LocalVariableCreator;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupport.utils.common.TryCatchInfo;
 import cn.wensiqun.asmsupport.utils.memory.Component;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
@@ -90,9 +91,10 @@ public abstract class GenericMethodBody extends ProgramBlock {
         }
         
         for(TryCatchInfo tci : tryCatches){
-        	if(tci.end.getOffset() - tci.start.getOffset() > 0)
+        	if(tci.getEnd().getOffset() - tci.getStart().getOffset() > 0)
         	{
-                insnHelper.tryCatchBlock(tci.start, tci.end, tci.hander, tci.exception);
+        		Type type = tci.getException();
+                insnHelper.tryCatchBlock(tci.getStart(), tci.getEnd(), tci.getHander(), type == null || type == AnyException.ANY.getType() ? null : type);
         	}
         	/*else
         	{
@@ -146,20 +148,17 @@ public abstract class GenericMethodBody extends ProgramBlock {
         }
     }
     
-    public void addTryCatchInfo(Label start, Label end, Label hander, AClass exception){
-        TryCatchInfo tci = new TryCatchInfo();
-        tci.start = start;
+    public void addTryCatchInfo(Label start, Label end, Label handler, Type exception){
+        /*tci.start = start;
         tci.end = end;
         tci.hander = hander;
         tci.exception = exception == null || exception.getType() == AnyException.ANY.getType() ? null : exception.getType();
-        tryCatches.add(tci);
+        */addTryCatchInfo(new TryCatchInfo(start, end, handler, exception));
     }
     
-    private static class TryCatchInfo{
-        Label start;
-        Label end;
-        Label hander;
-        Type exception;
+    public void addTryCatchInfo(TryCatchInfo info)
+    {
+        tryCatches.add(info);	
     }
-
+    
 }

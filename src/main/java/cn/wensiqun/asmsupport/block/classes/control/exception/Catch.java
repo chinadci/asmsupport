@@ -14,7 +14,7 @@ import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariableBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
-import cn.wensiqun.asmsupport.exception.UnreachableCode;
+import cn.wensiqun.asmsupport.exception.UnreachableCodeException;
 import cn.wensiqun.asmsupport.operators.NoneOperator;
 import cn.wensiqun.asmsupport.operators.Throw;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
@@ -97,7 +97,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
     @Override
     protected void init() {
     	GenericMethodBody mb = getMethodBody();
-        mb.addTryCatchInfo(entityTry.getStart(), entityTry.getEnd(), catchLbl, exception);
+        mb.addTryCatchInfo(entityTry.getStart(), entityTry.getEnd(), catchLbl, exception.getType());
         
         //是最后一个Catch 并且存在Finally Block 则对try程序每个catch程序
         //添加一个隐藏的catch块(此catch程序块将catch throwable异常)
@@ -138,7 +138,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
         	    OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
         	    //如果程序能够走到这里 表示之前没有return或者throw操作，则将finally内容copy至当前catch块的末尾
         	    finallyBlock.generateInsnTo(getExecutor());
-            }catch(UnreachableCode uc){
+            }catch(UnreachableCodeException uc){
                 log.debug(uc.getMessage());
             }catch(RuntimeException e){
             	throw e;
@@ -150,7 +150,7 @@ public abstract class Catch extends EpisodeBlock implements LocalVariableBody {
             OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
             //如果程序能够走到这里 表示之前没有return或者throw操作，跳转到finally block的起始位置
             new GOTO(this.getExecutor(), getTerminalEndLabelInCatch()); 
-        }catch(UnreachableCode uc){
+        }catch(UnreachableCodeException uc){
             log.debug("unreachable code");	
         }catch(RuntimeException e){
         	throw e;

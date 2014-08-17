@@ -10,7 +10,7 @@ public class VisitMethodInsn extends AbstractOperator {
 	private String name;
 	private String desc;
 
-	public VisitMethodInsn(ProgramBlock block, int opcode, String owner, String name,
+	protected VisitMethodInsn(ProgramBlock block, int opcode, String owner, String name,
 			String desc) {
 		super(block);
 		this.opcode = opcode;

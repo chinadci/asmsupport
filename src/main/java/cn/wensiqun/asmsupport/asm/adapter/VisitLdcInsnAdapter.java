@@ -2,6 +2,7 @@ package cn.wensiqun.asmsupport.asm.adapter;
 
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.operators.asmdirect.VisitLdcInsn;
+import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
 public class VisitLdcInsnAdapter implements VisitXInsnAdapter {
 
@@ -13,7 +14,10 @@ public class VisitLdcInsnAdapter implements VisitXInsnAdapter {
 
 	@Override
 	public void newVisitXInsnOperator(ProgramBlock block) {
-		new VisitLdcInsn(block, cts);
+		OperatorFactory.newOperator(VisitLdcInsn.class, 
+				new Class[]{ProgramBlock.class, Object.class}, 
+				block, cts);
+		//new VisitLdcInsn(block, cts);
 	}
 
 }

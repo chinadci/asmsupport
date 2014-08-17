@@ -13,7 +13,7 @@ public class DUP extends ASMDirect implements Parameterized {
 	
 	private AClass type;
 	
-	public DUP(ProgramBlock block, AClass stackTopType) {
+	protected DUP(ProgramBlock block, AClass stackTopType) {
 		super(block);
 		type = stackTopType;
 	}

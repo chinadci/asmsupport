@@ -1,7 +1,5 @@
 package cn.wensiqun.asmsupport.block.exception;
 
-import java.util.ArrayList;
-
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
@@ -17,15 +15,6 @@ import example.AbstractExample;
 
 public class NestedTryCatchBlockGenerator extends AbstractExample
 {
-    
-    public static class MyList extends ArrayList<String>{
-        
-        public String put(String s){
-            this.add(s);
-            return s;
-        }
-    
-    }
     
     public static void main(String[] args)
     {
@@ -80,6 +69,83 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
         
         });
         
+        
+        creator.createStaticMethod(testMethodNames.put("fullTryCatch2"), null, null, null, null,
+                Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+                    @Override
+                    public void body(LocalVariable... argus) {
+                        invoke(systemOut, "println", Value.value("Root"));
+                        tryDo(new Try(){
+                            @Override
+                            public void body()
+                            {
+                                invoke(systemOut, "println", Value.value("    |-Try"));
+                                tryDo(new Try(){
+
+                                    @Override
+                                    public void body()
+                                    {
+                                        invoke(systemOut, "println", Value.value("        |-Try"));
+                                        throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
+                                    }
+                                    
+                                }).catchException(new Catch(runtime){
+
+                                    @Override
+                                    public void body(LocalVariable e)
+                                    {
+                                        invoke(systemOut, "println", Value.value("        |-Catch(RuntimeException)"));
+                                    }
+                                    
+                                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+									@Override
+									public void body(LocalVariable e) {
+										invoke(systemOut, "println", Value.value("        |-Catch(Exception)"));
+                                        throwException(invokeConstructor(runtime));
+									}
+                                	
+                                });
+                            }
+                        }).catchException(new Catch(runtime){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invoke(systemOut, "println", Value.value("    |-Catch(RuntimeException)"));
+                                tryDo(new Try(){
+
+									@Override
+									public void body() {
+										invoke(systemOut, "println", Value.value("        |-Try"));
+                                        throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
+									}
+                                	
+                                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+									@Override
+									public void body(LocalVariable e) {
+										invoke(systemOut, "println", Value.value("        |-Catch(Exception)"));
+									}
+                                	
+                                });
+                            }
+                            
+                        }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invoke(systemOut, "println", Value.value("    |-Catch(Exception)"));
+                            }
+                            
+                        });
+                        invoke(systemOut, "println", Value.value("End"));
+                        runReturn();
+                    }
+            
+            });
+            
         
         
         creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
