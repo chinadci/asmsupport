@@ -165,9 +165,41 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        /*
-         * tryCatchFinally_tryMethodException
-         */
+        
+        creator.createStaticMethod(testMethodNames.put("tryCatchFinally_tryMethodException"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
+                tryDo(new Try(){
+
+                    @Override
+                    public void body()
+                    {
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
+                        invokeStatic(getMethodOwner(), "runtimeException");
+				    }
+                    
+                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch"));
+                    }
+                    
+                }).finallyThan(new Finally(){
+
+					@Override
+					public void body() {
+						invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Finally"));
+					}
+                	
+                });
+                runReturn();
+            }
+        });
         
         creator.createStaticMethod(testMethodNames.put("tryCatchFinally_catchDirectException"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
 

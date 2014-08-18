@@ -72,7 +72,7 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     	}
     }
     
-    /*private static void tryCatchFinally_tryMethodException(){
+    private static void tryCatchFinally_tryMethodException(){
     	TesterStatics.expectedPrintln("Root");
     	try
     	{
@@ -87,7 +87,7 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     	{
         	TesterStatics.expectedPrintln("    |-Finally");
     	}
-    }*/
+    }
     
     private static void tryCatchFinally_catchDirectException(){
     	TesterStatics.expectedPrintln("Root");
@@ -245,8 +245,8 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
         TesterStatics.expectedPrintln("=======tryCatchFinally_nestedTryCatchInFinally");
         try{tryCatchFinally_nestedTryCatchInFinally();}catch(Exception e){}
         
-        /*TesterStatics.expectedPrintln("=======tryCatch_errorAfterPrintInTry");
-        try{tryCatchFinally_tryMethodException();}catch(Exception e){}*/
+        TesterStatics.expectedPrintln("=======tryCatchFinally_tryMethodException");
+        try{tryCatchFinally_tryMethodException();}catch(Exception e){}
 
         TesterStatics.expectedPrintln("=======tryCatchFinally_catchDirectException");
         try{tryCatchFinally_catchDirectException();}catch(Exception e){}
