@@ -11,148 +11,148 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
         throw new Exception();
     }
     
-    /*private static void tryCatchFinally_tryDirectException(){
-    	System.out.println("Root");
+    private static void tryCatchFinally_tryDirectException(){
+    	TesterStatics.expectedPrintln("Root");
     	try
     	{
-        	System.out.println("    |-Try");
+        	TesterStatics.expectedPrintln("    |-Try");
         	throw new Exception();
     	}
     	catch(Exception e)
     	{
-        	System.out.println("    |-Catch");
+        	TesterStatics.expectedPrintln("    |-Catch");
     	}
     	finally
     	{
-        	System.out.println("    |-Finally");
+        	TesterStatics.expectedPrintln("    |-Finally");
     	}
     }
     
     private static void tryCatchFinally_runtimeInTryNoSuitableCatch(){
-    	System.out.println("Root");
+    	TesterStatics.expectedPrintln("Root");
     	try
     	{
-        	System.out.println("    |-Try");
+        	TesterStatics.expectedPrintln("    |-Try");
         	throw new RuntimeException();
     	}
     	catch(NullPointerException e)
     	{
-        	System.out.println("    |-Catch");
+        	TesterStatics.expectedPrintln("    |-Catch");
     	}
     	finally
     	{
-        	System.out.println("    |-Finally");
+        	TesterStatics.expectedPrintln("    |-Finally");
     	}
     }
     
     private static void tryCatchFinally_nestedTryCatchInFinally()
     {
-    	System.out.println("Root");
+    	TesterStatics.expectedPrintln("Root");
     	try
     	{
-        	System.out.println("    |-Try");
+        	TesterStatics.expectedPrintln("    |-Try");
         	throw new RuntimeException();
     	}
     	catch(NullPointerException e)
     	{
-        	System.out.println("    |-Catch");
+        	TesterStatics.expectedPrintln("    |-Catch");
     	}
     	finally
     	{
-        	System.out.println("    |-Finally");
+        	TesterStatics.expectedPrintln("    |-Finally");
         	try
         	{
-            	System.out.println("        |-Try");
+            	TesterStatics.expectedPrintln("        |-Try");
             	exception();
         	}
         	catch(Exception e)
         	{
-            	System.out.println("        |-Catch");
+            	TesterStatics.expectedPrintln("        |-Catch");
         	}
     	}
     }
     
-    private static void tryCatchFinally_tryMethodException(){
-    	System.out.println("Root");
+    /*private static void tryCatchFinally_tryMethodException(){
+    	TesterStatics.expectedPrintln("Root");
     	try
     	{
-        	System.out.println("    |-Try");
+        	TesterStatics.expectedPrintln("    |-Try");
         	runtimeException();
     	}
     	catch(Exception e)
     	{
-        	System.out.println("    |-Catch");
+        	TesterStatics.expectedPrintln("    |-Catch");
     	}
     	finally
     	{
-        	System.out.println("    |-Finally");
+        	TesterStatics.expectedPrintln("    |-Finally");
     	}
     }*/
     
     private static void tryCatchFinally_catchDirectException(){
-    	System.out.println("Root");
+    	TesterStatics.expectedPrintln("Root");
     	try
     	{
-        	System.out.println("    |-Try");
+        	TesterStatics.expectedPrintln("    |-Try");
         	throw new Exception();
     	}
     	catch(Exception e)
     	{
-        	System.out.println("    |-Catch");
+        	TesterStatics.expectedPrintln("    |-Catch");
         	try {
-            	System.out.println("        |-Try");
+            	TesterStatics.expectedPrintln("        |-Try");
 				throw new Exception();
 			} catch (Exception e1) {
-            	System.out.println("        |-Catch");
+            	TesterStatics.expectedPrintln("        |-Catch");
             	try
             	{
-                	System.out.println("            |-Try");
+                	TesterStatics.expectedPrintln("            |-Try");
                 	exception();
             	}
             	catch(RuntimeException e2)
         		{
-                	System.out.println("            |-Catch(RuntimeException)");
+                	TesterStatics.expectedPrintln("            |-Catch(RuntimeException)");
         		}
         		catch(Exception e2)
         		{
-                	System.out.println("            |-Catch(Exception)");
+                	TesterStatics.expectedPrintln("            |-Catch(Exception)");
                 	throw new RuntimeException();
         		}
 			}
     	}
     	finally
     	{
-        	System.out.println("    |-Finally");
+        	TesterStatics.expectedPrintln("    |-Finally");
     		try
     		{
-            	System.out.println("        |-Try");
+            	TesterStatics.expectedPrintln("        |-Try");
             	throw new RuntimeException();
     		}
     		catch(RuntimeException e)
     		{
-            	System.out.println("        |-Catch(RuntimeException)");
+            	TesterStatics.expectedPrintln("        |-Catch(RuntimeException)");
     		}
     		catch(Exception e)
     		{
-            	System.out.println("        |-Catch(Exception)");
+            	TesterStatics.expectedPrintln("        |-Catch(Exception)");
     		}
     	}
     }
     
     /*private static void tryCatchFinally_catchMethodException(){
-    	System.out.println("Root");
+    	TesterStatics.expectedPrintln("Root");
     	try
     	{
-        	System.out.println("    |-Try");
+        	TesterStatics.expectedPrintln("    |-Try");
     	}
     	catch(Exception e)
     	{
-        	System.out.println("    |-Catch");
+        	TesterStatics.expectedPrintln("    |-Catch");
         	runtimeException();
     	}
     	finally
     	{
-        	System.out.println("    |-Finally");
+        	TesterStatics.expectedPrintln("    |-Finally");
     	}
     }
     
@@ -236,23 +236,22 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     
     public static void main(String[] args) throws InterruptedException
     {
-        Thread.sleep(1000);
-        /*System.out.println("=======tryCatch_errorBeforePrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatchFinally_tryDirectException");
         try{tryCatchFinally_tryDirectException();}catch(Exception e){}
 
-        System.out.println("=======tryCatchFinally_runtimeInTryNoSuitableCatch");
+        TesterStatics.expectedPrintln("=======tryCatchFinally_runtimeInTryNoSuitableCatch");
         try{tryCatchFinally_runtimeInTryNoSuitableCatch();}catch(Exception e){}
 
-        System.out.println("=======tryCatchFinally_nestedTryCatchInFinally");
-        try{tryCatchFinally_nestedTryCatchInFinally();}catch(Exception e){}*/
+        TesterStatics.expectedPrintln("=======tryCatchFinally_nestedTryCatchInFinally");
+        try{tryCatchFinally_nestedTryCatchInFinally();}catch(Exception e){}
         
-        /*System.out.println("=======tryCatch_errorAfterPrintInTry");
+        /*TesterStatics.expectedPrintln("=======tryCatch_errorAfterPrintInTry");
         try{tryCatchFinally_tryMethodException();}catch(Exception e){}*/
 
-        System.out.println("=======tryCatchFinally_catchDirectException");
+        TesterStatics.expectedPrintln("=======tryCatchFinally_catchDirectException");
         try{tryCatchFinally_catchDirectException();}catch(Exception e){}
 
-        /*System.out.println("=======tryCatch_runtimeExceptionAfterPrintInCatch");
+        /*TesterStatics.expectedPrintln("=======tryCatch_runtimeExceptionAfterPrintInCatch");
         try{tryCatchFinally_catchMethodException();}catch(Exception e){}*/
     }
     

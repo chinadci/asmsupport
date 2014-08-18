@@ -1,7 +1,5 @@
 package cn.wensiqun.asmsupport.block.exception;
 
-import java.util.ArrayList;
-
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
@@ -55,7 +53,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -63,7 +61,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -82,7 +80,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -91,7 +89,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -110,7 +108,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -119,7 +117,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -138,7 +136,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -146,7 +144,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -167,7 +165,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -176,7 +174,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -196,7 +194,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -204,7 +202,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -224,7 +222,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -234,7 +232,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -253,7 +251,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -262,7 +260,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -283,7 +281,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -291,7 +289,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -299,7 +297,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -318,7 +316,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -327,7 +325,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -335,7 +333,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -355,7 +353,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -363,7 +361,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -371,7 +369,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -390,7 +388,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -399,7 +397,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -407,7 +405,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -426,7 +424,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -435,7 +433,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -443,7 +441,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -462,7 +460,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -470,7 +468,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -479,7 +477,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -498,7 +496,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -506,7 +504,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -515,7 +513,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -534,7 +532,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -542,7 +540,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -550,7 +548,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -571,7 +569,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -580,7 +578,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -588,7 +586,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -608,7 +606,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -616,7 +614,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -625,7 +623,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -644,7 +642,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -654,7 +652,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -662,7 +660,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -681,7 +679,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -690,7 +688,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -699,7 +697,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -718,7 +716,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -726,7 +724,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -735,7 +733,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -754,7 +752,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -762,7 +760,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -770,7 +768,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -789,7 +787,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -798,7 +796,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -807,7 +805,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -825,7 +823,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -834,7 +832,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -842,7 +840,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -863,7 +861,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -872,7 +870,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -881,7 +879,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -901,7 +899,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -910,7 +908,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -918,7 +916,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -939,7 +937,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -947,7 +945,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -957,7 +955,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -977,7 +975,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body()
                     {
                         invokeStatic(getMethodOwner(), "exception");
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).catchException(new Catch(runtime){
@@ -985,7 +983,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -994,7 +992,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -1014,7 +1012,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -1024,7 +1022,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -1033,7 +1031,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -1052,7 +1050,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -1062,7 +1060,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -1070,7 +1068,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -1090,7 +1088,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -1099,7 +1097,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -1109,7 +1107,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
                     
                 });
@@ -1130,7 +1128,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         invokeStatic(getMethodOwner(), "exception");
                     }
                     
@@ -1140,7 +1138,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     public void body(LocalVariable e)
                     {
                         invokeStatic(getMethodOwner(), "runtimeException");
-                        invoke(systemOut, "println", Value.value("    runtime exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
@@ -1148,7 +1146,7 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        invoke(systemOut, "println", Value.value("    exception"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                         invokeStatic(getMethodOwner(), "runtimeException");
                     }
                     
@@ -1179,7 +1177,7 @@ public class TryCatchBlockGenerator extends AbstractExample
     
     private static void noExceptionCall(ProgramBlock block, final String methodName)
     {
-        block.invoke(systemOut, "println", Value.value("=======" + methodName));
+        block.invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
         block.tryDo(new Try(){
 
             @Override

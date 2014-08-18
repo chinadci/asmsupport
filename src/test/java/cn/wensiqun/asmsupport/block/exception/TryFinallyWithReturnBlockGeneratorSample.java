@@ -8,47 +8,47 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
     }
     
     private static void nestedTryFinally()
     {
-        System.out.println("start");
+        TesterStatics.expectedPrintln("start");
         try
         {
-            System.out.println("    try{");
+            TesterStatics.expectedPrintln("    try{");
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
             }
-            System.out.println("    }");
+            TesterStatics.expectedPrintln("    }");
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
-        System.out.println("end");
+        TesterStatics.expectedPrintln("end");
     }
     
     private static void tryFinally_TryReturn()
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             return;
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
     }
     
@@ -59,17 +59,17 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
                 return;
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
             }
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
     }
     
@@ -80,17 +80,17 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
                 return;
             }
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
     }
     
@@ -101,17 +101,17 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
             }
             return;
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
     }
     
@@ -122,16 +122,16 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
             }
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
             return;
         }
     }
@@ -143,18 +143,18 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
                 return;
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
                 return;
             }
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
         }
     }
     
@@ -165,17 +165,17 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
             }
             return;
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
             return;
         }
     }
@@ -187,43 +187,43 @@ public class TryFinallyWithReturnBlockGeneratorSample extends AbstractExample
             
             try
             {
-                System.out.println("        try_inner");
+                TesterStatics.expectedPrintln("        try_inner");
                 return;
             }
             finally
             {
-                System.out.println("        finally_inner");
+                TesterStatics.expectedPrintln("        finally_inner");
                 return;
             }
         }
         finally
         {
-            System.out.println("    finally");
+            TesterStatics.expectedPrintln("    finally");
             return;
         }
     }
     
     public static void main(String[] args)
     {
-        System.out.println("=======tryFinally");
+        TesterStatics.expectedPrintln("=======tryFinally");
         try{tryFinally();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally");
+        TesterStatics.expectedPrintln("=======nestedTryFinally");
         try{nestedTryFinally();}catch(Exception e){}
-        System.out.println("=======tryFinally_TryReturn");
+        TesterStatics.expectedPrintln("=======tryFinally_TryReturn");
         try{tryFinally_TryReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_InnerTryReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_InnerTryReturn");
         try{nestedTryFinally_InnerTryReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_InnerFinallyReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_InnerFinallyReturn");
         try{nestedTryFinally_InnerFinallyReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_OutterTryReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_OutterTryReturn");
         try{nestedTryFinally_OutterTryReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_OutterFinallyReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_OutterFinallyReturn");
         try{nestedTryFinally_OutterFinallyReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_InnerBothReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_InnerBothReturn");
         try{nestedTryFinally_InnerBothReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_OutterBothReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_OutterBothReturn");
         try{nestedTryFinally_OutterBothReturn();}catch(Exception e){}
-        System.out.println("=======nestedTryFinally_InnerBothOuterFinallyReturn");
+        TesterStatics.expectedPrintln("=======nestedTryFinally_InnerBothOuterFinallyReturn");
         try{nestedTryFinally_InnerBothOuterFinallyReturn();}catch(Exception e){}
     }
     

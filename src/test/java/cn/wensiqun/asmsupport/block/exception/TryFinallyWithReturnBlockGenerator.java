@@ -33,7 +33,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
                 }).finallyThan(new Finally(){
@@ -41,7 +41,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
@@ -54,19 +54,19 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                invoke(systemOut, "println", Value.value("start"));
+                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("start"));
                 tryDo(new Try(){
 
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try{"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try{"));
                         tryDo(new Try(){
                             
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
                         }).finallyThan(new Finally(){
@@ -74,11 +74,11 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
-                        invoke(systemOut, "println", Value.value("    }"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    }"));
                     }
                     
                 }).finallyThan(new Finally(){
@@ -86,11 +86,11 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                invoke(systemOut, "println", Value.value("end"));
+                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("end"));
                 runReturn();
             }
             
@@ -106,7 +106,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    try"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                         runReturn();
                     }
                     
@@ -120,7 +120,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
@@ -145,7 +145,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                                 runReturn();
                             }
                             
@@ -154,7 +154,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
@@ -166,7 +166,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
@@ -191,7 +191,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
                         }).finallyThan(new Finally(){
@@ -199,7 +199,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                                 runReturn();
                             }
                             
@@ -212,7 +212,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
@@ -237,7 +237,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
                         }).finallyThan(new Finally(){
@@ -245,7 +245,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
@@ -258,7 +258,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
@@ -283,7 +283,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
                         }).finallyThan(new Finally(){
@@ -291,7 +291,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
@@ -303,7 +303,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                         runReturn();
                     }
                     
@@ -329,7 +329,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                                 runReturn();
                             }
                             
@@ -338,7 +338,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                                 runReturn();
                             }
                             
@@ -351,7 +351,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
@@ -376,7 +376,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
                         }).finallyThan(new Finally(){
@@ -384,7 +384,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
@@ -397,7 +397,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                         runReturn();
                     }
                     
@@ -423,7 +423,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        try_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                                 runReturn();
                             }
                             
@@ -432,7 +432,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("        finally_inner"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                                 runReturn();
                             }
                             
@@ -445,7 +445,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
                     @Override
                     public void body()
                     {
-                        invoke(systemOut, "println", Value.value("    finally"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                         runReturn();
                     }
                     
@@ -475,7 +475,7 @@ public class TryFinallyWithReturnBlockGenerator extends AbstractExample
     
     private static void noExceptionCall(ProgramBlock block, final String methodName)
     {
-        block.invoke(systemOut, "println", Value.value("=======" + methodName));
+        block.invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
         block.tryDo(new Try(){
 
             @Override

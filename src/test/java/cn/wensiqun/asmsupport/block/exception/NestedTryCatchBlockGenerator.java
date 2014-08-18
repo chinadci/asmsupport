@@ -28,18 +28,18 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
             Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
                 @Override
                 public void body(LocalVariable... argus) {
-                    invoke(systemOut, "println", Value.value("Root"));
+                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
                     tryDo(new Try(){
                         @Override
                         public void body()
                         {
-                            invoke(systemOut, "println", Value.value("    |-Try"));
+                            invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
                             tryDo(new Try(){
 
                                 @Override
                                 public void body()
                                 {
-                                    invoke(systemOut, "println", Value.value("        |-Try"));
+                                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
                                     throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
                                 }
                                 
@@ -48,7 +48,7 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                                 @Override
                                 public void body(LocalVariable e)
                                 {
-                                    invoke(systemOut, "println", Value.value("        |-Catch"));
+                                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch"));
                                     throwException(e);
                                 }
                                 
@@ -59,11 +59,11 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                         @Override
                         public void body(LocalVariable e)
                         {
-                            invoke(systemOut, "println", Value.value("    |-Catch"));
+                            invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch"));
                         }
                         
                     });
-                    invoke(systemOut, "println", Value.value("End"));
+                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("End"));
                     runReturn();
                 }
         
@@ -74,18 +74,18 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                 Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
                     @Override
                     public void body(LocalVariable... argus) {
-                        invoke(systemOut, "println", Value.value("Root"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
                         tryDo(new Try(){
                             @Override
                             public void body()
                             {
-                                invoke(systemOut, "println", Value.value("    |-Try"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
                                 tryDo(new Try(){
 
                                     @Override
                                     public void body()
                                     {
-                                        invoke(systemOut, "println", Value.value("        |-Try"));
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
                                         throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
                                     }
                                     
@@ -94,14 +94,14 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                                     @Override
                                     public void body(LocalVariable e)
                                     {
-                                        invoke(systemOut, "println", Value.value("        |-Catch(RuntimeException)"));
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(RuntimeException)"));
                                     }
                                     
                                 }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
 
 									@Override
 									public void body(LocalVariable e) {
-										invoke(systemOut, "println", Value.value("        |-Catch(Exception)"));
+										invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
                                         throwException(invokeConstructor(runtime));
 									}
                                 	
@@ -112,12 +112,12 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                             @Override
                             public void body(LocalVariable e)
                             {
-                                invoke(systemOut, "println", Value.value("    |-Catch(RuntimeException)"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(RuntimeException)"));
                                 tryDo(new Try(){
 
 									@Override
 									public void body() {
-										invoke(systemOut, "println", Value.value("        |-Try"));
+										invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
                                         throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
 									}
                                 	
@@ -125,7 +125,7 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
 
 									@Override
 									public void body(LocalVariable e) {
-										invoke(systemOut, "println", Value.value("        |-Catch(Exception)"));
+										invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
 									}
                                 	
                                 });
@@ -136,11 +136,11 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                             @Override
                             public void body(LocalVariable e)
                             {
-                                invoke(systemOut, "println", Value.value("    |-Catch(Exception)"));
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(Exception)"));
                             }
                             
                         });
-                        invoke(systemOut, "println", Value.value("End"));
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("End"));
                         runReturn();
                     }
             
@@ -167,7 +167,7 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
     
     private static void noExceptionCall(ProgramBlock block, final String methodName)
     {
-        block.invoke(systemOut, "println", Value.value("=======" + methodName));
+        block.invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
         block.tryDo(new Try(){
 
             @Override

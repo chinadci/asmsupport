@@ -13,77 +13,76 @@ public class NestedTryCatchBlockGeneratorSample extends AbstractExample
     
     private static void fullTryCatch1()
     {
-        System.out.println("Root");
+        TesterStatics.expectedPrintln("Root");
         try
         {
-            System.out.println("    |-Try");
+            TesterStatics.expectedPrintln("    |-Try");
             try
             {
-                System.out.println("        |-Try");
+                TesterStatics.expectedPrintln("        |-Try");
                 throw new Exception();
             }
             catch(Exception e)
             {
-                System.out.println("        |-Catch");
+                TesterStatics.expectedPrintln("        |-Catch");
                 throw e;
             }
         }
         catch(Exception e)
         {
-            System.out.println("    |-Catch");
+            TesterStatics.expectedPrintln("    |-Catch");
         }
-        System.out.println("End");
+        TesterStatics.expectedPrintln("End");
     }
     
     private static void fullTryCatch2()
     {
-        System.out.println("Root");
+        TesterStatics.expectedPrintln("Root");
         try
         {
-            System.out.println("    |-Try");
+            TesterStatics.expectedPrintln("    |-Try");
             try
             {
-                System.out.println("        |-Try");
+                TesterStatics.expectedPrintln("        |-Try");
                 throw new Exception();
             }
             catch(RuntimeException e)
             {
-                System.out.println("        |-Catch(RuntimeException)");
+                TesterStatics.expectedPrintln("        |-Catch(RuntimeException)");
             }
             catch(Exception e)
             {
-                System.out.println("        |-Catch(Exception)");
+                TesterStatics.expectedPrintln("        |-Catch(Exception)");
                 throw new RuntimeException();
             }
         }
         catch(RuntimeException e)
         {
-            System.out.println("    |-Catch(RuntimeException)");
+            TesterStatics.expectedPrintln("    |-Catch(RuntimeException)");
             try
             {
-                System.out.println("        |-Try");
+                TesterStatics.expectedPrintln("        |-Try");
                 throw new Exception();
             }
             catch(Exception e1)
             {
-                System.out.println("        |-Catch(Exception)");
+                TesterStatics.expectedPrintln("        |-Catch(Exception)");
             }
         }
         catch(Exception e)
         {
-            System.out.println("    |-Catch(Exception)");
+            TesterStatics.expectedPrintln("    |-Catch(Exception)");
         }
-        System.out.println("End");
+        TesterStatics.expectedPrintln("End");
     }
     
     
     public static void main(String[] args) throws InterruptedException
     {
-        Thread.sleep(1000);
-        System.out.println("=======fullTryCatch1");
+        TesterStatics.expectedPrintln("=======fullTryCatch1");
         try{fullTryCatch1();}catch(Exception e){}
         
-        System.out.println("=======fullTryCatch2");
+        TesterStatics.expectedPrintln("=======fullTryCatch2");
         try{fullTryCatch2();}catch(Exception e){}
     }
     

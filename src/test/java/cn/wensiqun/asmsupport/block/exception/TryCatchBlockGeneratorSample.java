@@ -16,11 +16,11 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -28,12 +28,12 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -41,12 +41,12 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -54,11 +54,11 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -68,12 +68,12 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -82,11 +82,11 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -95,13 +95,13 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -109,12 +109,12 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -129,15 +129,15 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             runtimeException();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -145,16 +145,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             runtimeException();
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -163,15 +163,15 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -179,16 +179,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -196,16 +196,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -213,16 +213,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -230,16 +230,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -247,15 +247,15 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -267,16 +267,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -285,16 +285,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -302,17 +302,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -320,17 +320,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -343,16 +343,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -361,15 +361,15 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -378,17 +378,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
             exception();
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -396,15 +396,15 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {
-            System.out.println("    try");            exception();
+            TesterStatics.expectedPrintln("    try");            exception();
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -418,17 +418,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -437,16 +437,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -456,17 +456,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {
             exception();
-            System.out.println("    try");
+            TesterStatics.expectedPrintln("    try");
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -475,16 +475,16 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
         try
         {   
             exception();
-            System.out.println("    try");            
+            TesterStatics.expectedPrintln("    try");            
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -493,18 +493,18 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {   
-            System.out.println("    try");   
+            TesterStatics.expectedPrintln("    try");   
             exception();         
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -512,17 +512,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {   
-            System.out.println("    try");   
+            TesterStatics.expectedPrintln("    try");   
             exception();         
         }
         catch(RuntimeException e)
         {
             runtimeException();
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -531,18 +531,18 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {   
-            System.out.println("    try");   
+            TesterStatics.expectedPrintln("    try");   
             exception();         
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
             runtimeException();
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
         }
     }
     
@@ -550,17 +550,17 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     {
         try
         {   
-            System.out.println("    try");   
+            TesterStatics.expectedPrintln("    try");   
             exception();         
         }
         catch(RuntimeException e)
         {
-            System.out.println("    runtime exception");
+            TesterStatics.expectedPrintln("    runtime exception");
             runtimeException();
         }
         catch(Exception e)
         {
-            System.out.println("    exception");
+            TesterStatics.expectedPrintln("    exception");
             runtimeException();
         }
     }
@@ -570,101 +570,100 @@ public class TryCatchBlockGeneratorSample extends AbstractExample
     
     public static void main(String[] args) throws InterruptedException
     {
-        Thread.sleep(1000);
-        System.out.println("=======tryCatch_errorBeforePrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatch_errorBeforePrintInTry");
         try{tryCatch_errorBeforePrintInTry();}catch(Exception e){}
 
-        System.out.println("=======tryCatch_errorAfterPrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatch_errorAfterPrintInTry");
         try{tryCatch_errorAfterPrintInTry();}catch(Exception e){}
 
-        System.out.println("=======tryCatch_runtimeExceptionBeforePrintInCatch");
+        TesterStatics.expectedPrintln("=======tryCatch_runtimeExceptionBeforePrintInCatch");
         try{tryCatch_runtimeExceptionBeforePrintInCatch();}catch(Exception e){}
 
-        System.out.println("=======tryCatch_runtimeExceptionAfterPrintInCatch");
+        TesterStatics.expectedPrintln("=======tryCatch_runtimeExceptionAfterPrintInCatch");
         try{tryCatch_runtimeExceptionAfterPrintInCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch");
+        TesterStatics.expectedPrintln("=======tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch");
         try{tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch");
+        TesterStatics.expectedPrintln("=======tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch");
         try{tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch");
+        TesterStatics.expectedPrintln("=======tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch");
         try{tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch");
+        TesterStatics.expectedPrintln("=======tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch");
         try{tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_runtimeBeforePrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_runtimeBeforePrintInTry");
         try{tryCatchTwo_runtimeBeforePrintInTry();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_runtimeAfterPrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_runtimeAfterPrintInTry");
         try{tryCatchTwo_runtimeAfterPrintInTry();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry");
         try{tryCatchTwo_exceptionBeforePrintInTry();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry");
         try{tryCatchTwo_exceptionAfterPrintInTry();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_runtimeBeforePrintInExceptionCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_runtimeBeforePrintInExceptionCatch");
         try{tryCatchTwo_runtimeBeforePrintInExceptionCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_runtimeAfterPrintInExceptionCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_runtimeAfterPrintInExceptionCatch");
         try{tryCatchTwo_runtimeAfterPrintInExceptionCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch();}catch(Exception e){}
         
-        System.out.println("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
+        TesterStatics.expectedPrintln("=======tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch");
         try{tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch();}catch(Exception e){}
     }
     

@@ -42,8 +42,6 @@ public class ExceptionSerialBlock extends AbstractBlock
     
     private List<TryCatchInfo> tryCatchInfoes;
     
-    private boolean needFinally = true;
-    
     public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
     {
         this.tryBlock = tryBlock;
@@ -69,19 +67,25 @@ public class ExceptionSerialBlock extends AbstractBlock
         {
             tryBlock.prepare();
 
-            OperatorFactory.newOperator(GOTO.class, 
-    				new Class[]{ProgramBlock.class, Label.class}, 
-    				tryBlock, serialEnd);
+            if(!tryBlock.isFinish())
+            {
+                OperatorFactory.newOperator(GOTO.class, 
+                        new Class[]{ProgramBlock.class, Label.class}, 
+                        tryBlock, serialEnd);
+            }
             
             //new GOTO(tryBlock, serialEnd);
             
             for(Catch c : catchs)
             {
                 c.prepare();
-                OperatorFactory.newOperator(GOTO.class, 
-        				new Class[]{ProgramBlock.class, Label.class}, 
-        				c, serialEnd);
-                //new GOTO(c, serialEnd);
+                if(!c.isFinish())
+                {
+                    OperatorFactory.newOperator(GOTO.class, 
+                            new Class[]{ProgramBlock.class, Label.class}, 
+                            c, serialEnd);
+                    //new GOTO(c, serialEnd);
+                }
             }
         }
         else if(CollectionUtils.isEmpty(catchs) && finallyBlock != null)
@@ -95,10 +99,9 @@ public class ExceptionSerialBlock extends AbstractBlock
                 OperatorFactory.newOperator(GOTO.class, 
         				new Class[]{ProgramBlock.class, Label.class}, 
         				tryBlock, finallyBlock.getStart());
+                //new GOTO(tryBlock, finallyBlock.getStart());
             }
             
-            //new GOTO(tryBlock, finallyBlock.getStart());
-
             //insert finally for BreakStack operator in try block.
             insertFinallyBeforeBreakStack(tryBlock);
             
@@ -106,20 +109,21 @@ public class ExceptionSerialBlock extends AbstractBlock
             
             implicitCatch.prepare();
             
-            if(needFinally){
-                finallyBlock.prepare();
-            }
+            finallyBlock.prepare();
         }
         else
         {
         	addAnyExceptionCatchRange(tryBlock.getStart());
             
             tryBlock.prepare();
-            OperatorFactory.newOperator(GOTO.class, 
-    				new Class[]{ProgramBlock.class, Label.class}, 
-    				tryBlock, finallyBlock.getStart());
             
-            //new GOTO(tryBlock, finallyBlock.getStart());
+            if(!tryBlock.isFinish())
+            {
+                OperatorFactory.newOperator(GOTO.class, 
+                    new Class[]{ProgramBlock.class, Label.class}, 
+                    tryBlock, finallyBlock.getStart());
+                //new GOTO(tryBlock, finallyBlock.getStart());
+            }
             
             //insert finally for BreakStack operator in try block.
             insertFinallyBeforeBreakStack(tryBlock);
@@ -131,30 +135,33 @@ public class ExceptionSerialBlock extends AbstractBlock
                 //insert finally for BreakStack operator in try block.
                 insertFinallyBeforeBreakStack(c);
                 
-                Label finallyStart = new Label("catch's implicit finally start");
-            	Label finallyEnd = new Label("catch's implicit finally end");
-            	
-            	addAnyExceptionCatchRange(finallyStart);
-            	{
-        	    //inject implicit finally block code at end of catch
-                    OperatorFactory.newOperator(Marker.class, 
-            				new Class[]{ProgramBlock.class, Label.class}, 
-            				c, finallyStart);
-	            	//new Marker(c, finallyStart);
-	            	finallyBlock.generateInsnTo(c);
-	                
-	            	OperatorFactory.newOperator(GOTO.class, 
-            				new Class[]{ProgramBlock.class, Label.class}, 
-            				c, serialEnd);
-	            	
-	            	//new GOTO(c, serialEnd);
-	                
-                    OperatorFactory.newOperator(Marker.class, 
-            				new Class[]{ProgramBlock.class, Label.class}, 
-            				c, finallyEnd);
-	            	//new Marker(c, finallyEnd);
-            	}
-            	addAnyExceptionCatchRange(finallyEnd);
+                if(!c.isFinish())
+                {
+                    Label finallyStart = new Label("catch's implicit finally start");
+                    Label finallyEnd = new Label("catch's implicit finally end");
+                    
+                    addAnyExceptionCatchRange(finallyStart);
+                    {
+                        //inject implicit finally block code at end of catch
+                        OperatorFactory.newOperator(Marker.class, 
+                                new Class[]{ProgramBlock.class, Label.class}, 
+                                c, finallyStart);
+                        //new Marker(c, finallyStart);
+                        finallyBlock.generateInsnTo(c);
+                        
+                        OperatorFactory.newOperator(GOTO.class, 
+                                new Class[]{ProgramBlock.class, Label.class}, 
+                                c, serialEnd);
+                        
+                        //new GOTO(c, serialEnd);
+                        
+                        OperatorFactory.newOperator(Marker.class, 
+                                new Class[]{ProgramBlock.class, Label.class}, 
+                                c, finallyEnd);
+                        //new Marker(c, finallyEnd);
+                    }
+                    addAnyExceptionCatchRange(finallyEnd);
+                }
             	
             }
             
