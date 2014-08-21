@@ -139,7 +139,7 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     	}
     }
     
-    private static void nestedTryCatchFinally()
+    private static void complexTryCatchFinally()
     {
         TesterStatics.expectedPrintln("Root");
     	try
@@ -148,15 +148,17 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     		try
         	{
                 TesterStatics.expectedPrintln("        Try");
+                throw new Exception();
         	}
         	catch(RuntimeException e)
         	{
                 TesterStatics.expectedPrintln("        Catch(RuntimeException)");
-        		
+                return;
         	}
         	catch(Exception e)
         	{
                 TesterStatics.expectedPrintln("        Catch(Exception)");
+                runtimeException();
         	}
         	finally
         	{
@@ -169,12 +171,10 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     		try
         	{
                 TesterStatics.expectedPrintln("        Try");
-        		
         	}
         	catch(RuntimeException e1)
         	{
                 TesterStatics.expectedPrintln("        Catch(RuntimeException)");
-        		
         	}
         	catch(Exception e1)
         	{
@@ -204,6 +204,7 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     			{
                     TesterStatics.expectedPrintln("            Catch(RuntimeException)");
     			}
+    			throw new Exception();
     		}
     		catch(Exception e)
     		{
@@ -216,10 +217,12 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
                 try
                 {
                     TesterStatics.expectedPrintln("            Try");
+                    throw new RuntimeException();
                 }
                 catch(RuntimeException e)
                 {
                     TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+                    throw e;
                 }
                 catch(Exception e)
                 {
@@ -229,6 +232,7 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     		catch(RuntimeException e)
     		{
                 TesterStatics.expectedPrintln("        Catch(RuntimeException)");
+                return;
     		}
             catch(Exception e)
             {
@@ -275,8 +279,8 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
         TesterStatics.expectedPrintln("=======tryCatchFinally_catchDirectException");
         try{tryCatchFinally_catchDirectException();}catch(Exception e){}
 
-        /*TesterStatics.expectedPrintln("=======tryCatch_runtimeExceptionAfterPrintInCatch");
-        try{tryCatchFinally_catchMethodException();}catch(Exception e){}*/
+        TesterStatics.expectedPrintln("=======complexTryCatchFinally");
+        try{complexTryCatchFinally();}catch(Exception e){}
     }
     
 }
