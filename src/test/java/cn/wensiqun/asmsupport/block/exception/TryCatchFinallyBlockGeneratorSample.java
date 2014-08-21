@@ -139,99 +139,123 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
     	}
     }
     
-    /*private static void tryCatchFinally_catchMethodException(){
-    	TesterStatics.expectedPrintln("Root");
-    	try
-    	{
-        	TesterStatics.expectedPrintln("    |-Try");
-    	}
-    	catch(Exception e)
-    	{
-        	TesterStatics.expectedPrintln("    |-Catch");
-        	runtimeException();
-    	}
-    	finally
-    	{
-        	TesterStatics.expectedPrintln("    |-Finally");
-    	}
-    }
-    
-    private static void tryTwoCatchFinally()
-    {
-    	try
-    	{
-    		
-    	}
-    	catch(RuntimeException e)
-    	{
-    		
-    	}
-    	catch(Exception e)
-    	{
-    		
-    	}
-    	finally
-    	{
-    		
-    	}
-    }
-    
     private static void nestedTryCatchFinally()
     {
+        TesterStatics.expectedPrintln("Root");
     	try
     	{
+            TesterStatics.expectedPrintln("    Try");
     		try
         	{
-        		
+                TesterStatics.expectedPrintln("        Try");
         	}
         	catch(RuntimeException e)
         	{
+                TesterStatics.expectedPrintln("        Catch(RuntimeException)");
         		
         	}
         	catch(Exception e)
         	{
-        		
+                TesterStatics.expectedPrintln("        Catch(Exception)");
         	}
         	finally
         	{
-        		
+                TesterStatics.expectedPrintln("        Finally");
         	}
     	}
     	catch(RuntimeException e)
     	{
+            TesterStatics.expectedPrintln("    Catch(RuntimeException)");
     		try
         	{
+                TesterStatics.expectedPrintln("        Try");
         		
         	}
         	catch(RuntimeException e1)
         	{
+                TesterStatics.expectedPrintln("        Catch(RuntimeException)");
         		
         	}
         	catch(Exception e1)
         	{
+                TesterStatics.expectedPrintln("        Catch(Exception)");
         		
         	}
         	finally
         	{
-        		
+                TesterStatics.expectedPrintln("        Finally(Exception)");
         	}
     	}
     	catch(Exception e)
     	{
-    		
+            TesterStatics.expectedPrintln("    Catch(Exception)");
     	}
     	finally
     	{
+            TesterStatics.expectedPrintln("    Finally");
     		try
     		{
-    			
+                TesterStatics.expectedPrintln("        Try");
+    			try
+    			{
+                    TesterStatics.expectedPrintln("            Try");
+    			}
+                catch(RuntimeException e)
+    			{
+                    TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+    			}
     		}
     		catch(Exception e)
     		{
-    			
+                TesterStatics.expectedPrintln("        Exception(Exception)");
+    		}
+            TesterStatics.expectedPrintln("====");
+    		try
+            {
+                TesterStatics.expectedPrintln("        Try");
+                try
+                {
+                    TesterStatics.expectedPrintln("            Try");
+                }
+                catch(RuntimeException e)
+                {
+                    TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+                }
+                catch(Exception e)
+                {
+                    TesterStatics.expectedPrintln("            Catch(Exception)");
+                }
+            }
+    		catch(RuntimeException e)
+    		{
+                TesterStatics.expectedPrintln("        Catch(RuntimeException)");
+    		}
+            catch(Exception e)
+            {
+                TesterStatics.expectedPrintln("        Catch(Exception)");
+                try
+                {
+                    TesterStatics.expectedPrintln("            Try");
+                }
+                catch(RuntimeException e1)
+                {
+                    TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+                }
+                catch(Exception e1)
+                {
+                    TesterStatics.expectedPrintln("            Catch(Exception)");
+                }
+                finally
+                {
+                    TesterStatics.expectedPrintln("            Finally");
+                }
+            }
+    		finally
+    		{
+                TesterStatics.expectedPrintln("        Finally");
     		}
     	}
-    }*/
+    }
     
     
     public static void main(String[] args) throws InterruptedException
