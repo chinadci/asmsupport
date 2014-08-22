@@ -4,6 +4,7 @@ import junit.framework.Assert;
 
 public class TestAll
 {
+    
     public static void main(String[] args) throws InterruptedException
     {
         TryFinallyBlockGeneratorSample.main(args);

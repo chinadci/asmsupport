@@ -44,7 +44,7 @@ public class VariableInvoker extends MethodInvoker {
             //移除当前的方法调用
             MethodInvoker mi = new StaticMethodInvoker(block, getActuallyOwner(), name, arguments);
             block.removeExe(mi);
-            block.replaceExe(this, mi);
+            block.getQueue().replace(this, mi);
         }
     }
 

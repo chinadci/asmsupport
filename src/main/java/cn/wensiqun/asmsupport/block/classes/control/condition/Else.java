@@ -17,7 +17,7 @@ import cn.wensiqun.asmsupport.block.interfaces.body.Body;
 public abstract class Else extends ConditionBranchBlock implements Body {
 	
 	@Override
-    public void executing() {
+    public void doExecute() {
         insnHelper.nop();
         for(Executable exe : getQueue()){
             exe.execute();
@@ -31,7 +31,7 @@ public abstract class Else extends ConditionBranchBlock implements Body {
     }
 
     @Override
-    public final void generateInsn()
+    public final void generate()
     {
         body();
     }

@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
-import cn.wensiqun.asmsupport.block.interfaces.body.ArgumentsBody;
+import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariablesBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.method.SuperConstructorInvoker;
@@ -20,7 +20,7 @@ import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class EnumInitBody extends GenericMethodBody implements ArgumentsBody{
+public abstract class EnumInitBody extends GenericMethodBody implements LocalVariablesBody{
     
     @Override
     public final void generateBody() {

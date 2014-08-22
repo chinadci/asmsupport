@@ -42,7 +42,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
 	}
 
 	@Override
-	public final void generateInsn() {
+	public final void generate() {
 		generateBody();
 		//if this method just only contain try catch block, so here we need tigger try catch prepare again;
 		//tiggerTryCatchPrepare();
@@ -78,7 +78,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
     }
     
     @Override
-    public final void executing() {
+    public final void doExecute() {
         AMethod method = getMethod();
         if (log.isDebugEnabled()) {
             StringBuilder str = new StringBuilder("create method: ------------");

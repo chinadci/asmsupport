@@ -4,7 +4,7 @@ import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.control.condition.If;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
+import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;

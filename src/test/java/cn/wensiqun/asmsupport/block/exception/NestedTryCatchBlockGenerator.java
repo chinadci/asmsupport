@@ -3,8 +3,8 @@ package cn.wensiqun.asmsupport.block.exception;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Catch;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
+import cn.wensiqun.asmsupport.block.classes.control.exception.Catch;
+import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;

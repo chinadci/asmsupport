@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
+import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.UnreachableCodeException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;

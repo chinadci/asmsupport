@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.block.interfaces.operator;
 
 import cn.wensiqun.asmsupport.block.classes.common.Synchronized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.If;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
+import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;

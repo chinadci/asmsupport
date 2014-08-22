@@ -36,17 +36,18 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
         this.insnHelper = block.getInsnHelper();
         this.block = block;
         allCrement = new LinkedList<AbstractCrement>();
-        addQueue();
+        //addQueue();
+        block.getQueue().add(this);
     }
     
     public ProgramBlock getBlock() {
         return block;
     }
     
-    protected void addQueue()
+    /*protected void addQueue()
     {
         block.addExe(this);
-    }
+    }*/
 
 	@Override
     public final void prepare() {

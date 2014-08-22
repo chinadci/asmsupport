@@ -39,14 +39,14 @@ public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
     }
 
     @Override
-    public final void generateInsn()
+    public final void generate()
     {
         body();
     }
 
 
     @Override
-    public void executing() {
+    public void doExecute() {
         insnHelper.nop();
         if(!isDoWhile){
             insnHelper.goTo(condiLbl);

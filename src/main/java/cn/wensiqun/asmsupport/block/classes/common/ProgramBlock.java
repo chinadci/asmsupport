@@ -13,8 +13,8 @@ import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.ExceptionSerialBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.v2.Try;
+import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
+import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
@@ -33,8 +33,8 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.MethodInvokeException;
 import cn.wensiqun.asmsupport.exception.VerifyErrorException;
 import cn.wensiqun.asmsupport.operators.InstanceofOperator;
+import cn.wensiqun.asmsupport.operators.BlockEndFlag;
 import cn.wensiqun.asmsupport.operators.Return;
-import cn.wensiqun.asmsupport.operators.SerialTriggerOperator;
 import cn.wensiqun.asmsupport.operators.StringAppender;
 import cn.wensiqun.asmsupport.operators.Throw;
 import cn.wensiqun.asmsupport.operators.array.ArrayLength;
@@ -190,14 +190,14 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     
     /**
      * 克隆当前的程序块的执行队列到给定程序块执行队列中
-     * @param owner 克隆至此
+     * @param targetBlock 克隆至此
      */
-	public void generateInsnTo(ProgramBlock cloneTo){
+	public void generateTo(ProgramBlock targetBlock){
         ProgramBlock clone = getCopy();
-        clone.setExecutor(cloneTo);
-        clone.generateInsn();
+        clone.setExecutor(targetBlock);
+        clone.generate();
         //just trigger if the last is SerialBlock in the queue of cloneTo
-        OperatorFactory.newOperator(SerialTriggerOperator.class, new Class[]{ProgramBlock.class}, cloneTo);
+        OperatorFactory.newOperator(BlockEndFlag.class, new Class[]{ProgramBlock.class}, targetBlock);
 	}
 
     protected void init(){};
@@ -206,7 +206,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
      * override this method if want create a new block
      * 生成操作到执行队列中去。
      */
-    public abstract void generateInsn();
+    public abstract void generate();
     
     @Override
     public void prepare() {
@@ -214,131 +214,25 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         scope.getStart().setName(this.getClass().toString() + " start");
         scope.getEnd().setName(this.getClass().toString() + " end");
         
-        OperatorFactory.newOperator(Marker.class, 
-                new Class<?>[]{ProgramBlock.class, Label.class}, 
-                getExecutor(), scope.getStart());
-
-
-        OperatorFactory.newOperator(NOP.class, 
-                new Class<?>[]{ProgramBlock.class}, 
-                getExecutor());
+        generate();
         
-        //new NOP(getExecutor());
-        
-        generateInsn();
-        
-        //just trigger if the last is SerialBlock in the queue of cloneTo
-        OperatorFactory.newOperator(SerialTriggerOperator.class, 
+        //just trigger if the last is SerialBlock in the queue
+        OperatorFactory.newOperator(BlockEndFlag.class, 
         		new Class[]{ProgramBlock.class}, 
         		getExecutor());
-        
-        OperatorFactory.newOperator(Marker.class, 
-            new Class<?>[]{ProgramBlock.class, Label.class}, 
-            getExecutor(), scope.getEnd());
-
-        OperatorFactory.newOperator(NOP.class, 
-                new Class<?>[]{ProgramBlock.class}, 
-                getExecutor());
-        //new NOP(getExecutor());
     }
-    
-    /*public void subBlockInit(ProgramBlock sub){
-        sub.setInsnHelper(insnHelper);
-        sub.setScope(new Scope(getMethod().getLocals(), this.getScope()));
-        sub.setParent(this);
-    }*/
-    
-    /*
-     * 通常情况下的prepare
-     * 
-     * @param pb
-     * @param parentBlock
-     */
-    /*protected void subBlockPrepare(ProgramBlock pb, ProgramBlock parentBlock){
-    	pb.setInsnHelper(insnHelper);
-    	pb.setScope(new Scope(getMethod().getLocals(), parentBlock.getScope()));
-    	//设置父类的Block
-    	pb.setParent(parentBlock.getExecuteBlock());
-    	if(pb instanceof Try || pb instanceof Catch || pb instanceof Finally){
-    		if(pb instanceof Try){
-    			this.getMethod().setNearlyTryBlock((Try)pb);
-    		}
-    	}else{
-    		tiggerTryCatchPrepare();
-        	pb.prepare();
-    	}
-        new BlockEndFlag(pb);
-    }*/
-    
-    /*public void tiggerTryCatchPrepare(){
-    	Try nearlyTryBlock = getMethod().getNearlyTryBlock();
-    	//获取离当操作前最近try程序块
-		if(nearlyTryBlock != null){
-            
-			getMethod().setNearlyTryBlock(null);
-			//try prepare
-			
-			nearlyTryBlock.prepare();
-			
-			//catch prepare
-			Catch catchBlock = nearlyTryBlock.getCatchEntity();
-			
-			Finally finallyBlock = nearlyTryBlock.getFinallyBlock();
-			
-			while(catchBlock != null){
-				catchBlock.prepare();
-				catchBlock = catchBlock.getNextCatch();
-			}
-			
-			if(finallyBlock != null){
-		        try{
-		            OperatorFactory.newOperator(NoneOperator.class, new Class<?>[]{ProgramBlock.class}, getExecutor());
-					finallyBlock.prepare();
-		        }catch(UnreachableCode uc){
-		            log.debug("unreachable code");	
-		        }catch(RuntimeException e){
-		        	throw e;
-		        }
-			}
-			
-		}
-    }*/
     
     @Override
-    public final void execute() {
-        /*insnHelper.mark(getScope().getStart());
-        insnHelper.nop();
-        */executing();
-        /*insnHelper.mark(getScope().getEnd());
-        insnHelper.nop();*/
+    public final void execute()
+    {
+        getInsnHelper().mark(scope.getStart());
+        getInsnHelper().nop();
+        doExecute();
+        getInsnHelper().mark(scope.getEnd());
+        getInsnHelper().nop();
     }
     
-    public abstract void executing();
-
-    /**
-     * 添加一个Executeable
-     * 
-     * @param exe
-     */
-    public void addExe(ByteCodeExecutor exe) {
-        getQueue().add(exe);
-    }
-    /**
-     * 
-     * @param exe
-     */
-    public void removeExe(ByteCodeExecutor exe) {
-        getQueue().remove(exe);
-    }
-
-    /**
-     * 替换
-     * @param old
-     * @param newp
-     */
-    public void replaceExe(ByteCodeExecutor old, ByteCodeExecutor newp){
-        getQueue().replace(old, newp);
-    }
+    protected abstract void doExecute();
 
     public void setScope(Scope scope) {
         this.scope = scope;

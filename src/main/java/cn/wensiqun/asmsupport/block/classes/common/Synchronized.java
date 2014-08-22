@@ -65,7 +65,7 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
 	}
 
 	@Override
-	public void executing() {
+	public void doExecute() {
         Executable returnInsn = null;
         
 		lock.loadToStack(this);
@@ -104,7 +104,7 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
 	}
 	
 	@Override
-	public void generateInsn() {
+	public void generate() {
 
         DUP dup = OperatorFactory.newOperator(DUP.class, 
                 new Class<?>[]{ProgramBlock.class, AClass.class}, 

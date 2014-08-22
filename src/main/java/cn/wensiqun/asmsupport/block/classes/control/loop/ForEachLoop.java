@@ -53,7 +53,7 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
     	
         for(Executable exe : getQueue()){
             exe.execute();
@@ -72,8 +72,9 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     }
     
     @Override
-    public final void generateInsn() {
-        new NOP(getExecutor());
+    public final void generate() {
+        //?
+        /*new NOP(getExecutor());
         if(iteratorVar.getParamterizedType().isArray()){
             final LocalVariable i = createVariable(null, AClass.INT_ACLASS, true, Value.value(0));
             
@@ -104,7 +105,7 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
             new Marker(getExecutor(), conditionLbl);
         	condition = invoke(itr, "hasNext");
         }
-        condition.asArgument();
+        condition.asArgument();*/
     }
     
     @Override

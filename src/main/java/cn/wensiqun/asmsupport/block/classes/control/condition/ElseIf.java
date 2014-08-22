@@ -35,13 +35,13 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
     }
 
     @Override
-    public final void generateInsn()
+    public final void generate()
     {
         body();
     }
     
     @Override
-    public void executing() {
+    public void doExecute() {
         insnHelper.nop();
     	if(condition instanceof Jumpable){
         	Jumpable jmp = (Jumpable) condition;
@@ -79,7 +79,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
         
         //subBlockPrepare(elseblock, getParent());
         
-        elseblock.setPreviousEpisode(this);
+        //?elseblock.setPreviousEpisode(this);
     }
 
     public ElseIf elseif(ElseIf elseblock){
@@ -89,7 +89,7 @@ public abstract class ElseIf extends ConditionBranchBlock implements Body {
 
         //subBlockPrepare(elseblock, getParent());
         
-        elseblock.setPreviousEpisode(this);
+        //?elseblock.setPreviousEpisode(this);
         
         this.elseifOrIfBlock = elseblock;
         

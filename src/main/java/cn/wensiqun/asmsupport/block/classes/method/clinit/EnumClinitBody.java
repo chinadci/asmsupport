@@ -5,7 +5,7 @@ import java.util.List;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
-import cn.wensiqun.asmsupport.block.interfaces.body.ArgumentsBody;
+import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariablesBody;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
@@ -18,7 +18,7 @@ import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
  * 
  *
  */
-public abstract class EnumClinitBody extends GenericMethodBody implements ArgumentsBody {
+public abstract class EnumClinitBody extends GenericMethodBody implements LocalVariablesBody {
 
 	private List<EnumConstructorInfo>  enumArgumentsList;
 	

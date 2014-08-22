@@ -60,7 +60,7 @@ public class MethodInvokeInvoker extends MethodInvoker {
             block.removeExe(caller);
             MethodInvoker mi = new StaticMethodInvoker(block, getActuallyOwner(), name, arguments);
             block.removeExe(mi);
-            block.replaceExe(this, mi);
+            block.getQueue().replace(this, mi);
         }
     }
 
