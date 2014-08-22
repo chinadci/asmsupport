@@ -144,119 +144,119 @@ public class TryCatchFinallyBlockGeneratorSample extends AbstractExample
         TesterStatics.expectedPrintln("Root");
     	try
     	{
-            TesterStatics.expectedPrintln("    Try");
+            TesterStatics.expectedPrintln("    |-Try");
     		try
         	{
-                TesterStatics.expectedPrintln("        Try");
+                TesterStatics.expectedPrintln("        |-Try");
                 throw new Exception();
         	}
         	catch(RuntimeException e)
         	{
-                TesterStatics.expectedPrintln("        Catch(RuntimeException)");
+                TesterStatics.expectedPrintln("        |-Catch(RuntimeException)");
                 return;
         	}
         	catch(Exception e)
         	{
-                TesterStatics.expectedPrintln("        Catch(Exception)");
+                TesterStatics.expectedPrintln("        |-Catch(Exception)");
                 runtimeException();
         	}
         	finally
         	{
-                TesterStatics.expectedPrintln("        Finally");
+                TesterStatics.expectedPrintln("        |-Finally");
         	}
     	}
     	catch(RuntimeException e)
     	{
-            TesterStatics.expectedPrintln("    Catch(RuntimeException)");
+            TesterStatics.expectedPrintln("    |-Catch(RuntimeException)");
     		try
         	{
-                TesterStatics.expectedPrintln("        Try");
+                TesterStatics.expectedPrintln("        |-Try");
         	}
         	catch(RuntimeException e1)
         	{
-                TesterStatics.expectedPrintln("        Catch(RuntimeException)");
+                TesterStatics.expectedPrintln("        |-Catch(RuntimeException)");
         	}
         	catch(Exception e1)
         	{
-                TesterStatics.expectedPrintln("        Catch(Exception)");
+                TesterStatics.expectedPrintln("        |-Catch(Exception)");
         		
         	}
         	finally
         	{
-                TesterStatics.expectedPrintln("        Finally(Exception)");
+                TesterStatics.expectedPrintln("        |-Finally");
         	}
     	}
     	catch(Exception e)
     	{
-            TesterStatics.expectedPrintln("    Catch(Exception)");
+            TesterStatics.expectedPrintln("    |-Catch(Exception)");
     	}
     	finally
     	{
-            TesterStatics.expectedPrintln("    Finally");
+            TesterStatics.expectedPrintln("    |-Finally");
     		try
     		{
-                TesterStatics.expectedPrintln("        Try");
+                TesterStatics.expectedPrintln("        |-Try");
     			try
     			{
-                    TesterStatics.expectedPrintln("            Try");
+                    TesterStatics.expectedPrintln("            |-Try");
     			}
                 catch(RuntimeException e)
     			{
-                    TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+                    TesterStatics.expectedPrintln("            |-Catch(RuntimeException)");
     			}
     			throw new Exception();
     		}
     		catch(Exception e)
     		{
-                TesterStatics.expectedPrintln("        Exception(Exception)");
+                TesterStatics.expectedPrintln("        |-Exception(Exception)");
     		}
-            TesterStatics.expectedPrintln("====");
+            TesterStatics.expectedPrintln("    ====");
     		try
             {
-                TesterStatics.expectedPrintln("        Try");
+                TesterStatics.expectedPrintln("        |-Try");
                 try
                 {
-                    TesterStatics.expectedPrintln("            Try");
+                    TesterStatics.expectedPrintln("            |-Try");
                     throw new RuntimeException();
                 }
                 catch(RuntimeException e)
                 {
-                    TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+                    TesterStatics.expectedPrintln("            |-Catch(RuntimeException)");
                     throw e;
                 }
                 catch(Exception e)
                 {
-                    TesterStatics.expectedPrintln("            Catch(Exception)");
+                    TesterStatics.expectedPrintln("            |-Catch(Exception)");
                 }
             }
     		catch(RuntimeException e)
     		{
-                TesterStatics.expectedPrintln("        Catch(RuntimeException)");
+                TesterStatics.expectedPrintln("        |-Catch(RuntimeException)");
                 return;
     		}
             catch(Exception e)
             {
-                TesterStatics.expectedPrintln("        Catch(Exception)");
+                TesterStatics.expectedPrintln("        |-Catch(Exception)");
                 try
                 {
-                    TesterStatics.expectedPrintln("            Try");
+                    TesterStatics.expectedPrintln("            |-Try");
                 }
                 catch(RuntimeException e1)
                 {
-                    TesterStatics.expectedPrintln("            Catch(RuntimeException)");
+                    TesterStatics.expectedPrintln("            |-Catch(RuntimeException)");
                 }
                 catch(Exception e1)
                 {
-                    TesterStatics.expectedPrintln("            Catch(Exception)");
+                    TesterStatics.expectedPrintln("            |-Catch(Exception)");
                 }
                 finally
                 {
-                    TesterStatics.expectedPrintln("            Finally");
+                    TesterStatics.expectedPrintln("            |-Finally");
                 }
             }
     		finally
     		{
-                TesterStatics.expectedPrintln("        Finally");
+                TesterStatics.expectedPrintln("        |-Finally");
     		}
     	}
     }

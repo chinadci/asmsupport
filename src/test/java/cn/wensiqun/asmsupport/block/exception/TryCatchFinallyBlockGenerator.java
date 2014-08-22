@@ -301,6 +301,244 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
         });
         
         
+        creator.createStaticMethod(testMethodNames.put("complexTryCatchFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
+                
+                tryDo(new Try(){
+
+                    @Override
+                    public void body()
+                    {
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
+                        tryDo(new Try(){
+
+                            @Override
+                            public void body()
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                                throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
+                            }
+                            
+                        }).catchException(new Catch(runtime){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(RuntimeException)"));
+                                runReturn();
+                            }
+                            
+                        }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
+                                invokeStatic(getMethodOwner(), "runtimeException");
+                            }
+                            
+                        }).finallyThan(new Finally(){
+
+                            @Override
+                            public void body() {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Finally"));
+                            }
+                            
+                        });
+                    }
+                    
+                }).catchException(new Catch(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(RuntimeException)"));
+                        tryDo(new Try(){
+
+                            @Override
+                            public void body()
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                            }
+                            
+                        }).catchException(new Catch(runtime){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(RuntimeException)"));
+                            }
+                            
+                        }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
+                            }
+                            
+                        }).finallyThan(new Finally(){
+
+                            @Override
+                            public void body() {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Finally"));
+                            }
+                            
+                        });
+                    }
+                    
+                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(Exception)"));
+                    }
+                    
+                }).finallyThan(new Finally(){
+
+                    @Override
+                    public void body() {
+
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Finally"));
+                        
+                        tryDo(new Try(){
+
+                            @Override
+                            public void body()
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                                tryDo(new Try(){
+
+                                    @Override
+                                    public void body()
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Try"));
+                                    }
+                                    
+                                }).catchException(new Catch(runtime){
+
+                                    @Override
+                                    public void body(LocalVariable e)
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Catch(RuntimeException)"));
+                                    }
+                                });
+                                throwException(invokeConstructor(runtime));
+                            }
+                            
+                        }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Exception(Exception)"));
+                            }
+                            
+                        });
+                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    ===="));
+                        tryDo(new Try(){
+
+                            @Override
+                            public void body()
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                                tryDo(new Try(){
+
+                                    @Override
+                                    public void body()
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Try"));
+                                        throwException(invokeConstructor(runtime));
+                                    }
+                                    
+                                }).catchException(new Catch(runtime){
+
+                                    @Override
+                                    public void body(LocalVariable e)
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Catch(RuntimeException)"));
+                                        throwException(e);
+                                    }
+                                    
+                                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                                    @Override
+                                    public void body(LocalVariable e)
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Catch(Exception)"));
+                                    }
+                                    
+                                });
+                            }
+                            
+                        }).catchException(new Catch(runtime){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(RuntimeException)"));
+                                runReturn();
+                            }
+                            
+                        }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                            @Override
+                            public void body(LocalVariable e)
+                            {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
+                                tryDo(new Try(){
+
+                                    @Override
+                                    public void body()
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Try"));
+                                    }
+                                    
+                                }).catchException(new Catch(runtime){
+
+                                    @Override
+                                    public void body(LocalVariable e)
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Catch(RuntimeException)"));
+                                    }
+                                    
+                                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+
+                                    @Override
+                                    public void body(LocalVariable e)
+                                    {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Catch(Exception)"));
+                                    }
+                                    
+                                }).finallyThan(new Finally(){
+
+                                    @Override
+                                    public void body() {
+                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("            |-Finally"));
+                                    }
+                                    
+                                });
+                            }
+                            
+                        }).finallyThan(new Finally(){
+
+                            @Override
+                            public void body() {
+                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Finally"));
+                            }
+                            
+                        });
+                    }
+                    
+                });
+                runReturn();
+            }
+        });
         
         creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
             Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
