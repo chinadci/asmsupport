@@ -1,13 +1,10 @@
 package cn.wensiqun.asmsupport.block.classes.common;
 
+import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.ByteCodeExecutor;
-import cn.wensiqun.asmsupport.block.classes.control.condition.If;
+import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
-import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
@@ -446,11 +443,12 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
         return proxy.not(factor);
     }
 
-    /*@Override
-    public If ifthan(If ifs)
-    {
-        return proxy.ifthan(ifs);
-    }
+	@Override
+	public IF ifThen(IF ifBlock) {
+		return proxy.ifThen(ifBlock);
+	}
+    
+    /*
 
     @Override
     public WhileLoop whileloop(WhileLoop whileLoop)

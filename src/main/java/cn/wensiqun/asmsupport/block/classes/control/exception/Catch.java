@@ -36,7 +36,7 @@ public abstract class Catch extends EpisodeBlock<ExceptionSerialBlock> implement
     }
 
     @Override
-    public void doExecute()
+    protected void doExecute()
     {
         //the exception variable already exists at the top of the statck.
         insnHelper.getMv().getStack().push(exceptionType.getType());

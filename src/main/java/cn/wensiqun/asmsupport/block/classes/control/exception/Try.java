@@ -15,7 +15,7 @@ public abstract class Try extends EpisodeBlock<ExceptionSerialBlock> implements 
     }
 
     @Override
-    public void doExecute()
+    protected void doExecute()
     {
         for(ByteCodeExecutor exe : getQueue()){
             exe.execute();
@@ -34,7 +34,7 @@ public abstract class Try extends EpisodeBlock<ExceptionSerialBlock> implements 
         return catchBlock;
     }
     
-    public Finally finallyThan(Finally block)
+    public Finally finallyThen(Finally block)
     {
         ExceptionSerialBlock serial = getSerial();
         if(serial.getFinally() != null)

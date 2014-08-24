@@ -12,6 +12,8 @@ import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreator;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupport.utils.MyList;
+import cn.wensiqun.asmsupport.utils.TesterStatics;
 import example.AbstractExample;
 
 public class TryCatchFinallyBlockGenerator extends AbstractExample

@@ -5,8 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.classes.control.condition.Else;
-import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf;
-import cn.wensiqun.asmsupport.block.classes.control.condition.If;
+import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIF;
+import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -67,7 +67,7 @@ public class IFBlockGenerator extends AbstractExample{
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static void main(String[] args) {/*
+	public static void main(String[] args) {
 		
 		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.IFBlockGeneratorExample", null, null);
 		
@@ -78,17 +78,17 @@ public class IFBlockGenerator extends AbstractExample{
 						final LocalVariable str = argus[0];
 						final LocalVariable i = argus[1];
 						
-						ifthan(new If(invoke(str, "equals", Value.value("A"))){
+						ifThen(new IF(invoke(str, "equals", Value.value("A"))){
 							@Override
 							public void body() {
-								ifthan(new If(equal(i, Value.value(0))){
+								ifThen(new IF(equal(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    invoke(systemOut, "println", Value.value("str is 'A', i is 0"));
 									}
 									
-								}).elsethan(new Else(){
+								}).elseThen(new Else(){
 
 									@Override
 									public void body() {
@@ -97,18 +97,18 @@ public class IFBlockGenerator extends AbstractExample{
 									
 								});
 							}
-						}).elseif(new ElseIf(invoke(str, "equals", Value.value("B"))){
+						}).elseIF(new ElseIF(invoke(str, "equals", Value.value("B"))){
 
 							@Override
 							public void body() {
-								ifthan(new If(equal(i, Value.value(0))){
+								ifThen(new IF(equal(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    invoke(systemOut, "println", Value.value("str is 'B', i is 0"));
 									}
 									
-								}).elsethan(new Else(){
+								}).elseThen(new Else(){
 
 									@Override
 									public void body() {
@@ -118,18 +118,18 @@ public class IFBlockGenerator extends AbstractExample{
 								});
 							}
 							
-						}).elsethan(new Else(){
+						}).elseThen(new Else(){
 
 							@Override
 							public void body() {
-								ifthan(new If(equal(i, Value.value(0))){
+								ifThen(new IF(equal(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    invoke(systemOut, "println", Value.value("str is unknow, i is 0"));
 									}
 									
-								}).elsethan(new Else(){
+								}).elseThen(new Else(){
 
 									@Override
 									public void body() {
@@ -162,6 +162,6 @@ public class IFBlockGenerator extends AbstractExample{
 			
 		});
 		generate(creator);
-	*/}
+	}
 
 }

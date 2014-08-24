@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.block.classes.control.condition.v2;
+package cn.wensiqun.asmsupport.block.classes.control.condition;
 
 import org.objectweb.asm.Label;
 
@@ -12,7 +12,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
 
-public abstract class IF extends EpisodeBlock<ConditionSerialBlock> implements Body
+public abstract class IF extends ConditionBranchBlock implements Body
 {
     private Parameterized condition;
     
@@ -38,24 +38,41 @@ public abstract class IF extends EpisodeBlock<ConditionSerialBlock> implements B
     }
 
     @Override
-    public void doExecute()
+    protected void doExecute()
     {
-        Label serialEnd = getSerial().getSerialEnd();
+        Label endLbl = getEnd();
         if(condition instanceof Jumpable){
             Jumpable jmp = (Jumpable) condition;
-            jmp.setJumpLable(serialEnd);
+            jmp.setJumpLable(endLbl);
             jmp.executeAndJump(ControlType.IF);
         }else{
             condition.loadToStack(this);
             insnHelper.unbox(condition.getParamterizedType().getType());
-            insnHelper.ifZCmp(InstructionHelper.EQ, serialEnd);
+            insnHelper.ifZCmp(InstructionHelper.EQ, endLbl);
         }
         
         for(ByteCodeExecutor exe : getQueue()){
             exe.execute();
         }
+        
+        if(nextBranch != null)
+        {
+        	insnHelper.goTo(getSerialEnd());
+        }
     }
 
+    public ElseIF elseIF(ElseIF elsIf)
+    {
+    	initNextBranch(elsIf);
+    	return elsIf;
+    }
+    
+    public Else elseThen(Else els)
+    {
+    	initNextBranch(els);
+    	return els;
+    }
+    
     @Override
     public String toString() {
         return "IF Block:" + condition.toString();

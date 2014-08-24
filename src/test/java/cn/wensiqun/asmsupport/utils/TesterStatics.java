@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.block.exception;
+package cn.wensiqun.asmsupport.utils;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;

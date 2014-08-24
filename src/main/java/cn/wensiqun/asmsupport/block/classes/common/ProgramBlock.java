@@ -9,10 +9,10 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Type;
 
-import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
+import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
@@ -32,8 +32,8 @@ import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.MethodInvokeException;
 import cn.wensiqun.asmsupport.exception.VerifyErrorException;
-import cn.wensiqun.asmsupport.operators.InstanceofOperator;
 import cn.wensiqun.asmsupport.operators.BlockEndFlag;
+import cn.wensiqun.asmsupport.operators.InstanceofOperator;
 import cn.wensiqun.asmsupport.operators.Return;
 import cn.wensiqun.asmsupport.operators.StringAppender;
 import cn.wensiqun.asmsupport.operators.Throw;
@@ -42,8 +42,6 @@ import cn.wensiqun.asmsupport.operators.array.ArrayLoader;
 import cn.wensiqun.asmsupport.operators.array.ArrayStorer;
 import cn.wensiqun.asmsupport.operators.array.ArrayValue;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
-import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
-import cn.wensiqun.asmsupport.operators.asmdirect.NOP;
 import cn.wensiqun.asmsupport.operators.assign.Assigner;
 import cn.wensiqun.asmsupport.operators.assign.GlobalVariableAssigner;
 import cn.wensiqun.asmsupport.operators.assign.LocalVariableAssigner;
@@ -841,15 +839,20 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     //                                  control Operator                                      //
     //*******************************************************************************************//
 
-    /*@Override
-    public final If ifthan(If ifs){
-        addExe(ifs);
-        ifs.setParentExes(getQueue());
-        subBlockPrepare(ifs);
-        return ifs;
+    @Override
+    public final IF ifThen(IF ifBlock){
+        ifBlock.setParent(getExecutor());
+    	getQueue().add(ifBlock);
+        ifBlock.prepare();
+        return ifBlock;
+    	
+        /*addExe(ifBlock);
+        ifBlock.setParentExes(getQueue());
+        subBlockPrepare(ifBlock);
+        return ifBlock;*/
     }
 
-    @Override
+    /*@Override
     public final WhileLoop whileloop(WhileLoop wl){
         addExe(wl);
         subBlockPrepare(wl);

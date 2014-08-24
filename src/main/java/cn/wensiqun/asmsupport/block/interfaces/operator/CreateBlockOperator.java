@@ -1,11 +1,7 @@
 package cn.wensiqun.asmsupport.block.interfaces.operator;
 
-import cn.wensiqun.asmsupport.block.classes.common.Synchronized;
-import cn.wensiqun.asmsupport.block.classes.control.condition.If;
+import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
-import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileLoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachLoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
 
 
 /**
@@ -20,7 +16,7 @@ public interface CreateBlockOperator {
     /**
      * 创建if程序块.
      * <ul>
-     * <li>通过{@link If#elsethan(cn.wensiqun.asmsupport.block.control.Else)}或者
+     * <li>通过{@link IF#elseThen(cn.wensiqun.asmsupport.block.control.Else)}或者
      * {@link cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf#elsethan(cn.wensiqun.asmsupport.block.control.Else)}
      * 创建else程序块
      * </li>
@@ -33,12 +29,12 @@ public interface CreateBlockOperator {
      * 
      * @param ifs IF对象
      * @return {@link If}
-     * @see If#elsethan(cn.wensiqun.asmsupport.block.control.Else)
-     * @see If#elseif(cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf)
+     * @see IF#elseThen(cn.wensiqun.asmsupport.block.control.Else)
+     * @see IF#elseif(cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf)
      * @see cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf#elsethan(cn.wensiqun.asmsupport.block.control.Else)
      * @see cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf#elseif(cn.wensiqun.asmsupport.block.classes.control.condition.ElseIf)
      */
-    //public If ifthan(If ifs);
+    public IF ifThen(IF ifBlock);
     
     /**
      * 
@@ -74,8 +70,8 @@ public interface CreateBlockOperator {
      * {@link cn.wensiqun.asmsupport.block.classes.control.exception.Catch#catchException(cn.wensiqun.asmsupport.block.classes.control.exception.Catch)}创建
      * catch程序块
      * </li>
-     * <li>通过{@link Try#finallyThan(cn.wensiqun.asmsupport.block.control.Finally)}或者
-     * {@link cn.wensiqun.asmsupport.block.classes.control.exception.Catch#finallyThan(cn.wensiqun.asmsupport.block.control.Finally)}创建
+     * <li>通过{@link Try#finallyThen(cn.wensiqun.asmsupport.block.control.Finally)}或者
+     * {@link cn.wensiqun.asmsupport.block.classes.control.exception.Catch#finallyThen(cn.wensiqun.asmsupport.block.control.Finally)}创建
      * finally程序块
      * </li>
      * </ul>

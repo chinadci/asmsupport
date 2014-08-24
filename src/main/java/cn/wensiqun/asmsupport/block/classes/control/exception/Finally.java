@@ -14,7 +14,7 @@ public abstract class Finally extends EpisodeBlock<ExceptionSerialBlock> impleme
     }
 
     @Override
-    public void doExecute()
+    protected void doExecute()
     {
         for(ByteCodeExecutor exe : getQueue()){
             exe.execute();

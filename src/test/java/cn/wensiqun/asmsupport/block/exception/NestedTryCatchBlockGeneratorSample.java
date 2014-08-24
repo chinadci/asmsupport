@@ -1,5 +1,6 @@
 package cn.wensiqun.asmsupport.block.exception;
 
+import cn.wensiqun.asmsupport.utils.TesterStatics;
 import example.AbstractExample;
 
 public class NestedTryCatchBlockGeneratorSample extends AbstractExample
