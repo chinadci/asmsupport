@@ -19,7 +19,7 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
-import cn.wensiqun.asmsupport.operators.asmdirect.NOP;
+import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
 
 /**
@@ -74,38 +74,57 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     @Override
     public final void generate() {
         //?
-        /*new NOP(getExecutor());
+        //?new NOP(getExecutor());
         if(iteratorVar.getParamterizedType().isArray()){
             final LocalVariable i = createVariable(null, AClass.INT_ACLASS, true, Value.value(0));
             
-            new GOTO(getExecutor(), conditionLbl);
-            new NOP(getExecutor());
-            new Marker(getExecutor(), startLbl);
-            new NOP(getExecutor());
+            OperatorFactory.newOperator(GOTO.class, 
+            		new Class[]{ProgramBlock.class, Label.class}, 
+            		getExecutor(), conditionLbl);
+            //new GOTO(getExecutor(), conditionLbl);
+            
+            //?new NOP(getExecutor());
+            
+
+            OperatorFactory.newOperator(Marker.class, 
+            		new Class[]{ProgramBlock.class, Label.class}, 
+            		getExecutor(), startLbl);
+            //new Marker(getExecutor(), startLbl);
+            
+            //?new NOP(getExecutor());
             
             LocalVariable obj = createVariable(null, ((ArrayClass)iteratorVar.getParamterizedType()).getNextDimType(), true, arrayLoad(iteratorVar, i) );
             body(obj);
 
-            new Marker(getExecutor(), continueLbl);
+            //?new Marker(getExecutor(), continueLbl);
+            
             afterInc(i);
-            new Marker(getExecutor(), conditionLbl);
+            
+            //?new Marker(getExecutor(), conditionLbl);
             condition = lessThan(i, arrayLength(iteratorVar));
             //((LessThan)condition).setJumpLable(startLbl);
         }else{
-        	final LocalVariable itr = createVariable(null, AClass.ITERATOR_ACLASS, true, invoke(iteratorVar, "iterator"));
-            new GOTO(getExecutor(), conditionLbl);
+        	final LocalVariable itr = createVariable(null, AClass.ITERABLE_ACLASS, true, invoke(iteratorVar, "iterator"));
         	
-        	new Marker(getExecutor(), startLbl);
-            new NOP(getExecutor());
+            OperatorFactory.newOperator(GOTO.class, 
+            		new Class[]{ProgramBlock.class, Label.class}, 
+            		getExecutor(), conditionLbl);
+            //new GOTO(getExecutor(), conditionLbl);
+        	
+            OperatorFactory.newOperator(Marker.class, 
+            		new Class[]{ProgramBlock.class, Label.class}, 
+            		getExecutor(), startLbl);
+        	//new Marker(getExecutor(), startLbl);
+            //?new NOP(getExecutor());
 
             LocalVariable obj = createVariable(null, AClass.OBJECT_ACLASS, true, invoke(itr, "next"));
             body(obj);
 
-            new Marker(getExecutor(), continueLbl);
-            new Marker(getExecutor(), conditionLbl);
+            //?new Marker(getExecutor(), continueLbl);
+            
         	condition = invoke(itr, "hasNext");
         }
-        condition.asArgument();*/
+        condition.asArgument();
     }
     
     @Override

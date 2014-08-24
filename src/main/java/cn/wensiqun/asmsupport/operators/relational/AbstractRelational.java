@@ -15,6 +15,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.Jumpable;
+import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 
 /**
  * 
@@ -129,11 +130,19 @@ public abstract class AbstractRelational extends AbstractOperator implements
 	
 	@Override
 	public final void executeAndJump(ControlType ctl){
+        for (AbstractCrement c : allCrement) {
+            c.before();
+        }
+        
         factorsToStack();
         if(ctl.equals(ControlType.IF)){
         	relationalOperator();
         }else if(ctl.equals(ControlType.LOOP)){
         	relationalOperatorWithInLoopCondition();
+        }
+
+        for (AbstractCrement c : allCrement) {
+            c.after();
         }
 	}
 	

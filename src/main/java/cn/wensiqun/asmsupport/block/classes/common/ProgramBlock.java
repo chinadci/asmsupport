@@ -16,6 +16,7 @@ import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
+import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -852,14 +853,18 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         return ifBlock;*/
     }
 
-    /*@Override
-    public final WhileLoop whileloop(WhileLoop wl){
-        addExe(wl);
+    @Override
+    public final WhileLoop whileDo(WhileLoop whileLoop){
+        /*addExe(wl);
         subBlockPrepare(wl);
-        return wl;
+        return wl;*/
+    	whileLoop.setParent(getExecutor());
+    	getQueue().add(whileLoop);
+    	whileLoop.prepare();
+        return whileLoop;
     }
 
-    @Override
+    /*@Override
     public final WhileLoop dowhile(DoWhileLoop dwl){
         addExe(dwl);
         subBlockPrepare(dwl);

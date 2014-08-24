@@ -2,7 +2,6 @@ package cn.wensiqun.asmsupport.clazz;
 
 import java.io.Serializable;
 import java.lang.reflect.Modifier;
-import java.util.Iterator;
 
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
@@ -86,8 +85,8 @@ public abstract class AClass implements GetGlobalVariabled{//, MethodInvokeable 
     /** java.lang.String of AClass */
     public static final AClass STRING_ACLASS = AClassFactory.getProductClass(String.class);
 
-    /** java.util.Iterator of AClass */
-    public static final AClass ITERATOR_ACLASS = AClassFactory.getProductClass(Iterator.class);
+    /** java.lang.Iterable of AClass */
+    public static final AClass ITERABLE_ACLASS = AClassFactory.getProductClass(Iterable.class);
 
     /** java.lang.Exception of AClass */
     public static final AClass EXCEPTION_ACLASS = AClassFactory.getProductClass(Exception.class);

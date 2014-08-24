@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.block.classes.control.SerialBlock;
+import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.UnreachableCodeException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
@@ -51,7 +51,7 @@ public abstract class OperatorFactory {
 		ByteCodeExecutor last = block.getQueue().getLast();
 		if(checkSerial &&
 		   last != null &&
-		   last instanceof SerialBlock)
+		   last instanceof ExceptionSerialBlock)
 		{
 		    last.prepare();
 		}

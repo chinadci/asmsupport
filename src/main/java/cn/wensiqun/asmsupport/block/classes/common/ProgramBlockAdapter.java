@@ -5,6 +5,7 @@ import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
@@ -448,15 +449,15 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
 		return proxy.ifThen(ifBlock);
 	}
     
-    /*
+    
 
     @Override
-    public WhileLoop whileloop(WhileLoop whileLoop)
+    public WhileLoop whileDo(WhileLoop whileLoop)
     {
-        return proxy.whileloop(whileLoop);
+        return proxy.whileDo(whileLoop);
     }
 
-    @Override
+    /*@Override
     public WhileLoop dowhile(DoWhileLoop doWhileLoop)
     {
         

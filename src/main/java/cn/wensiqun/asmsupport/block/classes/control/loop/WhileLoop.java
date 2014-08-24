@@ -23,18 +23,14 @@ public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
 
     private Parameterized condition;
 
-    Label condiLbl;
-    Label startLbl;
-    Label end;
-    
-    protected boolean isDoWhile;
+    Label conditionLbl;
+    Label contentStart;
     
     public WhileLoop(Parameterized condition) {
         super();
         this.condition = condition;
-        condiLbl = new Label();
-        startLbl = new Label();
-        end = new Label();
+        conditionLbl = new Label();
+        contentStart = new Label();
         condition.asArgument();
     }
 
@@ -47,29 +43,23 @@ public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
 
     @Override
     public void doExecute() {
-        insnHelper.nop();
-        if(!isDoWhile){
-            insnHelper.goTo(condiLbl);
-        }
-        
-        insnHelper.mark(startLbl);
+        insnHelper.mark(contentStart);
         insnHelper.nop();
         for(Executable exe : getQueue()){
             exe.execute();
         }
 
-        insnHelper.mark(condiLbl);
+        insnHelper.mark(conditionLbl);
 
         if(condition instanceof Jumpable){
         	Jumpable jmp = (Jumpable) condition;
-        	jmp.setJumpLable(startLbl);
+        	jmp.setJumpLable(contentStart);
         	jmp.executeAndJump(ControlType.LOOP);
         }else{
             condition.loadToStack(this);
             insnHelper.unbox(condition.getParamterizedType().getType());
-            insnHelper.ifZCmp(InstructionHelper.NE, startLbl);
+            insnHelper.ifZCmp(InstructionHelper.NE, contentStart);
         }
-        insnHelper.mark(end);        
     }
 
     @Override
@@ -82,12 +72,12 @@ public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
     
     @Override
     public Label getBreakLabel() {
-        return end;
+        return getEnd();
     }
 
     @Override
     public Label getContinueLabel() {
-        return condiLbl;
+        return conditionLbl;
     }
 
 

@@ -11,8 +11,19 @@ public abstract class DoWhileLoop extends WhileLoop  {
 
     public DoWhileLoop(Parameterized condition) {
         super(condition);
-        this.isDoWhile = true;
     }
+    
+    
+
+	@Override
+	public void doExecute() {
+		
+		insnHelper.goTo(conditionLbl);
+		
+		super.doExecute();
+	}
+
+
 
 	@Override
 	public String toString() {

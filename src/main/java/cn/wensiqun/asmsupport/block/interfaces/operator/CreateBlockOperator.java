@@ -2,6 +2,7 @@ package cn.wensiqun.asmsupport.block.interfaces.operator;
 
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
 
 
 /**
@@ -43,7 +44,7 @@ public interface CreateBlockOperator {
      * @param whileLoop WhileLoop对象
      * @return {@link WhileLoop}
      */
-    //public WhileLoop whileloop(WhileLoop whileLoop);
+    public WhileLoop whileDo(WhileLoop whileLoop);
     
     /**
      * 创建do...while程序块
