@@ -10,7 +10,7 @@ import org.objectweb.asm.Label;
  * @author 温斯群(Joe Wen)
  *
  */
-public interface ILoop {
+public interface Loop {
     
     public Label getBreakLabel();
     

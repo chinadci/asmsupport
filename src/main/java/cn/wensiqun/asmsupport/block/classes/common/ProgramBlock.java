@@ -15,8 +15,8 @@ import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
-import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
-import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
+import cn.wensiqun.asmsupport.block.classes.control.loop.Loop;
+import cn.wensiqun.asmsupport.block.classes.control.loop.While;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -854,7 +854,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     }
 
     @Override
-    public final WhileLoop whileDo(WhileLoop whileLoop){
+    public final While whileDo(While whileLoop){
         /*addExe(wl);
         subBlockPrepare(wl);
         return wl;*/
@@ -882,10 +882,10 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     public final void breakOut(){
     	ProgramBlock pb = getExecutor();
         while(pb != null){
-            if(pb instanceof ILoop){
+            if(pb instanceof Loop){
                 OperatorFactory.newOperator(GOTO.class, 
                         new Class<?>[]{ProgramBlock.class, Label.class}, 
-                        getExecutor(), ((ILoop)pb).getBreakLabel());
+                        getExecutor(), ((Loop)pb).getBreakLabel());
                 //new GOTO(getExecutor(), ((ILoop)pb).getBreakLabel());
                 return;
             }
@@ -898,10 +898,10 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     public final void continueOut(){
     	ProgramBlock pb = getExecutor();
         while(pb != null){
-            if(pb instanceof ILoop){
+            if(pb instanceof Loop){
                 OperatorFactory.newOperator(GOTO.class, 
                         new Class<?>[]{ProgramBlock.class, Label.class}, 
-                        getExecutor(), ((ILoop)pb).getContinueLabel());
+                        getExecutor(), ((Loop)pb).getContinueLabel());
                 //new GOTO(getExecutor(), ((ILoop)pb).getContinueLabel());
                 return;
             }

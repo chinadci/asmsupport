@@ -9,7 +9,7 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.control.loop.ILoop;
+import cn.wensiqun.asmsupport.block.classes.control.loop.Loop;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.body.ParameterizedBody;
 import cn.wensiqun.asmsupport.clazz.AClass;

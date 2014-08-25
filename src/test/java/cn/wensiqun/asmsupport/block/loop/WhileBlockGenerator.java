@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.block.loop;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.control.loop.WhileLoop;
+import cn.wensiqun.asmsupport.block.classes.control.loop.While;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -24,7 +24,7 @@ public class WhileBlockGenerator extends AbstractExample {
 	            public void body(LocalVariable... argus)
 	            {
 	            	final LocalVariable i  = createVariable("i", AClass.INT_ACLASS, false, Value.value(10));
-	            	whileDo(new WhileLoop(greaterThan(this.afterDec(i), Value.value(0))){
+	            	whileDo(new While(greaterThan(afterDec(i), Value.value(0))){
 
 						@Override
 						public void body() {

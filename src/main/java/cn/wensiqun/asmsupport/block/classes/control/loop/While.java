@@ -7,19 +7,15 @@ import cn.wensiqun.asmsupport.Parameterized;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class DoWhileLoop extends WhileLoop  {
+public abstract class While extends DoWhile  {
 
-    public DoWhileLoop(Parameterized condition) {
+    public While(Parameterized condition) {
         super(condition);
     }
-    
-    
 
 	@Override
 	public void doExecute() {
-		
 		insnHelper.goTo(conditionLbl);
-		
 		super.doExecute();
 	}
 

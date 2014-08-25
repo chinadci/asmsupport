@@ -19,15 +19,14 @@ import cn.wensiqun.asmsupport.operators.Jumpable;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class WhileLoop extends ProgramBlock implements ILoop, Body  {
+public abstract class DoWhile extends ProgramBlock implements Loop, Body  {
 
     private Parameterized condition;
 
     Label conditionLbl;
     Label contentStart;
     
-    public WhileLoop(Parameterized condition) {
-        super();
+    public DoWhile(Parameterized condition) {
         this.condition = condition;
         conditionLbl = new Label();
         contentStart = new Label();

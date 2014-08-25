@@ -27,7 +27,7 @@ import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVariableBody{
+public abstract class ForEach extends ProgramBlock implements Loop, LocalVariableBody{
     
     private ExplicitVariable iteratorVar;
     
@@ -38,7 +38,7 @@ public abstract class ForEachLoop extends ProgramBlock implements ILoop, LocalVa
     private Label continueLbl = new Label();
     private Label endLbl = new Label();
     
-    public ForEachLoop(ExplicitVariable iteratorVar) {
+    public ForEach(ExplicitVariable iteratorVar) {
         super();
         this.iteratorVar = iteratorVar;
         checkMember(iteratorVar);

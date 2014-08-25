@@ -135,14 +135,15 @@ public abstract class AbstractRelational extends AbstractOperator implements
         }
         
         factorsToStack();
+
+        for (AbstractCrement c : allCrement) {
+            c.after();
+        }
+        
         if(ctl.equals(ControlType.IF)){
         	relationalOperator();
         }else if(ctl.equals(ControlType.LOOP)){
         	relationalOperatorWithInLoopCondition();
-        }
-
-        for (AbstractCrement c : allCrement) {
-            c.after();
         }
 	}
 	
