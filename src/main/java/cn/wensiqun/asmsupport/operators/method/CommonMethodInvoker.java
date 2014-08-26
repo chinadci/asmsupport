@@ -50,7 +50,7 @@ public class CommonMethodInvoker extends MethodInvoker {
     }
 
 	@Override
-	protected void executing() {
+	protected void doExecute() {
         
         /* if method is non satic*/
         if(!Modifier.isStatic(getModifiers())){

@@ -33,7 +33,7 @@ public class ArrayLength extends AbstractArrayOperator implements Parameterized 
     
 
     @Override
-    public void executing() {
+    public void doExecute() {
 		if(!useByOther){
             throw new RuntimeException(this.toString() + " not use by other operator");
         }

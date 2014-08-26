@@ -15,7 +15,7 @@ public class VisitTypeInsn extends AbstractOperator {
 	}
 
 	@Override
-	protected void executing() {
+	protected void doExecute() {
         block.getInsnHelper().getMv().visitTypeInsn(opcode, type);
 	}
 

@@ -45,7 +45,7 @@ public abstract class AbstractDecrement extends AbstractCrement {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         if(assigner == null){
             LocalVariable lv = (LocalVariable) factor;
             //insnHelper.iinc(lv.getScopeLogicVar().getPosition()[0], -1);

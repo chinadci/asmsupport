@@ -23,8 +23,8 @@ public class WhileBlockGenerator extends AbstractExample {
 	            @Override
 	            public void body(LocalVariable... argus)
 	            {
-	            	final LocalVariable i  = createVariable("i", AClass.INT_ACLASS, false, Value.value(10));
-	            	whileDo(new While(greaterThan(afterDec(i), Value.value(0))){
+	            	final LocalVariable i  = createVariable("i", AClass.LONG_ACLASS, false, Value.value(10));
+	            	whileDo(new While(greaterThan(beforeDec(i), Value.value(0))){
 
 						@Override
 						public void body() {

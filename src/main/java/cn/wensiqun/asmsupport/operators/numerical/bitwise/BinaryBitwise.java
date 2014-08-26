@@ -88,7 +88,7 @@ public abstract class BinaryBitwise extends AbstractBitwise {
     }
     
     @Override
-    public final void executing() {
+    public final void doExecute() {
         log.debug("prepare operator " + operator);
         factorToStack();
         log.debug("execute operator " + operator);

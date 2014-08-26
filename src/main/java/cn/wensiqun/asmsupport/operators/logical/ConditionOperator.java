@@ -24,7 +24,7 @@ public abstract class ConditionOperator extends BinaryLogical {
     }
     
     @Override
-    protected void executing() {
+    protected void doExecute() {
         executingProcess();
         block.getMethod().getStack().printState();
     }

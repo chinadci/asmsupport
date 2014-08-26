@@ -39,7 +39,7 @@ public abstract class AbstractLogical extends AbstractOperator implements Parame
     protected abstract void factorToStack();
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
         factorToStack();
         executingProcess();
     }

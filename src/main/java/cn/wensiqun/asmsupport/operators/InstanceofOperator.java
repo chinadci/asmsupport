@@ -52,7 +52,7 @@ public class InstanceofOperator extends AbstractOperator implements Parameterize
     }
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
         obj.loadToStack(block);
         insnHelper.instanceOf(type.getType());
     }

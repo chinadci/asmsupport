@@ -49,7 +49,7 @@ public class VariableInvoker extends MethodInvoker {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         VariableMeta ve = var.getVariableMeta();
         
         /* if method is non satic*/

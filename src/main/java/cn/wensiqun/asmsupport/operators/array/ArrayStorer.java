@@ -68,7 +68,7 @@ public class ArrayStorer extends AbstractArrayOperator {
 	}
 
 	@Override
-    public void executing() {
+    public void doExecute() {
         log.debug("start get value for store array");
         getValue();
         InstructionHelper ih = block.getInsnHelper();

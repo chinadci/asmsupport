@@ -126,19 +126,11 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
 
     @Override
     public void execute() {
-        /*for (AbstractCrement c : allCrement) {
-            c.before();
-        }*/
-
         compileOrder = insnHelper.getMethod().nextInsNumber();
-        executing();
-
-        /*for (AbstractCrement c : allCrement) {
-            c.after();
-        }*/
+        doExecute();
     }
 
-    protected abstract void executing();
+    protected abstract void doExecute();
     
     /**
      * 

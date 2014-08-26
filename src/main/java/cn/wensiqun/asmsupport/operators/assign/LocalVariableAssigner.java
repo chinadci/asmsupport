@@ -25,7 +25,7 @@ public class LocalVariableAssigner extends Assigner {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         //检测是否可用
         var.availableFor(this);
         log.debug("start execute assign value to variable '" + var.getLocalVariableMeta().getName() + "' from " + value.getParamterizedType());

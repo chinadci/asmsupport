@@ -23,7 +23,7 @@ public class Athrow extends ASMDirect {
     }
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
     	block.getInsnHelper().throwException();
     }
     

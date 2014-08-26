@@ -38,7 +38,7 @@ public class ConstructorInvoker extends MethodInvoker {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         log.debug("new a instance of class :" + this.methodOwner.getName());
         log.debug("put class reference to stack");
         insnHelper.newInstance(methodOwner.getType());

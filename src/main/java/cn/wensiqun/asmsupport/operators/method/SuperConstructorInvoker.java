@@ -26,7 +26,7 @@ public class SuperConstructorInvoker extends MethodInvoker {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         log.debug("call method '"+ name +"' by 'this' key word");
         log.debug("put 'this' to stack");
         insnHelper.loadThis();

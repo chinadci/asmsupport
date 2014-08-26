@@ -20,7 +20,7 @@ public class VisitFieldInsn extends AbstractOperator {
 	}
 
 	@Override
-	protected void executing() {
+	protected void doExecute() {
         block.getInsnHelper().getMv().visitFieldInsn(opcode, owner, name, desc);
 	}
 

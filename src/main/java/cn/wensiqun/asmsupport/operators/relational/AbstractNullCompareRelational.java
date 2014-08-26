@@ -22,7 +22,7 @@ public abstract class AbstractNullCompareRelational extends NumericalAndReferenc
 	
 
 	@Override
-	protected void executing() {
+	protected void doExecute() {
         //if those two factories are both null value
 		//direct push true or false
 		MethodVisitor mv = insnHelper.getMv();
@@ -43,7 +43,7 @@ public abstract class AbstractNullCompareRelational extends NumericalAndReferenc
 	        block.getMethod().getStack().pop();
 	        block.getMethod().getStack().push(Type.INT_TYPE);
 		}else{
-			super.executing();
+			super.doExecute();
 		}
 	}
 

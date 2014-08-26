@@ -27,7 +27,7 @@ public class GlobalVariableAssigner extends Assigner {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
     	if(log.isDebugEnabled()){
             log.debug("assign value to global variable '" + var.getVariableMeta().getName() + "' from " + value  );
         }

@@ -60,7 +60,7 @@ public class StringAppender extends AbstractOperator implements Parameterized{
     }
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
         if(paras.length == 1){
             paras[0].loadToStack(block);
         }else{

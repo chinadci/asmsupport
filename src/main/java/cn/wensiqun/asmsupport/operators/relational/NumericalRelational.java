@@ -2,10 +2,13 @@ package cn.wensiqun.asmsupport.operators.relational;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -44,6 +47,39 @@ public abstract class NumericalRelational extends AbstractRelational {
         }else{
             targetClass = ftrCls2;
         }
+    }
+    
+
+    @Override
+    protected void ifCmp(Type type, int mode, Label label)
+    {
+        super.ifCmp(type, mode, label);
+    }
+    
+    private boolean isZeorValue(Parameterized val)
+    {
+        if(val != null && val instanceof Value){
+            Value v = (Value) val;
+            switch (v.getType().getSort())
+            {
+                case Type.CHAR :
+                    ;
+                case Type.BYTE :
+                    ;
+                case Type.SHORT :
+                    ;
+                case Type.INT :
+                    ;
+                case Type.FLOAT :
+                    ;
+                case Type.LONG :
+                    ;
+                case Type.DOUBLE :
+                    ;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override

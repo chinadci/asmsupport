@@ -60,7 +60,7 @@ public abstract class BreakStack extends AbstractOperator {
 	}
 
     @Override
-	protected final void executing() {
+	protected final void doExecute() {
 	    breakStackExecuting();
 	}
 	

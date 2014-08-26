@@ -15,7 +15,7 @@ public class NOP extends ASMDirect implements UnreachableCodeCheckSkipable {
     }
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
         block.getInsnHelper().nop();
     }
     

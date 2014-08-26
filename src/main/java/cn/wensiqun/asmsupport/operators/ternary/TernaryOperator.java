@@ -90,7 +90,7 @@ public class TernaryOperator extends AbstractOperator implements Parameterized{
     }
     
     @Override
-    protected void executing() {
+    protected void doExecute() {
         Label l1 = new Label();
         Label l2 = new Label();
     	if(exp1 instanceof Jumpable){

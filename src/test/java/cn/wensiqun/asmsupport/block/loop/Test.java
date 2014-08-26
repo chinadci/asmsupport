@@ -7,10 +7,10 @@ public class Test {
 	
 	public static void main(String[] args) throws InterruptedException
     {
-		WhileBlockGeneratorSample.main(args);
+		/*WhileBlockGeneratorSample.main(args);
     	WhileBlockGenerator.main(args);
         Assert.assertEquals(TesterStatics.EXPECTED.toString(), TesterStatics.ACTUALLY.toString());
-        TesterStatics.clear();
+        TesterStatics.clear();*/
         
     }
 

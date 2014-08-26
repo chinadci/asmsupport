@@ -174,7 +174,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
     }
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
         if(!useByOther){
             throw new RuntimeException("this array value not use by other operator");
         }

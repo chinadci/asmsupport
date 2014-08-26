@@ -95,7 +95,7 @@ public abstract class AbstractRelational extends AbstractOperator implements
 	}
 
 	@Override
-    protected void executing() {
+    protected void doExecute() {
 		instructionGenerate();
         defaultStackOperator();
     }
@@ -141,17 +141,12 @@ public abstract class AbstractRelational extends AbstractOperator implements
 	
 	protected abstract void relationalOperatorWithInLoopCondition();
     
-	/*private void stackOperator(){
-        Stack stack = insnHelper.getStack();
-        stack.pop();
-        stack.printState();
-        stack.pop();
-        stack.printState();
-        stack.push(Type.INT_TYPE);
-        stack.printState();
-	}*/
+	protected void ifCmp(final Type type, final int mode, final Label label) 
+	{
+	    insnHelper.ifCmp(type, mode, label);
+	}
 	
-    protected void ifCmp(final Type type, final int mode, final Label label) {
+    private void ifCmp1(final Type type, final int mode, final Label label) {
         MethodVisitor mv = insnHelper.getMv();
         //Stack stack = insnHelper.getStack();
         switch (type.getSort()) {

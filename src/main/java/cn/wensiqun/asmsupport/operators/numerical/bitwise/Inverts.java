@@ -25,7 +25,7 @@ public class Inverts extends UnaryBitwise {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         log.debug("start inverts operaotr : " + this.operator);
         log.debug("factor to stack");
         factorToStack();

@@ -65,7 +65,7 @@ public class MethodInvokeInvoker extends MethodInvoker {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         caller.loadToStack(block);
         if(!Modifier.isStatic(getModifiers())){
             log.debug("call method by method return value");

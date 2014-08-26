@@ -18,7 +18,7 @@ public class Store extends ASMDirect {
     }
 
     @Override
-    protected void executing() {
+    protected void doExecute() {
         insnHelper.storeInsn(var);
     }
 

@@ -25,7 +25,7 @@ public class Addition extends AbstractArithmetic {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         log.debug("start execute add arithmetic operator");
         factorToStack();
         log.debug("execute the add instruction");

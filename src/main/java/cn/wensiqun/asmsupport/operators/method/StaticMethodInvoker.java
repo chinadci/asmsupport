@@ -38,7 +38,7 @@ public class StaticMethodInvoker extends MethodInvoker {
 	}
 
 	@Override
-    public void executing() {
+    public void doExecute() {
         //参数入栈
         argumentsToStack();
         log.debug("invoke static method : " + name);

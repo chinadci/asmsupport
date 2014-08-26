@@ -26,7 +26,7 @@ public class Multiplication extends AbstractArithmetic {
 
 
     @Override
-    public void executing() {
+    public void doExecute() {
         log.debug("start execute sub arithmetic operator");
         factorToStack();
         log.debug("execute the sub instruction");

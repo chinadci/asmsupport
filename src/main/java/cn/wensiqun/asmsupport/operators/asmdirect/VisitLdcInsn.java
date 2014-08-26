@@ -13,7 +13,7 @@ public class VisitLdcInsn extends AbstractOperator {
 	}
 
 	@Override
-	protected void executing() {
+	protected void doExecute() {
         block.getInsnHelper().getMv().visitLdcInsn(cts);
 	}
 

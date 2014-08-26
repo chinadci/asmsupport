@@ -561,6 +561,30 @@ public abstract class InstructionHelper {
      */
     public void dupX2() {
         mv.visitInsn(Opcodes.DUP_X2);
+    }  
+
+    /**
+     * Generates a DUP2 instruction.
+     */
+    public void dup2() {
+        getMv().visitInsn(Opcodes.DUP2);
+    }
+    
+    /**
+     * 
+     * @param type
+     */
+    public void dup(Type type)
+    {
+        int sort = type.getSort();
+        if(sort > 6 && sort < 10)
+        {
+            dup2();
+        }
+        else
+        {
+            dup();
+        }
     }
     
     // ------------------------------------------------------------------------

@@ -40,7 +40,7 @@ public class CheckCast extends AbstractOperator implements Parameterized {
     }
 
     @Override
-    public void executing() {
+    public void doExecute() {
         orginal.loadToStack(block);
         AClass from = orginal.getParamterizedType();
         if(to.equals(from)){

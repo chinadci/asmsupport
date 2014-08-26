@@ -24,7 +24,7 @@ public class Negative extends AbstractPositiveNegative {
     }
     
     @Override
-    public void executing() {
+    public void doExecute() {
         log.debug("run the negative operator");
         factorToStack();
         insnHelper.neg(factor.getParamterizedType().getType());
