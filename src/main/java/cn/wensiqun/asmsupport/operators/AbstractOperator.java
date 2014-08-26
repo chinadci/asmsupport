@@ -3,9 +3,6 @@
  */
 package cn.wensiqun.asmsupport.operators;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
@@ -13,7 +10,6 @@ import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 
@@ -30,12 +26,9 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
 	
     private int compileOrder;
 
-    protected List<AbstractCrement> allCrement;
-
     protected AbstractOperator(ProgramBlock block) {
         this.insnHelper = block.getInsnHelper();
         this.block = block;
-        allCrement = new LinkedList<AbstractCrement>();
         //addQueue();
         block.getQueue().add(this);
     }
@@ -58,8 +51,6 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
         
         verifyArgument();
 
-        checkCrement();
-        
         endingPrepare();
     }
 
@@ -135,16 +126,16 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
 
     @Override
     public void execute() {
-        for (AbstractCrement c : allCrement) {
+        /*for (AbstractCrement c : allCrement) {
             c.before();
-        }
+        }*/
 
         compileOrder = insnHelper.getMethod().nextInsNumber();
         executing();
 
-        for (AbstractCrement c : allCrement) {
+        /*for (AbstractCrement c : allCrement) {
             c.after();
-        }
+        }*/
     }
 
     protected abstract void executing();

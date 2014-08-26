@@ -6,7 +6,6 @@ import org.apache.commons.logging.LogFactory;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -28,16 +27,6 @@ public abstract class NumericalRelational extends AbstractRelational {
         AClass ftrCls2 = AClassUtils.getPrimitiveAClass(factor2.getParamterizedType());
         checkFactorForNumerical(ftrCls1);
         checkFactorForNumerical(ftrCls2);
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(factor1 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor1);
-        }
-        if(factor2 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor2);
-        }
     }
 
     @Override

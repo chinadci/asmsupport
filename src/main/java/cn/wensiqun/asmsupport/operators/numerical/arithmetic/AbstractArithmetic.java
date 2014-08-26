@@ -10,7 +10,6 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -48,16 +47,6 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
         AClass f2cls = factor2.getParamterizedType();
         if(!AClassUtils.arithmetical(f1cls) || !AClassUtils.arithmetical(f2cls)){
             throw new ArithmeticException("cannot execute arithmetic operator whit " + f1cls + " and " + f2cls);
-        }
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(factor1 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor1);
-        }
-        if(factor2 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor2);
         }
     }
 

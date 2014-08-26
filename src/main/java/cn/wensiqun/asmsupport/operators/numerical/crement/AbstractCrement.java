@@ -39,14 +39,15 @@ public abstract class AbstractCrement extends AbstractNumerical {
         }
     }
     
-    public abstract void after();
+    protected abstract void before();
     
-    public abstract void before();
-    
+    protected abstract void after();
 
     @Override
     public void loadToStack(ProgramBlock block) {
+        before();
         factor.loadToStack(block);
+        after();
     }
 
     @Override
@@ -74,12 +75,6 @@ public abstract class AbstractCrement extends AbstractNumerical {
         }
     }
 
-    @Override
-    protected void checkCrement() {
-        if(factor instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor);
-        }
-    }
 
     @Override
     protected void checkAsArgument() {

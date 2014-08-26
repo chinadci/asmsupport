@@ -8,7 +8,6 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.IVariable;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -37,13 +36,6 @@ public abstract class Assigner extends AbstractOperator implements Parameterized
 	@Override
 	protected void verifyArgument() {
 		AClassUtils.autoCastTypeCheck(value.getParamterizedType(), var.getParamterizedType());
-	}
-
-	@Override
-	protected void checkCrement() {
-        if(value != null && value instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) value);
-        }
 	}
 
 	@Override

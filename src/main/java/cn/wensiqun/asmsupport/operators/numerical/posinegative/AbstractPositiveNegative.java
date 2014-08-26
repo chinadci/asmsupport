@@ -4,7 +4,6 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -54,15 +53,6 @@ public abstract class AbstractPositiveNegative extends AbstractNumerical {
             throw new ArithmeticException("cannot execute arithmetic operator whit " + fatCls);
         }
     }
-
-
-    @Override
-    protected void checkCrement() {
-        if(factor instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor);
-        }
-    }
-
 
     @Override
     protected void checkAsArgument() {

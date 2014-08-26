@@ -14,7 +14,6 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.Jumpable;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 
@@ -52,16 +51,6 @@ public class TernaryOperator extends AbstractOperator implements Parameterized{
         
         if(!checkExpression(expCls2, expCls3)){
             throw new ASMSupportException("cannot convert!");
-        }
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(exp2 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) exp2);
-        }
-        if(exp3 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) exp3);
         }
     }
 

@@ -10,7 +10,6 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.Operators;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 
 /**
  * @author 温斯群(Joe Wen)
@@ -36,16 +35,6 @@ public abstract class BinaryBitwise extends AbstractBitwise {
         
         checkFactor(ftrCls1);
         checkFactor(ftrCls2);
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(factor1 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor1);
-        }
-        if(factor2 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor2);
-        }
     }
 
     @Override

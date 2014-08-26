@@ -9,7 +9,6 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 
 /**
  * 用于执行Return
@@ -45,13 +44,6 @@ public class Return extends BreakStack {
     @Override
     protected void verifyArgument() {
         
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(returner instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) returner);
-        }
     }
 
     @Override

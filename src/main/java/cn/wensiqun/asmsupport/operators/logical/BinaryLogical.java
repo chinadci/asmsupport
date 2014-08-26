@@ -8,7 +8,6 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.numerical.bitwise.BinaryBitwise;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 
 /**
  * 
@@ -38,20 +37,6 @@ public abstract class BinaryLogical extends AbstractLogical {
             throw new ASMSupportException("the factor type must be boolean or Boolean for logical operator!");
         }
 	}
-
-
-
-	@Override
-	protected void checkCrement() {
-        if(factor1 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor1);
-        }
-        if(factor2 instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor2);
-        }
-	}
-
-
 
 	@Override
 	protected void checkAsArgument() {

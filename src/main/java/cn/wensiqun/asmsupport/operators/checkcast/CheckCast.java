@@ -10,7 +10,6 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 
 /**
  * 
@@ -33,13 +32,6 @@ public class CheckCast extends AbstractOperator implements Parameterized {
     protected void verifyArgument() {
         // TODO Auto-generated method stub
         
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(orginal instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) orginal);
-        }
     }
 
     @Override

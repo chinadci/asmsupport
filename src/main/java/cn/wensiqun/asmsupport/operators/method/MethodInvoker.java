@@ -20,7 +20,6 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.NoSuchMethod;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.array.ArrayValue;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
@@ -144,15 +143,6 @@ public abstract class MethodInvoker extends AbstractOperator implements
     	    block.addException(exception);
     	}
         
-    }
-
-    @Override
-    protected void checkCrement() {
-        for (Parameterized argu : arguments) {
-            if(argu instanceof AbstractCrement){
-                allCrement.add((AbstractCrement) argu);
-            }
-        }
     }
 
     @Override

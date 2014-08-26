@@ -14,7 +14,6 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.exception.ClassException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -33,18 +32,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
         super(block);
         this.arrayReference = arrayVar;
     }
-    
-	@Override
-	protected final void checkCrement() {
-        if(parDims != null){
-            for(Parameterized par : parDims){
-                if(par instanceof AbstractCrement){
-                    allCrement.add((AbstractCrement) par);
-                }
-            }
-        }
-	}
-	
+
     @Override
 	protected void checkAsArgument() {
         arrayReference.asArgument();

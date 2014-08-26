@@ -3,7 +3,6 @@ package cn.wensiqun.asmsupport.operators.numerical.bitwise;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -24,13 +23,6 @@ public abstract class UnaryBitwise extends AbstractBitwise {
     protected void verifyArgument() {
         AClass ftrCls = factor.getParamterizedType();
         checkFactor(ftrCls);
-    }
-
-    @Override
-    protected void checkCrement() {
-        if(factor instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor);
-        }
     }
 
     @Override

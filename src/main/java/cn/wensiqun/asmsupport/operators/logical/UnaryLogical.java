@@ -9,7 +9,6 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.numerical.bitwise.BinaryBitwise;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AbstractCrement;
 
 /**
  * 
@@ -40,14 +39,7 @@ public abstract class UnaryLogical extends AbstractLogical {
         }
 	}
 
-	@Override
-	protected void checkCrement() {
-		if(factor instanceof AbstractCrement){
-            allCrement.add((AbstractCrement) factor);
-        }
-	}
-
-	@Override
+    @Override
 	protected void checkAsArgument() {
         factor.asArgument();
 	}
