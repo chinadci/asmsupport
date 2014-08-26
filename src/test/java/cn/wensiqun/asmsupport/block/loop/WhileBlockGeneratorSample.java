@@ -5,11 +5,9 @@ import cn.wensiqun.asmsupport.utils.TesterStatics;
 
 public class WhileBlockGeneratorSample {
 
-    private static int i = 10;
-    
 	private static void test()
 	{
-		//int i = 10;
+		int i = 10;
         while(i-- > 0)
         {
 			TesterStatics.expectedPrintln(String.valueOf(i));
