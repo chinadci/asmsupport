@@ -73,6 +73,10 @@ import cn.wensiqun.asmsupport.operators.numerical.crement.AfterDecrement;
 import cn.wensiqun.asmsupport.operators.numerical.crement.AfterIncrement;
 import cn.wensiqun.asmsupport.operators.numerical.crement.BeforeDecrement;
 import cn.wensiqun.asmsupport.operators.numerical.crement.BeforeIncrement;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PostposeDecrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PostposeIncrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PreposeDecrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PreposeIncrment;
 import cn.wensiqun.asmsupport.operators.numerical.posinegative.Negative;
 import cn.wensiqun.asmsupport.operators.relational.Equal;
 import cn.wensiqun.asmsupport.operators.relational.GreaterEqual;
@@ -649,29 +653,29 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     //*******************************************************************************************//
 
     @Override
-    public final BeforeDecrement beforeDec(Crementable crement){
-        return OperatorFactory.newOperator(BeforeDecrement.class, 
+    public final PreposeDecrment preDec(Crementable crement){
+        return OperatorFactory.newOperator(PreposeDecrment.class, 
         		new Class<?>[]{ProgramBlock.class, Crementable.class},
         		getExecutor(), crement);
     }
 
     @Override
-    public final AfterDecrement afterDec(Crementable crement){
-        return OperatorFactory.newOperator(AfterDecrement.class, 
+    public final PostposeDecrment postDec(Crementable crement){
+        return OperatorFactory.newOperator(PostposeDecrment.class, 
         		new Class<?>[]{ProgramBlock.class, Crementable.class},
         		getExecutor(), crement);
     }
 
     @Override
-    public final BeforeIncrement beforeInc(Crementable crement){
-        return OperatorFactory.newOperator(BeforeIncrement.class, 
+    public final PreposeIncrment preInc(Crementable crement){
+        return OperatorFactory.newOperator(PreposeIncrment.class, 
         		new Class<?>[]{ProgramBlock.class, Crementable.class},
         		getExecutor(), crement);
     }
 
     @Override
-    public final AfterIncrement afterInc(Crementable crement){
-        return OperatorFactory.newOperator(AfterIncrement.class, 
+    public final PostposeIncrment postInc(Crementable crement){
+        return OperatorFactory.newOperator(PostposeIncrment.class, 
         		new Class<?>[]{ProgramBlock.class, Crementable.class},
         		getExecutor(), crement);
     }

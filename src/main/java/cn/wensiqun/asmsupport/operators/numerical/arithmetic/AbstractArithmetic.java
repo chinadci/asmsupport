@@ -83,6 +83,7 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
     @Override
     protected void factorToStack() {
         pushFactorToStack(factor1);
+        pushFactorToStack(factor2);
         
         /*AClass ftrCls1 = factor1.getParamterizedType();
         AClass ftrCls2 = factor2.getParamterizedType();
@@ -99,11 +100,9 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
             resultClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder() ){
             log.debug("cast arithmetic factor from " + ftrCls1 + " to " + resultClass);
             insnHelper.cast(ftrCls1.getType(), resultClass.getType());    
-        }*/
-        
-        pushFactorToStack(factor2);
-        
-        /*log.debug("push the second arithmetic factor to stack");
+        }
+
+        log.debug("push the second arithmetic factor to stack");
         factor2.loadToStack(block);
         
         if(!ftrCls2.isPrimitive()){
@@ -116,7 +115,6 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
             log.debug("cast arithmetic factor from " + ftrCls2 + " to " + resultClass);
             insnHelper.cast(ftrCls2.getType(), resultClass.getType());    
         }*/
-        
     }
     
     @Override

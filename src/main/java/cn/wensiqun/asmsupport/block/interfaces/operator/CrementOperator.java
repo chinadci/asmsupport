@@ -1,10 +1,10 @@
 package cn.wensiqun.asmsupport.block.interfaces.operator;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AfterDecrement;
-import cn.wensiqun.asmsupport.operators.numerical.crement.AfterIncrement;
-import cn.wensiqun.asmsupport.operators.numerical.crement.BeforeDecrement;
-import cn.wensiqun.asmsupport.operators.numerical.crement.BeforeIncrement;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PostposeDecrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PostposeIncrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PreposeDecrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PreposeIncrment;
 
 
 /**
@@ -19,32 +19,33 @@ public interface CrementOperator {
      * 生成类似--i操作指令
      * 
      * @param crement
-     * @return {@link BeforeDecrement}
+     * @return {@link PreposeDecrment}
      */
-    public BeforeDecrement beforeDec(Crementable crement);
+    public PreposeDecrment preDec(Crementable crement);
     
     /**
      * 生成类似i--操作指令
      * 
      * @param crement
-     * @return {@link AfterDecrement}
+     * @return {@link PreposeIncrement}
      */
-    public AfterDecrement afterDec(Crementable crement);
+    public PostposeDecrment postDec(Crementable crement);
     
     /**
      * 生成类似++i操作指令
      * 
      * @param crement
-     * @return {@link BeforeIncrement}
+     * @return {@link PreposeIncrement}
      */
-    public BeforeIncrement beforeInc(Crementable crement);
+    public PreposeIncrment preInc(Crementable crement);
     
     /**
      * 生成类似i++操作指令
      * 
      * @param crement
-     * @return {@link AfterIncrement}
+     * @return {@link PostposeIncrement}
      */
-    public AfterIncrement afterInc(Crementable crement);
+    public PostposeIncrment postInc(Crementable crement);
     
 }
+

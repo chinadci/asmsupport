@@ -24,15 +24,19 @@ public class WhileBlockGenerator extends AbstractExample {
 	            public void body(LocalVariable... argus)
 	            {
 	            	final LocalVariable i  = createVariable("i", AClass.LONG_ACLASS, false, Value.value(10));
-	            	whileDo(new While(greaterThan(beforeDec(i), Value.value(0))){
+	            	final LocalVariable b  = createVariable("b", AClass.BYTE_ACLASS, false, Value.value(10));
+	            	whileDo(new While(greaterThan(postDec(i), Value.value(0))){
 
 						@Override
 						public void body() {
 							invokeStatic(TesterStatics.ATesterStatics, 
 		                    		"actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", i));
+							postInc(b);
 						}
 	            		
 	            	});
+					invokeStatic(TesterStatics.ATesterStatics, 
+                    		"actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", b));
 	            	runReturn();
 	            }
 		 });

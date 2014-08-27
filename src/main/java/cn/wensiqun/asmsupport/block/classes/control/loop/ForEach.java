@@ -98,7 +98,7 @@ public abstract class ForEach extends ProgramBlock implements Loop, LocalVariabl
 
             //?new Marker(getExecutor(), continueLbl);
             
-            afterInc(i);
+            postInc(i);
             
             //?new Marker(getExecutor(), conditionLbl);
             condition = lessThan(i, arrayLength(iteratorVar));

@@ -48,11 +48,11 @@ public class CrementOperatorGenerate extends AbstractExample {
 			    //int b = 2;
 			    LocalVariable b = createVariable("b", AClass.INT_ACLASS, false, Value.value(2));
 			    //int c = ++b;
-			    LocalVariable c = createVariable("c", AClass.INT_ACLASS, false, beforeInc(b));
+			    LocalVariable c = createVariable("c", AClass.INT_ACLASS, false, preInc(b));
 			    //d = a++;
-			    LocalVariable d = createVariable("d", AClass.INT_ACLASS, false, afterInc(a));
+			    LocalVariable d = createVariable("d", AClass.INT_ACLASS, false, postInc(a));
 			    //c++;
-			    afterInc(c);
+			    postInc(c);
 			    
 			    //System.out.println("a = " + a);
 				invoke(systemOut, "println", append(Value.value("a = "), a)); 
@@ -80,9 +80,9 @@ public class CrementOperatorGenerate extends AbstractExample {
 				//int count = 10;
 				LocalVariable count = createVariable("count", AClass.INT_ACLASS, false, Value.value(10));
 				// ++count
-				beforeInc(count); 
+				preInc(count); 
 				// --count;
-				beforeDec(count); 
+				postDec(count); 
 				// System.out.println("count = " +  count);
 				invoke(systemOut, "println", append(Value.value("count = "), count));
 				runReturn();

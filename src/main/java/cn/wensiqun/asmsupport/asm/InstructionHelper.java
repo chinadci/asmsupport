@@ -12,6 +12,8 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
+import cn.wensiqun.asmsupport.definition.variable.ExplicitVariable;
+import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 import cn.wensiqun.asmsupport.utils.memory.LocalVariables;
@@ -760,6 +762,32 @@ public abstract class InstructionHelper {
      */
     public void putField(final Type owner, final String name, final Type type) {
         fieldInsn(Opcodes.PUTFIELD, owner, name, type);
+    }
+    
+    /**
+     * 
+     * @param gv
+     */
+    public void commonPutField(ExplicitVariable var) {
+    	if(var instanceof LocalVariable)
+    	{
+    		storeInsn((LocalVariable)var);
+    	}
+    	else if(var instanceof GlobalVariable)
+    	{
+    		GlobalVariable gv = (GlobalVariable) var;
+    		if(gv.getStaticOwner() != null){
+                putStatic(gv.getStaticOwner().getType(), 
+                    gv.getVariableMeta().getName(),
+                    gv.getVariableMeta().getDeclareClass().getType());
+            }else if(gv.getVariableOwner() != null){
+                putField(gv.getVariableOwner().getVariableMeta().getDeclareClass().getType(), 
+                    gv.getVariableMeta().getName(),
+                    gv.getVariableMeta().getDeclareClass().getType());
+            }
+    	}
+    	
+    	
     }
     
     //*******************************************************************************************//
