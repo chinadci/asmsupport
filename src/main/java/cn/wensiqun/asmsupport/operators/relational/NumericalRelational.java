@@ -51,22 +51,23 @@ public abstract class NumericalRelational extends AbstractRelational {
             Value v = (Value) val;
             switch (v.getType().getSort())
             {
+                case Type.BOOLEAN :
+                	return !((Boolean)v.getValue()).booleanValue();
                 case Type.CHAR :
-                    ;
+                    return ((Character)v.getValue()).charValue() == 0;
                 case Type.BYTE :
-                    ;
+                    return ((Byte)v.getValue()).byteValue() == 0;
                 case Type.SHORT :
-                    ;
+                    return ((Short)v.getValue()).shortValue() == 0;
                 case Type.INT :
-                    ;
+                	return ((Integer)v.getValue()).intValue() == 0;
                 case Type.FLOAT :
-                    ;
+                	return ((Float)v.getValue()).floatValue() == 0;
                 case Type.LONG :
-                    ;
+                	return ((Long)v.getValue()).longValue() == 0;
                 case Type.DOUBLE :
-                    ;
+                	return ((Double)v.getValue()).doubleValue() == 0;
             }
-            return true;
         }
         return false;
     }
