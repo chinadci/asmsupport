@@ -24,7 +24,7 @@ public class WhileBlockGenerator extends AbstractExample {
 	            public void body(LocalVariable... argus)
 	            {
                     
-                    /*final LocalVariable intVar1  = createVariable("intVar1", AClass.INT_ACLASS, false, Value.value(10));
+                    final LocalVariable intVar1  = createVariable("intVar1", AClass.INT_ACLASS, false, Value.value(10));
                     
                     whileDo(new While(greaterThan(postDec(intVar1), Value.value(0))){
 
@@ -38,7 +38,7 @@ public class WhileBlockGenerator extends AbstractExample {
                     
                     final LocalVariable intVar2  = createVariable("intVar2", AClass.INT_ACLASS, false, Value.value(10));
                     
-                    whileDo(new While(greaterThan(postDec(intVar1), Value.value(0))){
+                    whileDo(new While(greaterThan(preDec(intVar2), Value.value(0))){
 
                         @Override
                         public void body() {
@@ -82,7 +82,7 @@ public class WhileBlockGenerator extends AbstractExample {
                                     "actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", shortObj));
                         }
                         
-                    });*/
+                    });
                     
                     final LocalVariable longObj  = createVariable("longObj", AClass.LONG_WRAP_ACLASS, false, Value.value(10L));
                     

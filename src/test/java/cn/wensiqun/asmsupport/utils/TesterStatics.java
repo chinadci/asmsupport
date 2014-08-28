@@ -6,6 +6,8 @@ import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 
 public class TesterStatics
 {
+    public static final boolean printable = true;
+    
     public static final StringBuilder EXPECTED = new StringBuilder();
     
     public static final StringBuilder ACTUALLY = new StringBuilder();
@@ -19,14 +21,16 @@ public class TesterStatics
     
     public static void expectedPrintln(String str)
     {
-        EXPECTED.append(str).append("\n");
-        System.out.println(str);
+        EXPECTED.append(str).append("|");
+        if(printable)
+        	System.out.print(str + "|");
     }
 
     public static void actuallyPrintln(String str)
     {
-        ACTUALLY.append(str).append("\n");
-        System.out.println(str);
+        ACTUALLY.append(str).append("|");
+        if(printable)
+        	System.out.print(str + "|");
     }
     
     public static void clear()
