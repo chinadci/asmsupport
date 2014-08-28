@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.operators.numerical.crement.v2;
+package cn.wensiqun.asmsupport.operators.numerical.crement;
 
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;

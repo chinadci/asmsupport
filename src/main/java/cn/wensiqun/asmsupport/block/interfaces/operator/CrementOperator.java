@@ -1,10 +1,10 @@
 package cn.wensiqun.asmsupport.block.interfaces.operator;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PostposeDecrment;
-import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PostposeIncrment;
-import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PreposeDecrment;
-import cn.wensiqun.asmsupport.operators.numerical.crement.v2.PreposeIncrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.PostposeDecrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.PostposeIncrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.PreposeDecrment;
+import cn.wensiqun.asmsupport.operators.numerical.crement.PreposeIncrment;
 
 
 /**
