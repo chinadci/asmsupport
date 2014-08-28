@@ -47,7 +47,7 @@ public abstract class Assigner extends AbstractOperator implements Parameterized
      * auto cast
      */
     protected void autoCast(){
-        autoCast(value.getParamterizedType(), var.getParamterizedType());
+        autoCast(value.getParamterizedType(), var.getParamterizedType(), false);
     }
     
     

@@ -30,7 +30,7 @@ public class Inverts extends UnaryBitwise {
         log.debug("factor to stack");
         factorToStack();
         log.debug("start invert");
-        insnHelper.inverts(resultClass.getType());
+        insnHelper.inverts(targetClass.getType());
     }
 
 }

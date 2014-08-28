@@ -95,12 +95,30 @@ public class WhileBlockGeneratorSample {
         }
     }
     
-    private static void testDoubleObject()
+    private static void testDoubleObjectBefore()
+    {
+        Double d = 10D;
+        while(--d > 0)
+        {
+            TesterStatics.expectedPrintln(String.valueOf(d));
+        }
+    }
+    
+    private static void testDoubleObjectAfter()
     {
         Double d = 10D;
         while(d-- > 0)
         {
             TesterStatics.expectedPrintln(String.valueOf(d));
+        }
+    }
+    
+    private static void test()
+    {
+        Long longObj = 10L;
+        while(--longObj > 0)
+        {
+            TesterStatics.expectedPrintln(String.valueOf(longObj));
         }
     }
     

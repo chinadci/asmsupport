@@ -20,7 +20,7 @@ public class RightShift extends BinaryBitwise {
 
     @Override
     public void innerRunExe() {
-        insnHelper.rightShift(resultClass.getType());
+        insnHelper.rightShift(targetClass.getType());
     }
 
 }

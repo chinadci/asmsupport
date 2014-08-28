@@ -259,6 +259,88 @@ public class Value implements IValue {
         throw new ASMSupportException("cannot support type " + obj.getClass() + " for this method!");
     }
 
+    
+    public static Value number(AClass type, int val)
+    {
+        switch(type.getType().getSort())
+        {
+            case Type.CHAR : 
+                return value((char)val);
+            case Type.BYTE : 
+                return value((byte)val);
+            case Type.SHORT : 
+                return value((short)val);
+            case Type.INT : 
+                return value(val);
+            case Type.FLOAT : 
+                return value((float)val);
+            case Type.LONG : 
+                return value((long)val);
+            case Type.DOUBLE : 
+                return value((double)val);
+        }
+        return null;
+    }
+    
+    /**
+     * 
+     * @param type
+     */
+    public void convert(AClass type)
+    {
+        if(aclass.equals(type))
+        {
+            return;
+        }
+        
+        String valStr = value.toString();
+        switch(type.getType().getSort())
+        {
+            case Type.BOOLEAN :
+                refactor(type, Boolean.parseBoolean(valStr));
+                break;
+            case Type.CHAR : 
+                if(valStr.length() == 1)
+                {
+                    refactor(type, valStr.charAt(0));
+                }
+                else
+                {
+                    refactor(type, Character.valueOf((char)Integer.parseInt(valStr)));
+                }
+                break;
+            case Type.BYTE : 
+                refactor(type, Byte.parseByte(valStr));
+                break;
+            case Type.SHORT : 
+                refactor(type, Short.parseShort(valStr));
+                break;
+            case Type.INT : 
+                refactor(type, Integer.parseInt(valStr));
+                break;
+            case Type.FLOAT : 
+                refactor(type, Float.parseFloat(valStr));
+                break;
+            case Type.LONG : 
+                refactor(type, Long.parseLong(valStr));
+                break;
+            case Type.DOUBLE : 
+                refactor(type, Double.parseDouble(valStr));
+                break;
+        }
+    }
+    
+    /**
+     * 
+     * @param type
+     * @param val
+     */
+    private void refactor(AClass type, Object val)
+    {
+        this.aclass = type;
+        this.setProperites(val);
+    }
+    
     @Override
     public void loadToStack(ProgramBlock block) {
         if (value == null) {

@@ -20,7 +20,7 @@ public class BitOr extends BinaryBitwise {
 
     @Override
     public void innerRunExe() {
-        insnHelper.bitOr(resultClass.getType());
+        insnHelper.bitOr(targetClass.getType());
     }
 
 }

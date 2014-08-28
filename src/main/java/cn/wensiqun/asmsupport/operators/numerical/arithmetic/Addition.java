@@ -29,7 +29,7 @@ public class Addition extends AbstractArithmetic {
         log.debug("start execute add arithmetic operator");
         factorToStack();
         log.debug("execute the add instruction");
-        insnHelper.add(resultClass.getType());
+        insnHelper.add(targetClass.getType());
     }
 
 

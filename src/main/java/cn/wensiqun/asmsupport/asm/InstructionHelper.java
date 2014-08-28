@@ -394,7 +394,8 @@ public abstract class InstructionHelper {
         if (type == Type.VOID_TYPE) {
             push((String) null);
         } else {
-            Type boxed = getBoxedType(type);
+            valueOf(type);
+            /*Type boxed = getBoxedType(type);
             newInstance(boxed);
             if (type.getSize() == 2) {
                 // Pp -> Ppo -> oPpo -> ooPpo -> ooPp -> o
@@ -407,7 +408,7 @@ public abstract class InstructionHelper {
                 swap();
             }
             invokeConstructor(boxed,
-                    new Type[] { type });
+                    new Type[] { type });*/
         }
     }
 
@@ -794,7 +795,7 @@ public abstract class InstructionHelper {
     //                                Arithmetic Operator                                        //
     //*******************************************************************************************//
     
-    private void arithmetic(Type type, int opcode){
+    private void arithmetic(int opcode){
         mv.visitInsn(opcode);
     }      
     
@@ -804,7 +805,7 @@ public abstract class InstructionHelper {
      * @param type which add type
      */
     public void add(Type type){
-        arithmetic(type, type.getOpcode(Opcodes.IADD));
+        arithmetic(type.getOpcode(Opcodes.IADD));
     }
     
     /**
@@ -813,7 +814,7 @@ public abstract class InstructionHelper {
      * @param type which add type
      */
     public void sub(Type type){
-        arithmetic(type, type.getOpcode(Opcodes.ISUB));
+        arithmetic(type.getOpcode(Opcodes.ISUB));
     }
     
     /**
@@ -822,7 +823,7 @@ public abstract class InstructionHelper {
      * @param type which add type
      */
     public void mul(Type type){
-        arithmetic(type, type.getOpcode(Opcodes.IMUL));
+        arithmetic(type.getOpcode(Opcodes.IMUL));
     }
 
     
@@ -832,7 +833,7 @@ public abstract class InstructionHelper {
      * @param type which add type
      */
     public void div(Type type){
-        arithmetic(type, type.getOpcode(Opcodes.IDIV));
+        arithmetic(type.getOpcode(Opcodes.IDIV));
     }
     
     /**
@@ -840,7 +841,7 @@ public abstract class InstructionHelper {
      * @param type
      */
     public void rem(Type type){
-        arithmetic(type, type.getOpcode(Opcodes.IREM));
+        arithmetic(type.getOpcode(Opcodes.IREM));
     }
     
     /**

@@ -68,7 +68,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
         for(int i=0; i<parDims.length; i++){
             cls = ((ArrayClass) cls).getNextDimType();
             parDims[i].loadToStack(block);
-            autoCast(parDims[i].getParamterizedType(), AClass.INT_ACLASS);
+            autoCast(parDims[i].getParamterizedType(), AClass.INT_ACLASS, false);
             ih.arrayLoad(cls.getType());
         }
         

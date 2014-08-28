@@ -169,7 +169,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
         }else{
             ((Parameterized) arrayOrElement).loadToStack(block);
             //auto cast each value for array
-            autoCast(((Parameterized)arrayOrElement).getParamterizedType(), acls);
+            autoCast(((Parameterized)arrayOrElement).getParamterizedType(), acls, false);
         }
     }
 

@@ -133,32 +133,85 @@ public abstract class AbstractOperator extends ByteCodeExecutor {
     protected abstract void doExecute();
     
     /**
+     * <p>Auto cast top element of stack from original type to target type.</p>
      * 
-     * @param from
-     * @param to
+     * <strong>support auto cast type :</strong> 
+     * <ol>
+     *     <li>primitive type to wrapper type(box)</li>
+     *     <li>wrapper type to primitive type(unbox)</li>
+     *     <li>low type to high type</li>
+     *     <li>if enforce is <b>true</b> : allow high type to low type</li>
+     * </ol>
+     * 
+     * @param original
+     * @param target
+     * @param enforce
      */
-    protected void autoCast(AClass from, AClass to){
-        if(from.isChildOrEqual(to)){
+    protected void autoCast(AClass original, AClass target, boolean enforce){
+        if(original.isChildOrEqual(target)){
             return;
         }
         
-        if(from.isPrimitive() && to.isPrimitive()){
-            if(!from.equals(AClass.BOOLEAN_ACLASS) &&
-               !to.equals(AClass.BOOLEAN_ACLASS) && from.getCastOrder() <= to.getCastOrder()){
-                insnHelper.cast(from.getType(), to.getType());
+        if(enforce)
+        {
+            if(original.isPrimitive() && target.isPrimitive())
+            {
+                insnHelper.cast(original.getType(), target.getType());
+                
                 return;
-            }            
-        }else if(from.isPrimitive() && (AClassUtils.getPrimitiveWrapAClass(from).equals(to) || to.equals(AClass.OBJECT_ACLASS))){
-            insnHelper.box(from.getType());
-            return;
-        }else if(AClassUtils.isPrimitiveWrapAClass(from) && from.equals(AClassUtils.getPrimitiveWrapAClass(to))){
-            Type primType = InstructionHelper.getUnBoxedType(from.getType());
-            insnHelper.unbox(from.getType());
-            insnHelper.cast(primType, to.getType());
-            return;
+            }
+            else if(original.isPrimitive() && AClassUtils.isPrimitiveWrapAClass(target))
+            {
+                Type targetPrimitiveType = AClassUtils.getPrimitiveAClass(target).getType();
+                
+                insnHelper.cast(original.getType(), targetPrimitiveType);
+                
+                insnHelper.box(targetPrimitiveType);
+                
+                return;
+            }
+            else if(AClassUtils.isPrimitiveWrapAClass(original) && target.isPrimitive())
+            {
+                insnHelper.unbox(original.getType());
+                
+                Type originalPrimitiveType = AClassUtils.getPrimitiveAClass(original).getType();
+
+                insnHelper.cast(originalPrimitiveType, target.getType());
+                
+                return;
+            }
+            else if(original.isPrimitive() && target.equals(AClass.OBJECT_ACLASS))
+            {
+                insnHelper.box(original.getType());
+                return;
+            }
+        }
+        else
+        {
+            if(original.isPrimitive() && target.isPrimitive()){
+                if(!original.equals(AClass.BOOLEAN_ACLASS) && 
+                   !target.equals(AClass.BOOLEAN_ACLASS) && 
+                   original.getCastOrder() <= target.getCastOrder()
+                 ){
+                    insnHelper.cast(original.getType(), target.getType());
+                    return;
+                }            
+            }
+            else if(original.isPrimitive() && (AClassUtils.getPrimitiveWrapAClass(original).equals(target) || target.equals(AClass.OBJECT_ACLASS)))
+            {
+                insnHelper.box(original.getType());
+                return;
+            }
+            else if(AClassUtils.isPrimitiveWrapAClass(original) && original.equals(AClassUtils.getPrimitiveWrapAClass(target)))
+            {
+                Type primType = InstructionHelper.getUnBoxedType(original.getType());
+                insnHelper.unbox(original.getType());
+                insnHelper.cast(primType, target.getType());
+                return;
+            }
         }
         
-        throw new ASMSupportException("cannot auto cast from " + from + " to " + to + " also you can use CheckCast to try again!");
+        throw new ASMSupportException("cannot auto cast from " + original + " to " + target + " also you can use CheckCast to try again!");
         
     }
     

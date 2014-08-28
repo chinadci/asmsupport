@@ -33,13 +33,13 @@ public abstract class UnaryBitwise extends AbstractBitwise {
     @Override
     protected void initAdditionalProperties() {
         AClass ftrCls = factor.getParamterizedType();
-        resultClass = AClassUtils.getPrimitiveAClass(ftrCls);
+        targetClass = AClassUtils.getPrimitiveAClass(ftrCls);
     }
     
     @Override
     protected final void factorToStack() {
         factor.loadToStack(block);
-        insnHelper.unbox(resultClass.getType());
+        insnHelper.unbox(targetClass.getType());
     }
     
     

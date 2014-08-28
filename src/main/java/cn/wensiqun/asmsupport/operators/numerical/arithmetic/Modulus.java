@@ -30,7 +30,7 @@ public class Modulus extends AbstractArithmetic {
         log.debug("start execute sub arithmetic operator");
         factorToStack();
         log.debug("execute the sub instruction");
-        insnHelper.rem(resultClass.getType());
+        insnHelper.rem(targetClass.getType());
     }
 
 

@@ -43,7 +43,7 @@ public abstract class AbstractPositiveNegative extends AbstractNumerical {
     @Override
     protected void initAdditionalProperties() {
         AClass fatCls = factor.getParamterizedType();
-        resultClass = AClassUtils.getPrimitiveAClass(fatCls);
+        targetClass = AClassUtils.getPrimitiveAClass(fatCls);
     }
     
     @Override

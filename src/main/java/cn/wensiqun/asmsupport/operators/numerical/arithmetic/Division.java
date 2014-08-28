@@ -30,7 +30,7 @@ public class Division extends AbstractArithmetic {
         log.debug("start execute sub arithmetic operator");
         factorToStack();
         log.debug("execute the sub instruction");
-        insnHelper.div(resultClass.getType());
+        insnHelper.div(targetClass.getType());
     }
 
 

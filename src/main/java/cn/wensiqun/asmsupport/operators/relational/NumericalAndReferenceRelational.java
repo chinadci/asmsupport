@@ -42,18 +42,6 @@ public abstract class NumericalAndReferenceRelational extends AbstractRelational
     }
 
     @Override
-    protected void initAdditionalProperties() {
-        AClass ftrCls1 = AClassUtils.getPrimitiveAClass(factor1.getParamterizedType());
-        AClass ftrCls2 = AClassUtils.getPrimitiveAClass(factor2.getParamterizedType());
-        
-        if(ftrCls1.getCastOrder() > ftrCls2.getCastOrder()){
-            targetClass = ftrCls1;
-        }else{
-            targetClass = ftrCls2;
-        }
-    }
-
-    @Override
     protected void factorsToStack() {
         AClass ftrCls1 = factor1.getParamterizedType();
         AClass ftrCls2 = factor2.getParamterizedType();

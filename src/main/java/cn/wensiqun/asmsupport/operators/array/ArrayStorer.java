@@ -74,10 +74,10 @@ public class ArrayStorer extends AbstractArrayOperator {
         InstructionHelper ih = block.getInsnHelper();
         log.debug("push the last dim index to stack");
         lastDim.loadToStack(block);
-        autoCast(lastDim.getParamterizedType(), AClass.INT_ACLASS);
+        autoCast(lastDim.getParamterizedType(), AClass.INT_ACLASS, false);
         
         value.loadToStack(block);
-        autoCast(value.getParamterizedType(), storeClass);
+        autoCast(value.getParamterizedType(), storeClass, false);
         log.debug("store value to corresponse to index of the array");
         ih.arrayStore(storeClass.getType());
     }

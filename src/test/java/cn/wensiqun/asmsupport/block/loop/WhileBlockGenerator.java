@@ -23,21 +23,81 @@ public class WhileBlockGenerator extends AbstractExample {
 	            @Override
 	            public void body(LocalVariable... argus)
 	            {
-	            	final LocalVariable i  = createVariable("i", AClass.LONG_ACLASS, false, Value.value(10));
-	            	final LocalVariable b  = createVariable("b", AClass.BYTE_ACLASS, false, Value.value(10));
-	            	whileDo(new While(greaterThan(postDec(i), Value.value(0))){
+                    
+                    /*final LocalVariable intVar1  = createVariable("intVar1", AClass.INT_ACLASS, false, Value.value(10));
+                    
+                    whileDo(new While(greaterThan(postDec(intVar1), Value.value(0))){
+
+                        @Override
+                        public void body() {
+                            invokeStatic(TesterStatics.ATesterStatics, 
+                                    "actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", intVar1));
+                        }
+                        
+                    });
+                    
+                    final LocalVariable intVar2  = createVariable("intVar2", AClass.INT_ACLASS, false, Value.value(10));
+                    
+                    whileDo(new While(greaterThan(postDec(intVar1), Value.value(0))){
+
+                        @Override
+                        public void body() {
+                            invokeStatic(TesterStatics.ATesterStatics, 
+                                    "actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", intVar2));
+                        }
+                        
+                    });
+	                
+                    final LocalVariable byteVar  = createVariable("byteVar", AClass.BYTE_ACLASS, false, Value.value((byte)10));
+                    
+	            	whileDo(new While(greaterThan(postDec(byteVar), Value.value(0))){
 
 						@Override
 						public void body() {
 							invokeStatic(TesterStatics.ATesterStatics, 
-		                    		"actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", i));
-							postInc(b);
+		                    		"actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", byteVar));
 						}
 	            		
 	            	});
-					invokeStatic(TesterStatics.ATesterStatics, 
-                    		"actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", b));
-	            	runReturn();
+	            	
+	            	final LocalVariable doubleVar  = createVariable("doubleVar", AClass.DOUBLE_ACLASS, false, Value.value(10D));
+                    
+                    whileDo(new While(greaterThan(preDec(doubleVar), Value.value(0))){
+
+                        @Override
+                        public void body() {
+                            invokeStatic(TesterStatics.ATesterStatics, 
+                                    "actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", doubleVar));
+                        }
+                        
+                    });
+                    
+                    final LocalVariable shortObj  = createVariable("shortObj", AClass.SHORT_WRAP_ACLASS, false, Value.value((short)10));
+                    
+                    whileDo(new While(greaterThan(postDec(shortObj), Value.value((short)0))){
+
+                        @Override
+                        public void body() {
+                            invokeStatic(TesterStatics.ATesterStatics, 
+                                    "actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", shortObj));
+                        }
+                        
+                    });*/
+                    
+                    final LocalVariable longObj  = createVariable("longObj", AClass.LONG_WRAP_ACLASS, false, Value.value(10L));
+                    
+                    whileDo(new While(greaterThan(preDec(longObj), Value.value(0))){
+
+                        @Override
+                        public void body() {
+                            invokeStatic(TesterStatics.ATesterStatics, 
+                                    "actuallyPrintln", invokeStatic(AClass.STRING_ACLASS, "valueOf", longObj));
+                        }
+                        
+                    });
+                    
+                    
+					runReturn();
 	            }
 		 });
 	        

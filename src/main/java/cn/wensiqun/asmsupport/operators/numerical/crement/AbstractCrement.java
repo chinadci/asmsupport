@@ -55,7 +55,7 @@ public abstract class AbstractCrement extends AbstractNumerical {
 
     @Override
     protected void initAdditionalProperties() {
-        resultClass = factor.getParamterizedType();
+        targetClass = factor.getParamterizedType();
     }
 
     @Override
@@ -74,11 +74,11 @@ public abstract class AbstractCrement extends AbstractNumerical {
     @Override
     protected void doExecute()
     {
-    	Type type = resultClass.getType();
+    	Type type = targetClass.getType();
     	boolean asArgument = !block.getQueue().contains(this); 
     	
     	if(factor instanceof LocalVariable && 
-    	           Type.INT_TYPE.equals(type))
+    	   Type.INT_TYPE.equals(targetClass.getType()))
         {
     		if(asArgument && post)
     			factor.loadToStack(block);
@@ -91,7 +91,8 @@ public abstract class AbstractCrement extends AbstractNumerical {
         }
         else
         {
-            AClass primitiveClass = AClassUtils.getPrimitiveAClass(resultClass);
+            AClass primitiveClass = AClassUtils.getPrimitiveAClass(targetClass);
+            Type   primitiveType  = primitiveClass.getType();
             
             //factor load to stack
             factor.loadToStack(block);
@@ -99,20 +100,20 @@ public abstract class AbstractCrement extends AbstractNumerical {
             if(asArgument && post)
             	insnHelper.dup(type);
             
-            //cast and unbox
-            autoCast(resultClass, primitiveClass);
+            //unbox
+            autoCast(targetClass, primitiveClass, true);
             
             //load 1 to stack 
             getIncreaseValue().loadToStack(block);
 
             //generate xadd/xsub for decrement
             if(Operators.INCREMENT.equals(operator))
-            	insnHelper.add(type);
+            	insnHelper.add(primitiveType);
             else
-                insnHelper.sub(type);
+                insnHelper.sub(primitiveType);
             
-            //cast and box
-            autoCast(primitiveClass, resultClass);
+            //box and cast
+            autoCast(primitiveType.getSort() <= Type.INT ? AClass.INT_ACLASS : primitiveClass, targetClass, true);
             
             if(asArgument && !post)
             	insnHelper.dup(type);
@@ -125,11 +126,19 @@ public abstract class AbstractCrement extends AbstractNumerical {
     
     private Value getIncreaseValue(){
         AClass type = factor.getParamterizedType();
-        if(type.equals(AClass.DOUBLE_ACLASS)){
+        if(type.equals(AClass.DOUBLE_ACLASS) || 
+           type.equals(AClass.DOUBLE_WRAP_ACLASS))
+        {
             return Value.value(1d);
-        }else if(type.equals(AClass.FLOAT_ACLASS)){
+        }
+        else if(type.equals(AClass.FLOAT_ACLASS) || 
+                type.equals(AClass.FLOAT_WRAP_ACLASS))
+        {
             return Value.value(1f);
-        }else if(type.equals(AClass.LONG_ACLASS)){
+        }
+        else if(type.equals(AClass.LONG_ACLASS) || 
+                type.equals(AClass.LONG_WRAP_ACLASS))
+        {
             return Value.value(1l);
         }else{
             return Value.value(1);

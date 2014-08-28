@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
@@ -64,10 +65,16 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
         f2cls = AClassUtils.getPrimitiveAClass(f2cls);
         
         if(f1cls.getCastOrder() > f2cls.getCastOrder()){
-            resultClass = f1cls;
+            targetClass = f1cls;
         }else{
-            resultClass = f2cls;
+            targetClass = f2cls;
         }
+        
+        if(factor1 instanceof Value)
+            ((Value)factor1).convert(targetClass);
+        
+        if(factor2 instanceof Value)
+            ((Value)factor2).convert(targetClass);
     }
     
     @Override

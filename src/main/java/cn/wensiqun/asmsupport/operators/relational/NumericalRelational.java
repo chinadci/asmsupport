@@ -23,7 +23,7 @@ public abstract class NumericalRelational extends AbstractRelational {
     protected NumericalRelational(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
         super(block, factor1, factor2);
     }
-
+    
     @Override
     protected void verifyArgument() {
         AClass ftrCls1 = AClassUtils.getPrimitiveAClass(factor1.getParamterizedType());
@@ -36,17 +36,6 @@ public abstract class NumericalRelational extends AbstractRelational {
     protected void checkAsArgument() {
         factor1.asArgument();
         factor2.asArgument();
-    }
-
-    @Override
-    protected void initAdditionalProperties() {
-        AClass ftrCls1 = AClassUtils.getPrimitiveAClass(factor1.getParamterizedType());
-        AClass ftrCls2 = AClassUtils.getPrimitiveAClass(factor2.getParamterizedType());
-        if(ftrCls1.getCastOrder() > ftrCls2.getCastOrder()){
-            targetClass = ftrCls1;
-        }else{
-            targetClass = ftrCls2;
-        }
     }
     
 
@@ -84,7 +73,9 @@ public abstract class NumericalRelational extends AbstractRelational {
 
     @Override
     protected void factorsToStack() {
-        AClass ftrCls1 = factor1.getParamterizedType();
+        pushFactorToStack(factor1);
+        pushFactorToStack(factor2);
+        /*AClass ftrCls1 = factor1.getParamterizedType();
         AClass ftrCls2 = factor2.getParamterizedType();
 
         log.debug("push the first factor to stack");
@@ -113,8 +104,33 @@ public abstract class NumericalRelational extends AbstractRelational {
             targetClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder()){
             log.debug("cast from " + ftrCls2 + " to " + targetClass);
             insnHelper.cast(ftrCls2.getType(), targetClass.getType());
+        }*/
+        
+    }
+    
+    private void pushFactorToStack(Parameterized factor){
+        
+        AClass factorCls = factor.getParamterizedType();
+        
+        //factor to stack
+        log.debug("push the first arithmetic factor to stack");
+        factor.loadToStack(block);
+        
+        AClass factorPrimitiveAClass = factorCls;
+        //unbox if needs
+        if(!factorCls.isPrimitive()){
+            log.debug("unbox " + factorCls);
+            insnHelper.unbox(factorCls.getType());
+            factorPrimitiveAClass = AClassUtils.getPrimitiveAClass(factorCls);
         }
         
+        //cast if needs
+        if(factorPrimitiveAClass.getCastOrder() < targetClass.getCastOrder() &&
+           targetClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder())
+        {
+            log.debug("cast factor from " + factorCls + " to " + targetClass);
+            insnHelper.cast(factorPrimitiveAClass.getType(), targetClass.getType());    
+        }
     }
     
 }

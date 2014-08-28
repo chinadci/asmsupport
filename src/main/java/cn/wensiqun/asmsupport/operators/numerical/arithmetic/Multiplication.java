@@ -30,7 +30,7 @@ public class Multiplication extends AbstractArithmetic {
         log.debug("start execute sub arithmetic operator");
         factorToStack();
         log.debug("execute the sub instruction");
-        insnHelper.mul(resultClass.getType());
+        insnHelper.mul(targetClass.getType());
     }
 
 

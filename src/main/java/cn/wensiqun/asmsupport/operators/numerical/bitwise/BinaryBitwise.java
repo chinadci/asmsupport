@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.operators.Operators;
 
 /**
@@ -49,10 +50,16 @@ public abstract class BinaryBitwise extends AbstractBitwise {
         AClass ftrCls2 = factor2.getParamterizedType();
         
         if(ftrCls2.getCastOrder() < ftrCls1.getCastOrder()){
-            resultClass = ftrCls1;
+            targetClass = ftrCls1;
         }else{
-            resultClass = ftrCls2;
+            targetClass = ftrCls2;
         }
+        
+        if(factor1 instanceof Value)
+            ((Value)factor1).convert(targetClass);
+        
+        if(factor2 instanceof Value)
+            ((Value)factor2).convert(targetClass);
     }
 
     @Override
@@ -60,19 +67,19 @@ public abstract class BinaryBitwise extends AbstractBitwise {
         log.debug("push the first arithmetic factor to stack");
         factor1.loadToStack(block);
         if(log.isDebugEnabled()){
-            if(!factor1.getParamterizedType().equals(resultClass)){
-                log.debug("cast arithmetic factor from " + factor1.getParamterizedType() + " to " + resultClass);
+            if(!factor1.getParamterizedType().equals(targetClass)){
+                log.debug("cast arithmetic factor from " + factor1.getParamterizedType() + " to " + targetClass);
             }
         }
         insnHelper.unbox(factor1.getParamterizedType().getType());
-        insnHelper.cast(factor1.getParamterizedType().getType(), resultClass.getType());    
+        insnHelper.cast(factor1.getParamterizedType().getType(), targetClass.getType());    
         
         log.debug("push the second arithmetic factor to stack");
         factor2.loadToStack(block);
         
         if(log.isDebugEnabled()){
-            if(!factor2.getParamterizedType().equals(resultClass)){
-                log.debug("cast arithmetic factor from " + factor2.getParamterizedType() + " to " + resultClass);
+            if(!factor2.getParamterizedType().equals(targetClass)){
+                log.debug("cast arithmetic factor from " + factor2.getParamterizedType() + " to " + targetClass);
             }
         }
         
@@ -83,7 +90,7 @@ public abstract class BinaryBitwise extends AbstractBitwise {
            operator.equals(Operators.UNSIGNED_RIGHT_SHIFT) ){
             insnHelper.cast(factor2.getParamterizedType().getType(), AClass.INT_ACLASS.getType());
         }else{
-            insnHelper.cast(factor2.getParamterizedType().getType(), resultClass.getType());
+            insnHelper.cast(factor2.getParamterizedType().getType(), targetClass.getType());
         }
     }
     

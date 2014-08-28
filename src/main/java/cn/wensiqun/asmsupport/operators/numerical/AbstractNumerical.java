@@ -5,12 +5,14 @@ package cn.wensiqun.asmsupport.operators.numerical;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.numerical.arithmetic.AbstractArithmetic;
+import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
  * @author 温斯群(Joe Wen)
@@ -22,7 +24,7 @@ public abstract class AbstractNumerical extends AbstractOperator implements
     private static Log log = LogFactory.getLog(AbstractArithmetic.class);
 
     /**执行的结果类型 */
-    protected AClass resultClass;
+    protected AClass targetClass;
     
     protected String operator;
     
@@ -48,23 +50,26 @@ public abstract class AbstractNumerical extends AbstractOperator implements
         log.debug("push the first arithmetic factor to stack");
         factor.loadToStack(block);
         
+        AClass factorPrimitiveAClass = factorCls;
         //unbox if needs
         if(!factorCls.isPrimitive()){
             log.debug("unbox " + factorCls);
             insnHelper.unbox(factorCls.getType());
+            factorPrimitiveAClass = AClassUtils.getPrimitiveAClass(factorCls);
         }
         
         //cast if needs
-        if(!factorCls.equals(resultClass) &&
-            resultClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder() ){
-            log.debug("cast factor from " + factorCls + " to " + resultClass);
-            insnHelper.cast(factorCls.getType(), resultClass.getType());    
-        }
+        if(factorPrimitiveAClass.getCastOrder() < targetClass.getCastOrder() &&
+            targetClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder())
+         {
+             log.debug("cast factor from " + factorCls + " to " + targetClass);
+             insnHelper.cast(factorPrimitiveAClass.getType(), targetClass.getType());    
+         }
     }
     
     @Override
     public final AClass getParamterizedType() {
-        return resultClass;
+        return targetClass;
     }
     
     

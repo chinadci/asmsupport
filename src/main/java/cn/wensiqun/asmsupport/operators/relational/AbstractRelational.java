@@ -12,9 +12,11 @@ import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.Jumpable;
+import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
  * 
@@ -46,11 +48,30 @@ public abstract class AbstractRelational extends AbstractOperator implements
         super(block);
         this.factor1 = factor1;
         this.factor2 = factor2;
-
         falseLbl = new Label();
         trueLbl = new Label();
     }
 
+    @Override
+    protected void initAdditionalProperties() {
+        //replace Value object
+        
+        AClass ftrCls1 = AClassUtils.getPrimitiveAClass(factor1.getParamterizedType());
+        AClass ftrCls2 = AClassUtils.getPrimitiveAClass(factor2.getParamterizedType());
+        
+        if(ftrCls1.getCastOrder() > ftrCls2.getCastOrder()){
+            targetClass = ftrCls1;
+        }else{
+            targetClass = ftrCls2;
+        }
+        
+        if(factor1 instanceof Value)
+            ((Value)factor1).convert(targetClass);
+        
+        if(factor2 instanceof Value)
+            ((Value)factor2).convert(targetClass);
+    }
+    
     protected final void checkFactorForNumerical(AClass ftrCls){
         if(!ftrCls.isPrimitive() || 
            ftrCls.equals(AClass.BOOLEAN_ACLASS)){

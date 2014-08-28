@@ -29,7 +29,7 @@ public class Subtraction extends AbstractArithmetic {
         log.debug("start execute sub arithmetic operator");
         factorToStack();
         log.debug("execute the sub instruction");
-        insnHelper.sub(resultClass.getType());
+        insnHelper.sub(targetClass.getType());
     }
 
 
