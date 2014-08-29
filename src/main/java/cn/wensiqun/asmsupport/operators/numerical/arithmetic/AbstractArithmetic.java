@@ -59,16 +59,8 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
 
     @Override
     protected void initAdditionalProperties() {
-        AClass f1cls = factor1.getParamterizedType();
-        AClass f2cls = factor2.getParamterizedType();
-        f1cls = AClassUtils.getPrimitiveAClass(f1cls);
-        f2cls = AClassUtils.getPrimitiveAClass(f2cls);
         
-        if(f1cls.getCastOrder() > f2cls.getCastOrder()){
-            targetClass = f1cls;
-        }else{
-            targetClass = f2cls;
-        }
+        targetClass = AClassUtils.getArithmeticalResultType(factor1.getParamterizedType(), factor2.getParamterizedType());
         
         if(factor1 instanceof Value)
             ((Value)factor1).convert(targetClass);

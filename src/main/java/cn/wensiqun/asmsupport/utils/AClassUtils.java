@@ -19,6 +19,7 @@ import cn.wensiqun.asmsupport.clazz.ProductClass;
 import cn.wensiqun.asmsupport.clazz.SemiClass;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
+import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.utils.lang.ClassUtils;
 import cn.wensiqun.asmsupport.utils.reflet.MethodUtils;
 
@@ -44,22 +45,6 @@ public class AClassUtils {
            aclass.getName().equals(Float.class.getName()) ||
            aclass.getName().equals(Double.class.getName()) ||
            aclass.getName().equals(Boolean.class.getName())){
-            return true;
-        }
-        return false;
-    }
-    
-    public static boolean isArithmetical(AClass aclass){
-        if(aclass.isPrimitive() && !aclass.getName().equals(boolean.class.getName())){
-            return true;
-        }else if(isPrimitiveWrapAClass(aclass) && !aclass.getName().equals(Boolean.class.getName())){
-            return true;
-        }
-        return false;
-    }
-    
-    public static boolean canUnboxOrBox(AClass aclass){
-        if(aclass.isPrimitive() || isPrimitiveWrapAClass(aclass)){
             return true;
         }
         return false;
@@ -106,6 +91,72 @@ public class AClassUtils {
         }
         return aclass;
     }
+    
+    /**
+     * 传入一组可以参与算术运算的类型，获取这些类型的值计算后的最终类型
+     * 
+     * @param type
+     * @return
+     */
+    public static AClass getArithmeticalResultType(AClass... types)
+    {
+        AClass resultType = null;
+        for(AClass type : types)
+        {
+            type = getPrimitiveAClass(type);
+            
+            if(isArithmetical(type))
+            {
+                int typeSort = type.getType().getSort();
+                if(resultType == null ||
+                   typeSort > resultType.getType().getSort())
+                {
+                    if(typeSort <= Type.INT)
+                    {
+                        resultType = AClass.INT_ACLASS;
+                    }
+                    else
+                    {
+                        resultType = type;
+                    }
+                }
+            }
+            else
+            {
+                throw new ASMSupportException(type + " dosn't support arithmetical operator.");
+            }
+        }
+        return resultType;
+    }
+    
+    /**
+     * 判断传入的class是否可以参与算术运算操作
+     * 
+     * @param aclass
+     * @return
+     */
+    public static boolean isArithmetical(AClass aclass){
+        if(aclass.isPrimitive() && !aclass.getName().equals(boolean.class.getName())){
+            return true;
+        }else if(isPrimitiveWrapAClass(aclass) && !aclass.getName().equals(Boolean.class.getName())){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 判断传入的class是否可以做unbox和box操作
+     * 
+     * @param aclass
+     * @return
+     */
+    public static boolean boxUnboxable(AClass aclass){
+        if(aclass.isPrimitive() || isPrimitiveWrapAClass(aclass)){
+            return true;
+        }
+        return false;
+    }
+    
     
     /**
      * 判断是否可见
@@ -346,7 +397,7 @@ public class AClassUtils {
     public static int allArgumentWithBoxAndUnBoxCountExceptSelf(AClass[] aclasses){
         int size = 0;
         for(AClass a : aclasses){
-            if(AClassUtils.canUnboxOrBox(a)){
+            if(AClassUtils.boxUnboxable(a)){
                 if(size == 0){
                     size = 1;
                 }
@@ -378,7 +429,7 @@ public class AClassUtils {
 
         newa[index] = AClassUtils.getPrimitiveAClass(orgi[index]);
         if(index == orgi.length - 1){
-            if(AClassUtils.canUnboxOrBox(orgi[index])){
+            if(AClassUtils.boxUnboxable(orgi[index])){
                 AClass[] newb = new AClass[newa.length];
                 System.arraycopy(newa, 0, newb, 0, newa.length);
                 newb[index] = AClassUtils.getPrimitiveWrapAClass(orgi[index]);
@@ -391,7 +442,7 @@ public class AClassUtils {
                 list.add(newa);
             }
         }else{
-            if(AClassUtils.canUnboxOrBox(orgi[index])){
+            if(AClassUtils.boxUnboxable(orgi[index])){
                 AClass[] newb = new AClass[newa.length];
                 System.arraycopy(newa, 0, newb, 0, newa.length);
                 newb[index] = AClassUtils.getPrimitiveWrapAClass(orgi[index]);
