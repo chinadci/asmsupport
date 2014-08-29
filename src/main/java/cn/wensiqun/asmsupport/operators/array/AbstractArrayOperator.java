@@ -51,7 +51,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
 		
 		if(ArrayUtils.isNotEmpty(parDims)){
 			for(Parameterized par : parDims){
-				AClassUtils.autoCastTypeCheck(par.getParamterizedType(), AClass.INT_ACLASS);
+				AClassUtils.checkAssignable(par.getParamterizedType(), AClass.INT_ACLASS);
 			}
 		}
 		

@@ -21,12 +21,12 @@ public class GreaterEqual extends NumericalRelational {
 
     @Override
     protected void relationalOperator() {
-        ifCmp(targetClass.getType(), InstructionHelper.LT, falseLbl);
+        insnHelper.ifCmp(targetClass.getType(), InstructionHelper.LT, falseLbl);
     }
 
 	@Override
 	protected void relationalOperatorWithInLoopCondition() {
-        ifCmp(targetClass.getType(), InstructionHelper.GE, falseLbl);
+	    insnHelper.ifCmp(targetClass.getType(), InstructionHelper.GE, falseLbl);
 	}
 
 }

@@ -15,5 +15,12 @@ public class Test {
         Assert.assertEquals(TesterStatics.EXPECTED.toString(), TesterStatics.ACTUALLY.toString());
         TesterStatics.clear();
     }
+	
+    
+    @org.junit.Test
+    public void test() throws InterruptedException
+    {
+        main(null);
+    }
 
 }

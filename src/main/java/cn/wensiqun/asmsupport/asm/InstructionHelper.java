@@ -42,8 +42,12 @@ public abstract class InstructionHelper {
         this.mv = new StackLocalMethodVisitor(mv, method.getStack());
         this.method = method;
         this.locals = this.method.getLocals();
-        /*this.stack = this.method.getStack();*/
     }
+    
+    /**
+     * Test use
+     */
+    InstructionHelper(){}
 
     public AMethod getMethod() {
         return method;
@@ -1010,6 +1014,20 @@ public abstract class InstructionHelper {
      * Constant for the {@link #ifCmp ifCmp} method.
      */
     public static final int LE = Opcodes.IFLE;
+    
+    public int getReverseCmp(int opcode)
+    {
+        if(opcode == Opcodes.IFNONNULL)
+            return Opcodes.IFNULL;
+        
+        if(opcode == Opcodes.IFNULL)
+            return Opcodes.IFNONNULL;
+        
+        if(opcode % 2 == 0)
+            return opcode - 1;
+        else
+            return opcode + 1;
+    }
     
     /**
      * Generates the instructions to jump to a label based on the comparison of

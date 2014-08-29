@@ -1,5 +1,7 @@
 package cn.wensiqun.asmsupport.block.exception;
 
+import org.junit.Test;
+
 import cn.wensiqun.asmsupport.utils.TesterStatics;
 import junit.framework.Assert;
 
@@ -38,5 +40,11 @@ public class TestAll
         TesterStatics.clear();
         
         
+    }
+    
+    @Test
+    public void test() throws InterruptedException
+    {
+        main(null);
     }
 }

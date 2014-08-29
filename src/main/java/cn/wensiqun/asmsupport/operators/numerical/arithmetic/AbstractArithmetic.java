@@ -46,7 +46,7 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
     protected void verifyArgument() {
         AClass f1cls = factor1.getParamterizedType();
         AClass f2cls = factor2.getParamterizedType();
-        if(!AClassUtils.arithmetical(f1cls) || !AClassUtils.arithmetical(f2cls)){
+        if(!AClassUtils.isArithmetical(f1cls) || !AClassUtils.isArithmetical(f2cls)){
             throw new ArithmeticException("cannot execute arithmetic operator whit " + f1cls + " and " + f2cls);
         }
     }

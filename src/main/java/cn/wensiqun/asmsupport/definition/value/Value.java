@@ -22,20 +22,15 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
  */
 public class Value implements IValue {
 
-    private AClass aclass;
+    private AClass cls;
     private Object value;
-    
-    @Override
-	public String toString() {
-		return value + "(type is " + aclass + ")";
-	}
 
     /**
      * boolean值
      * @param value
      */
 	private Value(Boolean value) {
-        this.aclass = AClass.BOOLEAN_ACLASS;
+        this.cls = AClass.BOOLEAN_ACLASS;
         setProperites(value);
     }
 
@@ -44,7 +39,7 @@ public class Value implements IValue {
 	 * @param value
 	 */
 	private Value(Byte value) {
-        this.aclass = AClass.BYTE_ACLASS;
+        this.cls = AClass.BYTE_ACLASS;
         setProperites(value);
     }
 
@@ -54,7 +49,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(Short value) {
-        this.aclass = AClass.SHORT_ACLASS;
+        this.cls = AClass.SHORT_ACLASS;
         setProperites(value);
     }
 
@@ -64,7 +59,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(Character value) {
-        this.aclass = AClass.CHAR_ACLASS;
+        this.cls = AClass.CHAR_ACLASS;
         setProperites(value);
     }
 
@@ -74,7 +69,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(Integer value) {
-        this.aclass = AClass.INT_ACLASS;
+        this.cls = AClass.INT_ACLASS;
         setProperites(value);
     }
 
@@ -84,7 +79,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(Long value) {
-        this.aclass = AClass.LONG_ACLASS;
+        this.cls = AClass.LONG_ACLASS;
         setProperites(value);
     }
 
@@ -94,7 +89,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(Float value) {
-        this.aclass = AClass.FLOAT_ACLASS;
+        this.cls = AClass.FLOAT_ACLASS;
         setProperites(value);
     }
 
@@ -104,7 +99,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(Double value) {
-        this.aclass = AClass.DOUBLE_ACLASS;
+        this.cls = AClass.DOUBLE_ACLASS;
         setProperites(value);
     }
 
@@ -114,7 +109,7 @@ public class Value implements IValue {
      * @param value
      */
 	private Value(String value) {
-        this.aclass = AClass.STRING_ACLASS;
+        this.cls = AClass.STRING_ACLASS;
         setProperites(value);
     }
 
@@ -122,30 +117,13 @@ public class Value implements IValue {
     }
 
     private Value(AClass aclass) {
-        this.aclass = AClass.CLASS_ACLASS;
+        this.cls = AClass.CLASS_ACLASS;
         setProperites(aclass);
     }
 
     private void setProperites(Object value) {
         //this.type = aclass.getType();
         this.value = value;
-    }
-
-    public Type getType() {
-        return this.aclass.getType();
-    }
-
-    public AClass getAClass() {
-        return aclass;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
-    @Override
-    public AClass getParamterizedType() {
-        return aclass;
     }
 
     /**
@@ -182,7 +160,7 @@ public class Value implements IValue {
             
         } else {
             Value v = new Value();
-            v.aclass = aclass;
+            v.cls = aclass;
             v.value = null;
             return v;
         }
@@ -260,6 +238,17 @@ public class Value implements IValue {
     }
 
     
+    /**
+     * get a Value object, according arguments
+     * 
+     * for examples:
+     * 
+     * number(AClass.DOUBLE_ACLASS, 1) will return a Value object that value is 1D, and type is Double
+     * 
+     * @param type
+     * @param val
+     * @return
+     */
     public static Value number(AClass type, int val)
     {
         switch(type.getType().getSort())
@@ -283,12 +272,36 @@ public class Value implements IValue {
     }
     
     /**
+     * convert current value to new type.
      * 
      * @param type
      */
     public void convert(AClass type)
     {
-        if(aclass.equals(type))
+        convert(this, type);
+    }
+    
+    /**
+     * get converted value
+     * 
+     * @param type
+     */
+    public Value getConvert(AClass type)
+    {
+        Value newVal = value(value);
+        convert(newVal, type);
+        return newVal;
+    }
+    
+    /**
+     * convert value to new type
+     * 
+     * @param val
+     * @param type
+     */
+    private void convert(Value val, AClass type)
+    {
+        if(cls.equals(type))
         {
             return;
         }
@@ -297,35 +310,35 @@ public class Value implements IValue {
         switch(type.getType().getSort())
         {
             case Type.BOOLEAN :
-                refactor(type, Boolean.parseBoolean(valStr));
+                val.refactor(type, Boolean.parseBoolean(valStr));
                 break;
             case Type.CHAR : 
                 if(valStr.length() == 1)
                 {
-                    refactor(type, valStr.charAt(0));
+                    val.refactor(type, valStr.charAt(0));
                 }
                 else
                 {
-                    refactor(type, Character.valueOf((char)Integer.parseInt(valStr)));
+                    val.refactor(type, Character.valueOf((char)Integer.parseInt(valStr)));
                 }
                 break;
             case Type.BYTE : 
-                refactor(type, Byte.parseByte(valStr));
+                val.refactor(type, Byte.parseByte(valStr));
                 break;
             case Type.SHORT : 
-                refactor(type, Short.parseShort(valStr));
+                val.refactor(type, Short.parseShort(valStr));
                 break;
             case Type.INT : 
-                refactor(type, Integer.parseInt(valStr));
+                val.refactor(type, Integer.parseInt(valStr));
                 break;
             case Type.FLOAT : 
-                refactor(type, Float.parseFloat(valStr));
+                val.refactor(type, Float.parseFloat(valStr));
                 break;
             case Type.LONG : 
-                refactor(type, Long.parseLong(valStr));
+                val.refactor(type, Long.parseLong(valStr));
                 break;
             case Type.DOUBLE : 
-                refactor(type, Double.parseDouble(valStr));
+                val.refactor(type, Double.parseDouble(valStr));
                 break;
         }
     }
@@ -337,8 +350,60 @@ public class Value implements IValue {
      */
     private void refactor(AClass type, Object val)
     {
-        this.aclass = type;
+        this.cls = type;
         this.setProperites(val);
+    }
+    
+    /**
+     * 
+     * 
+     * @param val
+     * @return
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public int numberCompare(Value comp)
+    {
+        if(!isNumber())
+            throw new ASMSupportException(this + " is not a number value.");
+        if(!comp.isNumber())
+            throw new ASMSupportException(comp + " is not a number value.");
+        
+        int compOrder = cls.getCastOrder() - comp.cls.getCastOrder();
+        Object v1;
+        Object v2;
+        
+        if(compOrder == 0)
+        {
+            v1 = value;
+            v2 = comp.value;
+        }
+        else if(compOrder > 0)
+        {
+            v1 = value;
+            v2 = comp.getConvert(cls).value;
+        }
+        else
+        {
+            v1 = getConvert(comp.cls).value;
+            v2 = comp.value;
+        }
+        
+        return ((Comparable)v1).compareTo(v2);
+    }
+    
+    public boolean isNumber()
+    {
+        int castOrder = cls.getType().getSort();
+        if(castOrder >= Type.BYTE && castOrder <= Type.DOUBLE)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean isBoolean()
+    {
+        return cls.getType().getSort() == Type.SHORT;
     }
     
     @Override
@@ -348,43 +413,43 @@ public class Value implements IValue {
             return;
         }
 
-        if (this.aclass.getName().equals(int.class.getName())) {
+        if (this.cls.getName().equals(int.class.getName())) {
 
             block.getInsnHelper().push((Integer) value);
 
-        } else if (this.aclass.getName().equals(short.class.getName())) {
+        } else if (this.cls.getName().equals(short.class.getName())) {
 
             block.getInsnHelper().push((Short) value);
 
-        } else if (this.aclass.getName().equals(byte.class.getName())) {
+        } else if (this.cls.getName().equals(byte.class.getName())) {
 
             block.getInsnHelper().push((Byte) value);
 
-        } else if (this.aclass.getName().equals(boolean.class.getName())) {
+        } else if (this.cls.getName().equals(boolean.class.getName())) {
 
             block.getInsnHelper().push((Boolean) value);
 
-        } else if (this.aclass.getName().equals(long.class.getName())) {
+        } else if (this.cls.getName().equals(long.class.getName())) {
 
             block.getInsnHelper().push((Long) value);
 
-        } else if (this.aclass.getName().equals(double.class.getName())) {
+        } else if (this.cls.getName().equals(double.class.getName())) {
 
             block.getInsnHelper().push((Double) value);
 
-        } else if (this.aclass.getName().equals(char.class.getName())) {
+        } else if (this.cls.getName().equals(char.class.getName())) {
 
             block.getInsnHelper().push((Character) value);
 
-        } else if (this.aclass.getName().equals(float.class.getName())) {
+        } else if (this.cls.getName().equals(float.class.getName())) {
 
             block.getInsnHelper().push((Float) value);
 
-        } else if (this.aclass.getName().equals(String.class.getName())) {
+        } else if (this.cls.getName().equals(String.class.getName())) {
 
             block.getInsnHelper().push(value.toString());
 
-        } else if (this.aclass.getName().equals(Class.class.getName())) {
+        } else if (this.cls.getName().equals(Class.class.getName())) {
 
             block.getInsnHelper().pushClass(((AClass) value).getType());
 
@@ -430,4 +495,22 @@ public class Value implements IValue {
         }
     }
 
+    public Type getType() {
+        return this.cls.getType();
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+
+    @Override
+    public AClass getParamterizedType() {
+        return cls;
+    }
+    
+    @Override
+    public String toString() {
+        return value + " [type:" + cls + "]";
+    }
 }

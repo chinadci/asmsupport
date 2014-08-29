@@ -1,5 +1,7 @@
 package cn.wensiqun.asmsupport.block.condition;
 
+import org.junit.Test;
+
 import cn.wensiqun.asmsupport.utils.TesterStatics;
 import junit.framework.Assert;
 
@@ -12,6 +14,11 @@ public class TestAll
         ConditionBlockGenerator.main(args);
         Assert.assertEquals(TesterStatics.EXPECTED.toString(), TesterStatics.ACTUALLY.toString());
         TesterStatics.clear();
-        
+    }
+    
+    @Test
+    public void test() throws InterruptedException
+    {
+        main(null);
     }
 }

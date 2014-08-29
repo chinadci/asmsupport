@@ -1,9 +1,12 @@
 package cn.wensiqun.asmsupport.utils;
 
+import org.junit.Ignore;
+
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 
+@Ignore
 public class TesterStatics
 {
     public static final boolean printable = true;

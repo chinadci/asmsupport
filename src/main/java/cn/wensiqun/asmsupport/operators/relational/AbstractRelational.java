@@ -8,7 +8,6 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -162,78 +161,8 @@ public abstract class AbstractRelational extends AbstractOperator implements
 	
 	protected abstract void relationalOperatorWithInLoopCondition();
     
-	protected void ifCmp(final Type type, final int mode, final Label label) 
+	/*protected void ifCmp(final Type type, final int mode, final Label label) 
 	{
 	    insnHelper.ifCmp(type, mode, label);
-	}
-	
-    private void ifCmp1(final Type type, final int mode, final Label label) {
-        MethodVisitor mv = insnHelper.getMv();
-        //Stack stack = insnHelper.getStack();
-        switch (type.getSort()) {
-            case Type.LONG:
-                mv.visitInsn(Opcodes.LCMP);
-                //stackOperator();
-                break;
-            case Type.DOUBLE:
-                mv.visitInsn(mode == InstructionHelper.GE || mode == InstructionHelper.GT ? Opcodes.DCMPG : Opcodes.DCMPL);
-                //stackOperator();
-                break;
-            case Type.FLOAT:
-                mv.visitInsn(mode == InstructionHelper.GE || mode == InstructionHelper.GT ? Opcodes.FCMPG : Opcodes.FCMPL);
-                //stackOperator();
-                break;
-            case Type.ARRAY:
-            case Type.OBJECT:
-                switch (mode) {
-                    case InstructionHelper.EQ:
-                        mv.visitJumpInsn(Opcodes.IF_ACMPEQ, label);
-                        /*stack.pop();
-                        stack.printState();
-                        stack.pop();
-                        stack.printState();*/
-                        return;
-                    case InstructionHelper.NE:
-                        mv.visitJumpInsn(Opcodes.IF_ACMPNE, label);
-                        /*stack.pop();
-                        stack.printState();
-                        stack.pop();
-                        stack.printState();*/
-                        return;
-                }
-                throw new IllegalArgumentException("Bad comparison for type "
-                        + type);
-            default:
-                int intOp = -1;
-                switch (mode) {
-                    case InstructionHelper.EQ:
-                        intOp = Opcodes.IF_ICMPEQ;
-                        break;
-                    case InstructionHelper.NE:
-                        intOp = Opcodes.IF_ICMPNE;
-                        break;
-                    case InstructionHelper.GE:
-                        intOp = Opcodes.IF_ICMPGE;
-                        break;
-                    case InstructionHelper.LT:
-                        intOp = Opcodes.IF_ICMPLT;
-                        break;
-                    case InstructionHelper.LE:
-                        intOp = Opcodes.IF_ICMPLE;
-                        break;
-                    case InstructionHelper.GT:
-                        intOp = Opcodes.IF_ICMPGT;
-                        break;
-                }
-                mv.visitJumpInsn(intOp, label);
-                /*stack.pop();
-                stack.printState();
-                stack.pop();
-                stack.printState();*/
-                return;
-        }
-        mv.visitJumpInsn(mode, label);
-        /*stack.pop();
-        stack.printState();*/
-    }
+	}*/
 }

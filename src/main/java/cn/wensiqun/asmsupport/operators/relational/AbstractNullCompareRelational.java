@@ -46,34 +46,29 @@ public abstract class AbstractNullCompareRelational extends NumericalAndReferenc
 			super.doExecute();
 		}
 	}
-
 	
-
-
-	@Override
 	protected void ifCmp(Type type, int mode, Label label) {
-		//check null
-		int sort = type.getSort();
-		if(sort == Type.OBJECT || sort == Type.ARRAY){
-	        MethodVisitor mv = insnHelper.getMv();
-			switch (mode) {
+        //check null
+        int sort = type.getSort();
+        if(sort == Type.OBJECT || sort == Type.ARRAY){
+            MethodVisitor mv = insnHelper.getMv();
+            switch (mode) {
                 case InstructionHelper.EQ:
-            	    if((isNullValue(factor1) && !isNullValue(factor2)) ||
-            	       (!isNullValue(factor1) && isNullValue(factor2))){
-            		    mv.visitJumpInsn(Opcodes.IFNULL, label);
+                    if((isNullValue(factor1) && !isNullValue(factor2)) ||
+                       (!isNullValue(factor1) && isNullValue(factor2))){
+                        mv.visitJumpInsn(Opcodes.IFNULL, label);
                         return;
-            	    }
+                    }
                 case InstructionHelper.NE:
-            	    if((isNullValue(factor1) && !isNullValue(factor2)) ||
-            	       (!isNullValue(factor1) && isNullValue(factor2))){
-            		    mv.visitJumpInsn(Opcodes.IFNONNULL, label);
+                    if((isNullValue(factor1) && !isNullValue(factor2)) ||
+                       (!isNullValue(factor1) && isNullValue(factor2))){
+                        mv.visitJumpInsn(Opcodes.IFNONNULL, label);
                         return;
-            	    }
+                    }
                 }
-		}
-		super.ifCmp(type, mode, label);
-	}
-
+        }
+        insnHelper.ifCmp(type, mode, label);
+    }
 	
 	@Override
 	protected void factorsToStack() {

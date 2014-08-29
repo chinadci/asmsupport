@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -48,7 +49,7 @@ public class AClassUtils {
         return false;
     }
     
-    public static boolean arithmetical(AClass aclass){
+    public static boolean isArithmetical(AClass aclass){
         if(aclass.isPrimitive() && !aclass.getName().equals(boolean.class.getName())){
             return true;
         }else if(isPrimitiveWrapAClass(aclass) && !aclass.getName().equals(Boolean.class.getName())){
@@ -401,23 +402,58 @@ public class AClassUtils {
         }
     }
     
-
+    
+    
+    
     /**
      * 
      * @param from
      * @param to
      * @return
      */
-    public static void autoCastTypeCheck(AClass from, AClass to){
-    	if(!from.isChildOrEqual(to)){
-            if(AClassUtils.isPrimitiveWrapAClass(from) && 
-               AClassUtils.isPrimitiveWrapAClass(to)){
-                throw new IllegalArgumentException("Type mismatch: cannot convert from" + from + " to " + to);
-            }
-            if(!from.isPrimitive() && !to.isPrimitive()){
-                throw new IllegalArgumentException("Type mismatch: cannot convert from " + from + " to " + to + " you can add a cast");
-            }            
+    public static boolean checkAssignable(AClass from, AClass to){
+        
+        if(from.isChildOrEqual(to))
+        {
+            return true;
         }
+        else if(from.isPrimitive() && to.equals(AClass.OBJECT_ACLASS))
+        {
+            return true;
+        }
+        else
+        {
+            AClass fromPrim = getPrimitiveAClass(from);
+            AClass toPrim = getPrimitiveAClass(to);
+            int fromSort = fromPrim.getType().getSort();
+            int toSort = toPrim.getType().getSort();
+            
+            if(fromSort == toSort)
+            {
+                return true;
+            }
+            
+            if(fromSort >= Type.CHAR && fromSort <= Type.DOUBLE &&
+                toSort >= Type.CHAR && toSort <= Type.DOUBLE)
+            {
+                if(fromSort < toSort)
+                {
+                    if(fromSort == Type.CHAR)
+                    {
+                        if(toSort >= Type.INT)
+                        {
+                            return true;   
+                        }
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
     }
     
     /**

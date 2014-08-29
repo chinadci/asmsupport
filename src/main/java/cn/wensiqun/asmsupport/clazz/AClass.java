@@ -356,7 +356,8 @@ public abstract class AClass implements GetGlobalVariabled{//, MethodInvokeable 
 
     @Override
     public String toString() {
-        return Modifier.toString(mod ^ Opcodes.ACC_SUPER) + " " + this.getDescription();
+        return getName();
+        //return Modifier.toString(mod ^ Opcodes.ACC_SUPER) + " " + this.getDescription();
     }
     
 }

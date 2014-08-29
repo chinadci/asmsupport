@@ -21,12 +21,12 @@ public class LessEqual extends NumericalRelational {
 
     @Override
     protected void relationalOperator() {
-        ifCmp(targetClass.getType(), InstructionHelper.GT, falseLbl);
+        insnHelper.ifCmp(targetClass.getType(), InstructionHelper.GT, falseLbl);
     }
 
 	@Override
 	protected void relationalOperatorWithInLoopCondition() {
-        ifCmp(targetClass.getType(), InstructionHelper.LE, falseLbl);
+	    insnHelper.ifCmp(targetClass.getType(), InstructionHelper.LE, falseLbl);
 	}
 
 }

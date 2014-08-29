@@ -63,8 +63,8 @@ public class ArrayStorer extends AbstractArrayOperator {
     @Override
 	protected void verifyArgument() {
 		super.verifyArgument();
-	    AClassUtils.autoCastTypeCheck(value.getParamterizedType(), storeClass);
-	    AClassUtils.autoCastTypeCheck(lastDim.getParamterizedType(), AClass.INT_ACLASS);
+	    AClassUtils.checkAssignable(value.getParamterizedType(), storeClass);
+	    AClassUtils.checkAssignable(lastDim.getParamterizedType(), AClass.INT_ACLASS);
 	}
 
 	@Override

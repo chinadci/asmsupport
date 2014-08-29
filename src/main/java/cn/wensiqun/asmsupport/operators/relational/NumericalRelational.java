@@ -2,13 +2,10 @@ package cn.wensiqun.asmsupport.operators.relational;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
 /**
@@ -37,15 +34,8 @@ public abstract class NumericalRelational extends AbstractRelational {
         factor1.asArgument();
         factor2.asArgument();
     }
-    
 
-    @Override
-    protected void ifCmp(Type type, int mode, Label label)
-    {
-        super.ifCmp(type, mode, label);
-    }
-    
-    private boolean isZeorValue(Parameterized val)
+    /*private boolean isZeorValue(Parameterized val)
     {
         if(val != null && val instanceof Value){
             Value v = (Value) val;
@@ -70,43 +60,12 @@ public abstract class NumericalRelational extends AbstractRelational {
             }
         }
         return false;
-    }
+    }*/
 
     @Override
     protected void factorsToStack() {
         pushFactorToStack(factor1);
         pushFactorToStack(factor2);
-        /*AClass ftrCls1 = factor1.getParamterizedType();
-        AClass ftrCls2 = factor2.getParamterizedType();
-
-        log.debug("push the first factor to stack");
-        factor1.loadToStack(block);
-        
-        if(!ftrCls1.isPrimitive()){
-            log.debug("unbox " + ftrCls1);
-            insnHelper.unbox(ftrCls1.getType());
-        }
-        
-        if(!ftrCls1.equals(targetClass) &&
-            targetClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder()){
-            log.debug("cast from " + ftrCls1 + " to " + targetClass);
-            insnHelper.cast(ftrCls1.getType(), targetClass.getType());
-        }
-        
-        log.debug("push the second factor to stack");
-        factor2.loadToStack(block);
-        
-        if(!ftrCls2.isPrimitive()){
-            log.debug("unbox " + ftrCls2);
-            insnHelper.unbox(ftrCls2.getType());
-        }
-        
-        if(!ftrCls2.equals(targetClass) &&
-            targetClass.getCastOrder() > AClass.INT_ACLASS.getCastOrder()){
-            log.debug("cast from " + ftrCls2 + " to " + targetClass);
-            insnHelper.cast(ftrCls2.getType(), targetClass.getType());
-        }*/
-        
     }
     
     private void pushFactorToStack(Parameterized factor){

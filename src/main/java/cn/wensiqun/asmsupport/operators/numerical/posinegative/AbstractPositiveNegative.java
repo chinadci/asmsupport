@@ -49,7 +49,7 @@ public abstract class AbstractPositiveNegative extends AbstractNumerical {
     @Override
     protected void verifyArgument() {
         AClass fatCls = factor.getParamterizedType();
-        if(!AClassUtils.arithmetical(fatCls)){
+        if(!AClassUtils.isArithmetical(fatCls)){
             throw new ArithmeticException("cannot execute arithmetic operator whit " + fatCls);
         }
     }

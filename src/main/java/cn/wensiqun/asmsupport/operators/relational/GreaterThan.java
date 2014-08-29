@@ -21,13 +21,13 @@ public class GreaterThan extends NumericalRelational {
 
     @Override
     protected void relationalOperator() {
-        ifCmp(targetClass.getType(), InstructionHelper.LE, falseLbl);
+        insnHelper.ifCmp(targetClass.getType(), InstructionHelper.LE, falseLbl);
         
     }
 
 	@Override
 	protected void relationalOperatorWithInLoopCondition() {
-        ifCmp(targetClass.getType(), InstructionHelper.GT, falseLbl);
+	    insnHelper.ifCmp(targetClass.getType(), InstructionHelper.GT, falseLbl);
 	}
 
 }
