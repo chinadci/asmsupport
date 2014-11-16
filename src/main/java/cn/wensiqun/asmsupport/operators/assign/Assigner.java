@@ -35,7 +35,9 @@ public abstract class Assigner extends AbstractOperator implements Parameterized
 
 	@Override
 	protected void verifyArgument() {
-		AClassUtils.checkAssignable(value.getParamterizedType(), var.getParamterizedType());
+		if(!AClassUtils.checkAssignable(value.getParamterizedType(), var.getParamterizedType())) {
+			throw new IllegalArgumentException("Type mismatch: cannot convert from " + value.getParamterizedType() + " to " + var.getParamterizedType() + "");
+		}
 	}
 
 	@Override

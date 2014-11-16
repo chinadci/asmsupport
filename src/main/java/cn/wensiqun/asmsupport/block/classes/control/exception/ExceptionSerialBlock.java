@@ -38,7 +38,6 @@ public class ExceptionSerialBlock extends SerialBlock
     public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
     {
         super(parent);
-        
         this.tryBlock = tryBlock;
         initEpisode(tryBlock);
         getQueue().add(tryBlock);
@@ -72,7 +71,6 @@ public class ExceptionSerialBlock extends SerialBlock
                     OperatorFactory.newOperator(GOTO.class, 
                             new Class[]{ProgramBlock.class, Label.class}, 
                             c, getSerialEnd());
-                    //new GOTO(c, serialEnd);
                 }
             }
         }

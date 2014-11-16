@@ -9,14 +9,12 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.control.loop.Loop;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.body.ParameterizedBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.Return;
 import cn.wensiqun.asmsupport.operators.asmdirect.DUP;
-import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
@@ -115,7 +113,6 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
 		flag1 = OperatorFactory.newOperator(Marker.class, 
                 new Class<?>[]{ProgramBlock.class, Label.class}, 
                 this, new Label());
-		//new Marker(this, new Label());
 		body(lock);
 	}
 

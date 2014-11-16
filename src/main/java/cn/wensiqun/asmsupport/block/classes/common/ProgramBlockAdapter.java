@@ -541,4 +541,9 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
         return target.runReturn(parame);
     }
 
+	@Override
+	public Synchronized syn(Synchronized sync) {
+		return target.syn(sync);
+	}
+
 }

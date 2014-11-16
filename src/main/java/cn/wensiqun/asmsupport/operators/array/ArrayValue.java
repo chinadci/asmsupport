@@ -136,7 +136,9 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
         new EachValue(values){
             @Override
             void process(Parameterized para) {
-            	AClassUtils.checkAssignable(para.getParamterizedType(), rootComp);
+				if(!AClassUtils.checkAssignable(para.getParamterizedType(), rootComp)) {
+					throw new IllegalArgumentException("Type mismatch: cannot convert from " + para.getParamterizedType() + " to " + rootComp + "");
+				}
             }
             
         }.process();

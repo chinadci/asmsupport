@@ -1,5 +1,6 @@
 package cn.wensiqun.asmsupport.block.interfaces.operator;
 
+import cn.wensiqun.asmsupport.block.classes.common.Synchronized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
 import cn.wensiqun.asmsupport.block.classes.control.loop.While;
@@ -87,6 +88,6 @@ public interface CreateBlockOperator {
      * @param sync Synchronized对象
      * @return {@link Synchronized}
      */
-    //public Synchronized syn(Synchronized sync);
+    public Synchronized syn(Synchronized sync);
 	
 }

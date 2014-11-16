@@ -412,7 +412,8 @@ public class MethodChooser implements IMethodChooser, DetermineMethodSignature {
 			if(most.size() == 1){
 				return (AMethodMeta) most.toArray()[0];
 			}else{
-				throw new IllegalArgumentException("The method invocation is ambiguous: " + name + "(" + ArrayUtils.toString(argumentTypes) + ")");
+				String argTypes = ArrayUtils.toString(argumentTypes);
+				throw new IllegalArgumentException("The method invocation is ambiguous: " + name + "(" + argTypes.substring(1, argTypes.length() - 1) + ")");
 			}
 		}
 		return null;

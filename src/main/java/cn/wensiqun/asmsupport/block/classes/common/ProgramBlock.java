@@ -100,11 +100,11 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     private static Log log = LogFactory.getLog(ProgramBlock.class);
 
     /**执行Block, 通过当前Block所创建的操作，实际是executeBlock的代理*/
-	private   ProgramBlock                executor = this;
+    private   ProgramBlock                executor = this;
     
-	private   ProgramBlock                parent;
-	
-	private   Scope                       scope;
+    private   ProgramBlock                parent;
+    
+    private   Scope                       scope;
     
     protected InstructionHelper           insnHelper;
     
@@ -128,51 +128,51 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     }
     
     public ThrowExceptionContainer getThrowExceptions() {
-		return throwExceptions;
-	}
+        return throwExceptions;
+    }
 
     public boolean isFinish() {
-		return finish;
-	}
+        return finish;
+    }
 
-	public void setFinish(boolean finish) {
-		this.finish = finish;
-	}
+    public void setFinish(boolean finish) {
+        this.finish = finish;
+    }
     
     /* >>>>>>>>>>>>>>>>>> Getter Setter >>>>>>>>>>>>>>>>>>>>>>>*/
 
-	public ProgramBlock getParent() {
-		return parent;
-	}
+    public ProgramBlock getParent() {
+        return parent;
+    }
 
-	/**
+    /**
      * 添加抛出的异常到方法签名中
      * @param exception
      */
-	public void addException(AClass exception){
-		if(throwExceptions == null){
-			throwExceptions = new ThrowExceptionContainer();
-		}
-		throwExceptions.add(exception);
+    public void addException(AClass exception){
+        if(throwExceptions == null){
+            throwExceptions = new ThrowExceptionContainer();
+        }
+        throwExceptions.add(exception);
     }
     
     public void removeException(AClass exception){
-    	if(throwExceptions != null){
-        	throwExceptions.remove(exception);
-    	}
+        if(throwExceptions != null){
+            throwExceptions.remove(exception);
+        }
     }
 
-	@Override
-	public boolean equals(Object obj) {
-    	if(this == obj){
-    		return true;
-    	}
-    	
-    	if(obj instanceof ProgramBlock){
-    		return this.scope == ((ProgramBlock)obj).scope;
-    	}
-		return false;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+        
+        if(obj instanceof ProgramBlock){
+            return this.scope == ((ProgramBlock)obj).scope;
+        }
+        return false;
+    }
 
     /**
      * 获取当前程序块的克隆拷贝
@@ -191,13 +191,13 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
      * 克隆当前的程序块的执行队列到给定程序块执行队列中
      * @param targetBlock 克隆至此
      */
-	public void generateTo(ProgramBlock targetBlock){
+    public void generateTo(ProgramBlock targetBlock){
         ProgramBlock clone = getCopy();
         clone.setExecutor(targetBlock);
         clone.generate();
         //just trigger if the last is SerialBlock in the queue of cloneTo
         OperatorFactory.newOperator(BlockEndFlag.class, new Class[]{ProgramBlock.class}, targetBlock);
-	}
+    }
 
     protected void init(){};
     
@@ -217,8 +217,8 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         
         //just trigger if the last is SerialBlock in the queue
         OperatorFactory.newOperator(BlockEndFlag.class, 
-        		new Class[]{ProgramBlock.class}, 
-        		getExecutor());
+                new Class[]{ProgramBlock.class}, 
+                getExecutor());
     }
     
     @Override
@@ -268,7 +268,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     }
     
     public LocalVariable[] getMethodArguments(){
-    	return getMethod().getArguments();
+        return getMethod().getArguments();
     }
     
     protected GenericMethodBody getMethodBody(){
@@ -291,36 +291,36 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     //*******************************************************************************************//
     //                                Variable Operator                                          //
     //*******************************************************************************************//
-	private final LocalVariable createOnlyVariable(final AClass aClass, final String name, boolean anonymous){
-		if(!anonymous && StringUtils.isBlank(name)){
-			throw new IllegalArgumentException("variable must be non-null if 'anonymous' is false");
-		}
-		
-		LocalVariableMeta lve = new LocalVariableMeta(anonymous || getMethod().isCreatingImplicitFinally() ? "anonymous" : name, 0, aClass);
-		
+    private final LocalVariable createOnlyVariable(final AClass aClass, final String name, boolean anonymous){
+        if(!anonymous && StringUtils.isBlank(name)){
+            throw new IllegalArgumentException("variable must be non-null if 'anonymous' is false");
+        }
+        
+        LocalVariableMeta lve = new LocalVariableMeta(anonymous || getMethod().isCreatingImplicitFinally() ? "anonymous" : name, 0, aClass);
+        
         LocalVariableCreator lvc = OperatorFactory.newOperator(LocalVariableCreator.class, 
-        		new Class<?>[]{ProgramBlock.class, String.class, Type.class, Type.class}, 
-        		getExecutor(), anonymous ? null : name, aClass.getType(), aClass.getType());
+                new Class<?>[]{ProgramBlock.class, String.class, Type.class, Type.class}, 
+                getExecutor(), anonymous ? null : name, aClass.getType(), aClass.getType());
         ScopeLogicVariable slv = lvc.getScopeLogicVariable();
         slv.setCompileOrder(getMethod().nextInsNumber());
         LocalVariable lv = new LocalVariable(lve);
         lv.setScopeLogicVar(slv);
         return lv;
-	}
+    }
 
     protected final LocalVariable getLocalAnonymousVariableModel(final AClass aClass){
-    	return createOnlyVariable(aClass, "anonymous", true);
+        return createOnlyVariable(aClass, "anonymous", true);
     }
     
     protected final LocalVariable getLocalVariableModel(final String name, final AClass aClass){
         return createOnlyVariable(aClass, name, false);
     }
 
-	@Override
+    @Override
     public final LocalVariable createVariable(final String name, final AClass aClass, boolean anonymous, final Parameterized para) {
-		if(aClass.isArray()){
-			throw new IllegalArgumentException(aClass + " is Array type exchange to createArrayVariable to create the array variable");
-		}
+        if(aClass.isArray()){
+            throw new IllegalArgumentException(aClass + " is Array type exchange to createArrayVariable to create the array variable");
+        }
         LocalVariable lv = createOnlyVariable(aClass, name, anonymous);
         if(para == null){
             assign(lv, aClass.getDefaultValue());
@@ -329,7 +329,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         }
         return lv;
     }
-	
+    
     @Override
     public final LocalVariable createArrayVariableWithAllocateDimension(final String name, final ArrayClass aClass, boolean anonymous, Parameterized... allocateDim) {
         LocalVariable lv = createOnlyVariable(aClass, name, anonymous);
@@ -342,7 +342,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     }
     
     @Override
-	public final LocalVariable createArrayVariable(final String name, final ArrayClass aClass, boolean anonymous, Parameterized value) {
+    public final LocalVariable createArrayVariable(final String name, final ArrayClass aClass, boolean anonymous, Parameterized value) {
         LocalVariable lv = createOnlyVariable(aClass, name, anonymous);
         if(value == null){
             assign(lv, aClass.getDefaultValue());
@@ -350,10 +350,10 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
             assign(lv, value);
         }
         return lv;
-	}
+    }
 
-	@Override
-	public LocalVariable createArrayVariable(String name, ArrayClass aClass, boolean anonymous, Object parameterizedArray) {
+    @Override
+    public LocalVariable createArrayVariable(String name, ArrayClass aClass, boolean anonymous, Object parameterizedArray) {
         LocalVariable lv = createOnlyVariable(aClass, name, anonymous);
         if(parameterizedArray == null){
             assign(lv, aClass.getDefaultValue());
@@ -361,19 +361,19 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
             assign(lv, getExecutor().newArrayWithValue(aClass, parameterizedArray));
         }
         return lv;
-	}
+    }
     
     
     @Override
     public final Assigner assign(ExplicitVariable variable, Parameterized val){
         if(variable instanceof LocalVariable){
-        	return OperatorFactory.newOperator(LocalVariableAssigner.class,
-	    			new Class<?>[]{ProgramBlock.class, LocalVariable.class, Parameterized.class}, 
-	    			getExecutor(), (LocalVariable) variable, val);
+            return OperatorFactory.newOperator(LocalVariableAssigner.class,
+                    new Class<?>[]{ProgramBlock.class, LocalVariable.class, Parameterized.class}, 
+                    getExecutor(), (LocalVariable) variable, val);
         }else if(variable instanceof GlobalVariable){
-        	return OperatorFactory.newOperator(GlobalVariableAssigner.class,
-        	    			new Class<?>[]{ProgramBlock.class, GlobalVariable.class, Parameterized.class}, 
-        	    			getExecutor(), (GlobalVariable) variable, val);
+            return OperatorFactory.newOperator(GlobalVariableAssigner.class,
+                            new Class<?>[]{ProgramBlock.class, GlobalVariable.class, Parameterized.class}, 
+                            getExecutor(), (GlobalVariable) variable, val);
         }
         return null;
     }
@@ -384,36 +384,36 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     
     @Override
     public final ArrayValue newArray(final ArrayClass aClass, final Parameterized... allocateDims){
-    	return OperatorFactory.newOperator(ArrayValue.class, 
-    			new Class<?>[]{ProgramBlock.class, ArrayClass.class, Parameterized[].class}, 
-    			getExecutor(), aClass, allocateDims);
+        return OperatorFactory.newOperator(ArrayValue.class, 
+                new Class<?>[]{ProgramBlock.class, ArrayClass.class, Parameterized[].class}, 
+                getExecutor(), aClass, allocateDims);
     }
     
     @Override
     public final ArrayValue newArrayWithValue(final ArrayClass aClass, final Object arrayObject){
-    	return OperatorFactory.newOperator(ArrayValue.class, 
-    			new Class<?>[]{ProgramBlock.class, ArrayClass.class, Object.class}, 
-    			getExecutor(), aClass, arrayObject);
+        return OperatorFactory.newOperator(ArrayValue.class, 
+                new Class<?>[]{ProgramBlock.class, ArrayClass.class, Object.class}, 
+                getExecutor(), aClass, arrayObject);
     }
 
     @Override
     public final ArrayValue newArrayWithValue(final ArrayClass aClass, final Parameterized[] values){
-    	return newArrayWithValue(aClass, (Object)values);
+        return newArrayWithValue(aClass, (Object)values);
     }
 
     @Override
     public final ArrayValue newArrayWithValue(final ArrayClass aClass, final Parameterized[][] values){
-    	return newArrayWithValue(aClass, (Object)values);
+        return newArrayWithValue(aClass, (Object)values);
     }
 
     @Override
     public final ArrayValue newArrayWithValue(final ArrayClass aClass, final Parameterized[][][] values){
-    	return newArrayWithValue(aClass, (Object)values);
+        return newArrayWithValue(aClass, (Object)values);
     }
 
     @Override
     public final ArrayValue newArrayWithValue(final ArrayClass aClass, final Parameterized[][][][] values){
-    	return newArrayWithValue(aClass, (Object)values);
+        return newArrayWithValue(aClass, (Object)values);
     }
     
     
@@ -424,125 +424,125 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final ArrayLoader arrayLoad(IVariable arrayReference, Parameterized pardim, Parameterized... parDims){
         return OperatorFactory.newOperator(ArrayLoader.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, pardim, parDims);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, pardim, parDims);
     }
     
     @Override
     public final ArrayLoader arrayLoad(MethodInvoker arrayReference, Parameterized pardim, Parameterized... parDims){
         return OperatorFactory.newOperator(ArrayLoader.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, pardim, parDims);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, pardim, parDims);
     }
     
     @Override
-	public ArrayLoader arrayLoad(ArrayLoader arrayReference, Parameterized pardim, Parameterized... parDims) {
+    public ArrayLoader arrayLoad(ArrayLoader arrayReference, Parameterized pardim, Parameterized... parDims) {
         return OperatorFactory.newOperator(ArrayLoader.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, pardim, parDims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, pardim, parDims);
+    }
 
-	@Override
-	public ArrayLoader arrayLoad(ArrayValue arrayReference, Parameterized pardim, Parameterized... parDims) {
+    @Override
+    public ArrayLoader arrayLoad(ArrayValue arrayReference, Parameterized pardim, Parameterized... parDims) {
         return OperatorFactory.newOperator(ArrayLoader.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, pardim, parDims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, pardim, parDims);
+    }
 
-	@Override
-	public ArrayLoader arrayLoad(Assigner arrayReference, Parameterized pardim, Parameterized... parDims) {
+    @Override
+    public ArrayLoader arrayLoad(Assigner arrayReference, Parameterized pardim, Parameterized... parDims) {
         return OperatorFactory.newOperator(ArrayLoader.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, pardim, parDims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, pardim, parDims);
+    }
 
-	@Override
+    @Override
     public final ArrayStorer arrayStore(IVariable arrayReference, Parameterized value,
             Parameterized dim, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayStorer.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, value, dim, dims);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, value, dim, dims);
     }
 
     @Override
     public final  ArrayStorer arrayStore(MethodInvoker arrayReference, Parameterized value,
             Parameterized dim, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayStorer.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, value, dim, dims);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, value, dim, dims);
     }
 
     
     @Override
-	public ArrayStorer arrayStore(ArrayLoader arrayReference, Parameterized value, Parameterized dim, Parameterized... dims) {
+    public ArrayStorer arrayStore(ArrayLoader arrayReference, Parameterized value, Parameterized dim, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayStorer.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, value, dim, dims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, value, dim, dims);
+    }
 
-	@Override
-	public ArrayStorer arrayStore(ArrayValue arrayReference, Parameterized value, Parameterized dim, Parameterized... dims) {
+    @Override
+    public ArrayStorer arrayStore(ArrayValue arrayReference, Parameterized value, Parameterized dim, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayStorer.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, value, dim, dims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, value, dim, dims);
+    }
 
-	@Override
-	public ArrayStorer arrayStore(Assigner arrayReference, Parameterized value, Parameterized dim, Parameterized... dims) {
+    @Override
+    public ArrayStorer arrayStore(Assigner arrayReference, Parameterized value, Parameterized dim, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayStorer.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
-        		getExecutor(), arrayReference, value, dim, dims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class, Parameterized[].class},
+                getExecutor(), arrayReference, value, dim, dims);
+    }
 
-	@Override
+    @Override
     public final ArrayLength arrayLength(IVariable arrayReference, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayLength.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
-        		getExecutor(), arrayReference, dims);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
+                getExecutor(), arrayReference, dims);
     }
 
 
-	@Override
-	public ArrayLength arrayLength(MethodInvoker arrayReference, Parameterized... dims) {
+    @Override
+    public ArrayLength arrayLength(MethodInvoker arrayReference, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayLength.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
-        		getExecutor(), arrayReference, dims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
+                getExecutor(), arrayReference, dims);
+    }
 
-	@Override
-	public ArrayLength arrayLength(ArrayLoader arrayReference, Parameterized... dims) {
+    @Override
+    public ArrayLength arrayLength(ArrayLoader arrayReference, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayLength.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
-        		getExecutor(), arrayReference, dims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
+                getExecutor(), arrayReference, dims);
+    }
 
-	@Override
-	public ArrayLength arrayLength(ArrayValue arrayReference, Parameterized... dims) {
+    @Override
+    public ArrayLength arrayLength(ArrayValue arrayReference, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayLength.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
-        		getExecutor(), arrayReference, dims);
-	}
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
+                getExecutor(), arrayReference, dims);
+    }
 
-	@Override
-	public ArrayLength arrayLength(Assigner arrayReference, Parameterized... dims) {
+    @Override
+    public ArrayLength arrayLength(Assigner arrayReference, Parameterized... dims) {
         return OperatorFactory.newOperator(ArrayLength.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
-        		getExecutor(), arrayReference, dims);
-	}	
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
+                getExecutor(), arrayReference, dims);
+    }    
     
     //*******************************************************************************************//
     //                                 Check Cast                                                //
     //*******************************************************************************************//
 
 
-	@Override
+    @Override
     public final CheckCast checkCast(Parameterized cc, AClass to){
         if(to.isPrimitive()){
-    		    throw new IllegalArgumentException("cannot cache cast to type : " + to);
-    	  }
+                throw new IllegalArgumentException("cannot cache cast to type : " + to);
+          }
         return OperatorFactory.newOperator(CheckCast.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, AClass.class}, 
-        		getExecutor(), cc, to);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, AClass.class}, 
+                getExecutor(), cc, to);
         //return new CheckCast(getExecuteBlock(), cc, to);
     }
     
@@ -553,43 +553,43 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final Addition add(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(Addition.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Subtraction sub(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(Subtraction.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Multiplication mul(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(Multiplication.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Division div(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(Division.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Modulus mod(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(Modulus.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Negative neg(Parameterized factor){
         return OperatorFactory.newOperator(Negative.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class},
-        		getExecutor(), factor);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class},
+                getExecutor(), factor);
     }
     
     //*******************************************************************************************//
@@ -599,49 +599,49 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final Inverts inverts(Parameterized factor){
         return OperatorFactory.newOperator(Inverts.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class},
-        		getExecutor(), factor);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class},
+                getExecutor(), factor);
     }
 
     @Override
     public final BitAnd bitAnd(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(BitAnd.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     } 
 
     @Override
     public final BitOr bitOr(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(BitOr.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     } 
 
     @Override
     public final BitXor bitXor(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(BitXor.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     } 
 
     @Override
     public final LeftShift leftShift(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(LeftShift.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
     
     public final RightShift rightShift(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(RightShift.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final UnsignedRightShift unsignedRightShift(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(UnsignedRightShift.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
     
     //*******************************************************************************************//
@@ -651,29 +651,29 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final PreposeDecrment preDec(Crementable crement){
         return OperatorFactory.newOperator(PreposeDecrment.class, 
-        		new Class<?>[]{ProgramBlock.class, Crementable.class},
-        		getExecutor(), crement);
+                new Class<?>[]{ProgramBlock.class, Crementable.class},
+                getExecutor(), crement);
     }
 
     @Override
     public final PostposeDecrment postDec(Crementable crement){
         return OperatorFactory.newOperator(PostposeDecrment.class, 
-        		new Class<?>[]{ProgramBlock.class, Crementable.class},
-        		getExecutor(), crement);
+                new Class<?>[]{ProgramBlock.class, Crementable.class},
+                getExecutor(), crement);
     }
 
     @Override
     public final PreposeIncrment preInc(Crementable crement){
         return OperatorFactory.newOperator(PreposeIncrment.class, 
-        		new Class<?>[]{ProgramBlock.class, Crementable.class},
-        		getExecutor(), crement);
+                new Class<?>[]{ProgramBlock.class, Crementable.class},
+                getExecutor(), crement);
     }
 
     @Override
     public final PostposeIncrment postInc(Crementable crement){
         return OperatorFactory.newOperator(PostposeIncrment.class, 
-        		new Class<?>[]{ProgramBlock.class, Crementable.class},
-        		getExecutor(), crement);
+                new Class<?>[]{ProgramBlock.class, Crementable.class},
+                getExecutor(), crement);
     }
 
     //*******************************************************************************************//
@@ -683,43 +683,43 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final GreaterThan greaterThan(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(GreaterThan.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final GreaterEqual greaterEqual(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(GreaterEqual.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final LessThan lessThan(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(LessThan.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final LessEqual lessEqual(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(LessEqual.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Equal equal(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(Equal.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final NotEqual notEqual(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(NotEqual.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class},
+                getExecutor(), factor1, factor2);
     }
 
 
@@ -730,50 +730,50 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final LogicalAnd logicalAnd(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(LogicalAnd.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final LogicalOr logicalOr(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(LogicalOr.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final LogicalXor logicalXor(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(LogicalXor.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final ShortCircuitAnd conditionalAnd(Parameterized factor1, Parameterized factor2){
         return OperatorFactory.newOperator(ShortCircuitAnd.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
-        		getExecutor(), factor1, factor2);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final ShortCircuitOr conditionalOr(Parameterized factor1, Parameterized factor2){
-    	return OperatorFactory.newOperator(ShortCircuitOr.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
-        		getExecutor(), factor1, factor2);
+        return OperatorFactory.newOperator(ShortCircuitOr.class, 
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class}, 
+                getExecutor(), factor1, factor2);
     }
 
     @Override
     public final Not not(Parameterized factor){
-    	return OperatorFactory.newOperator(Not.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class}, 
-        		getExecutor(), factor);
+        return OperatorFactory.newOperator(Not.class, 
+                new Class<?>[]{ProgramBlock.class, Parameterized.class}, 
+                getExecutor(), factor);
     }
 
     @Override
     public final TernaryOperator ternary(Parameterized exp1, Parameterized exp2, Parameterized exp3){
-    	return OperatorFactory.newOperator(TernaryOperator.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class}, 
-        		getExecutor(), exp1, exp2, exp3);
+        return OperatorFactory.newOperator(TernaryOperator.class, 
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized.class, Parameterized.class}, 
+                getExecutor(), exp1, exp2, exp3);
     }
     
 
@@ -783,9 +783,9 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final Parameterized append(Parameterized par1, Parameterized... pars){
-    	return OperatorFactory.newOperator(StringAppender.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
-        		getExecutor(), par1, pars);
+        return OperatorFactory.newOperator(StringAppender.class, 
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, Parameterized[].class}, 
+                getExecutor(), par1, pars);
     }
     
     //*******************************************************************************************//
@@ -795,8 +795,8 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final Parameterized instanceOf(Parameterized obj, AClass type){
         return OperatorFactory.newOperator(InstanceofOperator.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, AClass.class}, 
-        		getExecutor(), obj, type);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, AClass.class}, 
+                getExecutor(), obj, type);
     }
 
     
@@ -807,8 +807,8 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final MethodInvoker invoke(Parameterized caller, String methodName, Parameterized... arguments){
         return OperatorFactory.newOperator(CommonMethodInvoker.class, 
-        		new Class<?>[]{ProgramBlock.class, Parameterized.class, String.class, Parameterized[].class}, 
-        		getExecutor(), caller, methodName, arguments);
+                new Class<?>[]{ProgramBlock.class, Parameterized.class, String.class, Parameterized[].class}, 
+                getExecutor(), caller, methodName, arguments);
     }
 
     protected final void invokeVerify(AClass a){
@@ -825,15 +825,15 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     public final MethodInvoker invokeStatic(AClass owner, String methodName, Parameterized... arguments) {
         invokeVerify(owner);
         return OperatorFactory.newOperator(StaticMethodInvoker.class, 
-        		new Class<?>[]{ProgramBlock.class, AClass.class, String.class, Parameterized[].class}, 
-        		getExecutor(), owner, methodName, arguments);
+                new Class<?>[]{ProgramBlock.class, AClass.class, String.class, Parameterized[].class}, 
+                getExecutor(), owner, methodName, arguments);
     }
     
     public final MethodInvoker invokeConstructor(AClass owner, Parameterized... arguments){
         invokeVerify(owner);
         return OperatorFactory.newOperator(ConstructorInvoker.class, 
-        		new Class<?>[]{ProgramBlock.class, AClass.class, Parameterized[].class}, 
-        		getExecutor(), owner, arguments);
+                new Class<?>[]{ProgramBlock.class, AClass.class, Parameterized[].class}, 
+                getExecutor(), owner, arguments);
     }
     
     //*******************************************************************************************//
@@ -843,14 +843,9 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
     @Override
     public final IF ifThen(IF ifBlock){
         ifBlock.setParent(getExecutor());
-    	getQueue().add(ifBlock);
+        getQueue().add(ifBlock);
         ifBlock.prepare();
         return ifBlock;
-    	
-        /*addExe(ifBlock);
-        ifBlock.setParentExes(getQueue());
-        subBlockPrepare(ifBlock);
-        return ifBlock;*/
     }
 
     @Override
@@ -858,9 +853,9 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
         /*addExe(wl);
         subBlockPrepare(wl);
         return wl;*/
-    	whileLoop.setParent(getExecutor());
-    	getQueue().add(whileLoop);
-    	whileLoop.prepare();
+        whileLoop.setParent(getExecutor());
+        getQueue().add(whileLoop);
+        whileLoop.prepare();
         return whileLoop;
     }
 
@@ -880,7 +875,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final void breakOut(){
-    	ProgramBlock pb = getExecutor();
+        ProgramBlock pb = getExecutor();
         while(pb != null){
             if(pb instanceof Loop){
                 OperatorFactory.newOperator(GOTO.class, 
@@ -896,7 +891,7 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final void continueOut(){
-    	ProgramBlock pb = getExecutor();
+        ProgramBlock pb = getExecutor();
         while(pb != null){
             if(pb instanceof Loop){
                 OperatorFactory.newOperator(GOTO.class, 
@@ -912,58 +907,58 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final void throwException(Parameterized exception){
-    	//returned = true;
         OperatorFactory.newOperator(Throw.class, 
                 new Class<?>[]{ProgramBlock.class, Parameterized.class}, getExecutor(), exception);
-    }
+     }
     
     @Override
     public final Try tryDo(final Try t){
         new ExceptionSerialBlock(getExecutor(), t);
         return t;
-    }
+     }
 
-    /*@Override
-	public final Synchronized syn(Synchronized s){
-		addExe(s);
-        subBlockPrepare(s);
-		return s;
-	}*/
+    @Override
+     public final Synchronized syn(Synchronized s){
+        s.setParent(getExecutor());
+        getQueue().add(s);
+        s.prepare();
+        return s;
+     }
     
     @Override
     public final ThisVariable getThis() {
-    	if(getMethod().isStatic()){
-    		throw new ASMSupportException("cannot use \"this\" keyword in static block");
-    	}
+        if(getMethod().isStatic()){
+            throw new ASMSupportException("cannot use \"this\" keyword in static block");
+        }
         return getMethodOwner().getThisVariable();
     }
     
     @Override
     public final SuperVariable getSuper() {
-    	if(getMethod().isStatic()){
-    		throw new ASMSupportException("cannot use \"super\" keyword in static block");
-    	}
+        if(getMethod().isStatic()){
+            throw new ASMSupportException("cannot use \"super\" keyword in static block");
+        }
         return getMethodOwner().getSuperVariable();
     }
     
     @Override
     public final MethodInvoker invokeOriginalMethod(){
-    	if(getMethod().getMode() == ASConstant.METHOD_CREATE_MODE_MODIFY){
-    		String originalMethodName = getMethod().getMethodMeta().getName();
-    		if(originalMethodName.equals(ASConstant.CLINIT)){
-    			originalMethodName = ASConstant.CLINIT_PROXY;
-    		}else if(originalMethodName.equals(ASConstant.INIT)){
-    			originalMethodName = ASConstant.INIT_PROXY;
-    		}
-			originalMethodName += ASConstant.METHOD_PROXY_SUFFIX;
-    		if(getMethod().isStatic()){
-    			return invokeStatic(getMethod().getMethodOwner(), originalMethodName, getMethodArguments());
-    		}else{
-        		return invoke(getThis(), originalMethodName, getMethodArguments());
-    		}
-    	}else{
-    		throw new ASMSupportException("This method is new and not modify!");
-    	}
+        if(getMethod().getMode() == ASConstant.METHOD_CREATE_MODE_MODIFY){
+            String originalMethodName = getMethod().getMethodMeta().getName();
+            if(originalMethodName.equals(ASConstant.CLINIT)){
+                originalMethodName = ASConstant.CLINIT_PROXY;
+            }else if(originalMethodName.equals(ASConstant.INIT)){
+                originalMethodName = ASConstant.INIT_PROXY;
+            }
+            originalMethodName += ASConstant.METHOD_PROXY_SUFFIX;
+            if(getMethod().isStatic()){
+                return invokeStatic(getMethod().getMethodOwner(), originalMethodName, getMethodArguments());
+            }else{
+                return invoke(getThis(), originalMethodName, getMethodArguments());
+            }
+        }else{
+            throw new ASMSupportException("This method is new and not modify!");
+        }
     }
     
     /**

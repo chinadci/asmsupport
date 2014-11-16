@@ -51,7 +51,9 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
 		
 		if(ArrayUtils.isNotEmpty(parDims)){
 			for(Parameterized par : parDims){
-				AClassUtils.checkAssignable(par.getParamterizedType(), AClass.INT_ACLASS);
+				if(!AClassUtils.checkAssignable(par.getParamterizedType(), AClass.INT_ACLASS)) {
+					throw new IllegalArgumentException("Type mismatch: cannot convert from " + par.getParamterizedType() + " to " + AClass.INT_ACLASS + "");
+				}
 			}
 		}
 		

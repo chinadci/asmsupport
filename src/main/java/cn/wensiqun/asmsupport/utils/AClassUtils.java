@@ -229,22 +229,22 @@ public class AClassUtils {
         
         if (as.isPrimitive()) {
             if (as.equals(AClass.BYTE_ACLASS)) {
-                a = new AClass[]{AClass.SHORT_ACLASS};
+                a = new AClass[]{AClass.SHORT_ACLASS, AClass.OBJECT_ACLASS};
                 
             } else if (as.equals(AClass.SHORT_ACLASS)) {
-                a = new AClass[]{AClass.INT_ACLASS};
+                a = new AClass[]{AClass.INT_ACLASS, AClass.OBJECT_ACLASS};
                 
             } else if (as.equals(AClass.CHAR_ACLASS)) {
-                a = new AClass[]{AClass.INT_ACLASS};
+                a = new AClass[]{AClass.INT_ACLASS, AClass.OBJECT_ACLASS};
                 
             }  else if (as.equals(AClass.INT_ACLASS)) {
-                a = new AClass[]{AClass.LONG_ACLASS};
+                a = new AClass[]{AClass.LONG_ACLASS, AClass.OBJECT_ACLASS};
                 
             } else if (as.equals(AClass.LONG_ACLASS)) {
-                a = new AClass[]{AClass.FLOAT_ACLASS};
+                a = new AClass[]{AClass.FLOAT_ACLASS, AClass.OBJECT_ACLASS};
                 
             } else if (as.equals(AClass.FLOAT_ACLASS)) {
-                a = new AClass[]{AClass.DOUBLE_ACLASS};   
+                a = new AClass[]{AClass.DOUBLE_ACLASS, AClass.OBJECT_ACLASS};   
             }
             
         } else if (as.equals(AClass.OBJECT_ACLASS)) {
@@ -479,7 +479,7 @@ public class AClassUtils {
             int fromSort = fromPrim.getType().getSort();
             int toSort = toPrim.getType().getSort();
             
-            if(fromSort == toSort)
+            if(fromSort == toSort && fromSort < 9)
             {
                 return true;
             }

@@ -63,8 +63,12 @@ public class ArrayStorer extends AbstractArrayOperator {
     @Override
 	protected void verifyArgument() {
 		super.verifyArgument();
-	    AClassUtils.checkAssignable(value.getParamterizedType(), storeClass);
-	    AClassUtils.checkAssignable(lastDim.getParamterizedType(), AClass.INT_ACLASS);
+		if(!AClassUtils.checkAssignable(value.getParamterizedType(), storeClass)) {
+			throw new IllegalArgumentException("Type mismatch: cannot convert from " + value.getParamterizedType() + " to " + storeClass + "");
+		}
+		if(!AClassUtils.checkAssignable(lastDim.getParamterizedType(), AClass.INT_ACLASS)) {
+			throw new IllegalArgumentException("Type mismatch: cannot convert from " + lastDim.getParamterizedType() + " to " + AClass.INT_ACLASS + "");
+		}
 	}
 
 	@Override
