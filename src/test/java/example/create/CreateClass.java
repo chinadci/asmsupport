@@ -89,8 +89,8 @@ public class CreateClass extends AbstractExample {
 		creator.createStaticBlock(new ClinitBody(){
 			@Override
 			public void body() {
-				assign(getMethodOwner().getGlobalVariable("staticGlobalVariable"), Value.value("I'm a static global variable at class"));
-				runReturn();
+				_assign(getMethodOwner().getGlobalVariable("staticGlobalVariable"), Value.value("I'm a static global variable at class"));
+				_return();
 			}
 		});
 		
@@ -146,8 +146,8 @@ public class CreateClass extends AbstractExample {
 				 * 由于我们创建的globalVariable是非static的。所以通过getThis()获取globalVariable。
 				 * getThis()对应于java代码中就是this关键字。
 				 */
-				assign(getThis().getGlobalVariable("globalVariable"), argus[0]);
-				runReturn();
+				_assign(_this().getGlobalVariable("globalVariable"), argus[0]);
+				_return();
 			}
 			
 		}, Opcodes.ACC_PUBLIC);
@@ -167,9 +167,9 @@ public class CreateClass extends AbstractExample {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				invoke(systemOut, "println", append(Value.value("staticGlobalVariable : "), getMethodOwner().getGlobalVariable("staticGlobalVariable")));
-				invoke(systemOut, "println", append(Value.value("globalVariable : "), getThis().getGlobalVariable("globalVariable")));
-				runReturn();
+				_invoke(systemOut, "println", _append(Value.value("staticGlobalVariable : "), getMethodOwner().getGlobalVariable("staticGlobalVariable")));
+				_invoke(systemOut, "println", _append(Value.value("globalVariable : "), _this().getGlobalVariable("globalVariable")));
+				_return();
 			}
 			
 		});
@@ -188,15 +188,15 @@ public class CreateClass extends AbstractExample {
 
 	        @Override
 			public void body(LocalVariable... argus) {
-	        	invoke(invokeConstructor(getMethodOwner(), Value.value(1024)), "commonMethod");
+	        	_invoke(_new(getMethodOwner(), Value.value(1024)), "commonMethod");
 	        	
-	        	invoke(systemOut, "println", append(Value.value("COMMON_PRE : "), getMethodOwner().getGlobalVariable("COMMON_PRE")));
+	        	_invoke(systemOut, "println", _append(Value.value("COMMON_PRE : "), getMethodOwner().getGlobalVariable("COMMON_PRE")));
 	        	
-	        	invoke(systemOut, "println", append(Value.value("COMMON_POST : "), getMethodOwner().getGlobalVariable("COMMON_POST")));
+	        	_invoke(systemOut, "println", _append(Value.value("COMMON_POST : "), getMethodOwner().getGlobalVariable("COMMON_POST")));
 				
 	        	//invoke(systemOut, "println", append(Value.value("COMMON_MIDDLE : "), getMethodOwner().getGlobalVariable("common_middle")));
 				
-			    runReturn();
+			    _return();
 			}
 			
 		});

@@ -17,16 +17,16 @@ public interface KeywordVariableable {
 	 * 在程序块中获取this关键字. 需要注意的是，和java代码一样，这个变量只能够在非静态方法或者程序块中调用，否则会抛异常。
 	 * 
 	 * @return {@link ThisVariable}
-	 * @see #getSuper()
+	 * @see #_super()
 	 */
-	public ThisVariable getThis();
+	public ThisVariable _this();
 	
 	
 	/**
 	 * 获取父类super关键字。 需要注意的是，和java代码一样，这个变量只能够在非静态方法或者程序块中调用，否则会抛异常。
 	 * 
 	 * @return {@link SuperVariable}
-	 * @see #getThis()
+	 * @see #_this()
 	 */
-	public SuperVariable getSuper();
+	public SuperVariable _super();
 }

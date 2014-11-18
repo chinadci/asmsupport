@@ -21,7 +21,7 @@ public interface CrementOperator {
      * @param crement
      * @return {@link PreposeDecrment}
      */
-    public PreposeDecrment preDec(Crementable crement);
+    public PreposeDecrment _preDec(Crementable crement);
     
     /**
      * 生成类似i--操作指令
@@ -29,7 +29,7 @@ public interface CrementOperator {
      * @param crement
      * @return {@link PreposeIncrement}
      */
-    public PostposeDecrment postDec(Crementable crement);
+    public PostposeDecrment _postDec(Crementable crement);
     
     /**
      * 生成类似++i操作指令
@@ -37,7 +37,7 @@ public interface CrementOperator {
      * @param crement
      * @return {@link PreposeIncrement}
      */
-    public PreposeIncrment preInc(Crementable crement);
+    public PreposeIncrment _preInc(Crementable crement);
     
     /**
      * 生成类似i++操作指令
@@ -45,7 +45,7 @@ public interface CrementOperator {
      * @param crement
      * @return {@link PostposeIncrement}
      */
-    public PostposeIncrment postInc(Crementable crement);
+    public PostposeIncrment _postInc(Crementable crement);
     
 }
 

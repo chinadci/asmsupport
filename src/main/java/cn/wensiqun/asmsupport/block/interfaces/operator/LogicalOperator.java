@@ -27,7 +27,7 @@ public interface LogicalOperator {
      * @param factor2
      * @return {@link LogicalAnd}
      */
-    public LogicalAnd logicalAnd(Parameterized factor1, Parameterized factor2);
+    public LogicalAnd _logicalAnd(Parameterized factor1, Parameterized factor2);
     
     /**
      * 生成逻辑或操作指令,对应下面的红色java代码
@@ -41,7 +41,7 @@ public interface LogicalOperator {
      * @param factor2
      * @return {@link LogicalOr}
      */
-    public LogicalOr logicalOr(Parameterized factor1, Parameterized factor2);
+    public LogicalOr _logicalOr(Parameterized factor1, Parameterized factor2);
 
     /**
      * 
@@ -55,7 +55,7 @@ public interface LogicalOperator {
      * @param factor2
      * @return {@link LogicalXor}
      */
-    public LogicalXor logicalXor(Parameterized factor1, Parameterized factor2);
+    public LogicalXor _logicalXor(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -70,7 +70,7 @@ public interface LogicalOperator {
      * @param factor2
      * @return {@link ShortCircuitAnd}
      */
-    public ShortCircuitAnd conditionalAnd(Parameterized factor1, Parameterized factor2);
+    public ShortCircuitAnd _conditionalAnd(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -84,7 +84,7 @@ public interface LogicalOperator {
      * @param factor2
      * @return {@link ShortCircuitOr}
      */
-    public ShortCircuitOr conditionalOr(Parameterized factor1, Parameterized factor2);
+    public ShortCircuitOr _conditionalOr(Parameterized factor1, Parameterized factor2);
     
     /**
      * 生成条件非操作指令,对应下面的红色java代码
@@ -97,5 +97,5 @@ public interface LogicalOperator {
      * @param factor
      * @return {@link Not}
      */
-    public Not not(Parameterized factor);
+    public Not _not(Parameterized factor);
 }

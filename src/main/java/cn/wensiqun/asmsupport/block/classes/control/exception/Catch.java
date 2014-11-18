@@ -46,7 +46,7 @@ public abstract class Catch extends EpisodeBlock<ExceptionSerialBlock> implement
         }
     }
     
-    public Catch catchException(Catch catchBlock)
+    public Catch _catch(Catch catchBlock)
     {
         ExceptionSerialBlock serial = getSerial();
         
@@ -58,7 +58,7 @@ public abstract class Catch extends EpisodeBlock<ExceptionSerialBlock> implement
         return catchBlock;
     }
     
-    public Finally finallyThan(Finally block)
+    public Finally _finally(Finally block)
     {
         ExceptionSerialBlock serial = getSerial();
         if(serial.getFinally() != null)

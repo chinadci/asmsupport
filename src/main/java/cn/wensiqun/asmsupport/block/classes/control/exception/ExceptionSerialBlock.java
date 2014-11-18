@@ -377,7 +377,7 @@ public class ExceptionSerialBlock extends SerialBlock
             
             if(!this.isFinish())
             {
-                throwException(exception);
+                _throw(exception);
             }
         }
 

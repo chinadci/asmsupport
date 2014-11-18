@@ -30,43 +30,43 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
             Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
                 @Override
                 public void body(LocalVariable... argus) {
-                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
-                    tryDo(new Try(){
+                    _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
+                    _try(new Try(){
                         @Override
                         public void body()
                         {
-                            invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
-                            tryDo(new Try(){
+                            _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
+                            _try(new Try(){
 
                                 @Override
                                 public void body()
                                 {
-                                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
-                                    throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
+                                    _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                                    _throw(_new(AClass.EXCEPTION_ACLASS));
                                 }
                                 
-                            }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+                            })._catch(new Catch(AClass.EXCEPTION_ACLASS){
 
                                 @Override
                                 public void body(LocalVariable e)
                                 {
-                                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch"));
-                                    throwException(e);
+                                    _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch"));
+                                    _throw(e);
                                 }
                                 
                             });
                         }
-                    }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+                    })._catch(new Catch(AClass.EXCEPTION_ACLASS){
 
                         @Override
                         public void body(LocalVariable e)
                         {
-                            invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch"));
+                            _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch"));
                         }
                         
                     });
-                    invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("End"));
-                    runReturn();
+                    _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("End"));
+                    _return();
                 }
         
         });
@@ -76,74 +76,74 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                 Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBody(){
                     @Override
                     public void body(LocalVariable... argus) {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
-                        tryDo(new Try(){
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
+                        _try(new Try(){
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
-                                tryDo(new Try(){
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Try"));
+                                _try(new Try(){
 
                                     @Override
                                     public void body()
                                     {
-                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
-                                        throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
+                                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                                        _throw(_new(AClass.EXCEPTION_ACLASS));
                                     }
                                     
-                                }).catchException(new Catch(runtime){
+                                })._catch(new Catch(runtime){
 
                                     @Override
                                     public void body(LocalVariable e)
                                     {
-                                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(RuntimeException)"));
+                                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(RuntimeException)"));
                                     }
                                     
-                                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+                                })._catch(new Catch(AClass.EXCEPTION_ACLASS){
 
 									@Override
 									public void body(LocalVariable e) {
-										invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
-                                        throwException(invokeConstructor(runtime));
+										_invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
+                                        _throw(_new(runtime));
 									}
                                 	
                                 });
                             }
-                        }).catchException(new Catch(runtime){
+                        })._catch(new Catch(runtime){
 
                             @Override
                             public void body(LocalVariable e)
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(RuntimeException)"));
-                                tryDo(new Try(){
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(RuntimeException)"));
+                                _try(new Try(){
 
 									@Override
 									public void body() {
-										invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
-                                        throwException(invokeConstructor(AClass.EXCEPTION_ACLASS));
+										_invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Try"));
+                                        _throw(_new(AClass.EXCEPTION_ACLASS));
 									}
                                 	
-                                }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+                                })._catch(new Catch(AClass.EXCEPTION_ACLASS){
 
 									@Override
 									public void body(LocalVariable e) {
-										invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
+										_invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        |-Catch(Exception)"));
 									}
                                 	
                                 });
                             }
                             
-                        }).catchException(new Catch(AClass.EXCEPTION_ACLASS){
+                        })._catch(new Catch(AClass.EXCEPTION_ACLASS){
 
                             @Override
                             public void body(LocalVariable e)
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(Exception)"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    |-Catch(Exception)"));
                             }
                             
                         });
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("End"));
-                        runReturn();
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("End"));
+                        _return();
                     }
             
             });
@@ -158,7 +158,7 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
                     {
                         noExceptionCall(this, name);
                     }
-                    runReturn();
+                    _return();
                 }
         
         });
@@ -169,16 +169,16 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
     
     private static void noExceptionCall(ProgramBlock block, final String methodName)
     {
-        block.invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
-        block.tryDo(new Try(){
+        block._invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
+        block._try(new Try(){
 
             @Override
             public void body()
             {
-                invokeStatic(getMethodOwner(), methodName);
+                _invokeStatic(getMethodOwner(), methodName);
             }
             
-        }).catchException(new Catch(AClass.THROWABLE_ACLASS){
+        })._catch(new Catch(AClass.THROWABLE_ACLASS){
 
             @Override
             public void body(LocalVariable e)

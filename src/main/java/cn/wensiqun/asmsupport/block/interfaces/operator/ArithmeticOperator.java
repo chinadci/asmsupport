@@ -26,7 +26,7 @@ public interface ArithmeticOperator {
      * @param factor2
      * @return {@link Addition}
      */
-    public Addition add(Parameterized factor1, Parameterized factor2);
+    public Addition _add(Parameterized factor1, Parameterized factor2);
 
     /**
      * 生成减法操作指令例如：factor1 - factor2,对应下面的红色java代码
@@ -39,7 +39,7 @@ public interface ArithmeticOperator {
      * @param factor2
      * @return {@link Subtraction}
      */
-    public Subtraction sub(Parameterized factor1, Parameterized factor2);
+    public Subtraction _sub(Parameterized factor1, Parameterized factor2);
     
     /**
      * 生成乘法操作指令例如：factor1 * factor2,对应下面的红色java代码
@@ -52,7 +52,7 @@ public interface ArithmeticOperator {
      * @param factor2
      * @return {@link Multiplication}
      */
-    public Multiplication mul(Parameterized factor1, Parameterized factor2);
+    public Multiplication _mul(Parameterized factor1, Parameterized factor2);
     
     /**
      * 生成除法操作指令例如：factor1 / factor2,对应下面的红色java代码
@@ -65,7 +65,7 @@ public interface ArithmeticOperator {
      * @param factor2
      * @return {@link Division}
      */
-    public Division div(Parameterized factor1, Parameterized factor2);
+    public Division _div(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -80,6 +80,6 @@ public interface ArithmeticOperator {
      * @param factor2
      * @return {@link Modulus}
      */
-    public Modulus mod(Parameterized factor1, Parameterized factor2);
+    public Modulus _mod(Parameterized factor1, Parameterized factor2);
     
 }

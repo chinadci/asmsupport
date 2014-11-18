@@ -42,7 +42,7 @@ public interface MethodInvokeOperator {
      * 
      * <p>
      * 这个方法同样也可以调用静态方法，如果传入的方法名在对象中是一个静态方法，那么ASMSuppport底层就自动生成调用今天方法的指令。当然我们也可以直接通过
-     * 调用{@link #invokeStatic(AClass, String, Parameterized...)}方法生成静态方法调用指令。这一点其实和我们编写java代码是
+     * 调用{@link #_invokeStatic(AClass, String, Parameterized...)}方法生成静态方法调用指令。这一点其实和我们编写java代码是
      * 一样的，当我们调用某一个变量的方法时候，如果这个方法是静态方法，我们可以采用"变量名.方法名()"和"类名.方法名()"这两种方式。
      * </p>
      * 
@@ -51,7 +51,7 @@ public interface MethodInvokeOperator {
      * @param arguments
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker invoke(Parameterized objRef, String methodName, Parameterized... arguments);
+    public MethodInvoker _invoke(Parameterized objRef, String methodName, Parameterized... arguments);
 
     
     /**
@@ -77,7 +77,7 @@ public interface MethodInvokeOperator {
      * @param arguments
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker invokeStatic(AClass owner, String methodName, Parameterized... arguments);
+    public MethodInvoker _invokeStatic(AClass owner, String methodName, Parameterized... arguments);
     
     /**
      * 
@@ -102,7 +102,7 @@ public interface MethodInvokeOperator {
      * @param arguments
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker invokeConstructor(AClass owner, Parameterized... arguments);
+    public MethodInvoker _new(AClass owner, Parameterized... arguments);
     
     
     /**
@@ -133,6 +133,6 @@ public interface MethodInvokeOperator {
      * 在上面的代码中"test@original()"这个方法调用指令就是asmsupport调用了invokeOriginalMethod方法生成的。
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker invokeOriginalMethod();
+    public MethodInvoker _invokeOriginalMethod();
     
 }

@@ -60,13 +60,13 @@ public abstract class IF extends ConditionBranchBlock implements Body
         }
     }
 
-    public ElseIF elseIF(ElseIF elsIf)
+    public ElseIF _elseif(ElseIF elsIf)
     {
     	initNextBranch(elsIf);
     	return elsIf;
     }
     
-    public Else elseThen(Else els)
+    public Else _else(Else els)
     {
     	initNextBranch(els);
     	return els;

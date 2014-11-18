@@ -47,45 +47,45 @@ public class RelationalOperatorGenerate extends AbstractExample {
 			@Override
 			public void body(LocalVariable... argus) {
 				//Random rand = new Random();
-				LocalVariable rand = createVariable("rand", AClassFactory.getProductClass(Random.class), false, invokeConstructor(AClassFactory.getProductClass(Random.class)));
+				LocalVariable rand = _createVariable("rand", AClassFactory.getProductClass(Random.class), false, _new(AClassFactory.getProductClass(Random.class)));
 				
 				//int i = rand.nextInt(100);
-				LocalVariable i = createVariable("i", AClass.INT_ACLASS, false, invoke(rand, "nextInt", Value.value(100)));
+				LocalVariable i = _createVariable("i", AClass.INT_ACLASS, false, _invoke(rand, "nextInt", Value.value(100)));
 				
 			    //int j = rand.nextInt(100);
-				LocalVariable j = createVariable("j", AClass.INT_ACLASS, false, invoke(rand, "nextInt", Value.value(100)));
+				LocalVariable j = _createVariable("j", AClass.INT_ACLASS, false, _invoke(rand, "nextInt", Value.value(100)));
 				
 			    //System.out.println("i = " + i);
-				invoke(systemOut, "println", append(Value.value("i = "), i));
+				_invoke(systemOut, "println", _append(Value.value("i = "), i));
 				
 			    //System.out.println("j = " + j);
-				invoke(systemOut, "println", append(Value.value("j = "), j));
+				_invoke(systemOut, "println", _append(Value.value("j = "), j));
 				
 			    //System.out.println("i > j is " + (i > j));
-				invoke(systemOut, "println", append(Value.value("i > j is "), greaterThan(i, j)));
+				_invoke(systemOut, "println", _append(Value.value("i > j is "), _greaterThan(i, j)));
 				
 			    //System.out.println("i < j is " + (i < j));
-				invoke(systemOut, "println", append(Value.value("i < j is "), lessThan(i, j)));
+				_invoke(systemOut, "println", _append(Value.value("i < j is "), _lessThan(i, j)));
 				
 			    //System.out.println("i >= j is " + (i >= j));
-				invoke(systemOut, "println", append(Value.value("i >= j is "), greaterEqual(i, j)));
+				_invoke(systemOut, "println", _append(Value.value("i >= j is "), _greaterEqual(i, j)));
 				
 			    //System.out.println("i <= j is " + (i <= j));
-				invoke(systemOut, "println", append(Value.value("i <= j is "), lessEqual(i, j)));
+				_invoke(systemOut, "println", _append(Value.value("i <= j is "), _lessEqual(i, j)));
 				
 			    //System.out.println("i == j is " + (i == j));
-				invoke(systemOut, "println", append(Value.value("i == j is "), equal(i, j)));
+				_invoke(systemOut, "println", _append(Value.value("i == j is "), _equals(i, j)));
 				
 			    //System.out.println("i != j is " + (i != j));
-				invoke(systemOut, "println", append(Value.value("i != j is "), notEqual(i, j)));
+				_invoke(systemOut, "println", _append(Value.value("i != j is "), _notEquals(i, j)));
 				
 			    //System.out.println("(i < 10) && (j < 10) is " + ((i < 10) && (j < 10)));
-				invoke(systemOut, "println", append(Value.value("(i < 10) && (j < 10) is "), conditionalAnd(lessThan(i, Value.value(10)), lessThan(j, Value.value(10)))));
+				_invoke(systemOut, "println", _append(Value.value("(i < 10) && (j < 10) is "), _conditionalAnd(_lessThan(i, Value.value(10)), _lessThan(j, Value.value(10)))));
 				
 			    //System.out.println("(i < 10) || (j < 10) is " + ((i < 10) || (j < 10)));
-				invoke(systemOut, "println", append(Value.value("(i < 10) || (j < 10) is "), conditionalOr(lessThan(i, Value.value(10)), lessThan(j, Value.value(10)))));
+				_invoke(systemOut, "println", _append(Value.value("(i < 10) || (j < 10) is "), _conditionalOr(_lessThan(i, Value.value(10)), _lessThan(j, Value.value(10)))));
 				
-				runReturn();
+				_return();
 			}
         });
 		generate(creator);

@@ -29,8 +29,8 @@ public class TestSerializableWithASMSupport {
 
 					@Override
 					public void body(LocalVariable... argus) {
-						assign(getThis().getGlobalVariable("name"), argus[0]);
-						runReturn();
+						_assign(_this().getGlobalVariable("name"), argus[0]);
+						_return();
 					}
     		
     	});
@@ -42,7 +42,7 @@ public class TestSerializableWithASMSupport {
 
 					@Override
 					public void body(LocalVariable... argus) {
-						runReturn(getThis().getGlobalVariable("name"));
+						_return(_this().getGlobalVariable("name"));
 					}
     		
     	});
@@ -54,7 +54,7 @@ public class TestSerializableWithASMSupport {
 
 					@Override
 					public void body(LocalVariable... argus) {
-						runReturn(append(Value.value("User [name="), getThis().getGlobalVariable("name")));
+						_return(_append(Value.value("User [name="), _this().getGlobalVariable("name")));
 					}
     		
     	});

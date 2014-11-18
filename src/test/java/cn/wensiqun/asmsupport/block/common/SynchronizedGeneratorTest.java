@@ -68,9 +68,9 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             @Override
             public void body(LocalVariable... argus) {
             	  invokeSuperConstructor(argus);
-                assign(getThis().getGlobalVariable("lock"), invokeConstructor(AClass.OBJECT_ACLASS));
-                assign(getThis().getGlobalVariable("list"), invokeConstructor(AClassFactory.getProductClass(ArrayList.class)));
-				  this.runReturn();
+                _assign(_this().getGlobalVariable("lock"), _new(AClass.OBJECT_ACLASS));
+                _assign(_this().getGlobalVariable("list"), _new(AClassFactory.getProductClass(ArrayList.class)));
+				  this._return();
             }
             
         }, Opcodes.ACC_PUBLIC);
@@ -79,24 +79,24 @@ public class SynchronizedGeneratorTest extends AbstractExample {
 
             @Override
             public void body(LocalVariable... argus) {
-                final GlobalVariable list = getThis().getGlobalVariable("list");
-                syn(new Synchronized(getThis()){
+                final GlobalVariable list = _this().getGlobalVariable("list");
+                _sync(new Synchronized(_this()){
                     @Override
                     public void body(Parameterized e) {
-                        final LocalVariable i = createVariable("i", AClass.INT_ACLASS, false, Value.value(0));
-                        whileDo(new While(lessThan(i, Value.value(10))){
+                        final LocalVariable i = _createVariable("i", AClass.INT_ACLASS, false, Value.value(0));
+                        _while(new While(_lessThan(i, Value.value(10))){
 
                             @Override
                             public void body() {
-                                invoke(list, "add", i);
-                                postInc(i);
+                                _invoke(list, "add", i);
+                                _postInc(i);
                             }
                             
                         });
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -105,24 +105,24 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             
             @Override
             public void body(LocalVariable... argus) {
-                final GlobalVariable list = getThis().getGlobalVariable("list");
-                syn(new Synchronized(getThis().getGlobalVariable("lock")){
+                final GlobalVariable list = _this().getGlobalVariable("list");
+                _sync(new Synchronized(_this().getGlobalVariable("lock")){
                     @Override
                     public void body(Parameterized e) {
-                        final LocalVariable i = createVariable("i", AClass.INT_ACLASS, false, Value.value(0));
-                        whileDo(new While(lessThan(i, Value.value(10))){
+                        final LocalVariable i = _createVariable("i", AClass.INT_ACLASS, false, Value.value(0));
+                        _while(new While(_lessThan(i, Value.value(10))){
 
                             @Override
                             public void body() {
-                                invoke(list, "add", i);
-                                postInc(i);
+                                _invoke(list, "add", i);
+                                _postInc(i);
                             }
                             
                         });
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -151,8 +151,8 @@ public class SynchronizedGeneratorTest extends AbstractExample {
 			@Override
 			public void body(LocalVariable... argus) {
           	   invokeSuperConstructor();
-				assign(getThis().getGlobalVariable("sgst"), argus[0]);
-				this.runReturn();
+				_assign(_this().getGlobalVariable("sgst"), argus[0]);
+				this._return();
 			}
         	
         }, Opcodes.ACC_PUBLIC);
@@ -161,22 +161,22 @@ public class SynchronizedGeneratorTest extends AbstractExample {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				this.tryDo(new Try(){
+				this._try(new Try(){
 
 					@Override
 					public void body() {
-						invokeStatic(AClassFactory.getProductClass(Thread.class), "sleep", Value.value(100));
-					    invoke(getThis().getGlobalVariable("sgst"), "sync" + name);
+						_invokeStatic(AClassFactory.getProductClass(Thread.class), "sleep", Value.value(100));
+					    _invoke(_this().getGlobalVariable("sgst"), "sync" + name);
 					}
 					
-				}).catchException(new Catch(AClassFactory.getProductClass(InterruptedException.class)) {
+				})._catch(new Catch(AClassFactory.getProductClass(InterruptedException.class)) {
 
 					@Override
 					public void body(LocalVariable e) {
 					}
 					
 				});
-				runReturn();
+				_return();
 			}
         	
         });
@@ -201,58 +201,58 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             
             @Override
             public void body(LocalVariable... argus) {
-                 final LocalVariable sgst = createVariable("sgst", syncCls, false, invokeConstructor(syncCls));
+                 final LocalVariable sgst = _createVariable("sgst", syncCls, false, _new(syncCls));
                 
-                 final LocalVariable es = createVariable(
+                 final LocalVariable es = _createVariable(
                         "es", 
                         AClassFactory.getProductClass(ExecutorService.class),
                         false, 
-                        invokeStatic(AClassFactory.getProductClass(Executors.class), "newFixedThreadPool", Value.value(10))
+                        _invokeStatic(AClassFactory.getProductClass(Executors.class), "newFixedThreadPool", Value.value(10))
                 );
-                 final LocalVariable objs = createVariable(
+                 final LocalVariable objs = _createVariable(
                         "objs", 
                         AClassFactory.getProductClass(List.class),
                         false, 
-                        invokeConstructor(AClassFactory.getProductClass(ArrayList.class))
+                        _new(AClassFactory.getProductClass(ArrayList.class))
                 );
-                 final LocalVariable i = createVariable(
+                 final LocalVariable i = _createVariable(
                         "i", 
                         AClass.INT_ACLASS,
                         false, 
                         Value.value(0)
                );
-                this.whileDo(new While(lessThan(i, Value.value(10))){
+                this._while(new While(_lessThan(i, Value.value(10))){
 						@Override
 						public void body() {
-							invoke(objs, "add", invoke(es, "submit", invokeConstructor(threadClass, sgst)));
-							postInc(i);
+							_invoke(objs, "add", _invoke(es, "submit", _new(threadClass, sgst)));
+							_postInc(i);
 						}
 					});
-                invoke(es, "shutdown");
-                whileDo(new While(not(invoke(es, "isTerminated"))){
+                _invoke(es, "shutdown");
+                _while(new While(_not(_invoke(es, "isTerminated"))){
 						@Override
 						public void body() {
 							
 						}
 					});
-                invokeStatic(AClassFactory.getProductClass(SynchronizedGeneratorTest.class), "assertEquals",
-                		Value.value("Assert.assertEquals(100, sgst.list.size())"), Value.value(100), invoke(sgst.getGlobalVariable("list"), "size"));
+                _invokeStatic(AClassFactory.getProductClass(SynchronizedGeneratorTest.class), "assertEquals",
+                		Value.value("Assert.assertEquals(100, sgst.list.size())"), Value.value(100), _invoke(sgst.getGlobalVariable("list"), "size"));
                 
-                assign(i, Value.value(0));
-                whileDo(new While(lessThan(i, Value.value(100))) {
+                _assign(i, Value.value(0));
+                _while(new While(_lessThan(i, Value.value(100))) {
 
 					@Override
 					public void body() {
-		                invokeStatic(AClassFactory.getProductClass(SynchronizedGeneratorTest.class), "assertEquals",
+		                _invokeStatic(AClassFactory.getProductClass(SynchronizedGeneratorTest.class), "assertEquals",
 		                		i,
-		                		mod(i, Value.value(10)), 
-		                		invoke(checkCast(invoke(sgst.getGlobalVariable("list"), "get", i), AClass.INTEGER_WRAP_ACLASS), "intValue"));
-						postInc(i);
+		                		_mod(i, Value.value(10)), 
+		                		_invoke(_checkcast(_invoke(sgst.getGlobalVariable("list"), "get", i), AClass.INTEGER_WRAP_ACLASS), "intValue"));
+						_postInc(i);
 					}
                 	
                 });
                 
-                runReturn();
+                _return();
             }
             
         });

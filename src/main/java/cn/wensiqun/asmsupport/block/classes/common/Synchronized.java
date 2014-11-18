@@ -108,7 +108,7 @@ public abstract class Synchronized extends ProgramBlock implements Parameterized
                 new Class<?>[]{ProgramBlock.class, AClass.class}, 
                 this, lock.getParamterizedType());
         
-		dupSynArgument = createVariable(null, lock.getParamterizedType(), true, dup);
+		dupSynArgument = _createVariable(null, lock.getParamterizedType(), true, dup);
 		
 		flag1 = OperatorFactory.newOperator(Marker.class, 
                 new Class<?>[]{ProgramBlock.class, Label.class}, 

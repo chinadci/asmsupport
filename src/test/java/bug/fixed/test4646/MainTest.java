@@ -42,7 +42,7 @@ public class MainTest {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				runReturn(invokeConstructor(childChild));
+				_return(_new(childChild));
 			}
 					
 		});
@@ -53,7 +53,7 @@ public class MainTest {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				runReturn(invokeConstructor(childChild));
+				_return(_new(childChild));
 			}
 					
 		});
@@ -64,7 +64,7 @@ public class MainTest {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				runReturn(invokeConstructor(childChild));
+				_return(_new(childChild));
 			}
 					
 		});
@@ -75,7 +75,7 @@ public class MainTest {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				runReturn(invokeConstructor(childChild));
+				_return(_new(childChild));
 			}
 					
 		});

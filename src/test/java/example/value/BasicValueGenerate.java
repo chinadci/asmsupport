@@ -50,45 +50,45 @@ public class BasicValueGenerate extends AbstractExample {
 	        	double doubleVal = 10;
 	        	String strVal = "I'm a string value";
 	        	//Value.nullValue(type)
-	        	invoke(systemOut, "println", append(Value.value("boolean value is : "), Value.value(boolVal)));
-	        	invoke(systemOut, "println", append(Value.value("boolean default value is : "), Value.defaultValue(AClass.BOOLEAN_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("boolean value is : "), Value.value(boolVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("boolean default value is : "), Value.defaultValue(AClass.BOOLEAN_ACLASS)));
 	        	
 	        	
-	        	invoke(systemOut, "println", append(Value.value("byte value is : "), Value.value(byteVal)));
-	        	invoke(systemOut, "println", append(Value.value("byte default value is : "), Value.defaultValue(AClass.BYTE_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("byte value is : "), Value.value(byteVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("byte default value is : "), Value.defaultValue(AClass.BYTE_ACLASS)));
 	        	
 	        	
-	        	invoke(systemOut, "println", append(Value.value("short value is : "), Value.value(shortVal)));
-	        	invoke(systemOut, "println", append(Value.value("short default value is : "), Value.defaultValue(AClass.SHORT_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("short value is : "), Value.value(shortVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("short default value is : "), Value.defaultValue(AClass.SHORT_ACLASS)));
 	        	
 
-	        	invoke(systemOut, "println", append(Value.value("char value is : "), Value.value(charVal)));
-	        	invoke(systemOut, "println", append(Value.value("char default value is : "), Value.defaultValue(AClass.CHAR_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("char value is : "), Value.value(charVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("char default value is : "), Value.defaultValue(AClass.CHAR_ACLASS)));
 
 
-	        	invoke(systemOut, "println", append(Value.value("int value is : "), Value.value(intVal)));
-	        	invoke(systemOut, "println", append(Value.value("int default value is : "), Value.defaultValue(AClass.INT_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("int value is : "), Value.value(intVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("int default value is : "), Value.defaultValue(AClass.INT_ACLASS)));
 
 
-	        	invoke(systemOut, "println", append(Value.value("float value is : "), Value.value(floatVal)));
-	        	invoke(systemOut, "println", append(Value.value("float default value is : "), Value.defaultValue(AClass.FLOAT_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("float value is : "), Value.value(floatVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("float default value is : "), Value.defaultValue(AClass.FLOAT_ACLASS)));
 
 
-	        	invoke(systemOut, "println", append(Value.value("long value is : "), Value.value(longVal)));
-	        	invoke(systemOut, "println", append(Value.value("long default value is : "), Value.defaultValue(AClass.LONG_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("long value is : "), Value.value(longVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("long default value is : "), Value.defaultValue(AClass.LONG_ACLASS)));
 
 
-	        	invoke(systemOut, "println", append(Value.value("double value is : "), Value.value(doubleVal)));
-	        	invoke(systemOut, "println", append(Value.value("double default value is : "), Value.defaultValue(AClass.DOUBLE_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("double value is : "), Value.value(doubleVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("double default value is : "), Value.defaultValue(AClass.DOUBLE_ACLASS)));
 	        	
 
-	        	invoke(systemOut, "println", append(Value.value("String value is : "), Value.value(strVal)));
-	        	invoke(systemOut, "println", append(Value.value("double default value is : "), Value.defaultValue(AClass.STRING_ACLASS)));
+	        	_invoke(systemOut, "println", _append(Value.value("String value is : "), Value.value(strVal)));
+	        	_invoke(systemOut, "println", _append(Value.value("double default value is : "), Value.defaultValue(AClass.STRING_ACLASS)));
 
 	        	//测试null的Value
-	        	LocalVariable arrayListNullValue = createVariable("arrayListNullValue", AClassFactory.getProductClass(List.class), false, Value.getNullValue(AClassFactory.getProductClass(ArrayList.class)));
-	        	invoke(systemOut, "println", append(Value.value("I'm a null value and type is List: "), arrayListNullValue));
-			    runReturn();
+	        	LocalVariable arrayListNullValue = _createVariable("arrayListNullValue", AClassFactory.getProductClass(List.class), false, Value.getNullValue(AClassFactory.getProductClass(ArrayList.class)));
+	        	_invoke(systemOut, "println", _append(Value.value("I'm a null value and type is List: "), arrayListNullValue));
+			    _return();
 			}
 		});
 		generate(creator);

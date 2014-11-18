@@ -29,11 +29,11 @@ public class StringAppender extends AbstractOperator implements Parameterized{
         
         AClass strBlderCls = AClassFactory.getProductClass(StringBuilder.class);
 
-        MethodInvoker mi = block.invoke(block.invokeConstructor(strBlderCls), "append", par1);
+        MethodInvoker mi = block._invoke(block._new(strBlderCls), "append", par1);
         for(Parameterized par : pars){
-            mi = block.invoke(mi, "append", par);
+            mi = block._invoke(mi, "append", par);
         }
-        invoker = block.invoke(mi, "toString");
+        invoker = block._invoke(mi, "toString");
     }
 
     @Override

@@ -22,7 +22,7 @@ public abstract class Try extends EpisodeBlock<ExceptionSerialBlock> implements 
         }
     }
 
-    public Catch catchException(Catch catchBlock)
+    public Catch _catch(Catch catchBlock)
     {
         ExceptionSerialBlock serial = getSerial();
         
@@ -34,7 +34,7 @@ public abstract class Try extends EpisodeBlock<ExceptionSerialBlock> implements 
         return catchBlock;
     }
     
-    public Finally finallyThen(Finally block)
+    public Finally _finally(Finally block)
     {
         ExceptionSerialBlock serial = getSerial();
         if(serial.getFinally() != null)

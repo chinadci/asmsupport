@@ -112,16 +112,16 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				AClass D_AClass = AClassFactory.getProductClass(D);
 				
 			    //A a = new A();
-				LocalVariable a = createVariable("a", A_AClass, false, invokeConstructor(A_AClass));
+				LocalVariable a = _createVariable("a", A_AClass, false, _new(A_AClass));
 				
 				//B b = new B();
-				LocalVariable b = createVariable("b", B_AClass, false, invokeConstructor(B_AClass));
+				LocalVariable b = _createVariable("b", B_AClass, false, _new(B_AClass));
 				
 			    //C c = new C();
-				LocalVariable c = createVariable("c", C_AClass, false, invokeConstructor(C_AClass));
+				LocalVariable c = _createVariable("c", C_AClass, false, _new(C_AClass));
 				
 			    //D d = new D();
-				LocalVariable d = createVariable("d", D_AClass, false, invokeConstructor(D_AClass));
+				LocalVariable d = _createVariable("d", D_AClass, false, _new(D_AClass));
 				
 				/*if (a instanceof A)
 				      System.out.println("a is instance of A");
@@ -172,8 +172,8 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 				
 				/*A ob = d; // A reference to d
 				  System.out.println("ob now refers to d");*/
-				LocalVariable ob = createVariable("ob", A_AClass, false, d);
-				invoke(systemOut, "println", Value.value("ob now refers to d"));
+				LocalVariable ob = _createVariable("ob", A_AClass, false, d);
+				_invoke(systemOut, "println", Value.value("ob now refers to d"));
 				
 				/* if (ob instanceof D)
 		               System.out.println("ob is instance of D");
@@ -263,7 +263,7 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 						invoke(systemOut, "println", Value.value("d may be cast to Object"));
 					}
 				});*/
-				runReturn();
+				_return();
 			}
         });
 		generate(creator);

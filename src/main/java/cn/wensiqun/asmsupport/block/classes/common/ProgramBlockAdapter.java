@@ -77,382 +77,382 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
     }
     
     @Override
-    public ThisVariable getThis()
+    public ThisVariable _this()
     {
-        return target.getThis();
+        return target._this();
     }
 
     @Override
-    public SuperVariable getSuper()
+    public SuperVariable _super()
     {
-        return target.getSuper();
+        return target._super();
     }
 
     @Override
-    public LocalVariable createVariable(String name, AClass aClass, boolean anonymous, Parameterized para)
+    public LocalVariable _createVariable(String name, AClass aClass, boolean anonymous, Parameterized para)
     {
-        return target.createVariable(name, aClass, anonymous, para);
+        return target._createVariable(name, aClass, anonymous, para);
     }
 
     @Override
-    public LocalVariable createArrayVariableWithAllocateDimension(String name, ArrayClass aClass, boolean anonymous,
+    public LocalVariable _createArrayVariableWithAllocateDimension(String name, ArrayClass aClass, boolean anonymous,
         Parameterized... allocateDim)
     {
-        return target.createArrayVariableWithAllocateDimension(name, aClass, anonymous, allocateDim);
+        return target._createArrayVariableWithAllocateDimension(name, aClass, anonymous, allocateDim);
     }
 
     @Override
-    public LocalVariable createArrayVariable(String name, ArrayClass aClass, boolean anonymous, Parameterized value)
+    public LocalVariable _createArrayVariable(String name, ArrayClass aClass, boolean anonymous, Parameterized value)
     {
-        return target.createArrayVariable(name, aClass, anonymous, value);
+        return target._createArrayVariable(name, aClass, anonymous, value);
     }
 
     @Override
-    public LocalVariable createArrayVariable(String name, ArrayClass aClass, boolean anonymous,
+    public LocalVariable _createArrayVariable(String name, ArrayClass aClass, boolean anonymous,
         Object parameterizedArray)
     {
-        return target.createArrayVariable(name, aClass, anonymous, parameterizedArray);
+        return target._createArrayVariable(name, aClass, anonymous, parameterizedArray);
     }
 
     @Override
-    public Assigner assign(ExplicitVariable variable, Parameterized val)
+    public Assigner _assign(ExplicitVariable variable, Parameterized val)
     {
-        return target.assign(variable, val);
+        return target._assign(variable, val);
     }
 
     @Override
-    public MethodInvoker invoke(Parameterized objRef, String methodName, Parameterized... arguments)
+    public MethodInvoker _invoke(Parameterized objRef, String methodName, Parameterized... arguments)
     {
-        return target.invoke(objRef, methodName, arguments);
+        return target._invoke(objRef, methodName, arguments);
     }
 
     @Override
-    public MethodInvoker invokeStatic(AClass owner, String methodName, Parameterized... arguments)
+    public MethodInvoker _invokeStatic(AClass owner, String methodName, Parameterized... arguments)
     {
         
-        return target.invokeStatic(owner, methodName, arguments);
+        return target._invokeStatic(owner, methodName, arguments);
     }
 
     @Override
-    public MethodInvoker invokeConstructor(AClass owner, Parameterized... arguments)
+    public MethodInvoker _new(AClass owner, Parameterized... arguments)
     {
-        return target.invokeConstructor(owner, arguments);
+        return target._new(owner, arguments);
     }
 
     @Override
-    public MethodInvoker invokeOriginalMethod()
+    public MethodInvoker _invokeOriginalMethod()
     {
-        return target.invokeOriginalMethod();
+        return target._invokeOriginalMethod();
     }
 
     @Override
-    public ArrayValue newArray(ArrayClass aClass, Parameterized... allocateDims)
+    public ArrayValue _newArray(ArrayClass aClass, Parameterized... allocateDims)
     {
-        return target.newArray(aClass, allocateDims);
+        return target._newArray(aClass, allocateDims);
     }
 
     @Override
-    public ArrayValue newArrayWithValue(ArrayClass aClass, Object arrayObject)
+    public ArrayValue _newArrayWithValue(ArrayClass aClass, Object arrayObject)
     {
-        return target.newArrayWithValue(aClass, arrayObject);
+        return target._newArrayWithValue(aClass, arrayObject);
     }
 
     @Override
-    public ArrayValue newArrayWithValue(ArrayClass aClass, Parameterized[] values)
+    public ArrayValue _newArrayWithValue(ArrayClass aClass, Parameterized[] values)
     {
-        return target.newArrayWithValue(aClass, values);
+        return target._newArrayWithValue(aClass, values);
     }
 
     @Override
-    public ArrayValue newArrayWithValue(ArrayClass aClass, Parameterized[][] values)
+    public ArrayValue _newArrayWithValue(ArrayClass aClass, Parameterized[][] values)
     {
-        return target.newArrayWithValue(aClass, values);
+        return target._newArrayWithValue(aClass, values);
     }
 
     @Override
-    public ArrayValue newArrayWithValue(ArrayClass aClass, Parameterized[][][] values)
+    public ArrayValue _newArrayWithValue(ArrayClass aClass, Parameterized[][][] values)
     {
-        return target.newArrayWithValue(aClass, values);
+        return target._newArrayWithValue(aClass, values);
     }
 
     @Override
-    public ArrayValue newArrayWithValue(ArrayClass aClass, Parameterized[][][][] values)
+    public ArrayValue _newArrayWithValue(ArrayClass aClass, Parameterized[][][][] values)
     {
-        return target.newArrayWithValue(aClass, values);
+        return target._newArrayWithValue(aClass, values);
     }
 
     @Override
-    public ArrayLoader arrayLoad(ArrayValue arrayReference, Parameterized pardim, Parameterized... parDims)
+    public ArrayLoader _arrayLoad(ArrayValue arrayReference, Parameterized pardim, Parameterized... parDims)
     {
-        return target.arrayLoad(arrayReference, pardim, parDims);
+        return target._arrayLoad(arrayReference, pardim, parDims);
     }
 
     @Override
-    public ArrayLoader arrayLoad(IVariable arrayReference, Parameterized pardim, Parameterized... parDims)
+    public ArrayLoader _arrayLoad(IVariable arrayReference, Parameterized pardim, Parameterized... parDims)
     {
-        return target.arrayLoad(arrayReference, pardim, parDims);
+        return target._arrayLoad(arrayReference, pardim, parDims);
     }
 
     @Override
-    public ArrayLoader arrayLoad(MethodInvoker arrayReference, Parameterized pardim, Parameterized... parDims)
+    public ArrayLoader _arrayLoad(MethodInvoker arrayReference, Parameterized pardim, Parameterized... parDims)
     {
-        return target.arrayLoad(arrayReference, pardim, parDims);
+        return target._arrayLoad(arrayReference, pardim, parDims);
     }
 
     @Override
-    public ArrayLoader arrayLoad(Assigner arrayReference, Parameterized pardim, Parameterized... parDims)
+    public ArrayLoader _arrayLoad(Assigner arrayReference, Parameterized pardim, Parameterized... parDims)
     {
-        return target.arrayLoad(arrayReference, pardim, parDims);
+        return target._arrayLoad(arrayReference, pardim, parDims);
     }
 
     @Override
-    public ArrayLoader arrayLoad(ArrayLoader arrayReference, Parameterized pardim, Parameterized... parDims)
+    public ArrayLoader _arrayLoad(ArrayLoader arrayReference, Parameterized pardim, Parameterized... parDims)
     {
-        return target.arrayLoad(arrayReference, pardim, parDims);
+        return target._arrayLoad(arrayReference, pardim, parDims);
     }
 
     @Override
-    public ArrayStorer arrayStore(ArrayValue arrayReference, Parameterized value, Parameterized dim,
+    public ArrayStorer _arrayStore(ArrayValue arrayReference, Parameterized value, Parameterized dim,
         Parameterized... dims)
     {
-        return target.arrayStore(arrayReference, value, dim, dims);
+        return target._arrayStore(arrayReference, value, dim, dims);
     }
 
     @Override
-    public ArrayStorer arrayStore(IVariable arrayReference, Parameterized value, Parameterized dim,
+    public ArrayStorer _arrayStore(IVariable arrayReference, Parameterized value, Parameterized dim,
         Parameterized... dims)
     {
-        return target.arrayStore(arrayReference, value, dim, dims);
+        return target._arrayStore(arrayReference, value, dim, dims);
     }
 
     @Override
-    public ArrayStorer arrayStore(MethodInvoker arrayReference, Parameterized value, Parameterized dim,
+    public ArrayStorer _arrayStore(MethodInvoker arrayReference, Parameterized value, Parameterized dim,
         Parameterized... dims)
     {
-        return target.arrayStore(arrayReference, value, dim, dims);
+        return target._arrayStore(arrayReference, value, dim, dims);
     }
 
     @Override
-    public ArrayStorer arrayStore(Assigner arrayReference, Parameterized value, Parameterized dim,
+    public ArrayStorer _arrayStore(Assigner arrayReference, Parameterized value, Parameterized dim,
         Parameterized... dims)
     {
-        return target.arrayStore(arrayReference, value, dim, dims);
+        return target._arrayStore(arrayReference, value, dim, dims);
     }
 
     @Override
-    public ArrayStorer arrayStore(ArrayLoader arrayReference, Parameterized value, Parameterized dim,
+    public ArrayStorer _arrayStore(ArrayLoader arrayReference, Parameterized value, Parameterized dim,
         Parameterized... dims)
     {
-        return target.arrayStore(arrayReference, value, dim, dims);
+        return target._arrayStore(arrayReference, value, dim, dims);
     }
 
     @Override
-    public ArrayLength arrayLength(ArrayValue arrayReference, Parameterized... dims)
+    public ArrayLength _arrayLength(ArrayValue arrayReference, Parameterized... dims)
     {
-        return target.arrayLength(arrayReference, dims);
+        return target._arrayLength(arrayReference, dims);
     }
 
     @Override
-    public ArrayLength arrayLength(IVariable arrayReference, Parameterized... dims)
+    public ArrayLength _arrayLength(IVariable arrayReference, Parameterized... dims)
     {
-        return target.arrayLength(arrayReference, dims);
+        return target._arrayLength(arrayReference, dims);
     }
 
     @Override
-    public ArrayLength arrayLength(MethodInvoker arrayReference, Parameterized... dims)
+    public ArrayLength _arrayLength(MethodInvoker arrayReference, Parameterized... dims)
     {
-        return target.arrayLength(arrayReference, dims);
+        return target._arrayLength(arrayReference, dims);
     }
 
     @Override
-    public ArrayLength arrayLength(Assigner arrayReference, Parameterized... dims)
+    public ArrayLength _arrayLength(Assigner arrayReference, Parameterized... dims)
     {
-        return target.arrayLength(arrayReference, dims);
+        return target._arrayLength(arrayReference, dims);
     }
 
     @Override
-    public ArrayLength arrayLength(ArrayLoader arrayReference, Parameterized... dims)
+    public ArrayLength _arrayLength(ArrayLoader arrayReference, Parameterized... dims)
     {
-        return target.arrayLength(arrayReference, dims);
+        return target._arrayLength(arrayReference, dims);
     }
 
     @Override
-    public Addition add(Parameterized factor1, Parameterized factor2)
+    public Addition _add(Parameterized factor1, Parameterized factor2)
     {
-        return target.add(factor1, factor2);
+        return target._add(factor1, factor2);
     }
 
     @Override
-    public Subtraction sub(Parameterized factor1, Parameterized factor2)
+    public Subtraction _sub(Parameterized factor1, Parameterized factor2)
     {
-        return target.sub(factor1, factor2);
+        return target._sub(factor1, factor2);
     }
 
     @Override
-    public Multiplication mul(Parameterized factor1, Parameterized factor2)
+    public Multiplication _mul(Parameterized factor1, Parameterized factor2)
     {
-        return target.mul(factor1, factor2);
+        return target._mul(factor1, factor2);
     }
 
     @Override
-    public Division div(Parameterized factor1, Parameterized factor2)
+    public Division _div(Parameterized factor1, Parameterized factor2)
     {
-        return target.div(factor1, factor2);
+        return target._div(factor1, factor2);
     }
 
     @Override
-    public Modulus mod(Parameterized factor1, Parameterized factor2)
+    public Modulus _mod(Parameterized factor1, Parameterized factor2)
     {
-        return target.mod(factor1, factor2);
+        return target._mod(factor1, factor2);
     }
 
     @Override
-    public Inverts inverts(Parameterized factor)
+    public Inverts _inverts(Parameterized factor)
     {
-        return target.inverts(factor);
+        return target._inverts(factor);
     }
 
     @Override
-    public BitAnd bitAnd(Parameterized factor1, Parameterized factor2)
+    public BitAnd _bitAnd(Parameterized factor1, Parameterized factor2)
     {
-        return target.bitAnd(factor1, factor2);
+        return target._bitAnd(factor1, factor2);
     }
 
     @Override
-    public BitOr bitOr(Parameterized factor1, Parameterized factor2)
+    public BitOr _bitOr(Parameterized factor1, Parameterized factor2)
     {
-        return target.bitOr(factor1, factor2);
+        return target._bitOr(factor1, factor2);
     }
 
     @Override
-    public BitXor bitXor(Parameterized factor1, Parameterized factor2)
+    public BitXor _bitXor(Parameterized factor1, Parameterized factor2)
     {
-        return target.bitXor(factor1, factor2);
+        return target._bitXor(factor1, factor2);
     }
 
     @Override
-    public LeftShift leftShift(Parameterized factor1, Parameterized factor2)
+    public LeftShift _leftShift(Parameterized factor1, Parameterized factor2)
     {
-        return target.leftShift(factor1, factor2);
+        return target._leftShift(factor1, factor2);
     }
 
     @Override
-    public RightShift rightShift(Parameterized factor1, Parameterized factor2)
+    public RightShift _rightShift(Parameterized factor1, Parameterized factor2)
     {
-        return target.rightShift(factor1, factor2);
+        return target._rightShift(factor1, factor2);
     }
 
     @Override
-    public UnsignedRightShift unsignedRightShift(Parameterized factor1, Parameterized factor2)
+    public UnsignedRightShift _unsignedRightShift(Parameterized factor1, Parameterized factor2)
     {
-        return target.unsignedRightShift(factor1, factor2);
+        return target._unsignedRightShift(factor1, factor2);
     }
 
 
 	@Override
-	public PreposeDecrment preDec(Crementable crement) {
-		return target.preDec(crement);
+	public PreposeDecrment _preDec(Crementable crement) {
+		return target._preDec(crement);
 	}
 
 	@Override
-	public PostposeDecrment postDec(Crementable crement) {
-		return target.postDec(crement);
+	public PostposeDecrment _postDec(Crementable crement) {
+		return target._postDec(crement);
 	}
 
 	@Override
-	public PreposeIncrment preInc(Crementable crement) {
-		return target.preInc(crement);
+	public PreposeIncrment _preInc(Crementable crement) {
+		return target._preInc(crement);
 	}
 
 	@Override
-	public PostposeIncrment postInc(Crementable crement) {
-		return target.postInc(crement);
+	public PostposeIncrment _postInc(Crementable crement) {
+		return target._postInc(crement);
 	}
 	
 
     @Override
-    public GreaterThan greaterThan(Parameterized factor1, Parameterized factor2)
+    public GreaterThan _greaterThan(Parameterized factor1, Parameterized factor2)
     {
-        return target.greaterThan(factor1, factor2);
+        return target._greaterThan(factor1, factor2);
     }
 
     @Override
-    public GreaterEqual greaterEqual(Parameterized factor1, Parameterized factor2)
+    public GreaterEqual _greaterEqual(Parameterized factor1, Parameterized factor2)
     {
-        return target.greaterEqual(factor1, factor2);
+        return target._greaterEqual(factor1, factor2);
     }
 
     @Override
-    public LessThan lessThan(Parameterized factor1, Parameterized factor2)
+    public LessThan _lessThan(Parameterized factor1, Parameterized factor2)
     {
-        return target.lessThan(factor1, factor2);
+        return target._lessThan(factor1, factor2);
     }
 
     @Override
-    public LessEqual lessEqual(Parameterized factor1, Parameterized factor2)
+    public LessEqual _lessEqual(Parameterized factor1, Parameterized factor2)
     {
-        return target.lessEqual(factor1, factor2);
+        return target._lessEqual(factor1, factor2);
     }
 
     @Override
-    public Equal equal(Parameterized factor1, Parameterized factor2)
+    public Equal _equals(Parameterized factor1, Parameterized factor2)
     {
-        return target.equal(factor1, factor2);
+        return target._equals(factor1, factor2);
     }
 
     @Override
-    public NotEqual notEqual(Parameterized factor1, Parameterized factor2)
+    public NotEqual _notEquals(Parameterized factor1, Parameterized factor2)
     {
-        return target.notEqual(factor1, factor2);
+        return target._notEquals(factor1, factor2);
     }
 
     @Override
-    public LogicalAnd logicalAnd(Parameterized factor1, Parameterized factor2)
+    public LogicalAnd _logicalAnd(Parameterized factor1, Parameterized factor2)
     {
-        return target.logicalAnd(factor1, factor2);
+        return target._logicalAnd(factor1, factor2);
     }
 
     @Override
-    public LogicalOr logicalOr(Parameterized factor1, Parameterized factor2)
+    public LogicalOr _logicalOr(Parameterized factor1, Parameterized factor2)
     {
-        return target.logicalOr(factor1, factor2);
+        return target._logicalOr(factor1, factor2);
     }
 
     @Override
-    public LogicalXor logicalXor(Parameterized factor1, Parameterized factor2)
+    public LogicalXor _logicalXor(Parameterized factor1, Parameterized factor2)
     {
-        return target.logicalXor(factor1, factor2);
+        return target._logicalXor(factor1, factor2);
     }
 
     @Override
-    public ShortCircuitAnd conditionalAnd(Parameterized factor1, Parameterized factor2)
+    public ShortCircuitAnd _conditionalAnd(Parameterized factor1, Parameterized factor2)
     {
-        return target.conditionalAnd(factor1, factor2);
+        return target._conditionalAnd(factor1, factor2);
     }
 
     @Override
-    public ShortCircuitOr conditionalOr(Parameterized factor1, Parameterized factor2)
+    public ShortCircuitOr _conditionalOr(Parameterized factor1, Parameterized factor2)
     {
-        return target.conditionalOr(factor1, factor2);
+        return target._conditionalOr(factor1, factor2);
     }
 
     @Override
-    public Not not(Parameterized factor)
+    public Not _not(Parameterized factor)
     {
-        return target.not(factor);
+        return target._not(factor);
     }
 
 	@Override
-	public IF ifThen(IF ifBlock) {
-		return target.ifThen(ifBlock);
+	public IF _if(IF ifBlock) {
+		return target._if(ifBlock);
 	}
     
     
 
     @Override
-    public While whileDo(While whileLoop)
+    public While _while(While whileLoop)
     {
-        return target.whileDo(whileLoop);
+        return target._while(whileLoop);
     }
 
     /*@Override
@@ -470,9 +470,9 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
     }*/
 
     @Override
-    public Try tryDo(Try tryPara)
+    public Try _try(Try tryPara)
     {
-        return target.tryDo(tryPara);
+        return target._try(tryPara);
     }
 
     /*@Override
@@ -482,68 +482,68 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
     }*/
 
     @Override
-    public CheckCast checkCast(Parameterized cc, AClass to)
+    public CheckCast _checkcast(Parameterized cc, AClass to)
     {
-        return target.checkCast(cc, to);
+        return target._checkcast(cc, to);
     }
 
     @Override
-    public Negative neg(Parameterized factor)
+    public Negative _neg(Parameterized factor)
     {
-        return target.neg(factor);
+        return target._neg(factor);
     }
 
     @Override
-    public TernaryOperator ternary(Parameterized exp1, Parameterized exp2, Parameterized exp3)
+    public TernaryOperator _ternary(Parameterized exp1, Parameterized exp2, Parameterized exp3)
     {
-        return target.ternary(exp1, exp2, exp3);
+        return target._ternary(exp1, exp2, exp3);
     }
 
     @Override
-    public Parameterized append(Parameterized par1, Parameterized... pars)
+    public Parameterized _append(Parameterized par1, Parameterized... pars)
     {
-        return target.append(par1, pars);
+        return target._append(par1, pars);
     }
 
     @Override
-    public Parameterized instanceOf(Parameterized obj, AClass type)
+    public Parameterized _instanceof(Parameterized obj, AClass type)
     {
-        return target.instanceOf(obj, type);
+        return target._instanceof(obj, type);
     }
 
     @Override
-    public void breakOut()
+    public void _break()
     {
-        target.breakOut();
+        target._break();
     }
 
     @Override
-    public void continueOut()
+    public void _continue()
     {
-        target.continueOut();
+        target._continue();
     }
 
     @Override
-    public void throwException(Parameterized exception)
+    public void _throw(Parameterized exception)
     {
-        target.throwException(exception);
+        target._throw(exception);
     }
 
     @Override
-    public Return runReturn()
+    public Return _return()
     {
-        return target.runReturn();
+        return target._return();
     }
 
     @Override
-    public Return runReturn(Parameterized parame)
+    public Return _return(Parameterized parame)
     {
-        return target.runReturn(parame);
+        return target._return(parame);
     }
 
 	@Override
-	public Synchronized syn(Synchronized sync) {
-		return target.syn(sync);
+	public Synchronized _sync(Synchronized sync) {
+		return target._sync(sync);
 	}
 
 }

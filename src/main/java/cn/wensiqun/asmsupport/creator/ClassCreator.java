@@ -113,7 +113,7 @@ public class ClassCreator extends AbstractClassCreatorContext {
             @Override
             public void body(LocalVariable... argus) {
                 invokeSuperConstructor();
-                runReturn();
+                _return();
             }
             
         }, Opcodes.ACC_PUBLIC);

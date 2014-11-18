@@ -44,7 +44,7 @@ CreateBlockOperator
      * @param to 需要被转换成的类型
      * @return {@link CheckCast}
      */
-    public CheckCast checkCast(Parameterized cc, AClass to);
+    public CheckCast _checkcast(Parameterized cc, AClass to);
     
     /**
      * 取负操作,对应下面的红色java代码
@@ -61,7 +61,7 @@ CreateBlockOperator
      * @param factor 这个参数必须是一个数字类型的参数
      * @return {@link Negative}
      */
-    public Negative neg(Parameterized factor);
+    public Negative _neg(Parameterized factor);
     
     
     /**
@@ -82,7 +82,7 @@ CreateBlockOperator
      * @param exp3
      * @return {@link TernaryOperator}
      */
-    public TernaryOperator ternary(Parameterized exp1, Parameterized exp2, Parameterized exp3);
+    public TernaryOperator _ternary(Parameterized exp1, Parameterized exp2, Parameterized exp3);
 
     /**
      * 字符串拼接操作，我们知道我们在java中可以随意是用"+"符合对字符串进行拼接，那么在ASMSupport同样也支持这样的操作。比如下面红色代码
@@ -103,7 +103,7 @@ CreateBlockOperator
      * @param pars
      * @return 
      */
-    public Parameterized append(Parameterized par1, Parameterized... pars);
+    public Parameterized _append(Parameterized par1, Parameterized... pars);
     
     /**
      * java代码中instanceof关键字操作。比如下面红色代码
@@ -123,7 +123,7 @@ CreateBlockOperator
      * @param type
      * @return {@link Parameterized}一个boolean类型的Parameterized
      */
-    public Parameterized instanceOf(Parameterized obj, AClass type);
+    public Parameterized _instanceof(Parameterized obj, AClass type);
 
     
     /**
@@ -131,12 +131,12 @@ CreateBlockOperator
      * 
      * 
      */
-    public void breakOut();
+    public void _break();
     
     /**
      * java中的continue关键字的指令，如果当前正处在循环体内，那么调用这个方法，则是当前循环进入下一次循环，
      */
-    public void continueOut();
+    public void _continue();
     
     /**
      * 抛出异常，传入的参数为异常对象的Parameterized, 比如下面红色代码
@@ -153,7 +153,7 @@ CreateBlockOperator
      * 
      * @param exception
      */
-    public void throwException(Parameterized exception);
+    public void _throw(Parameterized exception);
 
     
     /**
@@ -161,7 +161,7 @@ CreateBlockOperator
      * 
      * @return {{@link Return}
      */
-    public Return runReturn();
+    public Return _return();
     
     /**
      * 如果当前方法有返回值，则调用这个方法生成有返回值return关键字指令
@@ -182,5 +182,5 @@ CreateBlockOperator
      * @return {{@link Return}
      * 
      */
-    public Return runReturn(Parameterized parame);
+    public Return _return(Parameterized parame);
 }

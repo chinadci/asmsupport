@@ -110,14 +110,14 @@ public class CreateInterface extends AbstractExample {
 				 * 具体如何使用全局变量在以后的例子中有详细的解释。
 				 * 
 				 */
-				assign(getMethodOwner().getGlobalVariable("globalValue"), Value.value("I'm a global variable at Interface"));
+				_assign(getMethodOwner().getGlobalVariable("globalValue"), Value.value("I'm a global variable at Interface"));
 				/*
 				 * 这段代码是调用println方法 
 				 * 
 				 * 具体如何调用方法在以后的例子中有详细的解释。
 				 */
-			    invoke(systemOut, "println", Value.value("I'm in static block at interface"));
-				runReturn();
+			    _invoke(systemOut, "println", Value.value("I'm in static block at interface"));
+				_return();
 			}
 			
 		});

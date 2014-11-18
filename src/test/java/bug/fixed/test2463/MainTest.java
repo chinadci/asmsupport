@@ -24,7 +24,7 @@ public class MainTest {
 				null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
 					@Override
 					public void body(LocalVariable... argus) {
-		            	runReturn(invokeConstructor(AClassFactory.getProductClass(MyObject.class)));
+		            	_return(_new(AClassFactory.getProductClass(MyObject.class)));
 					}
 			
 		});
@@ -34,8 +34,8 @@ public class MainTest {
 
             @Override
             public void body(LocalVariable... argus) {
-                invoke(invokeConstructor(getMethodOwner()), "getMyObject");
-            	runReturn();
+                _invoke(_new(getMethodOwner()), "getMyObject");
+            	_return();
             }
         });
 		Utils.generate(creator);

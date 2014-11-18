@@ -81,15 +81,15 @@ public abstract class EnumClinitBody extends GenericMethodBody implements LocalV
 	        enumArgus[1] = Value.value(i);
 	        System.arraycopy(otherArgus, 0, enumArgus, 2, otherArgus.length);
 	        
-	        MethodInvoker mi = invokeConstructor(getMethodOwner(), enumArgus);
-	        assign(enumConstant, mi);
+	        MethodInvoker mi = _new(getMethodOwner(), enumArgus);
+	        _assign(enumConstant, mi);
 	        i++;
 		}
 		
 		GlobalVariable gv = getMethodOwner().getGlobalVariable("ENUM$VALUES");
 		
-		ArrayValue av = newArrayWithValue(AClassFactory.getArrayClass(getMethodOwner(), 1), values);
-		assign(gv, av);
+		ArrayValue av = _newArrayWithValue(AClassFactory.getArrayClass(getMethodOwner(), 1), values);
+		_assign(gv, av);
 	}
 	
 	@Override

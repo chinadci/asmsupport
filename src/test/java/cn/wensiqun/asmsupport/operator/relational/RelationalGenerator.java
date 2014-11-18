@@ -26,7 +26,7 @@ public class RelationalGenerator extends AbstractExample
                {
                    
                    
-                   runReturn();
+                   _return();
                }
         });
            
@@ -34,8 +34,8 @@ public class RelationalGenerator extends AbstractExample
            Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
                @Override
                public void body(LocalVariable... argus) {
-                   invokeStatic(getMethodOwner(), "test");
-                   runReturn();
+                   _invokeStatic(getMethodOwner(), "test");
+                   _return();
                }
        
        });

@@ -31,7 +31,7 @@ public interface RelationalOperator {
      * @param factor2
      * @return
      */
-    public GreaterThan greaterThan(Parameterized factor1, Parameterized factor2);
+    public GreaterThan _greaterThan(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -45,7 +45,7 @@ public interface RelationalOperator {
      * @param factor2
      * @return
      */
-    public GreaterEqual greaterEqual(Parameterized factor1, Parameterized factor2);
+    public GreaterEqual _greaterEqual(Parameterized factor1, Parameterized factor2);
     
     /**
      * 生成小于操作指令,对应下面的红色java代码
@@ -58,7 +58,7 @@ public interface RelationalOperator {
      * @param factor2
      * @return
      */
-    public LessThan lessThan(Parameterized factor1, Parameterized factor2);
+    public LessThan _lessThan(Parameterized factor1, Parameterized factor2);
 
     /**
      * 
@@ -72,7 +72,7 @@ public interface RelationalOperator {
      * @param factor2
      * @return
      */
-    public LessEqual lessEqual(Parameterized factor1, Parameterized factor2);
+    public LessEqual _lessEqual(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -86,7 +86,7 @@ public interface RelationalOperator {
      * @param factor2
      * @return
      */
-    public Equal equal(Parameterized factor1, Parameterized factor2);
+    public Equal _equals(Parameterized factor1, Parameterized factor2);
 
     /**
      * 
@@ -100,5 +100,5 @@ public interface RelationalOperator {
      * @param factor2
      * @return
      */
-    public NotEqual notEqual(Parameterized factor1, Parameterized factor2);
+    public NotEqual _notEquals(Parameterized factor1, Parameterized factor2);
 }

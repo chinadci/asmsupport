@@ -22,16 +22,16 @@ public interface VariableOperator {
 	 * @param para this variable initial value, set to null if you want the initial is null.
 	 * @return the LocalVariable
 	 */
-	public LocalVariable createVariable(final String name, final AClass aClass, boolean anonymous, final Parameterized para);
+	public LocalVariable _createVariable(final String name, final AClass aClass, boolean anonymous, final Parameterized para);
 	
 	/**
 	 * 
 	 * <p>创建数组变量，可分配数组空间大小</p>
 	 * 
 	 * <pre>
-	 * createArrayVariableWithAllocateDimension("array", AClassFactory.getArrayClass(String[][].class), false, null) --> String[][] array = null;
-	 * createArrayVariableWithAllocateDimension("array", AClassFactory.getArrayClass(String[][].class), false, Value.value(3)) --> String[][] array = new String[3][];
-	 * createArrayVariableWithAllocateDimension("array", AClassFactory.getArrayClass(String[][].class), false, Value.value(3), Value.value(2)) --> String[][] array = new String[3][2];
+	 * _createArrayVariableWithAllocateDimension("array", AClassFactory.getArrayClass(String[][].class), false, null) --> String[][] array = null;
+	 * _createArrayVariableWithAllocateDimension("array", AClassFactory.getArrayClass(String[][].class), false, Value.value(3)) --> String[][] array = new String[3][];
+	 * _createArrayVariableWithAllocateDimension("array", AClassFactory.getArrayClass(String[][].class), false, Value.value(3), Value.value(2)) --> String[][] array = new String[3][2];
 	 * <pre>
 	 * 
 	 * @param name   变量名
@@ -40,7 +40,7 @@ public interface VariableOperator {
 	 * @param allocateDim 预分配的数组空间
 	 * @return
 	 */
-	public LocalVariable createArrayVariableWithAllocateDimension(final String name, final ArrayClass aClass, boolean anonymous, Parameterized... allocateDim);
+	public LocalVariable _createArrayVariableWithAllocateDimension(final String name, final ArrayClass aClass, boolean anonymous, Parameterized... allocateDim);
 
 	/**
 	 * 
@@ -49,7 +49,7 @@ public interface VariableOperator {
 	 * @param value
 	 * @return
 	 */
-	public LocalVariable createArrayVariable(final String name, final ArrayClass aClass, boolean anonymous, final Parameterized value);
+	public LocalVariable _createArrayVariable(final String name, final ArrayClass aClass, boolean anonymous, final Parameterized value);
 	
 	
 	/**
@@ -59,7 +59,7 @@ public interface VariableOperator {
 	 * @param parameterizedArray
 	 * @return
 	 */
-	public LocalVariable createArrayVariable(final String name, final ArrayClass aClass, boolean anonymous, final Object parameterizedArray);
+	public LocalVariable _createArrayVariable(final String name, final ArrayClass aClass, boolean anonymous, final Object parameterizedArray);
 	
 	/**
 	 * assign a value to a variable. for exampel:
@@ -75,5 +75,5 @@ public interface VariableOperator {
 	 * @param val
 	 * @return
 	 */
-	public Assigner assign(ExplicitVariable variable, Parameterized val);
+	public Assigner _assign(ExplicitVariable variable, Parameterized val);
 }

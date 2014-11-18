@@ -76,81 +76,81 @@ public class LogicalOperatorGenerate extends AbstractExample {
 								"Conditional AND (&&)", "false && false", (false && false),
 								"false && true", (false && true), "true && false",
 								(true && false), "true && true", (true && true));*/
-						invoke(systemOut, "printf", 
+						_invoke(systemOut, "printf", 
 								Value.value("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n"), 
 								Value.value("Conditional AND (&&)"), 
 								Value.value("false && false"), 
-								conditionalAnd(Value.value(false), Value.value(false)), 
+								_conditionalAnd(Value.value(false), Value.value(false)), 
 								Value.value("false && true"), 
-								conditionalAnd(Value.value(false), Value.value(true)), 
+								_conditionalAnd(Value.value(false), Value.value(true)), 
 								Value.value("true && false"), 
-								conditionalAnd(Value.value(true), Value.value(false)),  
+								_conditionalAnd(Value.value(true), Value.value(false)),  
 								Value.value("true && true"), 
-								conditionalAnd(Value.value(true), Value.value(true))
+								_conditionalAnd(Value.value(true), Value.value(true))
 								);
 
 						/*System.out.printf("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n",
 								"Conditional OR (||)", "false || false", (false || false),
 								"false || true", (false || true), "true || false",
 								(true || false), "true || true", (true || true));*/
-						invoke(systemOut, "printf", 
+						_invoke(systemOut, "printf", 
 								Value.value("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n"), 
 								Value.value("Conditional OR (||)"), 
-								Value.value("false || false"),  conditionalOr(Value.value(false), Value.value(false)), 
-								Value.value("false || true"),  conditionalOr(Value.value(false), Value.value(true)), 
-								Value.value("true || false"),  conditionalOr(Value.value(true), Value.value(false)),  
-								Value.value("true || true"),  conditionalOr(Value.value(true), Value.value(true))
+								Value.value("false || false"),  _conditionalOr(Value.value(false), Value.value(false)), 
+								Value.value("false || true"),  _conditionalOr(Value.value(false), Value.value(true)), 
+								Value.value("true || false"),  _conditionalOr(Value.value(true), Value.value(false)),  
+								Value.value("true || true"),  _conditionalOr(Value.value(true), Value.value(true))
 								);
 						
 						/*System.out.printf("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n",
 								"Boolean logical AND (&)", "false & false", (false & false),
 								"false & true", (false & true), "true & false", (true & false),
 								"true & true", (true & true));*/
-						invoke(systemOut, "printf", 
+						_invoke(systemOut, "printf", 
 								Value.value("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n"), 
 								Value.value("Boolean logical AND (&)"), 
-								Value.value("false & false"),  logicalAnd(Value.value(false), Value.value(false)), 
-								Value.value("false & true"),  logicalAnd(Value.value(false), Value.value(true)), 
-								Value.value("true & false"),  logicalAnd(Value.value(true), Value.value(false)),  
-								Value.value("true & true"),  logicalAnd(Value.value(true), Value.value(true))
+								Value.value("false & false"),  _logicalAnd(Value.value(false), Value.value(false)), 
+								Value.value("false & true"),  _logicalAnd(Value.value(false), Value.value(true)), 
+								Value.value("true & false"),  _logicalAnd(Value.value(true), Value.value(false)),  
+								Value.value("true & true"),  _logicalAnd(Value.value(true), Value.value(true))
 								);
 						
 						/*System.out.printf("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n",
 								"Boolean logical inclusive OR (|)", "false | false",
 								(false | false), "false | true", (false | true),
 								"true | false", (true | false), "true | true", (true | true));*/
-						invoke(systemOut, "printf", 
+						_invoke(systemOut, "printf", 
 								Value.value("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n"), 
 								Value.value("Boolean logical inclusive OR (|)"), 
-								Value.value("false | false"),  logicalOr(Value.value(false), Value.value(false)), 
-								Value.value("false | true"),  logicalOr(Value.value(false), Value.value(true)), 
-								Value.value("true | false"),  logicalOr(Value.value(true), Value.value(false)),  
-								Value.value("true | true"),  logicalOr(Value.value(true), Value.value(true))
+								Value.value("false | false"),  _logicalOr(Value.value(false), Value.value(false)), 
+								Value.value("false | true"),  _logicalOr(Value.value(false), Value.value(true)), 
+								Value.value("true | false"),  _logicalOr(Value.value(true), Value.value(false)),  
+								Value.value("true | true"),  _logicalOr(Value.value(true), Value.value(true))
 								);
 						
 						/*System.out.printf("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n",
 								"Boolean logical exclusive OR (^)", "false ^ false",
 								(false ^ false), "false ^ true", (false ^ true),
 								"true ^ false", (true ^ false), "true ^ true", (true ^ true));*/
-						invoke(systemOut, "printf", 
+						_invoke(systemOut, "printf", 
 								Value.value("%s\n%s: %b\n%s: %b\n%s: %b\n%s: %b\n\n"), 
 								Value.value("Boolean logical exclusive OR (^)"), 
-								Value.value("false ^ false"),  logicalXor(Value.value(false), Value.value(false)), 
-								Value.value("false ^ true"),  logicalXor(Value.value(false), Value.value(true)), 
-								Value.value("true ^ false"),  logicalXor(Value.value(true), Value.value(false)),  
-								Value.value("true ^ true"),  logicalXor(Value.value(true), Value.value(true))
+								Value.value("false ^ false"),  _logicalXor(Value.value(false), Value.value(false)), 
+								Value.value("false ^ true"),  _logicalXor(Value.value(false), Value.value(true)), 
+								Value.value("true ^ false"),  _logicalXor(Value.value(true), Value.value(false)),  
+								Value.value("true ^ true"),  _logicalXor(Value.value(true), Value.value(true))
 								);
 						
 						/*System.out.printf("%s\n%s: %b\n%s: %b\n", "Logical NOT (!)", "!false",
 								(!false), "!true", (!true));*/
-						invoke(systemOut, "printf", 
+						_invoke(systemOut, "printf", 
 								Value.value("%s\n%s: %b\n%s: %b\n"), 
 								Value.value("Logical NOT (!)"), 
-								Value.value("!false"),  not(Value.value(false)), 
-								Value.value("!true"),  not(Value.value(true))
+								Value.value("!false"),  _not(Value.value(false)), 
+								Value.value("!true"),  _not(Value.value(true))
 								);
 						
-						runReturn();
+						_return();
 					}
 				});
 		generate(creator);

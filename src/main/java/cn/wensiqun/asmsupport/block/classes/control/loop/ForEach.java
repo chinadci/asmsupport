@@ -76,7 +76,7 @@ public abstract class ForEach extends ProgramBlock implements Loop, LocalVariabl
         //?
         //?new NOP(getExecutor());
         if(iteratorVar.getParamterizedType().isArray()){
-            final LocalVariable i = createVariable(null, AClass.INT_ACLASS, true, Value.value(0));
+            final LocalVariable i = _createVariable(null, AClass.INT_ACLASS, true, Value.value(0));
             
             OperatorFactory.newOperator(GOTO.class, 
             		new Class[]{ProgramBlock.class, Label.class}, 
@@ -93,18 +93,18 @@ public abstract class ForEach extends ProgramBlock implements Loop, LocalVariabl
             
             //?new NOP(getExecutor());
             
-            LocalVariable obj = createVariable(null, ((ArrayClass)iteratorVar.getParamterizedType()).getNextDimType(), true, arrayLoad(iteratorVar, i) );
+            LocalVariable obj = _createVariable(null, ((ArrayClass)iteratorVar.getParamterizedType()).getNextDimType(), true, _arrayLoad(iteratorVar, i) );
             body(obj);
 
             //?new Marker(getExecutor(), continueLbl);
             
-            postInc(i);
+            _postInc(i);
             
             //?new Marker(getExecutor(), conditionLbl);
-            condition = lessThan(i, arrayLength(iteratorVar));
+            condition = _lessThan(i, _arrayLength(iteratorVar));
             //((LessThan)condition).setJumpLable(startLbl);
         }else{
-        	final LocalVariable itr = createVariable(null, AClass.ITERABLE_ACLASS, true, invoke(iteratorVar, "iterator"));
+        	final LocalVariable itr = _createVariable(null, AClass.ITERABLE_ACLASS, true, _invoke(iteratorVar, "iterator"));
         	
             OperatorFactory.newOperator(GOTO.class, 
             		new Class[]{ProgramBlock.class, Label.class}, 
@@ -117,12 +117,12 @@ public abstract class ForEach extends ProgramBlock implements Loop, LocalVariabl
         	//new Marker(getExecutor(), startLbl);
             //?new NOP(getExecutor());
 
-            LocalVariable obj = createVariable(null, AClass.OBJECT_ACLASS, true, invoke(itr, "next"));
+            LocalVariable obj = _createVariable(null, AClass.OBJECT_ACLASS, true, _invoke(itr, "next"));
             body(obj);
 
             //?new Marker(getExecutor(), continueLbl);
             
-        	condition = invoke(itr, "hasNext");
+        	condition = _invoke(itr, "hasNext");
         }
         condition.asArgument();
     }

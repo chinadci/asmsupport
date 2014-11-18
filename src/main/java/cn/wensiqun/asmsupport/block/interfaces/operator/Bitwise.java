@@ -28,7 +28,7 @@ public interface Bitwise {
      * @param factor
      * @return {@link Inverts}
      */
-    public Inverts inverts(Parameterized factor);
+    public Inverts _inverts(Parameterized factor);
     
     /**
      * 生成与操作指令,对应下面的红色java代码
@@ -41,7 +41,7 @@ public interface Bitwise {
      * @param factor2
      * @return {@link BitAnd}
      */
-    public BitAnd bitAnd(Parameterized factor1, Parameterized factor2);
+    public BitAnd _bitAnd(Parameterized factor1, Parameterized factor2);
 	
     /**
      * 
@@ -55,7 +55,7 @@ public interface Bitwise {
      * @param factor2
      * @return {@link BitOr}
      */
-    public BitOr bitOr(Parameterized factor1, Parameterized factor2);
+    public BitOr _bitOr(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -70,7 +70,7 @@ public interface Bitwise {
      * @param factor2
      * @return {@link BitXor}
      */
-    public BitXor bitXor(Parameterized factor1, Parameterized factor2);
+    public BitXor _bitXor(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -84,7 +84,7 @@ public interface Bitwise {
      * @param factor2
      * @return {@link LeftShift}
      */
-    public LeftShift leftShift(Parameterized factor1, Parameterized factor2);
+    public LeftShift _leftShift(Parameterized factor1, Parameterized factor2);
     
     /**
      * 
@@ -98,7 +98,7 @@ public interface Bitwise {
      * @param factor2
      * @return {@link RightShift}
      */
-    public RightShift rightShift(Parameterized factor1, Parameterized factor2);
+    public RightShift _rightShift(Parameterized factor1, Parameterized factor2);
     
     /**
      * 生成无符号右移操作指令,对应下面的红色java代码
@@ -111,6 +111,6 @@ public interface Bitwise {
      * @param factor2
      * @return {@link UnsignedRightShift}
      */
-    public UnsignedRightShift unsignedRightShift(Parameterized factor1, Parameterized factor2);
+    public UnsignedRightShift _unsignedRightShift(Parameterized factor1, Parameterized factor2);
     
 }

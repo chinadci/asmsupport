@@ -78,62 +78,62 @@ public class IFBlockGenerator extends AbstractExample{
 						final LocalVariable str = argus[0];
 						final LocalVariable i = argus[1];
 						
-						ifThen(new IF(invoke(str, "equals", Value.value("A"))){
+						_if(new IF(_invoke(str, "equals", Value.value("A"))){
 							@Override
 							public void body() {
-								ifThen(new IF(equal(i, Value.value(0))){
+								_if(new IF(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
-									    invoke(systemOut, "println", Value.value("str is 'A', i is 0"));
+									    _invoke(systemOut, "println", Value.value("str is 'A', i is 0"));
 									}
 									
-								}).elseThen(new Else(){
+								})._else(new Else(){
 
 									@Override
 									public void body() {
-									    invoke(systemOut, "println", Value.value("str is 'A', i is not 0"));
+									    _invoke(systemOut, "println", Value.value("str is 'A', i is not 0"));
 									}
 									
 								});
 							}
-						}).elseIF(new ElseIF(invoke(str, "equals", Value.value("B"))){
+						})._elseif(new ElseIF(_invoke(str, "equals", Value.value("B"))){
 
 							@Override
 							public void body() {
-								ifThen(new IF(equal(i, Value.value(0))){
+								_if(new IF(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
-									    invoke(systemOut, "println", Value.value("str is 'B', i is 0"));
+									    _invoke(systemOut, "println", Value.value("str is 'B', i is 0"));
 									}
 									
-								}).elseThen(new Else(){
+								})._else(new Else(){
 
 									@Override
 									public void body() {
-									    invoke(systemOut, "println", Value.value("str is 'B', i is not 0"));
+									    _invoke(systemOut, "println", Value.value("str is 'B', i is not 0"));
 									}
 									
 								});
 							}
 							
-						}).elseThen(new Else(){
+						})._else(new Else(){
 
 							@Override
 							public void body() {
-								ifThen(new IF(equal(i, Value.value(0))){
+								_if(new IF(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
-									    invoke(systemOut, "println", Value.value("str is unknow, i is 0"));
+									    _invoke(systemOut, "println", Value.value("str is unknow, i is 0"));
 									}
 									
-								}).elseThen(new Else(){
+								})._else(new Else(){
 
 									@Override
 									public void body() {
-									    invoke(systemOut, "println", Value.value("str is unknow, i is not 0"));
+									    _invoke(systemOut, "println", Value.value("str is unknow, i is not 0"));
 									}
 									
 								});
@@ -141,7 +141,7 @@ public class IFBlockGenerator extends AbstractExample{
 							
 						});
 						
-					    runReturn();
+					    _return();
 					}
 		        }
 		);
@@ -151,13 +151,13 @@ public class IFBlockGenerator extends AbstractExample{
 				Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
 					@Override
 					public void body(LocalVariable... argus) {
-						invokeStatic(getMethodOwner(), "ifelse", Value.value("A"), Value.value(0));
-						invokeStatic(getMethodOwner(), "ifelse", Value.value("A"), Value.value(1));
-						invokeStatic(getMethodOwner(), "ifelse", Value.value("B"), Value.value(0));
-						invokeStatic(getMethodOwner(), "ifelse", Value.value("B"), Value.value(1));
-						invokeStatic(getMethodOwner(), "ifelse", Value.value("C"), Value.value(0));
-						invokeStatic(getMethodOwner(), "ifelse", Value.value("C"), Value.value(1));
-						runReturn();
+						_invokeStatic(getMethodOwner(), "ifelse", Value.value("A"), Value.value(0));
+						_invokeStatic(getMethodOwner(), "ifelse", Value.value("A"), Value.value(1));
+						_invokeStatic(getMethodOwner(), "ifelse", Value.value("B"), Value.value(0));
+						_invokeStatic(getMethodOwner(), "ifelse", Value.value("B"), Value.value(1));
+						_invokeStatic(getMethodOwner(), "ifelse", Value.value("C"), Value.value(0));
+						_invokeStatic(getMethodOwner(), "ifelse", Value.value("C"), Value.value(1));
+						_return();
 					}
 			
 		});

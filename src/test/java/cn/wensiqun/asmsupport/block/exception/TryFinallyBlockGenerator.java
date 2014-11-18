@@ -30,24 +30,24 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
         });
 
@@ -56,44 +56,44 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("start"));
-                tryDo(new Try(){
+                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("start"));
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try{"));
-                        tryDo(new Try(){
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try{"));
+                        _try(new Try(){
                             
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
                             
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    }"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    }"));
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("end"));
-                runReturn();
+                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("end"));
+                _return();
             }
             
         });
@@ -103,13 +103,13 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                        throwException(invokeConstructor(runtime));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                        _throw(_new(runtime));
                     }
                     
                     public void setFinish(boolean f)
@@ -117,16 +117,16 @@ public class TryFinallyBlockGenerator extends AbstractExample
                     	super.setFinish(f);
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -136,43 +136,43 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
-                                throwException(invokeConstructor(runtime));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _throw(_new(runtime));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -182,43 +182,43 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
-                                throwException(invokeConstructor(runtime));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _throw(_new(runtime));
                             }
                             
                         });
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -228,43 +228,43 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
-                        throwException(invokeConstructor(runtime));
+                        _throw(_new(runtime));
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -274,43 +274,43 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
-                        throwException(invokeConstructor(runtime));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _throw(_new(runtime));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -320,44 +320,44 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
-                                throwException(invokeConstructor(runtime));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _throw(_new(runtime));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
-                                throwException(invokeConstructor(runtime));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _throw(_new(runtime));
                             }
                             
                         });
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -367,44 +367,44 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
                             }
                             
                         });
-                        throwException(invokeConstructor(runtime));
+                        _throw(_new(runtime));
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
-                        throwException(invokeConstructor(runtime));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _throw(_new(runtime));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -414,45 +414,45 @@ public class TryFinallyBlockGenerator extends AbstractExample
             @Override
             public void body(LocalVariable... argus)
             {
-                tryDo(new Try(){
+                _try(new Try(){
 
                     @Override
                     public void body()
                     {
                         
-                        tryDo(new Try(){
+                        _try(new Try(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
-                                throwException(invokeConstructor(runtime));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        try_inner"));
+                                _throw(_new(runtime));
                             }
                             
-                        }).finallyThen(new Finally(){
+                        })._finally(new Finally(){
 
                             @Override
                             public void body()
                             {
-                                invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
-                                throwException(invokeConstructor(runtime));
+                                _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("        finally_inner"));
+                                _throw(_new(runtime));
                             }
                             
                         });
                         
                     }
                     
-                }).finallyThen(new Finally(){
+                })._finally(new Finally(){
 
                     @Override
                     public void body()
                     {
-                        invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
-                        throwException(invokeConstructor(runtime));
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    finally"));
+                        _throw(_new(runtime));
                     }
                     
                 });
-                runReturn();
+                _return();
             }
             
         });
@@ -466,7 +466,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
                     {
                         noExceptionCall(this, name);
                     }
-                    runReturn();
+                    _return();
                 }
         
         });
@@ -477,16 +477,16 @@ public class TryFinallyBlockGenerator extends AbstractExample
     
     private static void noExceptionCall(ProgramBlock block, final String methodName)
     {
-        block.invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
-        block.tryDo(new Try(){
+        block._invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("=======" + methodName));
+        block._try(new Try(){
 
             @Override
             public void body()
             {
-                invokeStatic(getMethodOwner(), methodName);
+                _invokeStatic(getMethodOwner(), methodName);
             }
             
-        }).catchException(new Catch(AClass.THROWABLE_ACLASS){
+        })._catch(new Catch(AClass.THROWABLE_ACLASS){
 
             @Override
             public void body(LocalVariable e)
