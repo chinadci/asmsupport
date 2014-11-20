@@ -5,6 +5,8 @@ import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhile;
+import cn.wensiqun.asmsupport.block.classes.control.loop.ForEach;
 import cn.wensiqun.asmsupport.block.classes.control.loop.While;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -544,6 +546,16 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlockOpera
 	@Override
 	public Synchronized _sync(Synchronized sync) {
 		return target._sync(sync);
+	}
+
+	@Override
+	public DoWhile _dowhile(DoWhile doWhile) {
+		return target._dowhile(doWhile);
+	}
+
+	@Override
+	public ForEach _for(ForEach forEach) {
+		return target._for(forEach);
 	}
 
 }

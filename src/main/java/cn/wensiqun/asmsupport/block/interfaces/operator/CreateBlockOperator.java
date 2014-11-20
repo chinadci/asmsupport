@@ -3,6 +3,8 @@ package cn.wensiqun.asmsupport.block.interfaces.operator;
 import cn.wensiqun.asmsupport.block.classes.common.Synchronized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhile;
+import cn.wensiqun.asmsupport.block.classes.control.loop.ForEach;
 import cn.wensiqun.asmsupport.block.classes.control.loop.While;
 
 
@@ -53,7 +55,7 @@ public interface CreateBlockOperator {
      * @param doWhileLoop DoWhileLoop对象
      * @return {@link DoWhileLoop}
      */
-    //public WhileLoop dowhile(DoWhileLoop doWhileLoop);
+    public DoWhile _dowhile(DoWhile doWhile);
     
     /**
      * 创建for each程序块
@@ -61,7 +63,7 @@ public interface CreateBlockOperator {
      * @param forEach ForEachLoop对象
      * @return {@link ForEachLoop}
      */
-    //public ForEachLoop forEach(final ForEachLoop forEach);
+    public ForEach _for(final ForEach forEach);
     
     
     /**

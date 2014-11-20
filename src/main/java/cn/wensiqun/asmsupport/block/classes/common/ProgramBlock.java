@@ -15,6 +15,8 @@ import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
 import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhile;
+import cn.wensiqun.asmsupport.block.classes.control.loop.ForEach;
 import cn.wensiqun.asmsupport.block.classes.control.loop.Loop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.While;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
@@ -850,28 +852,27 @@ public abstract class ProgramBlock extends AbstractBlock implements IBlockOperat
 
     @Override
     public final While _while(While whileLoop){
-        /*addExe(wl);
-        subBlockPrepare(wl);
-        return wl;*/
         whileLoop.setParent(getExecutor());
         getQueue().add(whileLoop);
         whileLoop.prepare();
         return whileLoop;
     }
 
-    /*@Override
-    public final WhileLoop dowhile(DoWhileLoop dwl){
-        addExe(dwl);
-        subBlockPrepare(dwl);
-        return dwl;
+    @Override
+    public final DoWhile _dowhile(DoWhile dowhile){
+        dowhile.setParent(getExecutor());
+        getQueue().add(dowhile);
+        dowhile.prepare();
+        return dowhile;
     }
 
     @Override
-    public final ForEachLoop forEach(final ForEachLoop forEach){
-        addExe(forEach);
-        subBlockPrepare(forEach);
+    public final ForEach _for(final ForEach forEach){
+        forEach.setParent(getExecutor());
+        getQueue().add(forEach);
+        forEach.prepare();
         return forEach;
-    }*/
+    }
 
     @Override
     public final void _break(){

@@ -10,10 +10,14 @@ public class Test {
 	public static void main(String[] args) throws InterruptedException
     {
 		WhileBlockGeneratorSample.main(args);
-		System.out.println();
     	WhileBlockGenerator.main(args);
-        Assert.assertEquals(TesterStatics.EXPECTED.toString(), TesterStatics.ACTUALLY.toString());
-        TesterStatics.clear();
+       Assert.assertEquals(TesterStatics.EXPECTED.toString(), TesterStatics.ACTUALLY.toString());
+       TesterStatics.clear();
+       
+		DoWhileBlockGeneratorSample.main(args);
+    	DoWhileBlockGenerator.main(args);
+       Assert.assertEquals(TesterStatics.EXPECTED.toString(), TesterStatics.ACTUALLY.toString());
+       TesterStatics.clear();
     }
 	
     
