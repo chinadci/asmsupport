@@ -1,14 +1,8 @@
-package cn.wensiqun.asmsupport.block.classes.common;
+package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.control.condition.IF;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
-import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhile;
-import cn.wensiqun.asmsupport.block.classes.control.loop.ForEach;
-import cn.wensiqun.asmsupport.block.classes.control.loop.While;
-import cn.wensiqun.asmsupport.block.interfaces.operator.IBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.definition.variable.ExplicitVariable;
@@ -55,28 +49,10 @@ import cn.wensiqun.asmsupport.operators.relational.LessThan;
 import cn.wensiqun.asmsupport.operators.relational.NotEqual;
 import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
 
-public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlock
+public class ProgramBlockClient<B extends ProgramBlock> implements IBlockClient
 {
 
-    private ProgramBlock target;
-    
-    
-    public ProgramBlockAdapter(ProgramBlock block)
-    {
-        target = block;
-    }
-
-    @Override
-    public void prepare()
-    {
-        
-    }
-
-    @Override
-    public void execute()
-    {
-        
-    }
+    B target;
     
     @Override
     public ThisVariable _this()
@@ -444,45 +420,6 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlock
         return target._not(factor);
     }
 
-	@Override
-	public IF _if(IF ifBlock) {
-		return target._if(ifBlock);
-	}
-    
-    
-
-    @Override
-    public While _while(While whileLoop)
-    {
-        return target._while(whileLoop);
-    }
-
-    /*@Override
-    public WhileLoop dowhile(DoWhileLoop doWhileLoop)
-    {
-        
-        return proxy.dowhile(doWhileLoop);
-    }
-
-    @Override
-    public ForEachLoop forEach(ForEachLoop forEach)
-    {
-        
-        return proxy.forEach(forEach);
-    }*/
-
-    @Override
-    public Try _try(Try tryPara)
-    {
-        return target._try(tryPara);
-    }
-
-    /*@Override
-    public Synchronized syn(Synchronized sync)
-    {
-        return proxy.syn(sync);
-    }*/
-
     @Override
     public CheckCast _checkcast(Parameterized cc, AClass to)
     {
@@ -543,6 +480,23 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlock
         return target._return(parame);
     }
 
+/*	@Override
+	public IF _if(IF ifBlock) {
+		return target._if(ifBlock);
+	}
+
+    @Override
+    public While _while(While whileLoop)
+    {
+        return target._while(whileLoop);
+    }
+
+    @Override
+    public Try _try(Try tryPara)
+    {
+        return target._try(tryPara);
+    }
+    
 	@Override
 	public Synchronized _sync(Synchronized sync) {
 		return target._sync(sync);
@@ -556,6 +510,6 @@ public class ProgramBlockAdapter extends ByteCodeExecutor implements IBlock
 	@Override
 	public ForEach _for(ForEach forEach) {
 		return target._for(forEach);
-	}
+	}*/
 
 }

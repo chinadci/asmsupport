@@ -15,7 +15,7 @@ import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
  * @author wensiqun(at)gamil
  *
  */
-public interface IBlockOperators extends 
+public interface IBlock extends 
 KeywordVariableable, 
 VariableOperator, 
 MethodInvokeOperator, 

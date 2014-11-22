@@ -37,7 +37,7 @@ public interface ArrayOperator {
 	 * @param aClass 数组类型
 	 * @param allocateDims 每一维度的长度
 	 * @return {@link ArrayValue}
-	 * @see IBlockOperators#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
+	 * @see IBlock#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
 	 * @see #_newArrayWithValue(ArrayClass, Object)
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[])
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[][])
@@ -71,7 +71,7 @@ public interface ArrayOperator {
 	 * @param aClass 数组类型
 	 * @param arrayObject 创建数组的初始值，这个值必须是一个Parameterized数组
 	 * @return {@link ArrayValue}
-	 * @see IBlockOperators#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
+	 * @see IBlock#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
 	 * @see #_newArray(ArrayClass, Parameterized...)
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[])
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[][])
@@ -102,7 +102,7 @@ public interface ArrayOperator {
 	 * @param aClass 数组类型
 	 * @param values 创建一维数组的初始值
 	 * @return {@link ArrayValue}
-	 * @see IBlockOperators#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
+	 * @see IBlock#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
 	 * @see #_newArray(ArrayClass, Parameterized...)
 	 * @see #_newArrayWithValue(ArrayClass, Object)
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[][])
@@ -119,7 +119,7 @@ public interface ArrayOperator {
 	 * @param aClass 数组类型
 	 * @param values 创建二维数组的初始值
 	 * @return {@link ArrayValue}
-	 * @see IBlockOperators#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
+	 * @see IBlock#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
 	 * @see #_newArray(ArrayClass, Parameterized...)
 	 * @see #_newArrayWithValue(ArrayClass, Object)
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[])
@@ -136,7 +136,7 @@ public interface ArrayOperator {
 	 * @param aClass 数组类型
 	 * @param values 创建三维数组的初始值
 	 * @return {@link ArrayValue}
-	 * @see IBlockOperators#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
+	 * @see IBlock#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
 	 * @see #_newArray(ArrayClass, Parameterized...)
 	 * @see #_newArrayWithValue(ArrayClass, Object)
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[])
@@ -154,7 +154,7 @@ public interface ArrayOperator {
 	 * @param aClass 数组类型
 	 * @param values 创建四维数组的初始值
 	 * @return {@link ArrayValue}
-	 * @see IBlockOperators#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
+	 * @see IBlock#_createArrayVariable(String, ArrayClass, Parameterized, Parameterized...)
 	 * @see #_newArray(ArrayClass, Parameterized...)
 	 * @see #_newArrayWithValue(ArrayClass, Object)
 	 * @see #_newArrayWithValue(ArrayClass, Parameterized[])

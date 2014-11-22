@@ -20,7 +20,7 @@ import cn.wensiqun.asmsupport.block.classes.control.loop.ForEach;
 import cn.wensiqun.asmsupport.block.classes.control.loop.Loop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.While;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
-import cn.wensiqun.asmsupport.block.interfaces.operator.IBlockOperators;
+import cn.wensiqun.asmsupport.block.interfaces.operator.IBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
@@ -97,7 +97,7 @@ import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
  * @author wensiqun(at)gmail
  * 
  */
-public abstract class ProgramBlock extends AbstractBlock implements IBlockOperators  {
+public abstract class ProgramBlock extends AbstractBlock implements IBlock  {
 
     private static Log log = LogFactory.getLog(ProgramBlock.class);
 
