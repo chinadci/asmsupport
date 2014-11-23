@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 import org.apache.commons.lang3.ArrayUtils;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.exception.ExceptionSerialBlock;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.UnreachableCodeException;
@@ -43,11 +43,11 @@ public abstract class OperatorFactory {
 			}
 		}else if(ArrayUtils.isEmpty(parameterTypes) || ArrayUtils.isEmpty(arguments)){
 			throw new NullPointerException();
-		}else if(!ProgramBlock.class.equals(parameterTypes[0])){
+		}else if(!ProgramBlockInternal.class.equals(parameterTypes[0])){
 		    throw new ASMSupportException("first argument type must be ProgramBlock");	
 		}
 		
-		ProgramBlock block = (ProgramBlock) arguments[0];
+		ProgramBlockInternal block = (ProgramBlockInternal) arguments[0];
 		ByteCodeExecutor last = block.getQueue().getLast();
 		if(checkSerial &&
 		   last != null &&

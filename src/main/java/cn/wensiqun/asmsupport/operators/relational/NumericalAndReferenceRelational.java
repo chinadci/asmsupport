@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
@@ -17,7 +17,7 @@ public abstract class NumericalAndReferenceRelational extends AbstractRelational
     
     private static Log log = LogFactory.getLog(NumericalRelational.class);
     
-    protected NumericalAndReferenceRelational(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected NumericalAndReferenceRelational(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block, factor1, factor2);
     }
     

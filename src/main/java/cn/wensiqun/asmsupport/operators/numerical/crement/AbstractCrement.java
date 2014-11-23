@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.operators.numerical.crement;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.ExplicitVariable;
@@ -31,7 +31,7 @@ public abstract class AbstractCrement extends AbstractNumerical {
      */
     private boolean post;
     
-    protected AbstractCrement(ProgramBlock block, Crementable factor, String operator, boolean post) {
+    protected AbstractCrement(ProgramBlockInternal block, Crementable factor, String operator, boolean post) {
         super(block);
         this.factor = factor;
         this.operator = operator;
@@ -39,7 +39,7 @@ public abstract class AbstractCrement extends AbstractNumerical {
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         execute();
     }
 

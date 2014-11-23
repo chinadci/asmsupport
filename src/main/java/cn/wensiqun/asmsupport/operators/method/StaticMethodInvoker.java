@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
 
@@ -18,7 +18,7 @@ public class StaticMethodInvoker extends MethodInvoker {
 
     private static Log log = LogFactory.getLog(StaticMethodInvoker.class);
     
-    protected StaticMethodInvoker(ProgramBlock block, AClass owner, String name,
+    protected StaticMethodInvoker(ProgramBlockInternal block, AClass owner, String name,
             Parameterized[] arguments) {
         super(block, owner, name, arguments);
         if (owner.isPrimitive()) {

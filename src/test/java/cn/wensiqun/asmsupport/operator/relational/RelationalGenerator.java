@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.operator.relational;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.control.loop.While;
+import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;

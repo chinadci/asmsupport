@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 
 /**
@@ -25,7 +25,7 @@ public class ConstructorInvoker extends MethodInvoker {
      * @param mv
      * @param dup
      */
-    protected ConstructorInvoker(ProgramBlock block, AClass aclass, Parameterized[] arguments) {
+    protected ConstructorInvoker(ProgramBlockInternal block, AClass aclass, Parameterized[] arguments) {
         super(block, aclass, METHOD_NAME_INIT, arguments);
         //this.methodType = MethodType.CONSTRUCTOR;
         if (aclass.isPrimitive()) {

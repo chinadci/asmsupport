@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 
 /**
@@ -19,7 +19,7 @@ public class LocalVariableAssigner extends Assigner {
     
     private LocalVariable var;
     
-    protected LocalVariableAssigner(ProgramBlock block, final LocalVariable var, Parameterized value) {
+    protected LocalVariableAssigner(ProgramBlockInternal block, final LocalVariable var, Parameterized value) {
         super(block, var, value);
         this.var = var;
     }

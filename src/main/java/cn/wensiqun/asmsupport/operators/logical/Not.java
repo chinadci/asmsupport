@@ -10,7 +10,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.Operators;
 import cn.wensiqun.asmsupport.utils.memory.Stack;
 
@@ -21,7 +21,7 @@ import cn.wensiqun.asmsupport.utils.memory.Stack;
  */
 public class Not extends UnaryLogical {
 
-    protected Not(ProgramBlock block, Parameterized factor) {
+    protected Not(ProgramBlockInternal block, Parameterized factor) {
         super(block, factor);
         this.operator = Operators.NOT;
     }

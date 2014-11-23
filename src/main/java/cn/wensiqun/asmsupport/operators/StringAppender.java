@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.operators;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
@@ -21,7 +21,7 @@ public class StringAppender extends AbstractOperator implements Parameterized{
     private boolean byOtherUsed;
     private MethodInvoker invoker;
     
-    protected StringAppender(ProgramBlock block, Parameterized par1, Parameterized... pars) {
+    protected StringAppender(ProgramBlockInternal block, Parameterized par1, Parameterized... pars) {
         super(block);
         this.paras = new Parameterized[pars.length + 1];
         this.paras[0] = par1;
@@ -69,7 +69,7 @@ public class StringAppender extends AbstractOperator implements Parameterized{
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

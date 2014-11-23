@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.operators.asmdirect;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 
 /**
@@ -14,11 +14,11 @@ import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
 public class Athrow extends ASMDirect {
     
     
-	protected Athrow(ProgramBlock block) {
+	protected Athrow(ProgramBlockInternal block) {
 		super(block);
 	}
 
-	protected Athrow(ProgramBlock block, Label lbl) {
+	protected Athrow(ProgramBlockInternal block, Label lbl) {
         super(block);
     }
 

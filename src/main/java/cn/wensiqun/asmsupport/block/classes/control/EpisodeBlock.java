@@ -1,13 +1,13 @@
 package cn.wensiqun.asmsupport.block.classes.control;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class EpisodeBlock<T extends SerialBlock> extends ProgramBlock {
+public abstract class EpisodeBlock<T extends SerialBlock> extends ProgramBlockInternal {
     
     private T serial;
     

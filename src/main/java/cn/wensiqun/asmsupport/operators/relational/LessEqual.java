@@ -5,7 +5,7 @@ package cn.wensiqun.asmsupport.operators.relational;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.Operators;
 
 /**
@@ -14,7 +14,7 @@ import cn.wensiqun.asmsupport.operators.Operators;
  */
 public class LessEqual extends NumericalRelational {
 
-    protected LessEqual(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected LessEqual(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block, factor1, factor2);
         this.operator = Operators.LESS_THAN_OR_EQUAL_TO;
     }

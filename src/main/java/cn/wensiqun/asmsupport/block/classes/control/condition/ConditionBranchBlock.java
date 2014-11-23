@@ -3,14 +3,14 @@ package cn.wensiqun.asmsupport.block.classes.control.condition;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ConditionBranchBlock extends ProgramBlock {
+public abstract class ConditionBranchBlock extends ProgramBlockInternal {
 
 
 	protected ConditionBranchBlock nextBranch;

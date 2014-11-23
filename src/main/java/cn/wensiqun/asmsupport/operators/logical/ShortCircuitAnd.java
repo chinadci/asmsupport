@@ -9,7 +9,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.Operators;
 import cn.wensiqun.asmsupport.utils.memory.Stack;
@@ -22,7 +22,7 @@ import cn.wensiqun.asmsupport.utils.memory.Stack;
  */
 public class ShortCircuitAnd extends ConditionOperator {
     
-    protected ShortCircuitAnd(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected ShortCircuitAnd(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block, factor1, factor2);
         operator = Operators.CONDITION_AND;
     }

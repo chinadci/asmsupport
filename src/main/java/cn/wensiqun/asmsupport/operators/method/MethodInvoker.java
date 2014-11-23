@@ -10,7 +10,7 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
@@ -54,7 +54,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
      * @param arguments
      * @param block
      */
-    protected MethodInvoker(ProgramBlock block, AClass owner, 
+    protected MethodInvoker(ProgramBlockInternal block, AClass owner, 
             String name, 
             Parameterized[] arguments) {
         super(block);
@@ -168,7 +168,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         if(getReturnType().equals(Type.VOID_TYPE)){
             throw new ASMSupportException("cannot push the void return type to stack!");
         }

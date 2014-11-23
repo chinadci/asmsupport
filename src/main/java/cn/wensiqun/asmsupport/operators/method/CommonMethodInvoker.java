@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.definition.variable.IVariable;
 import cn.wensiqun.asmsupport.definition.variable.meta.VariableMeta;
 import cn.wensiqun.asmsupport.utils.ASConstant;
@@ -18,7 +18,7 @@ public class CommonMethodInvoker extends MethodInvoker {
     
 	private Parameterized callObjReference;
 	
-	protected CommonMethodInvoker(ProgramBlock block, Parameterized objRef, String name, Parameterized[] arguments) {
+	protected CommonMethodInvoker(ProgramBlockInternal block, Parameterized objRef, String name, Parameterized[] arguments) {
 		super(block, objRef.getParamterizedType(), name, arguments);
 		this.callObjReference = objRef;
 		if(callObjReference.getParamterizedType().isPrimitive()){

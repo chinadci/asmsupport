@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.numerical.arithmetic.AbstractArithmetic;
@@ -27,7 +27,7 @@ public abstract class AbstractNumerical extends AbstractOperator implements
     
     protected String operator;
     
-    protected AbstractNumerical(ProgramBlock block) {
+    protected AbstractNumerical(ProgramBlockInternal block) {
         super(block);
     }
 

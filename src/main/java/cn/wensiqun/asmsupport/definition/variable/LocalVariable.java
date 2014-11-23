@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.definition.variable;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.meta.LocalVariableMeta;
 import cn.wensiqun.asmsupport.definition.variable.meta.VariableMeta;
@@ -46,7 +46,7 @@ public class LocalVariable extends ExplicitVariable implements Crementable{
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         block.getMethod().getInsnHelper().loadInsn(localVariableMeta.getDeclareClass().getType(), scopeLogicVar.getInitStartPos());
     }
 

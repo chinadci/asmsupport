@@ -7,8 +7,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
-import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.AbstractBlockInternal;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.SerialBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AnyException;
@@ -23,19 +23,19 @@ import cn.wensiqun.asmsupport.utils.common.TryCatchInfo;
 
 public class ExceptionSerialBlock extends SerialBlock
 {
-    private Try tryBlock;
+    private TryInternal tryBlock;
     
-    private List<Catch> catchs;
+    private List<CatchInternal> catchs;
     
     private ImplicitCatch implicitCatch;
     
-    private Finally  finallyBlock;
+    private FinallyInternal  finallyBlock;
     
     private List<Label> anyCatchRange;
     
     private List<TryCatchInfo> tryCatchInfoes;
     
-    public ExceptionSerialBlock(ProgramBlock parent, Try tryBlock)
+    public ExceptionSerialBlock(ProgramBlockInternal parent, TryInternal tryBlock)
     {
         super(parent);
         this.tryBlock = tryBlock;
@@ -57,19 +57,19 @@ public class ExceptionSerialBlock extends SerialBlock
             if(!tryBlock.isFinish())
             {
                 OperatorFactory.newOperator(GOTO.class, 
-                        new Class[]{ProgramBlock.class, Label.class}, 
+                        new Class[]{ProgramBlockInternal.class, Label.class}, 
                         tryBlock, getSerialEnd());
             }
             
             //new GOTO(tryBlock, serialEnd);
             
-            for(Catch c : catchs)
+            for(CatchInternal c : catchs)
             {
                 c.prepare();
                 if(!c.isFinish())
                 {
                     OperatorFactory.newOperator(GOTO.class, 
-                            new Class[]{ProgramBlock.class, Label.class}, 
+                            new Class[]{ProgramBlockInternal.class, Label.class}, 
                             c, getSerialEnd());
                 }
             }
@@ -83,7 +83,7 @@ public class ExceptionSerialBlock extends SerialBlock
             if(!tryBlock.isFinish())
             {
                 OperatorFactory.newOperator(GOTO.class, 
-        				new Class[]{ProgramBlock.class, Label.class}, 
+        				new Class[]{ProgramBlockInternal.class, Label.class}, 
         				tryBlock, finallyBlock.getStart());
                 //new GOTO(tryBlock, finallyBlock.getStart());
             }
@@ -106,7 +106,7 @@ public class ExceptionSerialBlock extends SerialBlock
             if(!tryBlock.isFinish())
             {
                 OperatorFactory.newOperator(GOTO.class, 
-                    new Class[]{ProgramBlock.class, Label.class}, 
+                    new Class[]{ProgramBlockInternal.class, Label.class}, 
                     tryBlock, finallyBlock.getStart());
                 //new GOTO(tryBlock, finallyBlock.getStart());
             }
@@ -114,7 +114,7 @@ public class ExceptionSerialBlock extends SerialBlock
             //insert finally for BreakStack operator in try block.
             insertFinallyBeforeReturn(tryBlock);
             
-            for(Catch c : catchs)
+            for(CatchInternal c : catchs)
             {
                 c.prepare();
                 
@@ -130,19 +130,19 @@ public class ExceptionSerialBlock extends SerialBlock
                     {
                         //inject implicit finally block code at end of catch
                         OperatorFactory.newOperator(Marker.class, 
-                                new Class[]{ProgramBlock.class, Label.class}, 
+                                new Class[]{ProgramBlockInternal.class, Label.class}, 
                                 c, finallyStart);
                         //new Marker(c, finallyStart);
                         finallyBlock.generateTo(c);
                         
                         OperatorFactory.newOperator(GOTO.class, 
-                                new Class[]{ProgramBlock.class, Label.class}, 
+                                new Class[]{ProgramBlockInternal.class, Label.class}, 
                                 c, getSerialEnd());
                         
                         //new GOTO(c, serialEnd);
                         
                         OperatorFactory.newOperator(Marker.class, 
-                                new Class[]{ProgramBlock.class, Label.class}, 
+                                new Class[]{ProgramBlockInternal.class, Label.class}, 
                                 c, finallyEnd);
                         //new Marker(c, finallyEnd);
                     }
@@ -191,7 +191,7 @@ public class ExceptionSerialBlock extends SerialBlock
         
         if(CollectionUtils.isNotEmpty(catchs))
         {
-            for(Catch c : catchs)
+            for(CatchInternal c : catchs)
             {
                 c.execute();
             }
@@ -204,16 +204,16 @@ public class ExceptionSerialBlock extends SerialBlock
         }
     }
     
-    void appendEpisode(Catch catchBlock)
+    void appendEpisode(CatchInternal catchBlock)
     {
         if(catchs == null)
         {
-            catchs = new ArrayList<Catch>();
+            catchs = new ArrayList<CatchInternal>();
             getQueue().addAfter(tryBlock, catchBlock);
         }
         else
         {
-            Catch previous = catchs.get(catchs.size() - 1);
+            CatchInternal previous = catchs.get(catchs.size() - 1);
             AClass exceptionType = catchBlock.getExceptionType();
             
             if(exceptionType != null &&
@@ -234,7 +234,7 @@ public class ExceptionSerialBlock extends SerialBlock
             catchBlock.getStart(), catchBlock.getExceptionType());
     }
     
-    void appendEpisode(Finally finallyBlock)
+    void appendEpisode(FinallyInternal finallyBlock)
     {
         if(this.finallyBlock != null)
         {
@@ -257,13 +257,13 @@ public class ExceptionSerialBlock extends SerialBlock
      * 
      * @param block
      */
-    private void insertFinallyBeforeReturn(AbstractBlock block)
+    private void insertFinallyBeforeReturn(AbstractBlockInternal block)
     {
         List<Return> returns = fetchAllBreakStack(block, null);
         
         for(Return ret : returns)
         {
-            ProgramBlock breakBlock = ret.getBlock();
+            ProgramBlockInternal breakBlock = ret.getBlock();
             
             Label startLbl = new Label("implicit finally before break stack start");
             Label endLbl = new Label("implicit finally before break stack end");
@@ -277,7 +277,7 @@ public class ExceptionSerialBlock extends SerialBlock
             
             //dosen't detected previous whether serial block.
         	OperatorFactory.newOperator(Marker.class, false,
-    				new Class[]{ProgramBlock.class, Label.class}, 
+    				new Class[]{ProgramBlockInternal.class, Label.class}, 
     				breakBlock, startLbl);
         	
             //new Marker(breakBlock, startLbl);
@@ -305,7 +305,7 @@ public class ExceptionSerialBlock extends SerialBlock
             }
             
             OperatorFactory.newOperator(Marker.class, 
-    				new Class[]{ProgramBlock.class, Label.class}, 
+    				new Class[]{ProgramBlockInternal.class, Label.class}, 
     				breakBlock, endLbl);
             
             //new Marker(breakBlock, endLbl);
@@ -313,7 +313,7 @@ public class ExceptionSerialBlock extends SerialBlock
     }
     
     
-    private List<Return> fetchAllBreakStack(AbstractBlock block, List<Return> container)
+    private List<Return> fetchAllBreakStack(AbstractBlockInternal block, List<Return> container)
     {
         if(container == null)
         {
@@ -325,10 +325,10 @@ public class ExceptionSerialBlock extends SerialBlock
             {
                 container.add((Return) executor);
             }
-            else if(executor instanceof AbstractBlock &&
+            else if(executor instanceof AbstractBlockInternal &&
             		!(executor instanceof ImplicitCatch))
             {
-                fetchAllBreakStack((AbstractBlock) executor, container);
+                fetchAllBreakStack((AbstractBlockInternal) executor, container);
             }
         }
         return container;
@@ -352,7 +352,7 @@ public class ExceptionSerialBlock extends SerialBlock
     }
     
     
-    public Finally getFinally() {
+    public FinallyInternal getFinally() {
 		return finallyBlock;
 	}
 	
@@ -360,7 +360,7 @@ public class ExceptionSerialBlock extends SerialBlock
 	 * 
 	 *
 	 */
-    private class ImplicitCatch extends ProgramBlock{
+    private class ImplicitCatch extends ProgramBlockInternal{
 
         @Override
         public void generate()
@@ -368,7 +368,7 @@ public class ExceptionSerialBlock extends SerialBlock
             LocalVariable exception = getLocalAnonymousVariableModel(AnyException.ANY);
 
         	OperatorFactory.newOperator(Store.class, 
-    				new Class[]{ProgramBlock.class, LocalVariable.class}, 
+    				new Class[]{ProgramBlockInternal.class, LocalVariable.class}, 
     				this, exception);
         	
             //new Store(this, exception);

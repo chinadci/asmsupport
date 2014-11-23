@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.operators.assign;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.IVariable;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
@@ -22,7 +22,7 @@ public abstract class Assigner extends AbstractOperator implements Parameterized
     /**该操作是否被其他操作引用 */
     protected boolean byOtherUsed;
     
-    protected Assigner(ProgramBlock block, IVariable var, Parameterized value) {
+    protected Assigner(ProgramBlockInternal block, IVariable var, Parameterized value) {
         super(block);
         this.value = value;
         this.var = var;
@@ -54,7 +54,7 @@ public abstract class Assigner extends AbstractOperator implements Parameterized
     
     
     @Override
-	public void loadToStack(ProgramBlock block) {
+	public void loadToStack(ProgramBlockInternal block) {
         this.execute();
 		var.loadToStack(block);
 	}

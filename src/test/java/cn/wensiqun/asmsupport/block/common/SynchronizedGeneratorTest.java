@@ -13,10 +13,10 @@ import org.junit.Test;
 import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.Synchronized;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Catch;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
-import cn.wensiqun.asmsupport.block.classes.control.loop.While;
+import cn.wensiqun.asmsupport.block.classes.common.SynchronizedInternal;
+import cn.wensiqun.asmsupport.block.classes.control.exception.CatchInternal;
+import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
+import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
 import cn.wensiqun.asmsupport.block.classes.method.init.InitBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -80,11 +80,11 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             @Override
             public void body(LocalVariable... argus) {
                 final GlobalVariable list = _this().getGlobalVariable("list");
-                _sync(new Synchronized(_this()){
+                _sync(new SynchronizedInternal(_this()){
                     @Override
                     public void body(Parameterized e) {
                         final LocalVariable i = _createVariable("i", AClass.INT_ACLASS, false, Value.value(0));
-                        _while(new While(_lessThan(i, Value.value(10))){
+                        _while(new WhileInternal(_lessThan(i, Value.value(10))){
 
                             @Override
                             public void body() {
@@ -106,11 +106,11 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             @Override
             public void body(LocalVariable... argus) {
                 final GlobalVariable list = _this().getGlobalVariable("list");
-                _sync(new Synchronized(_this().getGlobalVariable("lock")){
+                _sync(new SynchronizedInternal(_this().getGlobalVariable("lock")){
                     @Override
                     public void body(Parameterized e) {
                         final LocalVariable i = _createVariable("i", AClass.INT_ACLASS, false, Value.value(0));
-                        _while(new While(_lessThan(i, Value.value(10))){
+                        _while(new WhileInternal(_lessThan(i, Value.value(10))){
 
                             @Override
                             public void body() {
@@ -161,7 +161,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
 
 			@Override
 			public void body(LocalVariable... argus) {
-				this._try(new Try(){
+				this._try(new TryInternal(){
 
 					@Override
 					public void body() {
@@ -169,7 +169,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
 					    _invoke(_this().getGlobalVariable("sgst"), "sync" + name);
 					}
 					
-				})._catch(new Catch(AClassFactory.getProductClass(InterruptedException.class)) {
+				})._catch(new CatchInternal(AClassFactory.getProductClass(InterruptedException.class)) {
 
 					@Override
 					public void body(LocalVariable e) {
@@ -221,7 +221,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
                         false, 
                         Value.value(0)
                );
-                this._while(new While(_lessThan(i, Value.value(10))){
+                this._while(new WhileInternal(_lessThan(i, Value.value(10))){
 						@Override
 						public void body() {
 							_invoke(objs, "add", _invoke(es, "submit", _new(threadClass, sgst)));
@@ -229,7 +229,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
 						}
 					});
                 _invoke(es, "shutdown");
-                _while(new While(_not(_invoke(es, "isTerminated"))){
+                _while(new WhileInternal(_not(_invoke(es, "isTerminated"))){
 						@Override
 						public void body() {
 							
@@ -239,7 +239,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
                 		Value.value("Assert.assertEquals(100, sgst.list.size())"), Value.value(100), _invoke(sgst.getGlobalVariable("list"), "size"));
                 
                 _assign(i, Value.value(0));
-                _while(new While(_lessThan(i, Value.value(100))) {
+                _while(new WhileInternal(_lessThan(i, Value.value(100))) {
 
 					@Override
 					public void body() {

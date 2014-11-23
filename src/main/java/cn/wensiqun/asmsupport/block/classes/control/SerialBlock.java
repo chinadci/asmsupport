@@ -2,14 +2,14 @@ package cn.wensiqun.asmsupport.block.classes.control;
 
 import org.objectweb.asm.Label;
 
-import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.AbstractBlockInternal;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
-public abstract class SerialBlock extends AbstractBlock
+public abstract class SerialBlock extends AbstractBlockInternal
 {
-    protected ProgramBlock targetParent;
+    protected ProgramBlockInternal targetParent;
     
-    protected SerialBlock(ProgramBlock targetParent)
+    protected SerialBlock(ProgramBlockInternal targetParent)
     {
         this.targetParent = targetParent;
         targetParent.getQueue().add(this);

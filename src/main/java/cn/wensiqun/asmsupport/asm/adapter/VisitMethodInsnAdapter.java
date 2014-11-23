@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.asm.adapter;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.asmdirect.VisitMethodInsn;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
@@ -20,9 +20,9 @@ public class VisitMethodInsnAdapter implements VisitXInsnAdapter {
 	}
 
 	@Override
-	public void newVisitXInsnOperator(ProgramBlock block) {
+	public void newVisitXInsnOperator(ProgramBlockInternal block) {
 		OperatorFactory.newOperator(VisitMethodInsn.class, 
-				new Class[]{ProgramBlock.class, int.class, String.class, String.class, String.class}, 
+				new Class[]{ProgramBlockInternal.class, int.class, String.class, String.class, String.class}, 
 				block, opcode, owner, name, desc);
 		//new VisitMethodInsn(block, opcode, owner, name, desc);
 	}

@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.operators;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 public abstract class BreakStack extends AbstractOperator {
 
@@ -12,7 +12,7 @@ public abstract class BreakStack extends AbstractOperator {
     
 	private boolean autoCreate;
 
-	protected BreakStack(ProgramBlock block, boolean autoCreate) {
+	protected BreakStack(ProgramBlockInternal block, boolean autoCreate) {
 		super(block);
 		this.autoCreate = autoCreate;
 	}

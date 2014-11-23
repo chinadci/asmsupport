@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 
@@ -22,7 +22,7 @@ public class CheckCast extends AbstractOperator implements Parameterized {
     private AClass to;
     private Parameterized orginal;
     
-    protected CheckCast(ProgramBlock block, Parameterized orgi, AClass to) {
+    protected CheckCast(ProgramBlockInternal block, Parameterized orgi, AClass to) {
         super(block);
         this.orginal = orgi;
         this.to = to;
@@ -61,7 +61,7 @@ public class CheckCast extends AbstractOperator implements Parameterized {
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

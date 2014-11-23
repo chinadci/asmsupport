@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.operators.numerical.bitwise;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
 
@@ -14,7 +14,7 @@ public abstract class UnaryBitwise extends AbstractBitwise {
 
     protected Parameterized factor;
     
-    protected UnaryBitwise(ProgramBlock block, Parameterized factor) {
+    protected UnaryBitwise(ProgramBlockInternal block, Parameterized factor) {
         super(block);
         this.factor = factor;
     }

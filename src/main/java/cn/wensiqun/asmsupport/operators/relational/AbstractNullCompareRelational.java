@@ -9,13 +9,13 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.operators.Operators;
 
 public abstract class AbstractNullCompareRelational extends NumericalAndReferenceRelational {
 
-	protected AbstractNullCompareRelational(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+	protected AbstractNullCompareRelational(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
 		super(block, factor1, factor2);
 	}
 	

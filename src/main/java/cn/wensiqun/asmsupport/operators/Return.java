@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 /**
  * 用于执行Return
@@ -23,7 +23,7 @@ public class Return extends BreakStack {
     
     private Type returnType;
     
-    protected Return(ProgramBlock block, Parameterized returner) {
+    protected Return(ProgramBlockInternal block, Parameterized returner) {
         super(block, false);
         this.returner = returner;
         if(returner != null){
@@ -31,7 +31,7 @@ public class Return extends BreakStack {
         }
     }
     
-    protected Return(ProgramBlock block, Parameterized returner, boolean autoCreate) {
+    protected Return(ProgramBlockInternal block, Parameterized returner, boolean autoCreate) {
         super(block, autoCreate);
         this.returner = returner;
         if(returner != null){

@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.definition.variable;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;
@@ -36,7 +36,7 @@ public class SuperVariable extends ImplicitVariable{
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         block.getInsnHelper().loadThis();
     }
 

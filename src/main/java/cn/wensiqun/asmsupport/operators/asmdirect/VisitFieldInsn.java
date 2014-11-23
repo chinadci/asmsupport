@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.operators.asmdirect;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 
 public class VisitFieldInsn extends AbstractOperator {
@@ -10,7 +10,7 @@ public class VisitFieldInsn extends AbstractOperator {
 	private String name;
 	private String desc;
 
-	protected VisitFieldInsn(ProgramBlock block, int opcode, String owner,
+	protected VisitFieldInsn(ProgramBlockInternal block, int opcode, String owner,
 			String name, String desc) {
 		super(block);
 		this.opcode = opcode;

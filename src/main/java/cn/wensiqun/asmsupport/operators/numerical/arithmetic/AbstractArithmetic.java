@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
@@ -31,14 +31,14 @@ public abstract class AbstractArithmetic extends AbstractNumerical implements
     /**该操作是否被其他操作引用 */
     private boolean byOtherUsed;
 
-    protected AbstractArithmetic(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected AbstractArithmetic(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block);
         this.factor1 = factor1;
         this.factor2 = factor2;
     }
     
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
     

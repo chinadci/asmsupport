@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.Operators;
 
 /**
@@ -18,7 +18,7 @@ public class Negative extends AbstractPositiveNegative {
 
     private static Log log = LogFactory.getLog(Negative.class);
     
-    protected Negative(ProgramBlock block, Parameterized factor) {
+    protected Negative(ProgramBlockInternal block, Parameterized factor) {
         super(block, factor);
         operator = Operators.NEG;
     }

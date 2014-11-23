@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
@@ -85,7 +85,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
         }.process();
     }
     
-    protected ArrayValue(ProgramBlock block, ArrayClass arrayCls, Parameterized... allocateDims) {
+    protected ArrayValue(ProgramBlockInternal block, ArrayClass arrayCls, Parameterized... allocateDims) {
         super(block);
         if(arrayCls.getDimension() < allocateDims.length){
             throw new IllegalArgumentException("dimension not enough: array type is " + arrayCls + " and allocate dims is " + ArrayUtils.toString(allocateDims));
@@ -100,7 +100,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
      * @param arrayCls
      * @param values Parameterized array
      */
-    protected ArrayValue(ProgramBlock block, ArrayClass arrayCls, Object values) {
+    protected ArrayValue(ProgramBlockInternal block, ArrayClass arrayCls, Object values) {
         super(block);
         this.arrayCls = arrayCls;
         this.values = values;
@@ -207,7 +207,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

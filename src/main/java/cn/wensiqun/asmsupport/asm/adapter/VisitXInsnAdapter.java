@@ -1,9 +1,9 @@
 package cn.wensiqun.asmsupport.asm.adapter;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 public interface VisitXInsnAdapter {
 	
-    public void newVisitXInsnOperator(ProgramBlock block);
+    public void newVisitXInsnOperator(ProgramBlockInternal block);
 
 }

@@ -10,9 +10,9 @@ import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.asm.CommonInstructionHelper;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.asm.StackLocalMethodVisitor;
-import cn.wensiqun.asmsupport.block.classes.common.AbstractBlock;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
-import cn.wensiqun.asmsupport.block.classes.control.exception.Try;
+import cn.wensiqun.asmsupport.block.classes.common.AbstractBlockInternal;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
+import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
@@ -86,7 +86,7 @@ public class AMethod {
      * 
      * 这样做的主要目的是为了能自动将finally语句块的内容插入到try或catch中所有return指令之前
      **/
-    private Try nearlyTryBlock;
+    private TryInternal nearlyTryBlock;
 
     /**
      * 构造方法
@@ -129,10 +129,10 @@ public class AMethod {
      * 获取所有需要抛出的异常
      * @param block
      */
-    private void getThrowExceptionsInProgramBlock(AbstractBlock block){
-        if(block instanceof ProgramBlock)
+    private void getThrowExceptionsInProgramBlock(AbstractBlockInternal block){
+        if(block instanceof ProgramBlockInternal)
         {
-            ThrowExceptionContainer blockExceptions = ((ProgramBlock)block).getThrowExceptions();
+            ThrowExceptionContainer blockExceptions = ((ProgramBlockInternal)block).getThrowExceptions();
             if(blockExceptions != null){
                 for(AClass exp : blockExceptions){
                     throwExceptions.add(exp);
@@ -141,8 +141,8 @@ public class AMethod {
         }
     	
     	for(Executable exe : block.getQueue()){
-    		if(exe instanceof AbstractBlock){
-    			getThrowExceptionsInProgramBlock((AbstractBlock)exe);
+    		if(exe instanceof AbstractBlockInternal){
+    			getThrowExceptionsInProgramBlock((AbstractBlockInternal)exe);
     		}
     	}
     }
@@ -154,8 +154,8 @@ public class AMethod {
     	
     	if(!ModifierUtils.isAbstract(me.getModifier())){
             for(Executable exe : getMethodBody().getQueue()){
-    		    if(exe instanceof AbstractBlock){
-    			    getThrowExceptionsInProgramBlock((AbstractBlock)exe);
+    		    if(exe instanceof AbstractBlockInternal){
+    			    getThrowExceptionsInProgramBlock((AbstractBlockInternal)exe);
     		    }
     	    }
     	}
@@ -251,11 +251,11 @@ public class AMethod {
 		return mode;
 	}
 
-	public Try getNearlyTryBlock() {
+	public TryInternal getNearlyTryBlock() {
 		return nearlyTryBlock;
 	}
 
-	public void setNearlyTryBlock(Try nearlyTryBlock) {
+	public void setNearlyTryBlock(TryInternal nearlyTryBlock) {
 		this.nearlyTryBlock = nearlyTryBlock;
 	}
 

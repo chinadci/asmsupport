@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.operators.asmdirect;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 
 public class VisitMultiANewArrayInsn extends AbstractOperator {
@@ -8,7 +8,7 @@ public class VisitMultiANewArrayInsn extends AbstractOperator {
 	private int dims;
 	private String desc;
 
-	protected VisitMultiANewArrayInsn(ProgramBlock block, String desc, int dims) {
+	protected VisitMultiANewArrayInsn(ProgramBlockInternal block, String desc, int dims) {
 		super(block);
 		this.dims = dims;
 		this.desc = desc;

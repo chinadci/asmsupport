@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.numerical.bitwise.BinaryBitwise;
@@ -24,7 +24,7 @@ public abstract class UnaryLogical extends AbstractLogical {
     protected Label trueLbl;
     protected Label falseLbl;
     
-    protected UnaryLogical(ProgramBlock block, Parameterized factor) {
+    protected UnaryLogical(ProgramBlockInternal block, Parameterized factor) {
         super(block);
         this.factor = factor;
         falseLbl = new Label();

@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.operators.numerical.posinegative;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
@@ -19,14 +19,14 @@ public abstract class AbstractPositiveNegative extends AbstractNumerical {
     private boolean byOtherUsed;
     
 
-    protected AbstractPositiveNegative(ProgramBlock block, Parameterized factor) {
+    protected AbstractPositiveNegative(ProgramBlockInternal block, Parameterized factor) {
         super(block);
         this.factor = factor;
     }
     
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
     

@@ -7,7 +7,7 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
@@ -20,20 +20,20 @@ import cn.wensiqun.asmsupport.utils.AClassUtils;
  */
 public abstract class AbstractOperator extends ByteCodeExecutor {
 
-    protected ProgramBlock block;
+    protected ProgramBlockInternal block;
     
     protected InstructionHelper insnHelper;
 	
     private int compileOrder;
 
-    protected AbstractOperator(ProgramBlock block) {
+    protected AbstractOperator(ProgramBlockInternal block) {
         this.insnHelper = block.getInsnHelper();
         this.block = block;
         //addQueue();
         block.getQueue().add(this);
     }
     
-    public ProgramBlock getBlock() {
+    public ProgramBlockInternal getBlock() {
         return block;
     }
     

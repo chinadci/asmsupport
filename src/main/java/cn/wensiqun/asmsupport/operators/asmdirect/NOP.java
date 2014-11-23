@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.operators.asmdirect;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.UnreachableCodeCheckSkipable;
 
 /**
@@ -10,7 +10,7 @@ import cn.wensiqun.asmsupport.operators.UnreachableCodeCheckSkipable;
  */
 public class NOP extends ASMDirect implements UnreachableCodeCheckSkipable {
     
-	protected NOP(ProgramBlock block) {
+	protected NOP(ProgramBlockInternal block) {
         super(block);
     }
 

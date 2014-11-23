@@ -5,7 +5,7 @@ package cn.wensiqun.asmsupport.operators.relational;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.Operators;
 
 /**
@@ -14,7 +14,7 @@ import cn.wensiqun.asmsupport.operators.Operators;
  */
 public class Equal extends AbstractNullCompareRelational {
 
-    protected Equal(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected Equal(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block, factor1, factor2);
         this.operator = Operators.EQUAL_TO;
     }

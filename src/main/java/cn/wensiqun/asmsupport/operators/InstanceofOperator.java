@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.operators;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 
@@ -18,7 +18,7 @@ public class InstanceofOperator extends AbstractOperator implements Parameterize
     private Parameterized obj;
     private boolean byOtherUsed;
     
-    protected InstanceofOperator(ProgramBlock block, Parameterized obj, AClass type) {
+    protected InstanceofOperator(ProgramBlockInternal block, Parameterized obj, AClass type) {
         super(block);
         this.obj = obj;
         this.type = type;
@@ -58,7 +58,7 @@ public class InstanceofOperator extends AbstractOperator implements Parameterize
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

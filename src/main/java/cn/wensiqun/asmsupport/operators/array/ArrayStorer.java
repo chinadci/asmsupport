@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
@@ -46,7 +46,7 @@ public class ArrayStorer extends AbstractArrayOperator {
         }
     }
 
-    protected ArrayStorer(ProgramBlock block, Parameterized arrayReference, Parameterized value, Parameterized pardim, Parameterized... parDims) {
+    protected ArrayStorer(ProgramBlockInternal block, Parameterized arrayReference, Parameterized value, Parameterized pardim, Parameterized... parDims) {
         super(block, arrayReference);
         init(value, pardim, parDims);
     }

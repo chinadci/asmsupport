@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.exception.ClassException;
@@ -28,7 +28,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
     
     protected Parameterized[] parDims;
     
-    protected AbstractArrayOperator(ProgramBlock block, Parameterized arrayVar) {
+    protected AbstractArrayOperator(ProgramBlockInternal block, Parameterized arrayVar) {
         super(block);
         this.arrayReference = arrayVar;
     }

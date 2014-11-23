@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.operators.Operators;
@@ -23,7 +23,7 @@ public abstract class BinaryBitwise extends AbstractBitwise {
     protected Parameterized factor1;
     protected Parameterized factor2;
     
-    protected BinaryBitwise(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected BinaryBitwise(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block);
         this.factor1 = factor1;
         this.factor2 = factor2;

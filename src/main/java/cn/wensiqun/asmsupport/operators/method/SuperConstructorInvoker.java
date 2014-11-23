@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 
@@ -18,7 +18,7 @@ public class SuperConstructorInvoker extends MethodInvoker {
 
     private static Log log = LogFactory.getLog(SuperConstructorInvoker.class);
     
-    protected SuperConstructorInvoker(ProgramBlock block, AClass aclass, Parameterized[] arguments) {
+    protected SuperConstructorInvoker(ProgramBlockInternal block, AClass aclass, Parameterized[] arguments) {
         super(block, AClassFactory.getProductClass(aclass.getSuperClass()), METHOD_NAME_INIT, arguments);
         //this.methodType = MethodType.THIS;
         //默认不保存引用

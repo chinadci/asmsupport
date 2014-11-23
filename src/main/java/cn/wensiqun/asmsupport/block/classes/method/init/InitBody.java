@@ -4,7 +4,7 @@
 package cn.wensiqun.asmsupport.block.classes.method.init;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariablesBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -29,7 +29,7 @@ public abstract class InitBody extends GenericMethodBody implements LocalVariabl
         invokeVerify(owner);
 
         return OperatorFactory.newOperator(SuperConstructorInvoker.class, 
-        		new Class<?>[]{ProgramBlock.class, AClass.class, Parameterized[].class}, 
+        		new Class<?>[]{ProgramBlockInternal.class, AClass.class, Parameterized[].class}, 
         		getExecutor(), owner, arguments);
 	}
     

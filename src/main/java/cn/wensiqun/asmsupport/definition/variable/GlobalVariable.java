@@ -9,7 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Crementable;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;
 import cn.wensiqun.asmsupport.definition.variable.meta.VariableMeta;
@@ -90,7 +90,7 @@ public class GlobalVariable extends ExplicitVariable implements Crementable{
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
     	
     	if(!AClassUtils.visible(block.getMethodOwner(), globalVariableMeta.getOwner(), 
     			globalVariableMeta.getActuallyOwner(), globalVariableMeta.getModifiers()))

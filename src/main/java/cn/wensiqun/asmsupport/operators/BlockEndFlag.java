@@ -1,10 +1,10 @@
 package cn.wensiqun.asmsupport.operators;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 public class BlockEndFlag extends AbstractOperator implements UnreachableCodeCheckSkipable {
 
-	protected BlockEndFlag(ProgramBlock block) {
+	protected BlockEndFlag(ProgramBlockInternal block) {
 		super(block);
 	}
 

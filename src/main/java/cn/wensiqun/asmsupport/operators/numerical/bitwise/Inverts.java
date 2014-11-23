@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.Operators;
 
 /**
@@ -19,7 +19,7 @@ public class Inverts extends UnaryBitwise {
 
     private static Log log = LogFactory.getLog(Inverts.class);
     
-    protected Inverts(ProgramBlock block, Parameterized factor) {
+    protected Inverts(ProgramBlockInternal block, Parameterized factor) {
         super(block, factor);
         this.operator = Operators.INVERTS;
     }

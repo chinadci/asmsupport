@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.asm.adapter;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.asmdirect.VisitMultiANewArrayInsn;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 
@@ -15,9 +15,9 @@ public class VisitMultiANewArrayInsnAdapter implements VisitXInsnAdapter {
 	}
 
 	@Override
-	public void newVisitXInsnOperator(ProgramBlock block) {
+	public void newVisitXInsnOperator(ProgramBlockInternal block) {
 		OperatorFactory.newOperator(VisitMultiANewArrayInsn.class, 
-				new Class[]{ProgramBlock.class, String.class, int.class}, 
+				new Class[]{ProgramBlockInternal.class, String.class, int.class}, 
 				block, desc, dims);
 		//new VisitMultiANewArrayInsn(block, desc, dims);
 	}

@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.operators.logical;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 
@@ -16,12 +16,12 @@ public abstract class AbstractLogical extends AbstractOperator implements Parame
     
     protected String operator;
 
-    protected AbstractLogical(ProgramBlock block) {
+    protected AbstractLogical(ProgramBlockInternal block) {
         super(block);
     }
     
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

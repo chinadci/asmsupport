@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.exception.ArrayOperatorException;
@@ -35,7 +35,7 @@ public class ArrayLoader extends AbstractArrayOperator implements Parameterized 
         }
     }
     
-    protected ArrayLoader(ProgramBlock block, Parameterized arrayReference, Parameterized pardim, Parameterized... parDims) {
+    protected ArrayLoader(ProgramBlockInternal block, Parameterized arrayReference, Parameterized pardim, Parameterized... parDims) {
         super(block, arrayReference);
         init(pardim, parDims);
     }
@@ -55,7 +55,7 @@ public class ArrayLoader extends AbstractArrayOperator implements Parameterized 
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

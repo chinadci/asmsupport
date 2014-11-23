@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.operators.variable;
 
 import org.objectweb.asm.Type;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.utils.lang.StringUtils;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
@@ -13,7 +13,7 @@ public class LocalVariableCreator extends AbstractOperator {
 
 	private ScopeLogicVariable slv;
 	
-	protected LocalVariableCreator(ProgramBlock block, String name, Type declareClass,
+	protected LocalVariableCreator(ProgramBlockInternal block, String name, Type declareClass,
             Type actuallyClass){
 	    super(block);	
 		block.removeExe(this);

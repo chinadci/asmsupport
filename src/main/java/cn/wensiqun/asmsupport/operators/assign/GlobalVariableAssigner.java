@@ -6,7 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 
@@ -21,7 +21,7 @@ public class GlobalVariableAssigner extends Assigner {
     
     private GlobalVariable var;
     
-    protected GlobalVariableAssigner(ProgramBlock block, final GlobalVariable var, Parameterized value) {
+    protected GlobalVariableAssigner(ProgramBlockInternal block, final GlobalVariable var, Parameterized value) {
         super(block, var, value);
         this.var = var;
     }

@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 /**
  * 
@@ -22,7 +22,7 @@ public class MethodInvokeInvoker extends MethodInvoker {
     private MethodInvoker caller;
     
     @Deprecated
-    protected MethodInvokeInvoker(ProgramBlock block, MethodInvoker caller, String name, Parameterized[] arguments) {
+    protected MethodInvokeInvoker(ProgramBlockInternal block, MethodInvoker caller, String name, Parameterized[] arguments) {
         super(block, caller.getReturnClass(), name, arguments);
         this.caller = caller;
         //this.methodType = MethodType.METHOD;

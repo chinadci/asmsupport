@@ -8,7 +8,7 @@ import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
@@ -31,7 +31,7 @@ public class TernaryOperator extends AbstractOperator implements Parameterized{
     
     private AClass resultClass;
     
-    protected TernaryOperator(ProgramBlock block, Parameterized expression1,
+    protected TernaryOperator(ProgramBlockInternal block, Parameterized expression1,
             Parameterized expression2, Parameterized expression3) {
         super(block);
         this.exp1 = expression1;
@@ -122,7 +122,7 @@ public class TernaryOperator extends AbstractOperator implements Parameterized{
     }
 
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

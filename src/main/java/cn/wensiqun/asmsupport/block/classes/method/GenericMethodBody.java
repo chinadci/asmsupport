@@ -9,7 +9,7 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AnyException;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
@@ -24,7 +24,7 @@ import cn.wensiqun.asmsupport.utils.memory.Component;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
 
-public abstract class GenericMethodBody extends ProgramBlock {
+public abstract class GenericMethodBody extends ProgramBlockInternal {
 
     private static Log log = LogFactory.getLog(GenericMethodBody.class);
     
@@ -59,7 +59,7 @@ public abstract class GenericMethodBody extends ProgramBlock {
     	AMethodMeta me = method.getMethodMeta(); 
         if (!method.isStatic()) {
             OperatorFactory.newOperator(LocalVariableCreator.class, 
-            		new Class<?>[]{ProgramBlock.class, String.class, Type.class, Type.class}, 
+            		new Class<?>[]{ProgramBlockInternal.class, String.class, Type.class, Type.class}, 
             		getExecutor(), ASConstant.THIS, me.getOwner().getType(), method.getMethodMeta().getOwner().getType());
         }
 

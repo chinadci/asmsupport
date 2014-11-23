@@ -3,7 +3,7 @@
  */
 package cn.wensiqun.asmsupport;
 
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 
 /**
  * 
@@ -17,5 +17,5 @@ public interface PushStackable {
      * 在指定程序块内将值压入栈
      * @param block
      */
-    public void loadToStack(ProgramBlock block);
+    public void loadToStack(ProgramBlockInternal block);
 }

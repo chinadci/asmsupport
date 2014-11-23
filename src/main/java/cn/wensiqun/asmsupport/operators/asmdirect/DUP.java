@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 
 
@@ -18,13 +18,13 @@ public class DUP extends ASMDirect implements Parameterized {
 	
 	private AClass type;
 	
-	protected DUP(ProgramBlock block, AClass stackTopType) {
+	protected DUP(ProgramBlockInternal block, AClass stackTopType) {
 		super(block);
 		type = stackTopType;
 	}
 
 	@Override
-	public void loadToStack(ProgramBlock block) {
+	public void loadToStack(ProgramBlockInternal block) {
 		this.execute();
 	}
 

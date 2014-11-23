@@ -8,7 +8,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.value.Value;
@@ -43,7 +43,7 @@ public abstract class AbstractRelational extends AbstractOperator implements
     protected Label trueLbl;
     protected Label falseLbl;
     
-    protected AbstractRelational(ProgramBlock block, Parameterized factor1, Parameterized factor2) {
+    protected AbstractRelational(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
         super(block);
         this.factor1 = factor1;
         this.factor2 = factor2;
@@ -79,7 +79,7 @@ public abstract class AbstractRelational extends AbstractOperator implements
     }
     
     @Override
-    public void loadToStack(ProgramBlock block) {
+    public void loadToStack(ProgramBlockInternal block) {
         this.execute();
     }
 

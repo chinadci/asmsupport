@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.ProgramBlock;
+import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.definition.variable.IVariable;
 import cn.wensiqun.asmsupport.definition.variable.meta.VariableMeta;
 import cn.wensiqun.asmsupport.utils.ASConstant;
@@ -27,7 +27,7 @@ public class VariableInvoker extends MethodInvoker {
     private IVariable var;
      
     @Deprecated
-    protected VariableInvoker(ProgramBlock block, IVariable var, String name, Parameterized[] arguments) {
+    protected VariableInvoker(ProgramBlockInternal block, IVariable var, String name, Parameterized[] arguments) {
         super(block, var.getVariableMeta().getDeclareClass(), name, arguments);
         if(var.getVariableMeta().getDeclareClass().isPrimitive()){
             throw new IllegalArgumentException("primitive variable \"" + var.getVariableMeta().getName() +  "\"  cannot invoke method : variable must be a non-primitive variable");

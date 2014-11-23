@@ -2,7 +2,7 @@ package cn.wensiqun.asmsupport.block.loop;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.control.loop.While;
+import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -26,7 +26,7 @@ public class WhileBlockGenerator extends AbstractExample {
                     
                     final LocalVariable intVar1  = _createVariable("intVar1", AClass.INT_ACLASS, false, Value.value(10));
                     
-                    _while(new While(_greaterThan(_postDec(intVar1), Value.value(0))){
+                    _while(new WhileInternal(_greaterThan(_postDec(intVar1), Value.value(0))){
 
                         @Override
                         public void body() {
@@ -38,7 +38,7 @@ public class WhileBlockGenerator extends AbstractExample {
                     
                     final LocalVariable intVar2  = _createVariable("intVar2", AClass.INT_ACLASS, false, Value.value(10));
                     
-                    _while(new While(_greaterThan(_preDec(intVar2), Value.value(0))){
+                    _while(new WhileInternal(_greaterThan(_preDec(intVar2), Value.value(0))){
 
                         @Override
                         public void body() {
@@ -50,7 +50,7 @@ public class WhileBlockGenerator extends AbstractExample {
 	                
                     final LocalVariable byteVar  = _createVariable("byteVar", AClass.BYTE_ACLASS, false, Value.value((byte)10));
                     
-	            	_while(new While(_greaterThan(_postDec(byteVar), Value.value(0))){
+	            	_while(new WhileInternal(_greaterThan(_postDec(byteVar), Value.value(0))){
 
 						@Override
 						public void body() {
@@ -62,7 +62,7 @@ public class WhileBlockGenerator extends AbstractExample {
 	            	
 	            	final LocalVariable doubleVar  = _createVariable("doubleVar", AClass.DOUBLE_ACLASS, false, Value.value(10D));
                     
-                    _while(new While(_greaterThan(_preDec(doubleVar), Value.value(0))){
+                    _while(new WhileInternal(_greaterThan(_preDec(doubleVar), Value.value(0))){
 
                         @Override
                         public void body() {
@@ -74,7 +74,7 @@ public class WhileBlockGenerator extends AbstractExample {
                     
                     final LocalVariable shortObj  = _createVariable("shortObj", AClass.SHORT_WRAP_ACLASS, false, Value.value((short)10));
                     
-                    _while(new While(_greaterThan(_postDec(shortObj), Value.value((short)0))){
+                    _while(new WhileInternal(_greaterThan(_postDec(shortObj), Value.value((short)0))){
 
                         @Override
                         public void body() {
@@ -86,7 +86,7 @@ public class WhileBlockGenerator extends AbstractExample {
                     
                     final LocalVariable longObj  = _createVariable("longObj", AClass.LONG_WRAP_ACLASS, false, Value.value(10L));
                     
-                    _while(new While(_greaterThan(_preDec(longObj), Value.value(0))){
+                    _while(new WhileInternal(_greaterThan(_preDec(longObj), Value.value(0))){
 
                         @Override
                         public void body() {
