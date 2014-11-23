@@ -13,7 +13,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.creator.ClassModifier;
+import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
 import cn.wensiqun.asmsupport.creator.IMethodCreator;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.asm.ClassAdapter;
@@ -30,12 +30,12 @@ import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
 public class ClassModifierClassAdapter extends ClassAdapter {
 
 	private List<IMethodCreator> needModify;
-	private ClassModifier classModifer;
+	private ClassModifierInternal classModifer;
 	private String classInternalName;
 
     private Map<String, List<VisitXInsnAdapter>> superConstructorMap;
 	
-	public ClassModifierClassAdapter(ClassVisitor cv, ClassModifier classModifer) {
+	public ClassModifierClassAdapter(ClassVisitor cv, ClassModifierInternal classModifer) {
 		super(cv);
 		this.classModifer = classModifer;
 		this.needModify = new LinkedList<IMethodCreator>();

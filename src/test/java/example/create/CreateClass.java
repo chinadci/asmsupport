@@ -4,13 +4,13 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.init.InitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.init.InitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import example.AbstractExample;
@@ -68,7 +68,7 @@ public class CreateClass extends AbstractExample {
          *    父类,如果为null则是继承自Object.class
          * 5: interface 实现的接口, 可以是null,类型是Class[]
 		 */
-		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassExample", ParentCreateClassExample.class, null);
+		ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassExample", ParentCreateClassExample.class, null);
 		
 		/*
 		 * 这部分是创建一个静态全局 变量。基本和CreateInterface.java中如何创建和赋值是一样的
@@ -86,7 +86,7 @@ public class CreateClass extends AbstractExample {
 		 * }
 		 * 
 		 */
-		creator.createStaticBlock(new ClinitBody(){
+		creator.createStaticBlock(new ClinitBodyInternal(){
 			@Override
 			public void body() {
 				_assign(getMethodOwner().getGlobalVariable("staticGlobalVariable"), Value.value("I'm a static global variable at class"));
@@ -121,7 +121,7 @@ public class CreateClass extends AbstractExample {
 		 * 3.构造参数的方法体
 		 * 4.构造方法的修饰符
 		 */
-		creator.createConstructor(new AClass[]{AClassFactory.getProductClass(int.class)}, new String[]{"intVal"}, new InitBody(){
+		creator.createConstructor(new AClass[]{AClassFactory.getProductClass(int.class)}, new String[]{"intVal"}, new InitBodyInternal(){
 
 			/*
 			 * 这个方法中的内容就是我们创建的构造方法里面需要执行的内容了，他有一个变元参数 argus。
@@ -163,7 +163,7 @@ public class CreateClass extends AbstractExample {
 		 * }
 		 * 
 		 */
-		creator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PRIVATE, new CommonMethodBody(){
+		creator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PRIVATE, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -184,7 +184,7 @@ public class CreateClass extends AbstractExample {
 		 * }
 		 */
 		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBody(){
+				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {

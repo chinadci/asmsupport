@@ -13,10 +13,10 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.asm.adapter.VisitXInsnAdapter;
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.ModifiedMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.ModifiedMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.clazz.ProductClass;
@@ -29,17 +29,17 @@ import cn.wensiqun.asmsupport.utils.lang.ClassFileUtils;
 import cn.wensiqun.asmsupport.utils.lang.StringUtils;
 
 
-public class ClassModifier extends AbstractClassContext {
+public class ClassModifierInternal extends AbstractClassContext {
 	
-    private static Log LOG = LogFactory.getLog(ClassModifier.class);
+    private static Log LOG = LogFactory.getLog(ClassModifierInternal.class);
 	
     protected List<IMethodCreator> methodModifiers;
     
-    private List<ModifiedMethodBody> modifyConstructorBodies;
+    private List<ModifiedMethodBodyInternal> modifyConstructorBodies;
     
 	private ProductClass productClass;
 	
-	public ClassModifier(Class<?> clazz) {
+	public ClassModifierInternal(Class<?> clazz) {
 		super();
 		if(!clazz.isArray()){
 			this.productClass = (ProductClass) AClassFactory.getProductClass(clazz);
@@ -73,7 +73,7 @@ public class ClassModifier extends AbstractClassContext {
         }
 
 		if(modifyConstructorBodies != null){
-			for(ModifiedMethodBody mbfm : modifyConstructorBodies){
+			for(ModifiedMethodBodyInternal mbfm : modifyConstructorBodies){
 				 Type[] argumentTypes = mbfm.getMethod().getMethodMeta().getArgTypes();
 				 String desc = Type.getMethodDescriptor(Type.VOID_TYPE, argumentTypes);
 				 mbfm.setSuperConstructorOperators(superConstructorMap.get(desc));
@@ -137,7 +137,7 @@ public class ClassModifier extends AbstractClassContext {
 		}
 	}
 	
-	public final void modifyMethod(String name, Class<?>[] argClasses, ModifiedMethodBody mb){
+	public final void modifyMethod(String name, Class<?>[] argClasses, ModifiedMethodBodyInternal mb){
 		Class<?> clazz = productClass.getReallyClass();
 		if(argClasses == null){
 			argClasses = new Class<?>[0];
@@ -155,7 +155,7 @@ public class ClassModifier extends AbstractClassContext {
 				methodCreator = MethodCreator.methodCreatorForModify(name, argCls, defaultArgNames, AClass.VOID_ACLASS, null, Opcodes.ACC_STATIC, mb);
 			}else if(name.equals(ASConstant.INIT)){
 				if(modifyConstructorBodies == null){
-					modifyConstructorBodies = new ArrayList<ModifiedMethodBody>();
+					modifyConstructorBodies = new ArrayList<ModifiedMethodBodyInternal>();
 				}
 				modifyConstructorBodies.add(mb);
 				
@@ -195,7 +195,7 @@ public class ClassModifier extends AbstractClassContext {
      */
     public final void createMethod(String name, AClass[] argClasses,
             String[] argNames, AClass returnClass, AClass[] exceptions,
-            int access, CommonMethodBody mb) {
+            int access, CommonMethodBodyInternal mb) {
     	if((access & Opcodes.ACC_STATIC) != 0){
     		access -= Opcodes.ACC_STATIC;
     	}
@@ -216,7 +216,7 @@ public class ClassModifier extends AbstractClassContext {
      */
     public void createStaticMethod(String name, AClass[] argClasses,
             String[] argNames, AClass returnClass, AClass[] exceptions,
-            int access, StaticMethodBody mb) {
+            int access, StaticMethodBodyInternal mb) {
     	if((access & Opcodes.ACC_STATIC) == 0){
     		access += Opcodes.ACC_STATIC;
     	}
@@ -231,7 +231,7 @@ public class ClassModifier extends AbstractClassContext {
     	super.checkStaticBlock();
     }
     
-    public void createStaticBlock(ClinitBody mb){
+    public void createStaticBlock(ClinitBodyInternal mb){
     	checkStaticBlock();
     	existedStaticBlock = true;
         methodCreaters.add(0, MethodCreator.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,

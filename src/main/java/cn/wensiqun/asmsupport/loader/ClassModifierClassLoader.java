@@ -7,16 +7,16 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 
 import cn.wensiqun.asmsupport.asm.adapter.ClassModifierClassAdapter;
-import cn.wensiqun.asmsupport.creator.ClassModifier;
+import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 
 public class ClassModifierClassLoader extends ClassLoader {
 	
-	private ClassModifier modifier;
+	private ClassModifierInternal modifier;
 	private String className;
 	private byte[] modifiedClassBytes;
 	
-	public ClassModifierClassLoader(ClassModifier modifier){
+	public ClassModifierClassLoader(ClassModifierInternal modifier){
 		this.modifier = modifier;
 		className = modifier.getCurrentClass().getName();
 	}

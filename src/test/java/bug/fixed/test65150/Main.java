@@ -5,11 +5,11 @@ import junit.framework.Assert;
 import org.objectweb.asm.Opcodes;
 
 import bug.fixed.AbstractFix;
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 
@@ -17,12 +17,12 @@ public class Main extends AbstractFix {
 
 	public static void main(String[] args) {
 		
-		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.test65150.Test65150", 
+		ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.test65150.Test65150", 
 				ParentClass.class, null);
 		
 		creator.createGlobalVariable("DEFAULT_VALUE", Opcodes.ACC_STATIC, AClass.INT_ACLASS);
 		
-		creator.createStaticBlock(new ClinitBody(){
+		creator.createStaticBlock(new ClinitBodyInternal(){
 
 			@Override
 			public void body() {
@@ -39,7 +39,7 @@ public class Main extends AbstractFix {
 		creator.createStaticMethod("main", new AClass[]{
 				AClassFactory.getProductClass(String[].class)}, 
 				new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBody(){
+				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {
@@ -63,13 +63,13 @@ public class Main extends AbstractFix {
 		
 		final AClass Test65150AClass = AClassFactory.getProductClass(Test65150);
 		
-		creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.test65150.Test65150_ALT", 
+		creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.test65150.Test65150_ALT", 
 				null, null);
 		
 		creator.createStaticMethod("main", new AClass[]{
 				AClassFactory.getProductClass(String[].class)}, 
 				new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBody(){
+				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {

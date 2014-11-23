@@ -4,10 +4,10 @@ import java.util.Random;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
@@ -20,10 +20,10 @@ public class ArithmeticOperatorGenerate extends AbstractExample {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC, "generated.operators.ArithmeticOperatorGenerateExample", null, null);
+		ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC, "generated.operators.ArithmeticOperatorGenerateExample", null, null);
 
 		//printIn方法
-		creator.createStaticMethod("printInt", new AClass[]{AClass.STRING_ACLASS, AClass.INT_ACLASS}, new String[]{"s", "i"}, null, null, 0, new StaticMethodBody(){
+		creator.createStaticMethod("printInt", new AClass[]{AClass.STRING_ACLASS, AClass.INT_ACLASS}, new String[]{"s", "i"}, null, null, 0, new StaticMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -34,7 +34,7 @@ public class ArithmeticOperatorGenerate extends AbstractExample {
 		});
 		
 		//printIn方法
-		creator.createStaticMethod("printFloat", new AClass[]{AClass.STRING_ACLASS, AClass.FLOAT_ACLASS}, new String[]{"s", "f"}, null, null, 0, new StaticMethodBody(){
+		creator.createStaticMethod("printFloat", new AClass[]{AClass.STRING_ACLASS, AClass.FLOAT_ACLASS}, new String[]{"s", "f"}, null, null, 0, new StaticMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -46,7 +46,7 @@ public class ArithmeticOperatorGenerate extends AbstractExample {
 		
 		creator.createStaticMethod("main", new AClass[] { AClassFactory.getProductClass(String[].class) }, new String[] { "args" }, null, null, Opcodes.ACC_PUBLIC +
 
-				Opcodes.ACC_STATIC, new StaticMethodBody() {
+				Opcodes.ACC_STATIC, new StaticMethodBodyInternal() {
 
 					@Override
 					public void body(LocalVariable... argus) {

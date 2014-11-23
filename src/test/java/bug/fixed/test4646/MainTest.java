@@ -12,10 +12,10 @@ import bug.fixed.test4646.entity.Child;
 import bug.fixed.test4646.entity.ChildChild;
 import bug.fixed.test4646.entity.Super;
 import bug.fixed.test4646.parent.AbstractClass;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 
 
@@ -30,15 +30,15 @@ public class MainTest {
 	 * @throws IllegalArgumentException 
 	 */
 	public static void main(String[] args) throws IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		ClassCreator creator = 
-				new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.Test4646", 
+		ClassCreatorInternal creator = 
+				new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.Test4646", 
 						AbstractClass.class, null);
         
 		final AClass childChild = AClassFactory.getProductClass(ChildChild.class);
 		
 		creator.createMethod("abstractClassAbstractMethod", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -49,7 +49,7 @@ public class MainTest {
 		
 		creator.createMethod("interfaceMethod", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -60,7 +60,7 @@ public class MainTest {
 		
 		creator.createMethod("abstractClassMethod", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -71,7 +71,7 @@ public class MainTest {
 		
 		creator.createMethod("interfaceReturnTypeIsChild", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {

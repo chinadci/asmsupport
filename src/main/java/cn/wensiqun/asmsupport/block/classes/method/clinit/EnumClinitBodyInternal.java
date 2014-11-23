@@ -18,7 +18,7 @@ import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
  * 
  *
  */
-public abstract class EnumClinitBody extends GenericMethodBody implements LocalVariablesBody {
+public abstract class EnumClinitBodyInternal extends GenericMethodBody implements LocalVariablesBody {
 
 	private List<EnumConstructorInfo>  enumArgumentsList;
 	
@@ -45,7 +45,7 @@ public abstract class EnumClinitBody extends GenericMethodBody implements LocalV
 		}
 	}
 
-	public void newEnum(String name, Parameterized... argus){
+	public void newEnum(String name, Parameterized... argus) {
         if(!ModifierUtils.isEnum(getMethodOwner().getModifiers())){
         	throw new IllegalArgumentException("cannot create an enum constant cause by current class is not enum type");
         }

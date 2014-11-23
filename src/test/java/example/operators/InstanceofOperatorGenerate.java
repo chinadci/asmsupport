@@ -3,10 +3,10 @@ package example.operators;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import example.AbstractExample;
@@ -75,34 +75,34 @@ public class InstanceofOperatorGenerate extends AbstractExample {
 
 	public static void main(String[] args) {
         //create class A
-		ClassCreator ACreator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "A", null, null);
+		ClassCreatorInternal ACreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "A", null, null);
 		ACreator.createGlobalVariable("i", 0, AClass.INT_ACLASS);
 		ACreator.createGlobalVariable("j", 0, AClass.INT_ACLASS);
 		final Class A = ACreator.startup();
 		
         //create class B
-		ClassCreator BCreator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "B", null, null);
+		ClassCreatorInternal BCreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "B", null, null);
 		BCreator.createGlobalVariable("i", 0, AClass.INT_ACLASS);
 		BCreator.createGlobalVariable("j", 0, AClass.INT_ACLASS);
 		final Class B = BCreator.startup();
 		
 		//create class C
-		ClassCreator CCreator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "C", A, null);
+		ClassCreatorInternal CCreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "C", A, null);
 		CCreator.createGlobalVariable("k", 0, AClass.INT_ACLASS);
 		final Class C = CCreator.startup();
 
 		//create class D
-		ClassCreator DCreator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "D", A, null);
+		ClassCreatorInternal DCreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "D", A, null);
 		DCreator.createGlobalVariable("k", 0, AClass.INT_ACLASS);
 		final Class D = DCreator.startup();
 		
-        ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.operators.InstanceofOperatorGenerateExample", null, null);
+        ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.operators.InstanceofOperatorGenerateExample", null, null);
 		
 		/*
 		 * 生成一个main方法
 		 */
 		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
+				Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {

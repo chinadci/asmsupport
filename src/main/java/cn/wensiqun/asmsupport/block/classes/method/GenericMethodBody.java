@@ -44,8 +44,6 @@ public abstract class GenericMethodBody extends ProgramBlockInternal {
 	@Override
 	public final void generate() {
 		generateBody();
-		//if this method just only contain try catch block, so here we need tigger try catch prepare again;
-		//tiggerTryCatchPrepare();
 	}
 	
 	/**
@@ -96,10 +94,6 @@ public abstract class GenericMethodBody extends ProgramBlockInternal {
         		Type type = tci.getException();
                 insnHelper.tryCatchBlock(tci.getStart(), tci.getEnd(), tci.getHander(), type == null || type == AnyException.ANY.getType() ? null : type);
         	}
-        	/*else
-        	{
-        		System.out.println((tci.end.getOffset() - tci.start.getOffset()) + " : " + tci.start.getName() + "->" + tci.end.getName());
-        	}*/
         }
         
         
@@ -149,11 +143,7 @@ public abstract class GenericMethodBody extends ProgramBlockInternal {
     }
     
     public void addTryCatchInfo(Label start, Label end, Label handler, Type exception){
-        /*tci.start = start;
-        tci.end = end;
-        tci.hander = hander;
-        tci.exception = exception == null || exception.getType() == AnyException.ANY.getType() ? null : exception.getType();
-        */addTryCatchInfo(new TryCatchInfo(start, end, handler, exception));
+        addTryCatchInfo(new TryCatchInfo(start, end, handler, exception));
     }
     
     public void addTryCatchInfo(TryCatchInfo info)

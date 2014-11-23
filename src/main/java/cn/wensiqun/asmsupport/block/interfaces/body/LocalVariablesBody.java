@@ -4,5 +4,5 @@ import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 
 public interface LocalVariablesBody
 {
-    void body(LocalVariable... argus);
+    void body(LocalVariable... args);
 }

@@ -5,9 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.creator.InterfaceCreator;
+import cn.wensiqun.asmsupport.creator.InterfaceCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import example.AbstractExample;
 
@@ -39,7 +39,7 @@ public class CreateInterface extends AbstractExample {
 		 * 2.接口的全路径名
 		 * 3.接口所继承哪些接口,是一个Class的数组
 		 */
-		InterfaceCreator interfaceCreator = new InterfaceCreator(Opcodes.V1_6, "generated.create.CreateInterfaceExample", null);
+		InterfaceCreatorInternal interfaceCreator = new InterfaceCreatorInternal(Opcodes.V1_6, "generated.create.CreateInterfaceExample", null);
 		
 		/*
 		 * 通过createMethod声明方法
@@ -91,7 +91,7 @@ public class CreateInterface extends AbstractExample {
 		 * 的时候可以写多个static块在同一个类中，但是java编译器到最后会将所有写在static块中的代
 		 * 码归并到<cinit>方法当中去。
 		 */
-		interfaceCreator.createStaticBlock(new ClinitBody(){
+		interfaceCreator.createStaticBlock(new ClinitBodyInternal(){
 
 			@Override
 			public void body() {

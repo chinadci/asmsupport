@@ -17,11 +17,11 @@ import cn.wensiqun.asmsupport.block.classes.common.SynchronizedInternal;
 import cn.wensiqun.asmsupport.block.classes.control.exception.CatchInternal;
 import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.init.InitBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.init.InitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -57,13 +57,13 @@ public class SynchronizedGeneratorTest extends AbstractExample {
     public static void main(String... args) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         
 
-        ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.SynchronizedGeneratorExample", null, null);
+        ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.SynchronizedGeneratorExample", null, null);
         
         creator.createGlobalVariable("lock", Opcodes.ACC_PRIVATE, AClass.OBJECT_ACLASS);
         
         creator.createGlobalVariable("list", Opcodes.ACC_PUBLIC, AClassFactory.getProductClass(List.class));
         
-        creator.createConstructor(null, null, new InitBody() {
+        creator.createConstructor(null, null, new InitBodyInternal() {
 
             @Override
             public void body(LocalVariable... argus) {
@@ -75,7 +75,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             
         }, Opcodes.ACC_PUBLIC);
         
-        creator.createMethod("syncThis", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+        creator.createMethod("syncThis", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {
@@ -101,7 +101,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
             
         });
         
-        creator.createMethod("syncLock", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+        creator.createMethod("syncLock", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
             
             @Override
             public void body(LocalVariable... argus) {
@@ -140,13 +140,13 @@ public class SynchronizedGeneratorTest extends AbstractExample {
     }
     
     private static Class<?> createThread(AClass synchronizedGeneratorExampleClass, final String name) {
-        ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , 
+        ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , 
         		"generated.block.Sync" + name + "ThreadExample", 
         		Thread.class, null);
         
         creator.createGlobalVariable("sgst", Opcodes.ACC_PRIVATE, synchronizedGeneratorExampleClass);
         
-        creator.createConstructor(new AClass[]{synchronizedGeneratorExampleClass}, new String[]{"sgst"}, new InitBody(){
+        creator.createConstructor(new AClass[]{synchronizedGeneratorExampleClass}, new String[]{"sgst"}, new InitBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -157,7 +157,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
         	
         }, Opcodes.ACC_PUBLIC);
         
-        creator.createMethod("run", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+        creator.createMethod("run", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -184,7 +184,7 @@ public class SynchronizedGeneratorTest extends AbstractExample {
     }
     
     private static Class<?> createTestJunit(AClass syncCls, AClass thisThread, AClass lockThread) {
-    	ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , 
+    	ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , 
         		"generated.block.SynchronizedGeneratorExampleTestJunit", 
         		null, null);
     	createTestSyncMethod(creator, "This", syncCls, thisThread);
@@ -194,10 +194,10 @@ public class SynchronizedGeneratorTest extends AbstractExample {
     	return generate(creator, false);
     }
     
-    private static void createTestSyncMethod(ClassCreator creator, final String name, final AClass syncCls, final AClass threadClass) {
+    private static void createTestSyncMethod(ClassCreatorInternal creator, final String name, final AClass syncCls, final AClass threadClass) {
 
 
-        creator.createMethod("testSync" + name, null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+        creator.createMethod("testSync" + name, null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
             
             @Override
             public void body(LocalVariable... argus) {

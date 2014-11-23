@@ -11,7 +11,7 @@ import cn.wensiqun.asmsupport.block.interfaces.operator.KeywordVariableable;
  * @author 温斯群(Joe Wen)
  * 
  */
-public abstract class CommonMethodBody extends GenericMethodBody implements KeywordVariableable, LocalVariablesBody {
+public abstract class CommonMethodBodyInternal extends GenericMethodBody implements KeywordVariableable, LocalVariablesBody {
     
 	@Override
     public void generateBody() {

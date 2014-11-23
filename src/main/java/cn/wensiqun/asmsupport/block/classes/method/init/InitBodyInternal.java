@@ -19,7 +19,7 @@ import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class InitBody extends GenericMethodBody implements LocalVariablesBody {
+public abstract class InitBodyInternal extends GenericMethodBody implements LocalVariablesBody {
 
 	public MethodInvoker invokeSuperConstructor(Parameterized... arguments) {
     	AClass owner = getMethodOwner();

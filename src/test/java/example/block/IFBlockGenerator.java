@@ -4,13 +4,15 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.control.condition.ElseInternal;
-import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIFInternal;
-import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupportclient.ClassCreator;
+import cn.wensiqun.asmsupportclient.Else;
+import cn.wensiqun.asmsupportclient.ElseIF;
+import cn.wensiqun.asmsupportclient.IF;
+import cn.wensiqun.asmsupportclient.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import example.AbstractExample;
@@ -78,17 +80,17 @@ public class IFBlockGenerator extends AbstractExample{
 						final LocalVariable str = argus[0];
 						final LocalVariable i = argus[1];
 						
-						_if(new IFInternal(_invoke(str, "equals", Value.value("A"))){
+						_if(new IF(_invoke(str, "equals", Value.value("A"))){
 							@Override
 							public void body() {
-								_if(new IFInternal(_equals(i, Value.value(0))){
+								_if(new IF(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is 'A', i is 0"));
 									}
 									
-								})._else(new ElseInternal(){
+								})._else(new Else(){
 
 									@Override
 									public void body() {
@@ -97,18 +99,18 @@ public class IFBlockGenerator extends AbstractExample{
 									
 								});
 							}
-						})._elseif(new ElseIFInternal(_invoke(str, "equals", Value.value("B"))){
+						})._elseif(new ElseIF(_invoke(str, "equals", Value.value("B"))){
 
 							@Override
 							public void body() {
-								_if(new IFInternal(_equals(i, Value.value(0))){
+								_if(new IF(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is 'B', i is 0"));
 									}
 									
-								})._else(new ElseInternal(){
+								})._else(new Else(){
 
 									@Override
 									public void body() {
@@ -118,24 +120,24 @@ public class IFBlockGenerator extends AbstractExample{
 								});
 							}
 							
-						})._else(new ElseInternal(){
+						})._else(new Else(){
 
 							@Override
 							public void body() {
-								_if(new IFInternal(_equals(i, Value.value(0))){
+								_if(new IF(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is unknow, i is 0"));
 									}
 									
-								})._else(new ElseInternal(){
+								})._else(new Else(){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is unknow, i is not 0"));
 									}
-									
+								
 								});
 							}
 							

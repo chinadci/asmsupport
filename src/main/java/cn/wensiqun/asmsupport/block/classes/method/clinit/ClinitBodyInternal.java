@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.block.classes.method.clinit;
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.body.Body;
 
-public abstract class ClinitBody extends GenericMethodBody implements Body {
+public abstract class ClinitBodyInternal extends GenericMethodBody implements Body {
 
 	@Override
 	protected void init() {

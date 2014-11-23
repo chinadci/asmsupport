@@ -6,13 +6,13 @@ import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.block.classes.control.condition.ElseInternal;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.ModifiedMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.ModifiedMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
-import cn.wensiqun.asmsupport.creator.ClassModifier;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -25,9 +25,9 @@ public class CreateClassAndThanExtend extends AbstractExample {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ClassCreator superCreator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassAndThanExtendExampleSuper", null, null);
+		ClassCreatorInternal superCreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassAndThanExtendExampleSuper", null, null);
 		
-		superCreator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+		superCreator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -42,9 +42,9 @@ public class CreateClassAndThanExtend extends AbstractExample {
 		
 		final GlobalVariable out = systemOut;
 		
-		ClassModifier byModifyModifer = new ClassModifier(ByModify.class);
+		ClassModifierInternal byModifyModifer = new ClassModifierInternal(ByModify.class);
 		byModifyModifer.createGlobalVariable("age", Opcodes.ACC_STATIC + Opcodes.ACC_PRIVATE, AClass.INT_ACLASS);
-		byModifyModifer.createMethod("asmcreate", null,null,null,null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+		byModifyModifer.createMethod("asmcreate", null,null,null,null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 			@Override
 			public void body(LocalVariable... argus) {
 				_invoke(out, "println", Value.value("created by asm"));
@@ -52,7 +52,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 			}
 		});
 		
-		byModifyModifer.modifyMethod(ASConstant.CLINIT, null, new ModifiedMethodBody(){
+		byModifyModifer.modifyMethod(ASConstant.CLINIT, null, new ModifiedMethodBodyInternal(){
 			@Override
 			public void body(LocalVariable... argus) {
 				GlobalVariable age = getMethodOwner().getGlobalVariable("age");
@@ -65,7 +65,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 			}
 		});
 		
-		byModifyModifer.modifyMethod("helloWorld", null, new ModifiedMethodBody(){
+		byModifyModifer.modifyMethod("helloWorld", null, new ModifiedMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -92,7 +92,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 			
 		});
 		
-		byModifyModifer.modifyMethod("String", null, new ModifiedMethodBody(){
+		byModifyModifer.modifyMethod("String", null, new ModifiedMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -106,7 +106,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 		byModifyModifer.setClassOutPutPath("./generated");
 		Class<?> ByModify = byModifyModifer.startup();
 		
-        ClassCreator childCreator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassAndThanExtendExample", ByModify, null);
+        ClassCreatorInternal childCreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassAndThanExtendExample", ByModify, null);
 		
 		/*childCreator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
 
@@ -119,7 +119,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 		
 
 		childCreator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBody(){
+				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {
@@ -136,7 +136,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 		Class<?> cls = childCreator.startup();
 		
 		//如果创建的是非枚举类型或者非接口类型则调用main方法
-		if(childCreator instanceof ClassCreator){
+		if(childCreator instanceof ClassCreatorInternal){
 			try {
 				cls.getMethod("main", String[].class).invoke(cls, new Object[]{null});
 			} catch (Exception e) {

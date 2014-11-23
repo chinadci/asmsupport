@@ -3,10 +3,10 @@ package cn.wensiqun.asmsupport.creator;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.init.InitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.init.InitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.ASConstant;
@@ -17,9 +17,9 @@ import cn.wensiqun.asmsupport.utils.ASConstant;
  * @author 温斯群(Joe Wen)
  *
  */
-public class ClassCreator extends AbstractClassCreatorContext {
+public class ClassCreatorInternal extends AbstractClassCreatorContext {
 
-    public ClassCreator(int version, int access, String name,
+    public ClassCreatorInternal(int version, int access, String name,
             Class<?> superCls, Class<?>[] interfaces) {
         super(version, access, name, superCls, interfaces);
     }
@@ -52,7 +52,7 @@ public class ClassCreator extends AbstractClassCreatorContext {
      */
     public final void createMethod(String name, AClass[] argClasses,
             String[] argNames, AClass returnClass, AClass[] exceptions,
-            int access, CommonMethodBody mb) {
+            int access, CommonMethodBodyInternal mb) {
     	if((access & Opcodes.ACC_STATIC) != 0){
     		access -= Opcodes.ACC_STATIC;
     	}
@@ -73,7 +73,7 @@ public class ClassCreator extends AbstractClassCreatorContext {
      */
     public void createStaticMethod(String name, AClass[] argClasses,
             String[] argNames, AClass returnClass, AClass[] exceptions,
-            int access, StaticMethodBody mb) {
+            int access, StaticMethodBodyInternal mb) {
     	if((access & Opcodes.ACC_STATIC) == 0){
     		access += Opcodes.ACC_STATIC;
     	}
@@ -90,7 +90,7 @@ public class ClassCreator extends AbstractClassCreatorContext {
      * @param access
      */
     public void createConstructor(AClass[] arguments,
-            String[] argNames, InitBody initBody, int access) {
+            String[] argNames, InitBodyInternal initBody, int access) {
         methodCreaters.add(MethodCreator.methodCreatorForAdd(ASConstant.INIT, arguments, argNames,
                 null, null, access, initBody));
         haveInitMethod = true;
@@ -100,7 +100,7 @@ public class ClassCreator extends AbstractClassCreatorContext {
      * 
      * @param mb
      */
-    public void createStaticBlock(ClinitBody clinitb) {
+    public void createStaticBlock(ClinitBodyInternal clinitb) {
     	checkStaticBlock();
     	existedStaticBlock = true;
         methodCreaters.add(0, MethodCreator.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
@@ -109,7 +109,7 @@ public class ClassCreator extends AbstractClassCreatorContext {
     
     @Override
     protected void createDefaultConstructor() {
-        createConstructor(null, null, new InitBody() {
+        createConstructor(null, null, new InitBodyInternal() {
             @Override
             public void body(LocalVariable... argus) {
                 invokeSuperConstructor();

@@ -20,7 +20,7 @@ import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class EnumInitBody extends GenericMethodBody implements LocalVariablesBody{
+public abstract class EnumInitBodyInternal extends GenericMethodBody implements LocalVariablesBody{
     
     @Override
     public final void generateBody() {

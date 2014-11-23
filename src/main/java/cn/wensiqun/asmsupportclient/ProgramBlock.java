@@ -5,6 +5,7 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
+import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.definition.variable.ExplicitVariable;
 import cn.wensiqun.asmsupport.definition.variable.IVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -53,6 +54,19 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements IBlock
 {
 
     B target;
+    
+    public LocalVariable[] getMethodArguments(){
+        return target.getMethodArguments();
+    }
+    
+    /**
+     * get current method owner.
+     * 
+     * @return
+     */
+    public NewMemberClass getMethodOwner() {
+        return target.getMethodOwner();
+    }
     
     @Override
     public ThisVariable _this()

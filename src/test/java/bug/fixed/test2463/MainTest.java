@@ -7,21 +7,21 @@ import junit.framework.Assert;
 import org.objectweb.asm.Opcodes;
 
 import bug.fixed.Utils;
-import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBody;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
+import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreator;
+import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 
 public class MainTest {
 
 	public static void main(String[] args) throws IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		ClassCreator creator = 
-				new ClassCreator(Opcodes.V1_6, Opcodes.ACC_PUBLIC , "test.Test2463", AbstractClass.class, null);
+		ClassCreatorInternal creator = 
+				new ClassCreatorInternal(Opcodes.V1_6, Opcodes.ACC_PUBLIC , "test.Test2463", AbstractClass.class, null);
         
 		creator.createMethod("getMyObject", null, null, AClassFactory.getProductClass(MyObject.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBody(){
+				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
 					@Override
 					public void body(LocalVariable... argus) {
 		            	_return(_new(AClassFactory.getProductClass(MyObject.class)));
@@ -30,7 +30,7 @@ public class MainTest {
 		});
 		
 		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-                Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
+                Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {

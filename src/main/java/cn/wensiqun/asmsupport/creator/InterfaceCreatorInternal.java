@@ -6,12 +6,12 @@ package cn.wensiqun.asmsupport.creator;
 
 import org.objectweb.asm.Opcodes;
 
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBody;
+import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 
 
-public class InterfaceCreator extends AbstractClassCreatorContext {
+public class InterfaceCreatorInternal extends AbstractClassCreatorContext {
 
 	/**
 	 * Interface Creator
@@ -20,7 +20,7 @@ public class InterfaceCreator extends AbstractClassCreatorContext {
 	 * @param name Interface qualified name.
 	 * @param interfaces super interfaces.
 	 */
-	public InterfaceCreator(int version, String name, Class<?>[] interfaces) {
+	public InterfaceCreatorInternal(int version, String name, Class<?>[] interfaces) {
 		super(version, Opcodes.ACC_PUBLIC + Opcodes.ACC_ABSTRACT + Opcodes.ACC_INTERFACE, name, null, interfaces);
 	}
 	
@@ -71,7 +71,7 @@ public class InterfaceCreator extends AbstractClassCreatorContext {
      * 
      * @param mb Method Body
      */
-    public InterfaceCreator createStaticBlock(ClinitBody clinitb) {
+    public InterfaceCreatorInternal createStaticBlock(ClinitBodyInternal clinitb) {
     	checkStaticBlock();
     	existedStaticBlock = true;
         methodCreaters.add(0,  MethodCreator.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
