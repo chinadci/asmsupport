@@ -480,36 +480,36 @@ public class ProgramBlockClient<B extends ProgramBlock> implements IBlockClient
         return target._return(parame);
     }
 
-/*	@Override
-	public IF _if(IF ifBlock) {
-		return target._if(ifBlock);
+	public IFClient _if(IFClient ifBlock) {
+		target._if(ifBlock.target);
+		return ifBlock;
 	}
 
-    @Override
-    public While _while(While whileLoop)
+    public WhileClient _while(WhileClient whileLoop)
     {
-        return target._while(whileLoop);
+    	target._while(whileLoop.target);
+    	return whileLoop;
     }
 
-    @Override
-    public Try _try(Try tryPara)
+	public DoWhileClient _dowhile(DoWhileClient doWhile) {
+	    target._dowhile(doWhile.target);
+	    return doWhile;
+	}
+
+	public ForEachClient _for(ForEachClient forEach) {
+		target._for(forEach.target);
+		return forEach;
+	}
+
+    public TryClient _try(TryClient tryClient)
     {
-        return target._try(tryPara);
+        target._try(tryClient.target);
+        return tryClient;
     }
     
-	@Override
-	public Synchronized _sync(Synchronized sync) {
-		return target._sync(sync);
+	public SynchronizedClient _sync(SynchronizedClient sync) {
+		target._sync(sync.target);
+		return sync;
 	}
-
-	@Override
-	public DoWhile _dowhile(DoWhile doWhile) {
-		return target._dowhile(doWhile);
-	}
-
-	@Override
-	public ForEach _for(ForEach forEach) {
-		return target._for(forEach);
-	}*/
 
 }
