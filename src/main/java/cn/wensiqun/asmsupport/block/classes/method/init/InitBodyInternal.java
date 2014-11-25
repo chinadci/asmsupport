@@ -5,7 +5,7 @@ package cn.wensiqun.asmsupport.block.classes.method.init;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
-import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
@@ -19,7 +19,7 @@ import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class InitBodyInternal extends GenericMethodBody implements LocalVariablesBody {
+public abstract class InitBodyInternal extends AbstractMethodBody implements LocalVariablesBody {
 
 	public MethodInvoker invokeSuperConstructor(Parameterized... arguments) {
     	AClass owner = getMethodOwner();

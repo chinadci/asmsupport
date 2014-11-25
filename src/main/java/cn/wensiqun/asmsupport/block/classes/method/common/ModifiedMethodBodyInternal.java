@@ -10,12 +10,13 @@ import cn.wensiqun.asmsupport.block.interfaces.operator.KeywordVariableable;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportgeneric.IModifiedMethodBody;
 
 /**
  * @author
  * 
  */
-public abstract class ModifiedMethodBodyInternal extends CommonMethodBodyInternal implements KeywordVariableable {
+public abstract class ModifiedMethodBodyInternal extends CommonMethodBodyInternal implements IModifiedMethodBody {
     
 	private List<VisitXInsnAdapter> superConstructorOperators;
 	

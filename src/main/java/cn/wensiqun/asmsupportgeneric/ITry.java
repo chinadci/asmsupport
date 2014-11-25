@@ -1,10 +1,9 @@
 package cn.wensiqun.asmsupportgeneric;
 
+import cn.wensiqun.asmsupportgeneric.body.CommonBody;
 import cn.wensiqun.asmsupportgeneric.body.IBody;
-import cn.wensiqun.asmsupportgeneric.body.LocalVariableBody;
 
-
-public interface GenericCatch<_Catch extends IBody, _Finally extends IBody> extends LocalVariableBody {
+public interface ITry<_Catch extends IBody, _Finally extends IBody> extends CommonBody {
 
 	public _Catch _catch(_Catch catchBlock);
     

@@ -19,7 +19,7 @@ import cn.wensiqun.asmsupport.operators.Jumpable;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
-import cn.wensiqun.asmsupportgeneric.GenericForEach;
+import cn.wensiqun.asmsupportgeneric.IForEach;
 
 
 /**
@@ -27,7 +27,7 @@ import cn.wensiqun.asmsupportgeneric.GenericForEach;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ForEachInternal extends ProgramBlockInternal implements Loop, GenericForEach {
+public abstract class ForEachInternal extends ProgramBlockInternal implements Loop, IForEach {
     
     private ExplicitVariable iteratorVar;
     

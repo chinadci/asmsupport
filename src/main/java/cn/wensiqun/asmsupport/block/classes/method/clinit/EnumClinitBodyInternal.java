@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
@@ -12,13 +12,14 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.array.ArrayValue;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
+import cn.wensiqun.asmsupportgeneric.IEnumStaticBlockBody;
 import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
 
 /**
  * 
  *
  */
-public abstract class EnumClinitBodyInternal extends GenericMethodBody implements LocalVariablesBody {
+public abstract class EnumClinitBodyInternal extends AbstractMethodBody implements IEnumStaticBlockBody {
 
 	private List<EnumConstructorInfo>  enumArgumentsList;
 	
@@ -45,6 +46,7 @@ public abstract class EnumClinitBodyInternal extends GenericMethodBody implement
 		}
 	}
 
+	@Override
 	public void newEnum(String name, Parameterized... argus) {
         if(!ModifierUtils.isEnum(getMethodOwner().getModifiers())){
         	throw new IllegalArgumentException("cannot create an enum constant cause by current class is not enum type");

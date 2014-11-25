@@ -24,15 +24,15 @@ import cn.wensiqun.asmsupport.utils.memory.Component;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
 
-public abstract class GenericMethodBody extends ProgramBlockInternal {
+public abstract class AbstractMethodBody extends ProgramBlockInternal {
 
-    private static Log log = LogFactory.getLog(GenericMethodBody.class);
+    private static Log log = LogFactory.getLog(AbstractMethodBody.class);
     
     private List<TryCatchInfo> tryCatches;
 
     protected LocalVariable[] argments;
     
-    public GenericMethodBody() {
+    public AbstractMethodBody() {
 		super();
         tryCatches = new ArrayList<TryCatchInfo>();
 	}

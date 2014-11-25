@@ -1,9 +1,9 @@
 package cn.wensiqun.asmsupport.block.classes.control.condition;
 
 import cn.wensiqun.asmsupport.Executable;
-import cn.wensiqun.asmsupportgeneric.GenericElse;
+import cn.wensiqun.asmsupportgeneric.IElse;
 
-public abstract class ElseInternal extends ConditionBranchBlock implements GenericElse
+public abstract class ElseInternal extends ConditionBranchBlock implements IElse
 {
 
     @Override

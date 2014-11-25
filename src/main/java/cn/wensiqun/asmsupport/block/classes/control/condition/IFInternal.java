@@ -9,9 +9,9 @@ import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
-import cn.wensiqun.asmsupportgeneric.GenericIF;
+import cn.wensiqun.asmsupportgeneric.IIF;
 
-public abstract class IFInternal extends ConditionBranchBlock implements GenericIF<ElseIFInternal, ElseInternal>
+public abstract class IFInternal extends ConditionBranchBlock implements IIF<ElseIFInternal, ElseInternal>
 {
     private Parameterized condition;
     

@@ -3,9 +3,9 @@ package cn.wensiqun.asmsupportclient;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.method.clinit.EnumClinitBodyInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
+import cn.wensiqun.asmsupportgeneric.IEnumStaticBlockBody;
 
-public abstract class EnumStaticBlockBody extends ProgramBlock<EnumClinitBodyInternal> implements LocalVariablesBody {
+public abstract class EnumStaticBlockBody extends ProgramBlock<EnumClinitBodyInternal> implements IEnumStaticBlockBody {
 
 	public EnumStaticBlockBody() {
 		target = new EnumClinitBodyInternal() {
@@ -22,6 +22,7 @@ public abstract class EnumStaticBlockBody extends ProgramBlock<EnumClinitBodyInt
 		};
 	}
 	
+	@Override
 	public void newEnum(String name, Parameterized... argus) {
 		target.newEnum(name, argus);
 	}

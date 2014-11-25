@@ -2,10 +2,10 @@ package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIFInternal;
-import cn.wensiqun.asmsupportgeneric.GenericElseIF;
+import cn.wensiqun.asmsupportgeneric.IElseIF;
 import cn.wensiqun.asmsupportgeneric.body.CommonBody;
 
-public abstract class ElseIF extends ProgramBlock<ElseIFInternal> implements GenericElseIF<ElseIF, Else> {
+public abstract class ElseIF extends ProgramBlock<ElseIFInternal> implements IElseIF<ElseIF, Else> {
 	
 	public ElseIF(Parameterized condition) {
 		target = new ElseIFInternal(condition) {

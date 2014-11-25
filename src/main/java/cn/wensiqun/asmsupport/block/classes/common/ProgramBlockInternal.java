@@ -19,7 +19,7 @@ import cn.wensiqun.asmsupport.block.classes.control.loop.DoWhileInternal;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachInternal;
 import cn.wensiqun.asmsupport.block.classes.control.loop.Loop;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
-import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.operator.IBlock;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
@@ -273,7 +273,7 @@ public abstract class ProgramBlockInternal extends AbstractBlockInternal impleme
         return getMethod().getArguments();
     }
     
-    protected GenericMethodBody getMethodBody(){
+    protected AbstractMethodBody getMethodBody(){
         return getMethod().getMethodBody();
     }
     

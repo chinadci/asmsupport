@@ -1,9 +1,9 @@
 package cn.wensiqun.asmsupport.block.classes.method.clinit;
 
-import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
-import cn.wensiqun.asmsupportgeneric.body.CommonBody;
+import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
+import cn.wensiqun.asmsupportgeneric.IStaticBlockBody;
 
-public abstract class ClinitBodyInternal extends GenericMethodBody implements CommonBody {
+public abstract class ClinitBodyInternal extends AbstractMethodBody implements IStaticBlockBody {
 
 	@Override
 	protected void init() {

@@ -11,7 +11,7 @@ import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
-import cn.wensiqun.asmsupportgeneric.GenericDoWhile;
+import cn.wensiqun.asmsupportgeneric.IDoWhile;
 import cn.wensiqun.asmsupportgeneric.body.CommonBody;
 
 
@@ -20,7 +20,7 @@ import cn.wensiqun.asmsupportgeneric.body.CommonBody;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class DoWhileInternal extends ProgramBlockInternal implements Loop, GenericDoWhile  {
+public abstract class DoWhileInternal extends ProgramBlockInternal implements Loop, IDoWhile  {
 
     private Parameterized condition;
 

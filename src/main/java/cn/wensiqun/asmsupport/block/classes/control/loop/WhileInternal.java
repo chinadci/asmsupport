@@ -1,14 +1,14 @@
 package cn.wensiqun.asmsupport.block.classes.control.loop;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupportgeneric.GenericWhile;
+import cn.wensiqun.asmsupportgeneric.IWhile;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class WhileInternal extends DoWhileInternal implements GenericWhile  {
+public abstract class WhileInternal extends DoWhileInternal implements IWhile  {
 
     public WhileInternal(Parameterized condition) {
         super(condition);

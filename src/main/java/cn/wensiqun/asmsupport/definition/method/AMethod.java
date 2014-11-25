@@ -13,7 +13,7 @@ import cn.wensiqun.asmsupport.asm.StackLocalMethodVisitor;
 import cn.wensiqun.asmsupport.block.classes.common.AbstractBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
-import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.creator.IClassContext;
@@ -52,7 +52,7 @@ public class AMethod {
     private InstructionHelper insnHelper;
 
     /** 当前Method的methodBody类 */
-    private GenericMethodBody methodBody;
+    private AbstractMethodBody methodBody;
 
     /** 当前Method所包含的所有字节码操作 */
     private int totalIns = 0;
@@ -95,7 +95,7 @@ public class AMethod {
      * @param methodBody
      * @param mode
      */
-    public AMethod(AMethodMeta me, IClassContext context, GenericMethodBody methodBody, int mode) {
+    public AMethod(AMethodMeta me, IClassContext context, AbstractMethodBody methodBody, int mode) {
         super();
         this.me = me;
         this.context = context;
@@ -210,7 +210,7 @@ public class AMethod {
         return totalIns;
     }
 
-    public GenericMethodBody getMethodBody() {
+    public AbstractMethodBody getMethodBody() {
         return methodBody;
     }
 

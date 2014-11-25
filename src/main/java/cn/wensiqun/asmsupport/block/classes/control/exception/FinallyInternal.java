@@ -2,9 +2,9 @@ package cn.wensiqun.asmsupport.block.classes.control.exception;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.control.EpisodeBlock;
-import cn.wensiqun.asmsupportgeneric.GenericFinally;
+import cn.wensiqun.asmsupportgeneric.IFinally;
 
-public abstract class FinallyInternal extends EpisodeBlock<ExceptionSerialBlock> implements GenericFinally
+public abstract class FinallyInternal extends EpisodeBlock<ExceptionSerialBlock> implements IFinally
 {
 
     @Override

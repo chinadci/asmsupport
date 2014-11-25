@@ -9,21 +9,21 @@ import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
+import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.Return;
 import cn.wensiqun.asmsupport.operators.asmdirect.DUP;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
-import cn.wensiqun.asmsupportgeneric.GenericSynchronized;
+import cn.wensiqun.asmsupportgeneric.ISynchronized;
 
 
 /**
  * @author 温斯群(Joe Wen)
  * 
  */
-public abstract class SynchronizedInternal extends ProgramBlockInternal implements GenericSynchronized {
+public abstract class SynchronizedInternal extends ProgramBlockInternal implements ISynchronized {
 
 	private Parameterized lock;
 	private LocalVariable dupSynArgument;
@@ -57,7 +57,7 @@ public abstract class SynchronizedInternal extends ProgramBlockInternal implemen
 		}
 		lock.asArgument();
 
-        GenericMethodBody mb = getMethodBody();
+        AbstractMethodBody mb = getMethodBody();
         mb.addTryCatchInfo(monitorenter, monitorexit, excetpionStart, null);
         mb.addTryCatchInfo(excetpionStart, excetpionEnd, excetpionStart, null);
 	}
