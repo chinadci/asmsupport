@@ -74,7 +74,7 @@ public class ClassCreator extends ClassContextClient<ClassCreatorInternal> {
      * 
      * @param mb
      */
-    public void createStaticBlock(StaticBlock block) {
+    public void createStaticBlock(StaticBlockBody block) {
     	target.createStaticBlock(block.target);
     }
 }

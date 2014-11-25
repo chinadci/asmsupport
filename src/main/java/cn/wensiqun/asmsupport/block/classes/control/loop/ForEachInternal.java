@@ -8,7 +8,6 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.ControlType;
-import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariableBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
@@ -20,6 +19,7 @@ import cn.wensiqun.asmsupport.operators.Jumpable;
 import cn.wensiqun.asmsupport.operators.asmdirect.GOTO;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
+import cn.wensiqun.asmsupportgeneric.GenericForEach;
 
 
 /**
@@ -27,7 +27,7 @@ import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ForEachInternal extends ProgramBlockInternal implements Loop, LocalVariableBody{
+public abstract class ForEachInternal extends ProgramBlockInternal implements Loop, GenericForEach {
     
     private ExplicitVariable iteratorVar;
     

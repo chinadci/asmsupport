@@ -1,8 +1,8 @@
-package cn.wensiqun.asmsupport.block.interfaces.body;
+package cn.wensiqun.asmsupportgeneric.body;
 
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 
-public interface LocalVariableBody
+public interface LocalVariableBody extends IBody
 {
 
     void body(LocalVariable e);

@@ -1,8 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
-import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariablesBody;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
 
 public abstract class MethodBody extends ProgramBlock<CommonMethodBodyInternal> implements
 		LocalVariablesBody {

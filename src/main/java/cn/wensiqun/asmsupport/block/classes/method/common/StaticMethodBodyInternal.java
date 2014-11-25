@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.block.classes.method.common;
 
 import cn.wensiqun.asmsupport.block.classes.method.GenericMethodBody;
-import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariablesBody;
+import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
 
 public abstract class StaticMethodBodyInternal extends GenericMethodBody implements LocalVariablesBody {
     

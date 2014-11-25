@@ -2,9 +2,9 @@ package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
-import cn.wensiqun.asmsupport.block.interfaces.body.Body;
+import cn.wensiqun.asmsupportgeneric.GenericWhile;
 
-public abstract class While extends ProgramBlock<WhileInternal> implements Body {
+public abstract class While extends ProgramBlock<WhileInternal> implements GenericWhile {
     
 	public While(Parameterized condition) {
 		target = new WhileInternal(condition) {

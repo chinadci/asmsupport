@@ -3,14 +3,14 @@ package cn.wensiqun.asmsupport.block.classes.control.exception;
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.EpisodeBlock;
-import cn.wensiqun.asmsupport.block.interfaces.body.LocalVariableBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
+import cn.wensiqun.asmsupportgeneric.GenericCatch;
 
-public abstract class CatchInternal extends EpisodeBlock<ExceptionSerialBlock> implements LocalVariableBody
+public abstract class CatchInternal extends EpisodeBlock<ExceptionSerialBlock> implements GenericCatch<CatchInternal, FinallyInternal>
 {
 
     private AClass exceptionType;
@@ -46,6 +46,7 @@ public abstract class CatchInternal extends EpisodeBlock<ExceptionSerialBlock> i
         }
     }
     
+    @Override
     public CatchInternal _catch(CatchInternal catchBlock)
     {
         ExceptionSerialBlock serial = getSerial();
@@ -57,7 +58,8 @@ public abstract class CatchInternal extends EpisodeBlock<ExceptionSerialBlock> i
         getSerial().appendEpisode(catchBlock);
         return catchBlock;
     }
-    
+
+    @Override
     public FinallyInternal _finally(FinallyInternal block)
     {
         ExceptionSerialBlock serial = getSerial();

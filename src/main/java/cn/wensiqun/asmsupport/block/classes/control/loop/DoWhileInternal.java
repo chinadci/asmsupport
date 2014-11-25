@@ -8,10 +8,11 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.control.ControlType;
-import cn.wensiqun.asmsupport.block.interfaces.body.Body;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
+import cn.wensiqun.asmsupportgeneric.GenericDoWhile;
+import cn.wensiqun.asmsupportgeneric.body.CommonBody;
 
 
 /**
@@ -19,7 +20,7 @@ import cn.wensiqun.asmsupport.operators.Jumpable;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class DoWhileInternal extends ProgramBlockInternal implements Loop, Body  {
+public abstract class DoWhileInternal extends ProgramBlockInternal implements Loop, GenericDoWhile  {
 
     private Parameterized condition;
 
