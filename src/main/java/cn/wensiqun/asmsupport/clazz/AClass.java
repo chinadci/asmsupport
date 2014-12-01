@@ -3,9 +3,6 @@ package cn.wensiqun.asmsupport.clazz;
 import java.io.Serializable;
 import java.lang.reflect.Modifier;
 
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.GetGlobalVariabled;
 import cn.wensiqun.asmsupport.definition.generic.GenericSignature.ClassSignature;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
@@ -15,6 +12,8 @@ import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.chooser.IMethodChooser;
 import cn.wensiqun.asmsupport.utils.chooser.MethodChooser;
 import cn.wensiqun.asmsupport.utils.lang.ClassUtils;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

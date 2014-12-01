@@ -10,7 +10,7 @@ import cn.wensiqun.asmsupport.block.interfaces.operator.KeywordVariableable;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.utils.ASConstant;
-import cn.wensiqun.asmsupportgeneric.IModifiedMethodBody;
+import cn.wensiqun.asmsupportgeneric.method.IModifiedMethodBody;
 
 /**
  * @author

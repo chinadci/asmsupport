@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -14,6 +12,8 @@ import cn.wensiqun.asmsupport.creator.MethodCreator;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.reflet.MethodUtils;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
@@ -23,6 +21,8 @@ import cn.wensiqun.asmsupport.utils.common.TryCatchInfo;
 import cn.wensiqun.asmsupport.utils.memory.Component;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.Type;
 
 public abstract class AbstractMethodBody extends ProgramBlockInternal {
 

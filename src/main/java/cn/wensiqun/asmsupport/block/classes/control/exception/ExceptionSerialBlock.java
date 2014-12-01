@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.objectweb.asm.Label;
 
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.block.classes.common.AbstractBlockInternal;
@@ -20,6 +19,7 @@ import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.asmdirect.Store;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
 import cn.wensiqun.asmsupport.utils.common.TryCatchInfo;
+import cn.wensiqun.asmsupportasm.Label;
 
 public class ExceptionSerialBlock extends SerialBlock
 {

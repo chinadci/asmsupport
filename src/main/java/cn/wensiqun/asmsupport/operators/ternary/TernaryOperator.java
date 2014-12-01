@@ -4,8 +4,6 @@
 package cn.wensiqun.asmsupport.operators.ternary;
 
 
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
@@ -15,6 +13,7 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.Jumpable;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
+import cn.wensiqun.asmsupportasm.Label;
 
 
 /**

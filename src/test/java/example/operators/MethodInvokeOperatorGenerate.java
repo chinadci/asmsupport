@@ -1,8 +1,6 @@
 package example.operators;
 
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -11,6 +9,7 @@ import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 /**

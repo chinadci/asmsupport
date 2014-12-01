@@ -4,9 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import junit.framework.Assert;
-
-import org.objectweb.asm.Opcodes;
-
 import bug.fixed.Utils;
 import bug.fixed.test4646.entity.Child;
 import bug.fixed.test4646.entity.ChildChild;
@@ -17,6 +14,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 
 public class MainTest {

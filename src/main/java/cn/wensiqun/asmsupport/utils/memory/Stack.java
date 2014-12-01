@@ -3,10 +3,12 @@ package cn.wensiqun.asmsupport.utils.memory;
 import java.util.EmptyStackException;
 
 
+
 import org.apache.commons.collections.ArrayStack;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.Type;
+
+import cn.wensiqun.asmsupportasm.Type;
 
 /**
  * 

@@ -12,7 +12,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.method.SuperConstructorInvoker;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
-import cn.wensiqun.asmsupportgeneric.IEnumContructorBody;
+import cn.wensiqun.asmsupportgeneric.method.IEnumContructorBody;
 
 
 /**

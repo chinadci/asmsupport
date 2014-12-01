@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.block.classes.control.loop;
 
 import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupportgeneric.IWhile;
+import cn.wensiqun.asmsupportgeneric.loop.IWhile;
 
 /**
  * 

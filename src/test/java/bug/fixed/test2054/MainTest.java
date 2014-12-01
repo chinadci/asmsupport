@@ -1,9 +1,6 @@
 package bug.fixed.test2054;
 
 import junit.framework.Assert;
-
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -12,6 +9,7 @@ import cn.wensiqun.asmsupport.creator.IClassContext;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.NoSuchMethod;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 public class MainTest {
 

@@ -2,12 +2,11 @@ package cn.wensiqun.asmsupport.definition.method.meta;
 
 import java.lang.reflect.Method;
 
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

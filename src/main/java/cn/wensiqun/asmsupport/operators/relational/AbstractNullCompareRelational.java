@@ -2,16 +2,15 @@ package cn.wensiqun.asmsupport.operators.relational;
 
 
 
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.operators.Operators;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 public abstract class AbstractNullCompareRelational extends NumericalAndReferenceRelational {
 

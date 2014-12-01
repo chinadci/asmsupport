@@ -2,8 +2,8 @@ package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
-import cn.wensiqun.asmsupportgeneric.IIF;
 import cn.wensiqun.asmsupportgeneric.body.CommonBody;
+import cn.wensiqun.asmsupportgeneric.branch.IIF;
 
 public abstract class IF extends ProgramBlock<IFInternal> implements IIF<ElseIF, Else> {
 

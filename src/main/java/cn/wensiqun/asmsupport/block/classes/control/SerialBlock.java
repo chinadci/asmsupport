@@ -1,9 +1,8 @@
 package cn.wensiqun.asmsupport.block.classes.control;
 
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.block.classes.common.AbstractBlockInternal;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
+import cn.wensiqun.asmsupportasm.Label;
 
 public abstract class SerialBlock extends AbstractBlockInternal
 {

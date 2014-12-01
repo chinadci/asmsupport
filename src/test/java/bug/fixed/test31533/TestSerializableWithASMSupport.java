@@ -6,13 +6,12 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 public class TestSerializableWithASMSupport {
    

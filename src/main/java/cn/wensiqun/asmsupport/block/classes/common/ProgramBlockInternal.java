@@ -6,8 +6,6 @@ package cn.wensiqun.asmsupport.block.classes.common;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.Parameterized;
@@ -89,6 +87,8 @@ import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.common.ThrowExceptionContainer;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.Type;
 
 /**
  * 

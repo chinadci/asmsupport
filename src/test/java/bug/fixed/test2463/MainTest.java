@@ -3,9 +3,6 @@ package bug.fixed.test2463;
 import java.lang.reflect.InvocationTargetException;
 
 import junit.framework.Assert;
-
-import org.objectweb.asm.Opcodes;
-
 import bug.fixed.Utils;
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
@@ -13,6 +10,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 public class MainTest {
 

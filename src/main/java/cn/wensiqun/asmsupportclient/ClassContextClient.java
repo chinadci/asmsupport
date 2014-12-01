@@ -1,9 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
-import org.objectweb.asm.ClassVisitor;
-
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.creator.IClassContext;
+import cn.wensiqun.asmsupportasm.ClassVisitor;
 
 public class ClassContextClient<B extends IClassContext> implements IClassContext {
 

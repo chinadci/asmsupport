@@ -5,17 +5,16 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.URL;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.asm.ClassAdapter;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
+import cn.wensiqun.asmsupportasm.ClassReader;
+import cn.wensiqun.asmsupportasm.ClassVisitor;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

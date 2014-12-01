@@ -8,8 +8,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.clazz.SemiClass;
@@ -20,6 +18,8 @@ import cn.wensiqun.asmsupport.utils.lang.ClassFileUtils;
 import cn.wensiqun.asmsupport.utils.lang.StringUtils;
 import cn.wensiqun.asmsupport.utils.reflet.MethodUtils;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
+import cn.wensiqun.asmsupportasm.ClassWriter;
+import cn.wensiqun.asmsupportasm.Type;
 
 public abstract class AbstractClassCreatorContext extends AbstractClassContext {
 	

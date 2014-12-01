@@ -2,12 +2,11 @@ package cn.wensiqun.asmsupport.creator;
 
 import java.util.List;
 
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.loader.ASMClassLoader;
+import cn.wensiqun.asmsupportasm.ClassVisitor;
+import cn.wensiqun.asmsupportasm.ClassWriter;
 
 
 public abstract class AbstractClassContext extends AClassFactory implements IClassContext{

@@ -2,13 +2,12 @@ package cn.wensiqun.asmsupport.loader;
 
 import java.io.InputStream;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-
 import cn.wensiqun.asmsupport.asm.adapter.ClassModifierClassAdapter;
 import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
+import cn.wensiqun.asmsupportasm.ClassReader;
+import cn.wensiqun.asmsupportasm.ClassVisitor;
+import cn.wensiqun.asmsupportasm.ClassWriter;
 
 public class ClassModifierClassLoader extends ClassLoader {
 	

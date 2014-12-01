@@ -5,7 +5,7 @@ package cn.wensiqun.asmsupport.block.classes.method.common;
 
 import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.block.interfaces.operator.KeywordVariableable;
-import cn.wensiqun.asmsupportgeneric.IMethodBody;
+import cn.wensiqun.asmsupportgeneric.method.IMethodBody;
 
 /**
  * @author 温斯群(Joe Wen)

@@ -5,14 +5,13 @@ package cn.wensiqun.asmsupport.definition.variable;
 
 
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;
 import cn.wensiqun.asmsupport.definition.variable.meta.VariableMeta;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 /**
  * 全局变量。这个class只用于方法体内操作变量

@@ -2,8 +2,6 @@ package cn.wensiqun.asmsupport.block.condition;
 
 import java.util.List;
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.control.condition.ElseInternal;
 import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIFInternal;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
@@ -15,6 +13,7 @@ import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.MyList;
 import cn.wensiqun.asmsupport.utils.TesterStatics;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 public class ConditionBlockGenerator extends AbstractExample

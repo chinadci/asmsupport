@@ -6,10 +6,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.MethodVisitor;
-
 import cn.wensiqun.asmsupport.definition.generic.GenericSignature.ArrayTypeSignature;
 import cn.wensiqun.asmsupport.definition.generic.GenericSignature.BaseTypeSignature;
 import cn.wensiqun.asmsupport.definition.generic.GenericSignature.ClassSignature;
@@ -22,6 +18,9 @@ import cn.wensiqun.asmsupport.definition.generic.GenericSignature.TypeArgument;
 import cn.wensiqun.asmsupport.definition.generic.GenericSignature.TypeSignature;
 import cn.wensiqun.asmsupport.definition.generic.GenericSignature.TypeVariableSignature;
 import cn.wensiqun.asmsupport.utils.asm.ClassAdapter;
+import cn.wensiqun.asmsupportasm.ClassReader;
+import cn.wensiqun.asmsupportasm.FieldVisitor;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
 
 /**
  * Parses the generic signature attribute as defined in the JVM spec.

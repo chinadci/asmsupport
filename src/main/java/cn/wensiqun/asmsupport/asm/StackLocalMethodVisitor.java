@@ -2,18 +2,18 @@ package cn.wensiqun.asmsupport.asm;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.AnnotationVisitor;
-import org.objectweb.asm.Attribute;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.InstructionException;
 import cn.wensiqun.asmsupport.utils.asm.MethodAdapter;
 import cn.wensiqun.asmsupport.utils.memory.Stack;
 import cn.wensiqun.asmsupport.utils.memory.Stackable;
+import cn.wensiqun.asmsupportasm.AnnotationVisitor;
+import cn.wensiqun.asmsupportasm.Attribute;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 public class StackLocalMethodVisitor extends MethodAdapter implements Opcodes{
 

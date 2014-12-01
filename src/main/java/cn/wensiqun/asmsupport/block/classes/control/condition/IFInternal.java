@@ -1,7 +1,5 @@
 package cn.wensiqun.asmsupport.block.classes.control.condition;
 
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.ByteCodeExecutor;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
@@ -9,7 +7,8 @@ import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
-import cn.wensiqun.asmsupportgeneric.IIF;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportgeneric.branch.IIF;
 
 public abstract class IFInternal extends ConditionBranchBlock implements IIF<ElseIFInternal, ElseInternal>
 {

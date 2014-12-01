@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
-import cn.wensiqun.asmsupportgeneric.IStaticBlockBody;
+import cn.wensiqun.asmsupportgeneric.method.IStaticBlockBody;
 
 public abstract class StaticBlockBody extends ProgramBlock<ClinitBodyInternal> implements IStaticBlockBody {
 

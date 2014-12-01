@@ -1,8 +1,7 @@
 package cn.wensiqun.asmsupport.utils.asm;
 
-import org.objectweb.asm.ClassVisitor;
-
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.ClassVisitor;
 
 public class ClassAdapter extends ClassVisitor {
 

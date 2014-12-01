@@ -4,15 +4,14 @@
 package cn.wensiqun.asmsupport.operators.logical;
 
 
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.operators.Operators;
 import cn.wensiqun.asmsupport.utils.memory.Stack;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

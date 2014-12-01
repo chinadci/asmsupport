@@ -1,8 +1,7 @@
 package cn.wensiqun.asmsupport.utils.asm;
 
-import org.objectweb.asm.AnnotationVisitor;
-
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.AnnotationVisitor;
 
 public class AnnotationAdapter extends AnnotationVisitor {
 

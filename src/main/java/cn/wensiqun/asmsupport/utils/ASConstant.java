@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupport.utils;
 
-import org.objectweb.asm.Opcodes;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 public interface ASConstant {
 

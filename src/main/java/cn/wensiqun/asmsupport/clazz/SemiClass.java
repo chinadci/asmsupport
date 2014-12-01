@@ -2,11 +2,10 @@ package cn.wensiqun.asmsupport.clazz;
 
 import java.lang.reflect.Field;
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 
 /**

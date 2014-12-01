@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.utils.common;
 
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.Type;
 
 public class TryCatchInfo
 {

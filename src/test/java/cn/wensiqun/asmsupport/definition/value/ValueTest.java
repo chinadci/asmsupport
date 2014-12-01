@@ -3,9 +3,9 @@ package cn.wensiqun.asmsupport.definition.value;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupportasm.Type;
 
 public class ValueTest
 {

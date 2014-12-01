@@ -2,10 +2,6 @@ package cn.wensiqun.asmsupport.operators.relational;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
@@ -16,6 +12,10 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.operators.Jumpable;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 /**
  * 

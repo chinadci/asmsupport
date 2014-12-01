@@ -2,8 +2,6 @@ package example.operators;
 
 import java.util.Random;
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
@@ -12,6 +10,7 @@ import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
 import cn.wensiqun.asmsupport.operators.numerical.arithmetic.Addition;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 public class ArithmeticOperatorGenerate extends AbstractExample {

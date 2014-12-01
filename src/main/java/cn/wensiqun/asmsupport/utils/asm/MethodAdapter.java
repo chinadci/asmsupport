@@ -1,8 +1,7 @@
 package cn.wensiqun.asmsupport.utils.asm;
 
-import org.objectweb.asm.MethodVisitor;
-
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
 
 public class MethodAdapter extends MethodVisitor {
 

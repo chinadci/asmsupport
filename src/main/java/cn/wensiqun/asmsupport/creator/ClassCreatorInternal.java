@@ -1,8 +1,6 @@
 package cn.wensiqun.asmsupport.creator;
 
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
@@ -10,6 +8,7 @@ import cn.wensiqun.asmsupport.block.classes.method.init.InitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 
 /**

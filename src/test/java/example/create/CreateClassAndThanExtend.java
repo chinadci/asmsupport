@@ -2,8 +2,6 @@ package example.create;
 
 import java.util.Random;
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.control.condition.ElseInternal;
 import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
@@ -17,6 +15,7 @@ import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 public class CreateClassAndThanExtend extends AbstractExample {

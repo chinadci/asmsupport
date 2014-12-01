@@ -2,9 +2,6 @@ package cn.wensiqun.asmsupport.definition.method;
 
 
 import org.apache.commons.collections.CollectionUtils;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.asm.CommonInstructionHelper;
@@ -25,6 +22,9 @@ import cn.wensiqun.asmsupport.utils.memory.LocalVariables;
 import cn.wensiqun.asmsupport.utils.memory.Scope;
 import cn.wensiqun.asmsupport.utils.memory.Stack;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
+import cn.wensiqun.asmsupportasm.MethodVisitor;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

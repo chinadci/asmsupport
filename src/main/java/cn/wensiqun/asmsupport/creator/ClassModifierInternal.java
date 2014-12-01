@@ -8,9 +8,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.asm.adapter.VisitXInsnAdapter;
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
@@ -27,6 +24,9 @@ import cn.wensiqun.asmsupport.utils.AClassUtils;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.lang.ClassFileUtils;
 import cn.wensiqun.asmsupport.utils.lang.StringUtils;
+import cn.wensiqun.asmsupportasm.ClassWriter;
+import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 public class ClassModifierInternal extends AbstractClassContext {

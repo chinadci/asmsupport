@@ -1,7 +1,7 @@
 package cn.wensiqun.asmsupport.utils.memory;
 
 
-import org.objectweb.asm.Type;
+import cn.wensiqun.asmsupportasm.Type;
 
 /**
  * 

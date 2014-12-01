@@ -1,9 +1,6 @@
 package bug.fixed.test65150;
 
 import junit.framework.Assert;
-
-import org.objectweb.asm.Opcodes;
-
 import bug.fixed.AbstractFix;
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
@@ -12,6 +9,7 @@ import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 public class Main extends AbstractFix {
 

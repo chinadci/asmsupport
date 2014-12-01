@@ -5,7 +5,7 @@ package cn.wensiqun.asmsupport.utils.reflet;
 
 import java.lang.reflect.Modifier;
 
-import org.objectweb.asm.Opcodes;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 
 

@@ -4,9 +4,6 @@
 package cn.wensiqun.asmsupport.block.classes.common;
 
 
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
@@ -16,6 +13,8 @@ import cn.wensiqun.asmsupport.operators.Return;
 import cn.wensiqun.asmsupport.operators.asmdirect.DUP;
 import cn.wensiqun.asmsupport.operators.asmdirect.Marker;
 import cn.wensiqun.asmsupport.operators.util.OperatorFactory;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.Type;
 import cn.wensiqun.asmsupportgeneric.ISynchronized;
 
 

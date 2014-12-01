@@ -3,12 +3,11 @@ package example.create;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.creator.InterfaceCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 /**

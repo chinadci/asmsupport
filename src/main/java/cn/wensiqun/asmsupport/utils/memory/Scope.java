@@ -6,7 +6,7 @@ package cn.wensiqun.asmsupport.utils.memory;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.objectweb.asm.Label;
+import cn.wensiqun.asmsupportasm.Label;
 
 
 

@@ -2,12 +2,11 @@ package cn.wensiqun.asmsupport.clazz;
 
 import java.lang.reflect.Constructor;
 
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
+import cn.wensiqun.asmsupportasm.Type;
 
 public class AnyException extends AClass
 {

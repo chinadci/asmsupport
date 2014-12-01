@@ -3,8 +3,6 @@
  */
 package cn.wensiqun.asmsupport.operators.numerical.crement;
 
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.Crementable;
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
@@ -14,6 +12,7 @@ import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.Operators;
 import cn.wensiqun.asmsupport.operators.numerical.AbstractNumerical;
 import cn.wensiqun.asmsupport.utils.AClassUtils;
+import cn.wensiqun.asmsupportasm.Type;
 
 /**
  * @author 温斯群(Joe Wen)

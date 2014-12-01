@@ -2,10 +2,10 @@ package cn.wensiqun.asmsupport.utils.memory;
 
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
 
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
+import cn.wensiqun.asmsupportasm.Label;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

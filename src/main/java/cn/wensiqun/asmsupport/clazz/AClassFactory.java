@@ -1,9 +1,8 @@
 package cn.wensiqun.asmsupport.clazz;
 
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.exception.ClassException;
 import cn.wensiqun.asmsupport.utils.lang.ClassUtils;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

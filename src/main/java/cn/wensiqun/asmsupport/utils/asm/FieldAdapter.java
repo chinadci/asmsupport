@@ -1,8 +1,7 @@
 package cn.wensiqun.asmsupport.utils.asm;
 
-import org.objectweb.asm.FieldVisitor;
-
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.FieldVisitor;
 
 public class FieldAdapter extends FieldVisitor {
 

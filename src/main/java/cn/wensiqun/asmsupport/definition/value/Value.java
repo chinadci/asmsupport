@@ -5,12 +5,11 @@ package cn.wensiqun.asmsupport.definition.value;
 
 import java.lang.reflect.Modifier;
 
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 /**

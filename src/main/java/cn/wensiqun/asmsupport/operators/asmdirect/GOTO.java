@@ -4,9 +4,8 @@
 package cn.wensiqun.asmsupport.operators.asmdirect;
 
 
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
+import cn.wensiqun.asmsupportasm.Label;
 
 
 /**

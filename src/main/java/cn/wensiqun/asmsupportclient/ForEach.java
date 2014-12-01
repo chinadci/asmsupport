@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupportclient;
 import cn.wensiqun.asmsupport.block.classes.control.loop.ForEachInternal;
 import cn.wensiqun.asmsupport.definition.variable.ExplicitVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportgeneric.IForEach;
+import cn.wensiqun.asmsupportgeneric.loop.IForEach;
 
 public abstract class ForEach extends ProgramBlock<ForEachInternal> implements IForEach {
 

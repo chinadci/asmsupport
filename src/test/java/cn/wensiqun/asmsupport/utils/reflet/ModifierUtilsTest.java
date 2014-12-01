@@ -5,7 +5,8 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.objectweb.asm.Opcodes;
+
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 public class ModifierUtilsTest {
 

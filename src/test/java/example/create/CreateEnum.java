@@ -2,12 +2,13 @@ package example.create;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.objectweb.asm.Opcodes;
+
 
 
 
 
 import cn.wensiqun.asmsupport.creator.EnumCreatorInternal;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 public class CreateEnum extends AbstractExample {

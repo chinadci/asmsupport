@@ -1,8 +1,6 @@
 package cn.wensiqun.asmsupport.block.classes.control.loop;
 
 
-import org.objectweb.asm.Label;
-
 import cn.wensiqun.asmsupport.Executable;
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.asm.InstructionHelper;
@@ -11,8 +9,9 @@ import cn.wensiqun.asmsupport.block.classes.control.ControlType;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.Jumpable;
-import cn.wensiqun.asmsupportgeneric.IDoWhile;
+import cn.wensiqun.asmsupportasm.Label;
 import cn.wensiqun.asmsupportgeneric.body.CommonBody;
+import cn.wensiqun.asmsupportgeneric.loop.IDoWhile;
 
 
 /**

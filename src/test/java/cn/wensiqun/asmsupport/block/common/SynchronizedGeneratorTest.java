@@ -10,7 +10,6 @@ import java.util.concurrent.Executors;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.objectweb.asm.Opcodes;
 
 import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.common.SynchronizedInternal;
@@ -25,6 +24,7 @@ import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 
 public class SynchronizedGeneratorTest extends AbstractExample {

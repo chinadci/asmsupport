@@ -1,12 +1,11 @@
 package cn.wensiqun.asmsupport.operators.variable;
 
 
-import org.objectweb.asm.Type;
-
 import cn.wensiqun.asmsupport.block.classes.common.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.operators.AbstractOperator;
 import cn.wensiqun.asmsupport.utils.lang.StringUtils;
 import cn.wensiqun.asmsupport.utils.memory.ScopeLogicVariable;
+import cn.wensiqun.asmsupportasm.Type;
 
 
 public class LocalVariableCreator extends AbstractOperator {

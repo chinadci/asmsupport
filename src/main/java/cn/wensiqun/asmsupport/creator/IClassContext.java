@@ -4,9 +4,8 @@
 package cn.wensiqun.asmsupport.creator;
 
 
-import org.objectweb.asm.ClassVisitor;
-
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
+import cn.wensiqun.asmsupportasm.ClassVisitor;
 
 
 /**

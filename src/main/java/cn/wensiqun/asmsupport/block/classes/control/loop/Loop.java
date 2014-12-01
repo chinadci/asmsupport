@@ -3,7 +3,7 @@
  */
 package cn.wensiqun.asmsupport.block.classes.control.loop;
 
-import org.objectweb.asm.Label;
+import cn.wensiqun.asmsupportasm.Label;
 
 /**
  * 

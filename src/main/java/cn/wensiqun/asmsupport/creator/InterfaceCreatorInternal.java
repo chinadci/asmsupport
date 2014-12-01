@@ -4,11 +4,10 @@
 package cn.wensiqun.asmsupport.creator;
 
 
-import org.objectweb.asm.Opcodes;
-
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.utils.ASConstant;
+import cn.wensiqun.asmsupportasm.Opcodes;
 
 
 public class InterfaceCreatorInternal extends AbstractClassCreatorContext {
