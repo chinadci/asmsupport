@@ -1,7 +1,7 @@
 /**1
  * 
  */
-package cn.wensiqun.asmsupport.creator;
+package cn.wensiqun.asmsupportgeneric.creator;
 
 
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;

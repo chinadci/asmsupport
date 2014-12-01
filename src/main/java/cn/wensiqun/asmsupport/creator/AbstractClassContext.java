@@ -7,6 +7,7 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.loader.ASMClassLoader;
 import cn.wensiqun.asmsupportasm.ClassVisitor;
 import cn.wensiqun.asmsupportasm.ClassWriter;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 
 public abstract class AbstractClassContext extends AClassFactory implements IClassContext{

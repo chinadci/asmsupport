@@ -7,6 +7,7 @@ import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 /**
  * 

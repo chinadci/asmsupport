@@ -2,8 +2,8 @@ package bug.fixed;
 
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
-import cn.wensiqun.asmsupport.creator.IClassContext;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 public abstract class AbstractFix {
     

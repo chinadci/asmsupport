@@ -1,6 +1,7 @@
 package cn.wensiqun.asmsupport.creator;
 
 import cn.wensiqun.asmsupport.Executable;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 
 /**

@@ -5,11 +5,11 @@ import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyIntern
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
-import cn.wensiqun.asmsupport.creator.IClassContext;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.exception.NoSuchMethod;
 import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 public class MainTest {
 

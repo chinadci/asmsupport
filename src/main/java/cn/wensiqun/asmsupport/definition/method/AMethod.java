@@ -13,7 +13,6 @@ import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
-import cn.wensiqun.asmsupport.creator.IClassContext;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.ASConstant;
@@ -25,6 +24,7 @@ import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
 import cn.wensiqun.asmsupportasm.MethodVisitor;
 import cn.wensiqun.asmsupportasm.Opcodes;
 import cn.wensiqun.asmsupportasm.Type;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 
 /**

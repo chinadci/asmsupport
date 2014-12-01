@@ -9,6 +9,7 @@ import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupportgeneric.creator.IClassCreator;
 
 
 /**
@@ -16,7 +17,7 @@ import cn.wensiqun.asmsupportasm.Opcodes;
  * @author 温斯群(Joe Wen)
  *
  */
-public class ClassCreatorInternal extends AbstractClassCreatorContext {
+public class ClassCreatorInternal extends AbstractClassCreatorContext implements IClassCreator<ClinitBodyInternal, InitBodyInternal, CommonMethodBodyInternal, StaticMethodBodyInternal> {
 
     public ClassCreatorInternal(int version, int access, String name,
             Class<?> superCls, Class<?>[] interfaces) {
@@ -31,7 +32,7 @@ public class ClassCreatorInternal extends AbstractClassCreatorContext {
      * @param value
      * @return
      */
-    public void createGlobalVariable(String name, int modifiers,
+    public IFieldCreator createGlobalVariable(String name, int modifiers,
             AClass fieldClass) {
         GlobalVariableCreator fc = new GlobalVariableCreator(name, modifiers,
                 fieldClass);

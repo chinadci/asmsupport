@@ -1,8 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
-import cn.wensiqun.asmsupport.creator.IClassContext;
 import cn.wensiqun.asmsupportasm.ClassVisitor;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 public class ClassContextClient<B extends IClassContext> implements IClassContext {
 

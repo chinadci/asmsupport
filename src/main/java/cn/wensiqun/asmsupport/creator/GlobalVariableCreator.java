@@ -3,6 +3,7 @@ package cn.wensiqun.asmsupport.creator;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.definition.variable.meta.GlobalVariableMeta;
+import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 /**
  * 
