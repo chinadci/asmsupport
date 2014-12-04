@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.creator;
+package cn.wensiqun.asmsupport.creator.clazz;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -17,6 +17,10 @@ import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyIntern
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.clazz.ProductClass;
+import cn.wensiqun.asmsupport.creator.FieldCreatorIternel;
+import cn.wensiqun.asmsupport.creator.IFieldCreator;
+import cn.wensiqun.asmsupport.creator.IMethodCreator;
+import cn.wensiqun.asmsupport.creator.MethodCreatorInternal;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.exception.NoSuchMethod;
 import cn.wensiqun.asmsupport.loader.ClassModifierClassLoader;
@@ -48,7 +52,7 @@ public class ClassModifierInternal extends AbstractClassContext {
 		}
 		methodCreaters = new ArrayList<IMethodCreator>();
 		methodModifiers = new ArrayList<IMethodCreator>();
-		fieldCreators = new ArrayList<IGlobalVariableCreator>();
+		fieldCreators = new ArrayList<IFieldCreator>();
 	}
 
 	public void modify(Map<String, List<VisitXInsnAdapter>> superConstructorMap){
@@ -58,7 +62,7 @@ public class ClassModifierInternal extends AbstractClassContext {
         }
 		
         // create field
-        for (IMemberCreator ifc : fieldCreators) {
+        for (IFieldCreator ifc : fieldCreators) {
             ifc.create(this);
         }
 
@@ -80,7 +84,7 @@ public class ClassModifierInternal extends AbstractClassContext {
 			}
 		}
         
-        for (IMemberCreator ifc : fieldCreators) {
+        for (IFieldCreator ifc : fieldCreators) {
             ifc.prepare();
         }
 
@@ -92,7 +96,7 @@ public class ClassModifierInternal extends AbstractClassContext {
             imc.prepare();
         }
 
-        for (IMemberCreator ifc : fieldCreators) {
+        for (IFieldCreator ifc : fieldCreators) {
             ifc.execute();
         }
 
@@ -150,9 +154,9 @@ public class ClassModifierInternal extends AbstractClassContext {
 		}
 		try {
 			
-			MethodCreator methodCreator;
+			MethodCreatorInternal methodCreator;
 			if(name.equals(ASConstant.CLINIT)){
-				methodCreator = MethodCreator.methodCreatorForModify(name, argCls, defaultArgNames, AClass.VOID_ACLASS, null, Opcodes.ACC_STATIC, mb);
+				methodCreator = MethodCreatorInternal.methodCreatorForModify(name, argCls, defaultArgNames, AClass.VOID_ACLASS, null, Opcodes.ACC_STATIC, mb);
 			}else if(name.equals(ASConstant.INIT)){
 				if(modifyConstructorBodies == null){
 					modifyConstructorBodies = new ArrayList<ModifiedMethodBodyInternal>();
@@ -160,7 +164,7 @@ public class ClassModifierInternal extends AbstractClassContext {
 				modifyConstructorBodies.add(mb);
 				
 				Constructor<?> constructor = clazz.getDeclaredConstructor(argClasses);
-				methodCreator = MethodCreator.methodCreatorForModify(ASConstant.INIT, 
+				methodCreator = MethodCreatorInternal.methodCreatorForModify(ASConstant.INIT, 
 						argCls, 
 						defaultArgNames, 
 						AClass.VOID_ACLASS, 
@@ -168,7 +172,7 @@ public class ClassModifierInternal extends AbstractClassContext {
 						constructor.getModifiers(), mb);
 			}else{
 				Method method = clazz.getDeclaredMethod(name, argClasses);
-				methodCreator = MethodCreator.methodCreatorForModify(name, 
+				methodCreator = MethodCreatorInternal.methodCreatorForModify(name, 
 						argCls, 
 						defaultArgNames, 
 						getProductClass(method.getReturnType()), 
@@ -199,7 +203,7 @@ public class ClassModifierInternal extends AbstractClassContext {
     	if((access & Opcodes.ACC_STATIC) != 0){
     		access -= Opcodes.ACC_STATIC;
     	}
-        methodCreaters.add(MethodCreator.methodCreatorForAdd(name, argClasses, argNames,
+        methodCreaters.add(MethodCreatorInternal.methodCreatorForAdd(name, argClasses, argNames,
                 returnClass, exceptions, access, mb));
     }
     
@@ -220,7 +224,7 @@ public class ClassModifierInternal extends AbstractClassContext {
     	if((access & Opcodes.ACC_STATIC) == 0){
     		access += Opcodes.ACC_STATIC;
     	}
-        methodCreaters.add(MethodCreator.methodCreatorForAdd(name, argClasses, argNames,
+        methodCreaters.add(MethodCreatorInternal.methodCreatorForAdd(name, argClasses, argNames,
                 returnClass, exceptions, access, mb));
     }
     
@@ -234,7 +238,7 @@ public class ClassModifierInternal extends AbstractClassContext {
     public void createStaticBlock(ClinitBodyInternal mb){
     	checkStaticBlock();
     	existedStaticBlock = true;
-        methodCreaters.add(0, MethodCreator.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
+        methodCreaters.add(0, MethodCreatorInternal.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
                 Opcodes.ACC_STATIC, mb));
     }
 
@@ -248,7 +252,7 @@ public class ClassModifierInternal extends AbstractClassContext {
      */
     public void createGlobalVariable(String name, int modifiers,
             AClass fieldClass) {
-        GlobalVariableCreator fc = new GlobalVariableCreator(name, modifiers,
+        FieldCreatorIternel fc = new FieldCreatorIternel(name, modifiers,
                 fieldClass);
         fieldCreators.add(fc);
     }

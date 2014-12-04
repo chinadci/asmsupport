@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.creator;
+package cn.wensiqun.asmsupport.creator.clazz;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -11,6 +11,9 @@ import org.apache.commons.logging.LogFactory;
 
 import cn.wensiqun.asmsupport.clazz.NewMemberClass;
 import cn.wensiqun.asmsupport.clazz.SemiClass;
+import cn.wensiqun.asmsupport.creator.IFieldCreator;
+import cn.wensiqun.asmsupport.creator.IMethodCreator;
+import cn.wensiqun.asmsupport.creator.MethodCreatorInternal;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.exception.ClassException;
 import cn.wensiqun.asmsupport.utils.bridge2method.OverrideBridgeMethodCreator;
@@ -40,7 +43,7 @@ public abstract class AbstractClassCreatorContext extends AbstractClassContext {
         sc = newSemiClass(version, access, name, superCls, interfaces);
         cw = new ClassWriter(0);
         methodCreaters = new ArrayList<IMethodCreator>();
-        fieldCreators = new ArrayList<IGlobalVariableCreator>();
+        fieldCreators = new ArrayList<IFieldCreator>();
     }
 
     @Override
@@ -76,7 +79,7 @@ public abstract class AbstractClassCreatorContext extends AbstractClassContext {
         checkOrCreateDefaultConstructor();
         
         // create field
-        for (IMemberCreator ifc : fieldCreators) {
+        for (IFieldCreator ifc : fieldCreators) {
             ifc.create(this);
         }
 
@@ -89,7 +92,7 @@ public abstract class AbstractClassCreatorContext extends AbstractClassContext {
         
         checkUnImplementMethod();
 
-        for (IMemberCreator ifc : fieldCreators) {
+        for (IFieldCreator ifc : fieldCreators) {
             ifc.prepare();
         }
 
@@ -97,7 +100,7 @@ public abstract class AbstractClassCreatorContext extends AbstractClassContext {
             imc.prepare();
         }
         
-        for (IMemberCreator ifc : fieldCreators) {
+        for (IFieldCreator ifc : fieldCreators) {
             ifc.execute();
         }
 
@@ -269,8 +272,8 @@ public abstract class AbstractClassCreatorContext extends AbstractClassContext {
     			new ArrayList<AMethod>(sc.getMethods());
     	for(AMethod validateMethod : methods){
     		OverrideBridgeMethodCreator obmc = new OverrideBridgeMethodCreator(validateMethod);
-    		List<MethodCreator> creatorList = obmc.getList();
-    		for(MethodCreator mc : creatorList){
+    		List<MethodCreatorInternal> creatorList = obmc.getList();
+    		for(MethodCreatorInternal mc : creatorList){
     			mc.create(this);
     		}
     		this.methodCreaters.addAll(creatorList);

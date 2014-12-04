@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.MethodCreator;
+import cn.wensiqun.asmsupport.creator.MethodCreatorInternal;
 import cn.wensiqun.asmsupport.definition.method.AMethod;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.reflet.MethodUtils;
@@ -28,8 +28,8 @@ public class OverrideBridgeMethodCreator {
 		this.validateMethod = validateMethod;
 	}
 
-	public List<MethodCreator> getList(){
-		List<MethodCreator> creatorList = new ArrayList<MethodCreator>();
+	public List<MethodCreatorInternal> getList(){
+		List<MethodCreatorInternal> creatorList = new ArrayList<MethodCreatorInternal>();
 		List<java.lang.reflect.Method> parentMethods = foundParentMethod();
 		for(java.lang.reflect.Method method : parentMethods){
 			if(needBridge(validateMethod, method)){
@@ -89,7 +89,7 @@ public class OverrideBridgeMethodCreator {
      * @param method 新创建重写的方法
      * @param overriden 被重写的方法
      */
-    private MethodCreator createBridgeMethodCreator(AMethod method, java.lang.reflect.Method overriden){
+    private MethodCreatorInternal createBridgeMethodCreator(AMethod method, java.lang.reflect.Method overriden){
     	final String name = method.getMethodMeta().getName();
     	
     	AClass[] argClasses = method.getMethodMeta().getArgClasses();
@@ -103,7 +103,7 @@ public class OverrideBridgeMethodCreator {
     	//先消除abstract的flag，再加入bridge的flag
     	int access = (overriden.getModifiers() & ~Opcodes.ACC_ABSTRACT) + Opcodes.ACC_BRIDGE;
 
-    	return MethodCreator.methodCreatorForAdd(name, argClasses, argNames,
+    	return MethodCreatorInternal.methodCreatorForAdd(name, argClasses, argNames,
                 returnClass, exceptions, access, new CommonMethodBodyInternal(){
 
 					@Override

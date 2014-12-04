@@ -7,7 +7,7 @@ import cn.wensiqun.asmsupport.Parameterized;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
@@ -23,8 +23,9 @@ public class LocalVariableExample extends AbstractExample {
     
 	public static void main(String[] args){
 		ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.variable.LocalVariableExample", null, null);
-		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, 
+				"main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+				new StaticMethodBodyInternal(){
 
 					@Override
 					public void body(LocalVariable... argus) {

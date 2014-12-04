@@ -8,7 +8,7 @@ import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.MyList;
@@ -25,7 +25,7 @@ public class ConditionBlockGenerator extends AbstractExample
         final MyList testMethodNames = new MyList();
         ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.ConditionBlockGeneratorExample", null, null);
         
-        creator.createStaticMethod(testMethodNames.put("test"), new AClass[]{AClass.STRING_ACLASS}, new String[]{"str"}, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, testMethodNames.put("test"), new AClass[]{AClass.STRING_ACLASS}, new String[]{"str"}, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -358,8 +358,8 @@ public class ConditionBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-            Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+            new StaticMethodBodyInternal(){
                 @Override
                 public void body(LocalVariable... argus) {
                 	List<String> list = ConditionBlockGeneratorSample.allPossiable();
@@ -367,8 +367,6 @@ public class ConditionBlockGenerator extends AbstractExample
                 	{
                 		_invokeStatic(getMethodOwner(), "test", Value.value(str));
                 	}
-                	//invokeStatic(getMethodOwner(), "test", Value.value("A"));
-                	
                     _return();
                 }
         

@@ -2,7 +2,6 @@ package cn.wensiqun.asmsupportclient;
 
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
 import cn.wensiqun.asmsupportgeneric.method.IMethodBody;
 
 public abstract class MethodBody extends ProgramBlock<CommonMethodBodyInternal> implements IMethodBody {
@@ -17,7 +16,5 @@ public abstract class MethodBody extends ProgramBlock<CommonMethodBodyInternal> 
 	    	 
 	     };
 	}
-
-    
 
 }

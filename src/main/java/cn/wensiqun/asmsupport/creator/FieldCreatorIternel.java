@@ -10,7 +10,7 @@ import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
  * @author 温斯群(Joe Wen)
  *
  */
-public class GlobalVariableCreator implements IGlobalVariableCreator {
+public class FieldCreatorIternel implements IFieldCreator {
 
     private String name;
     private int modifiers;
@@ -25,7 +25,7 @@ public class GlobalVariableCreator implements IGlobalVariableCreator {
      * @param modifiers
      * @param fieldClass
      */
-    public GlobalVariableCreator(String name, int modifiers, AClass fieldClass) {
+    public FieldCreatorIternel(String name, int modifiers, AClass fieldClass) {
         super();
         this.name = name;
         this.modifiers = modifiers;

@@ -1,8 +1,10 @@
-package cn.wensiqun.asmsupport.creator;
+package cn.wensiqun.asmsupport.creator.clazz;
 
 import java.util.List;
 
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
+import cn.wensiqun.asmsupport.creator.IFieldCreator;
+import cn.wensiqun.asmsupport.creator.IMethodCreator;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.loader.ASMClassLoader;
 import cn.wensiqun.asmsupportasm.ClassVisitor;
@@ -14,7 +16,7 @@ public abstract class AbstractClassContext extends AClassFactory implements ICla
 
     protected List<IMethodCreator> methodCreaters;
 
-    protected List<IGlobalVariableCreator> fieldCreators;
+    protected List<IFieldCreator> fieldCreators;
 
     protected String classOutPutPath;
 	

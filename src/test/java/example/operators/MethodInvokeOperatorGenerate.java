@@ -5,7 +5,7 @@ import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyIntern
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
@@ -59,7 +59,7 @@ public class MethodInvokeOperatorGenerate extends AbstractExample {
          * }
          * 这里我们将看到如何生产调用父类方法
          */
-        creator.createMethod("toString", null, null, AClass.STRING_ACLASS, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+        creator.createMethod(Opcodes.ACC_PUBLIC, "toString", null, null, AClass.STRING_ACLASS, null, new CommonMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {
@@ -78,7 +78,7 @@ public class MethodInvokeOperatorGenerate extends AbstractExample {
          * }
          * 
          */
-        creator.createMethod("description", null, null, AClass.STRING_ACLASS, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+        creator.createMethod(Opcodes.ACC_PUBLIC, "description", null, null, AClass.STRING_ACLASS, null, new CommonMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {
@@ -98,8 +98,8 @@ public class MethodInvokeOperatorGenerate extends AbstractExample {
          *     return obj.description();
          * }
          */
-        creator.createStaticMethod("getDescription", new AClass[]{creator.getCurrentClass()}, new String[]{"obj"}, AClass.STRING_ACLASS, null,
-                Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "getDescription", new AClass[]{creator.getCurrentClass()}, new String[]{"obj"}, AClass.STRING_ACLASS, null,
+                new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {
@@ -118,8 +118,9 @@ public class MethodInvokeOperatorGenerate extends AbstractExample {
          *     System.out.println("Call static method : " + MyObject.getDescription(obj));
          * }
          */
-        creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-                Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC,  
+        		"main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+                new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {

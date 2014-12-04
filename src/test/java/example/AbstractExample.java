@@ -1,9 +1,8 @@
 package example;
 
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
-import cn.wensiqun.asmsupportclient.ClassCreator;
 import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
 
 public abstract class AbstractExample {
@@ -29,7 +28,7 @@ public abstract class AbstractExample {
 		
 		//如果创建的是非枚举类型或者非接口类型则调用main方法
 		if(callMain) {
-			if(creator instanceof ClassCreatorInternal || creator instanceof ClassCreator){
+			if(creator instanceof ClassCreatorInternal){
 				try {
 					cls.getMethod("main", String[].class).invoke(cls, new Object[]{null});
 				} catch (Exception e) {

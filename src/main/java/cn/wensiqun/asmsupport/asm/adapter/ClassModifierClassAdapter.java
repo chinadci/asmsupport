@@ -9,8 +9,8 @@ import java.util.Map;
 import org.apache.commons.collections.CollectionUtils;
 
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
 import cn.wensiqun.asmsupport.creator.IMethodCreator;
+import cn.wensiqun.asmsupport.creator.clazz.ClassModifierInternal;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupport.utils.asm.ClassAdapter;
 import cn.wensiqun.asmsupport.utils.asm.MethodAdapter;

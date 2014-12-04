@@ -4,7 +4,7 @@ package example.operators;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
@@ -26,7 +26,7 @@ public class ReturnOperatorGenerate extends AbstractExample {
 		/* 
 		 * 有返回类型的方法
 		 */
-		creator.createStaticMethod("commonMethod", null, null, AClass.STRING_ACLASS, null, Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC, "commonMethod", null, null, AClass.STRING_ACLASS, null, new StaticMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -37,8 +37,9 @@ public class ReturnOperatorGenerate extends AbstractExample {
 		/* 
 		 * 无返回类型的方法
 		 */
-		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, 
+				"main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+				new StaticMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {

@@ -12,7 +12,6 @@ import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.operators.array.ArrayValue;
 import cn.wensiqun.asmsupport.operators.method.MethodInvoker;
 import cn.wensiqun.asmsupport.utils.reflet.ModifierUtils;
-import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
 import cn.wensiqun.asmsupportgeneric.method.IEnumStaticBlockBody;
 
 /**

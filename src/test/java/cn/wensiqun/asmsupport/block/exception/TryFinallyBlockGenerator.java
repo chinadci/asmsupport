@@ -7,7 +7,7 @@ import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.MyList;
@@ -24,7 +24,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
         final MyList testMethodNames = new MyList();
         ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryFinallyBlockGeneratorExample", null, null);
         
-        creator.createStaticMethod(testMethodNames.put("tryFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryFinally"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -50,7 +50,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             }
         });
 
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -97,7 +97,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("tryFinally_TryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryFinally_TryError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -130,7 +130,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerTryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_InnerTryError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -176,7 +176,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerFinallyError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_InnerFinallyError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -222,7 +222,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterTryError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_OutterTryError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -268,7 +268,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterFinallyError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_OutterFinallyError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -314,7 +314,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerBothError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_InnerBothError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -361,7 +361,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_OutterBothError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_OutterBothError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -408,7 +408,7 @@ public class TryFinallyBlockGenerator extends AbstractExample
             
         });
         
-        creator.createStaticMethod(testMethodNames.put("nestedTryFinally_InnerBothOuterFinallyError"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("nestedTryFinally_InnerBothOuterFinallyError"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -457,8 +457,8 @@ public class TryFinallyBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-            Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+             new StaticMethodBodyInternal(){
                 @Override
                 public void body(LocalVariable... argus) {
                     for(String name : testMethodNames)

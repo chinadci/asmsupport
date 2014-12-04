@@ -3,7 +3,7 @@ package cn.wensiqun.asmsupport.loader;
 import java.io.InputStream;
 
 import cn.wensiqun.asmsupport.asm.adapter.ClassModifierClassAdapter;
-import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassModifierInternal;
 import cn.wensiqun.asmsupport.exception.ASMSupportException;
 import cn.wensiqun.asmsupportasm.ClassReader;
 import cn.wensiqun.asmsupportasm.ClassVisitor;

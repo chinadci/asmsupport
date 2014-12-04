@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
@@ -20,11 +20,11 @@ public class TestSerializableWithASMSupport {
     	ClassCreatorInternal creator = 
 				new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.Test31533", null, new Class<?>[]{Serializable.class});
         
-    	creator.createGlobalVariable("name", Opcodes.ACC_PRIVATE, AClass.STRING_ACLASS);
+    	creator.createField("name", Opcodes.ACC_PRIVATE, AClass.STRING_ACLASS);
 		
-    	creator.createMethod("setName", 
+    	creator.createMethod(Opcodes.ACC_PUBLIC, "setName", 
     			new AClass[]{AClass.STRING_ACLASS}, new String[]{"name"}, 
-    			null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+    			null, null, new CommonMethodBodyInternal(){
 
 					@Override
 					public void body(LocalVariable... argus) {
@@ -35,9 +35,9 @@ public class TestSerializableWithASMSupport {
     	});
     	
 
-    	creator.createMethod("getName", 
+    	creator.createMethod( Opcodes.ACC_PUBLIC, "getName", 
     			null, null, 
-    			AClass.STRING_ACLASS, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+    			AClass.STRING_ACLASS, null,new CommonMethodBodyInternal(){
 
 					@Override
 					public void body(LocalVariable... argus) {
@@ -47,9 +47,9 @@ public class TestSerializableWithASMSupport {
     	});
     	
 
-    	creator.createMethod("toString", 
+    	creator.createMethod(Opcodes.ACC_PUBLIC, "toString", 
     			null, null, 
-    			AClass.STRING_ACLASS, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+    			AClass.STRING_ACLASS, null, new CommonMethodBodyInternal(){
 
 					@Override
 					public void body(LocalVariable... argus) {

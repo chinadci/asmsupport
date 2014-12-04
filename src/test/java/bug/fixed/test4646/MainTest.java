@@ -12,7 +12,7 @@ import bug.fixed.test4646.parent.AbstractClass;
 import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
 
@@ -34,9 +34,9 @@ public class MainTest {
         
 		final AClass childChild = AClassFactory.getProductClass(ChildChild.class);
 		
-		creator.createMethod("abstractClassAbstractMethod", 
+		creator.createMethod(Opcodes.ACC_PUBLIC, "abstractClassAbstractMethod", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+				null, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -45,9 +45,9 @@ public class MainTest {
 					
 		});
 		
-		creator.createMethod("interfaceMethod", 
+		creator.createMethod(Opcodes.ACC_PUBLIC, "interfaceMethod", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+				null, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -56,9 +56,9 @@ public class MainTest {
 					
 		});
 		
-		creator.createMethod("abstractClassMethod", 
+		creator.createMethod(Opcodes.ACC_PUBLIC, "abstractClassMethod", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+				null, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -67,9 +67,9 @@ public class MainTest {
 					
 		});
 		
-		creator.createMethod("interfaceReturnTypeIsChild", 
+		creator.createMethod(Opcodes.ACC_PUBLIC, "interfaceReturnTypeIsChild", 
 				null, null, AClassFactory.getProductClass(ChildChild.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+				null, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {

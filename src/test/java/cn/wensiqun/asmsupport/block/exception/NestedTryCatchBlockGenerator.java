@@ -6,7 +6,7 @@ import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.MyList;
@@ -25,8 +25,8 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
         ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.NestedTryCatchBlockGeneratorExample", null, null);
         
         
-        creator.createStaticMethod(testMethodNames.put("fullTryCatch1"), null, null, null, null,
-            Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, testMethodNames.put("fullTryCatch1"), null, null, null, null,
+            new StaticMethodBodyInternal(){
                 @Override
                 public void body(LocalVariable... argus) {
                     _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
@@ -71,8 +71,8 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("fullTryCatch2"), null, null, null, null,
-                Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, testMethodNames.put("fullTryCatch2"), null, null, null, null,
+                new StaticMethodBodyInternal(){
                     @Override
                     public void body(LocalVariable... argus) {
                         _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("Root"));
@@ -149,8 +149,8 @@ public class NestedTryCatchBlockGenerator extends AbstractExample
             
         
         
-        creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-            Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+            new StaticMethodBodyInternal(){
                 @Override
                 public void body(LocalVariable... argus) {
                     for(String name : testMethodNames)

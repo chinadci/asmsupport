@@ -1,11 +1,13 @@
 /**
  * 
  */
-package cn.wensiqun.asmsupport.creator;
+package cn.wensiqun.asmsupport.creator.clazz;
 
 
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.creator.FieldCreatorIternel;
+import cn.wensiqun.asmsupport.creator.MethodCreatorInternal;
 import cn.wensiqun.asmsupport.utils.ASConstant;
 import cn.wensiqun.asmsupportasm.Opcodes;
 
@@ -37,7 +39,7 @@ public class InterfaceCreatorInternal extends AbstractClassCreatorContext {
 			argNames[i] = "arg" + i;
 		}
         methodCreaters.add(
-        		MethodCreator.methodCreatorForAdd(name, argClasses, argNames,
+        		MethodCreatorInternal.methodCreatorForAdd(name, argClasses, argNames,
                 returnClass, exceptions, Opcodes.ACC_PUBLIC + Opcodes.ACC_ABSTRACT, null));
     }
 	
@@ -57,7 +59,7 @@ public class InterfaceCreatorInternal extends AbstractClassCreatorContext {
 	 * @param fieldClass
 	 */
     public void createGlobalVariable(String name, AClass fieldClass){
-    	GlobalVariableCreator fc = new GlobalVariableCreator(name, Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC + Opcodes.ACC_FINAL, fieldClass);
+    	FieldCreatorIternel fc = new FieldCreatorIternel(name, Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC + Opcodes.ACC_FINAL, fieldClass);
         fieldCreators.add(fc);
     }
 	
@@ -73,7 +75,7 @@ public class InterfaceCreatorInternal extends AbstractClassCreatorContext {
     public InterfaceCreatorInternal createStaticBlock(ClinitBodyInternal clinitb) {
     	checkStaticBlock();
     	existedStaticBlock = true;
-        methodCreaters.add(0,  MethodCreator.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
+        methodCreaters.add(0,  MethodCreatorInternal.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
                 Opcodes.ACC_STATIC, clinitb));
         return this;
     }

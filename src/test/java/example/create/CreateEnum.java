@@ -7,7 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 
 
 
-import cn.wensiqun.asmsupport.creator.EnumCreatorInternal;
+
+import cn.wensiqun.asmsupport.creator.clazz.EnumCreatorInternal;
 import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;
 

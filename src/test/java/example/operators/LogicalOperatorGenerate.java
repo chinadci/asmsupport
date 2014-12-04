@@ -4,7 +4,7 @@ package example.operators;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
@@ -67,7 +67,8 @@ public class LogicalOperatorGenerate extends AbstractExample {
 		/*
 		 * 生成一个main方法，方法内容和willGenerate内容相同
 		 */
-		creator.createStaticMethod("main", new AClass[] { AClassFactory.getProductClass(String[].class) }, new String[] { "args" }, null, null, Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal() {
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[] { AClassFactory.getProductClass(String[].class) }, 
+				new String[] { "args" }, null, null, new StaticMethodBodyInternal() {
 
 					@Override
 					public void body(LocalVariable... argus) {

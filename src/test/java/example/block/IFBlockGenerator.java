@@ -2,18 +2,16 @@ package example.block;
 
 import java.lang.reflect.InvocationTargetException;
 
+import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIFInternal;
+import cn.wensiqun.asmsupport.block.classes.control.condition.ElseInternal;
+import cn.wensiqun.asmsupport.block.classes.control.condition.IFInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
-import cn.wensiqun.asmsupportclient.ClassCreator;
-import cn.wensiqun.asmsupportclient.Else;
-import cn.wensiqun.asmsupportclient.ElseIF;
-import cn.wensiqun.asmsupportclient.IF;
-import cn.wensiqun.asmsupportclient.StaticMethodBody;
 import example.AbstractExample;
 
 /**
@@ -70,26 +68,30 @@ public class IFBlockGenerator extends AbstractExample{
 	 */
 	public static void main(String[] args) {
 		
-		ClassCreator creator = new ClassCreator(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.IFBlockGeneratorExample", null, null);
+		ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.IFBlockGeneratorExample", null, null);
 		
-		creator.createStaticMethod("ifelse", new AClass[]{AClass.STRING_ACLASS, AClass.INT_ACLASS}, new String[]{"str", "i"}, null, null, Opcodes.ACC_PUBLIC,
-		        new StaticMethodBody(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC, 
+				"ifelse", 
+				new AClass[]{AClass.STRING_ACLASS, AClass.INT_ACLASS}, 
+				new String[]{"str", "i"}, null, null,
+		        
+				new StaticMethodBodyInternal(){
 					@Override
 					public void body(LocalVariable... argus) {
 						final LocalVariable str = argus[0];
 						final LocalVariable i = argus[1];
 						
-						_if(new IF(_invoke(str, "equals", Value.value("A"))){
+						_if(new IFInternal(_invoke(str, "equals", Value.value("A"))){
 							@Override
 							public void body() {
-								_if(new IF(_equals(i, Value.value(0))){
+								_if(new IFInternal(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is 'A', i is 0"));
 									}
 									
-								})._else(new Else(){
+								})._else(new ElseInternal(){
 
 									@Override
 									public void body() {
@@ -98,18 +100,18 @@ public class IFBlockGenerator extends AbstractExample{
 									
 								});
 							}
-						})._elseif(new ElseIF(_invoke(str, "equals", Value.value("B"))){
+						})._elseif(new ElseIFInternal(_invoke(str, "equals", Value.value("B"))){
 
 							@Override
 							public void body() {
-								_if(new IF(_equals(i, Value.value(0))){
+								_if(new IFInternal(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is 'B', i is 0"));
 									}
 									
-								})._else(new Else(){
+								})._else(new ElseInternal(){
 
 									@Override
 									public void body() {
@@ -119,18 +121,18 @@ public class IFBlockGenerator extends AbstractExample{
 								});
 							}
 							
-						})._else(new Else(){
+						})._else(new ElseInternal(){
 
 							@Override
 							public void body() {
-								_if(new IF(_equals(i, Value.value(0))){
+								_if(new IFInternal(_equals(i, Value.value(0))){
 
 									@Override
 									public void body() {
 									    _invoke(systemOut, "println", Value.value("str is unknow, i is 0"));
 									}
 									
-								})._else(new Else(){
+								})._else(new ElseInternal(){
 
 									@Override
 									public void body() {
@@ -148,8 +150,8 @@ public class IFBlockGenerator extends AbstractExample{
 		);
 		
 		
-		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBody(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+				new StaticMethodBodyInternal(){
 					@Override
 					public void body(LocalVariable... argus) {
 						_invokeStatic(getMethodOwner(), "ifelse", Value.value("A"), Value.value(0));

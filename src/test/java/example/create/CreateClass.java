@@ -8,7 +8,7 @@ import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyIntern
 import cn.wensiqun.asmsupport.block.classes.method.init.InitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
@@ -77,7 +77,7 @@ public class CreateClass extends AbstractExample {
 		 * private static String staticGlobalVariable;
 		 *
 		 */
-		creator.createGlobalVariable("staticGlobalVariable", Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, AClass.STRING_ACLASS);
+		creator.createField("staticGlobalVariable", Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, AClass.STRING_ACLASS);
 		/*
 		 * 对应java代码：
 		 * static{
@@ -104,7 +104,7 @@ public class CreateClass extends AbstractExample {
 		 * public int globalVariable;
 		 * 
 		 */
-		creator.createGlobalVariable("globalVariable", Opcodes.ACC_PUBLIC, AClass.INT_ACLASS);
+		creator.createField("globalVariable", Opcodes.ACC_PUBLIC, AClass.INT_ACLASS);
 		
 		/* 
 		 * 创建一个构造方法。对于ClassCreator来说。如果没有创建任何构造方法，将会自动创建一个无参的默认构造函数
@@ -120,7 +120,7 @@ public class CreateClass extends AbstractExample {
 		 * 3.构造参数的方法体
 		 * 4.构造方法的修饰符
 		 */
-		creator.createConstructor(new AClass[]{AClassFactory.getProductClass(int.class)}, new String[]{"intVal"}, new InitBodyInternal(){
+		creator.createConstructor(Opcodes.ACC_PUBLIC, new AClass[]{AClassFactory.getProductClass(int.class)}, new String[]{"intVal"}, new InitBodyInternal(){
 
 			/*
 			 * 这个方法中的内容就是我们创建的构造方法里面需要执行的内容了，他有一个变元参数 argus。
@@ -149,7 +149,7 @@ public class CreateClass extends AbstractExample {
 				_return();
 			}
 			
-		}, Opcodes.ACC_PUBLIC);
+		});
 		
 		/*
 		 * 创建一个private的commonMethod方法。
@@ -162,7 +162,7 @@ public class CreateClass extends AbstractExample {
 		 * }
 		 * 
 		 */
-		creator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PRIVATE, new CommonMethodBodyInternal(){
+		creator.createMethod(Opcodes.ACC_PRIVATE, "commonMethod", null, null, null, null, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -182,8 +182,8 @@ public class CreateClass extends AbstractExample {
 		 *     new CreateClassExample(1024).commonMethod();
 		 * }
 		 */
-		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+				new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {

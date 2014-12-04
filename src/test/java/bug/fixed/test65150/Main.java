@@ -6,7 +6,7 @@ import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
@@ -18,7 +18,7 @@ public class Main extends AbstractFix {
 		ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.test65150.Test65150", 
 				ParentClass.class, null);
 		
-		creator.createGlobalVariable("DEFAULT_VALUE", Opcodes.ACC_STATIC, AClass.INT_ACLASS);
+		creator.createField("DEFAULT_VALUE", Opcodes.ACC_STATIC, AClass.INT_ACLASS);
 		
 		creator.createStaticBlock(new ClinitBodyInternal(){
 
@@ -34,10 +34,10 @@ public class Main extends AbstractFix {
 			
 		});
 		
-		creator.createStaticMethod("main", new AClass[]{
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC, "main", new AClass[]{
 				AClassFactory.getProductClass(String[].class)}, 
 				new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
+				new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {
@@ -64,10 +64,10 @@ public class Main extends AbstractFix {
 		creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "bug.fixed.test65150.Test65150_ALT", 
 				null, null);
 		
-		creator.createStaticMethod("main", new AClass[]{
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC, "main", new AClass[]{
 				AClassFactory.getProductClass(String[].class)}, 
 				new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
+				new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {

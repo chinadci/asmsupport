@@ -14,7 +14,7 @@ import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
  * @author 温斯群(Joe Wen)
  *
  */
-public class MethodCreator implements IMethodCreator {
+public class MethodCreatorInternal implements IMethodCreator {
 
 	private String name;
 	private AClass[] arguments;
@@ -31,21 +31,21 @@ public class MethodCreator implements IMethodCreator {
 		this.mtdCrtMode = mode;
 	}
 	
-	public static MethodCreator methodCreatorForModify(String name, AClass[] arguments, String[] argNames,
+	public static MethodCreatorInternal methodCreatorForModify(String name, AClass[] arguments, String[] argNames,
 			AClass returnClass, AClass[] exceptions, int access, AbstractMethodBody mb){
-		MethodCreator mc = new MethodCreator(name, arguments, argNames, returnClass, exceptions, access, mb);
+		MethodCreatorInternal mc = new MethodCreatorInternal(name, arguments, argNames, returnClass, exceptions, access, mb);
 		mc.setMethodCreateMode(ASConstant.METHOD_CREATE_MODE_MODIFY);
 		return mc;
 	}
 	
-	public static MethodCreator methodCreatorForAdd(String name, AClass[] arguments, String[] argNames,
+	public static MethodCreatorInternal methodCreatorForAdd(String name, AClass[] arguments, String[] argNames,
 			AClass returnClass, AClass[] exceptions, int access, AbstractMethodBody mb){
-		MethodCreator mc = new MethodCreator(name, arguments, argNames, returnClass, exceptions, access, mb);
+		MethodCreatorInternal mc = new MethodCreatorInternal(name, arguments, argNames, returnClass, exceptions, access, mb);
 		mc.setMethodCreateMode(ASConstant.METHOD_CREATE_MODE_ADD);
 		return mc;
 	}
 	
-	private MethodCreator(String name, AClass[] arguments, String[] argNames,
+	private MethodCreatorInternal(String name, AClass[] arguments, String[] argNames,
 			AClass returnClass, AClass[] exceptions, int access, AbstractMethodBody mb) {
 		super();
 		this.name = name;

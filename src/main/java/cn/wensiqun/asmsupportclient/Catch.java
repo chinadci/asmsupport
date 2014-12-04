@@ -3,7 +3,6 @@ package cn.wensiqun.asmsupportclient;
 import cn.wensiqun.asmsupport.block.classes.control.exception.CatchInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportgeneric.body.LocalVariableBody;
 import cn.wensiqun.asmsupportgeneric.excep.ICatch;
 
 public abstract class Catch extends ProgramBlock<CatchInternal> implements ICatch<Catch, Finally> {

@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.creator.InterfaceCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.InterfaceCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupportasm.Opcodes;
 import example.AbstractExample;

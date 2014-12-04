@@ -8,7 +8,7 @@ import cn.wensiqun.asmsupport.block.classes.method.common.CommonMethodBodyIntern
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupportasm.Opcodes;
 
@@ -18,8 +18,8 @@ public class MainTest {
 		ClassCreatorInternal creator = 
 				new ClassCreatorInternal(Opcodes.V1_6, Opcodes.ACC_PUBLIC , "test.Test2463", AbstractClass.class, null);
         
-		creator.createMethod("getMyObject", null, null, AClassFactory.getProductClass(MyObject.class),
-				null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+		creator.createMethod(Opcodes.ACC_PUBLIC, "getMyObject", null, null, AClassFactory.getProductClass(MyObject.class),
+				null, new CommonMethodBodyInternal(){
 					@Override
 					public void body(LocalVariable... argus) {
 		            	_return(_new(AClassFactory.getProductClass(MyObject.class)));
@@ -27,8 +27,9 @@ public class MainTest {
 			
 		});
 		
-		creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-                Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+		creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, 
+				"main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+                new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus) {

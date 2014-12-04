@@ -1,4 +1,4 @@
-package cn.wensiqun.asmsupport.creator;
+package cn.wensiqun.asmsupport.creator.clazz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,8 @@ import cn.wensiqun.asmsupport.block.classes.method.init.EnumInitBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.clazz.ArrayClass;
+import cn.wensiqun.asmsupport.creator.FieldCreatorIternel;
+import cn.wensiqun.asmsupport.creator.MethodCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -63,7 +65,7 @@ public class EnumCreatorInternal extends AbstractClassCreatorContext {
         if(!existEnumConstant){
             throw new ASMSupportException("first field must be an enum object of current enum type " + sc.getName());
         }
-        GlobalVariableCreator fc = new GlobalVariableCreator(name, modifiers,
+        FieldCreatorIternel fc = new FieldCreatorIternel(name, modifiers,
                 fieldClass);
         fieldCreators.add(fc);
         existField = !ModifierUtils.isEnum(modifiers);
@@ -101,7 +103,7 @@ public class EnumCreatorInternal extends AbstractClassCreatorContext {
     	if((access & Opcodes.ACC_STATIC) != 0){
     		access -= Opcodes.ACC_STATIC;
     	}
-        methodCreaters.add(MethodCreator.methodCreatorForAdd(name, argClasses, argNames,
+        methodCreaters.add(MethodCreatorInternal.methodCreatorForAdd(name, argClasses, argNames,
                 returnClass, exceptions, access, mb));
     }
     
@@ -122,7 +124,7 @@ public class EnumCreatorInternal extends AbstractClassCreatorContext {
     	if((access & Opcodes.ACC_STATIC) == 0){
     		access += Opcodes.ACC_STATIC;
     	}
-        methodCreaters.add(MethodCreator.methodCreatorForAdd(name, argClasses, argNames,
+        methodCreaters.add(MethodCreatorInternal.methodCreatorForAdd(name, argClasses, argNames,
                 returnClass, exceptions, access, mb));
     }
 
@@ -162,7 +164,7 @@ public class EnumCreatorInternal extends AbstractClassCreatorContext {
     	enumArgClasses[1] = AClass.INT_ACLASS;
     	System.arraycopy(argClasses, 0, enumArgClasses, 2, argClasses.length);
     	
-    	methodCreaters.add(MethodCreator.methodCreatorForAdd(ASConstant.INIT, enumArgClasses, enumArgNames,
+    	methodCreaters.add(MethodCreatorInternal.methodCreatorForAdd(ASConstant.INIT, enumArgClasses, enumArgNames,
                 null, null, Opcodes.ACC_PRIVATE, mb));
     	haveInitMethod = true;
     }
@@ -180,7 +182,7 @@ public class EnumCreatorInternal extends AbstractClassCreatorContext {
 	       
 	    }
 		existedStaticBlock = true;
-        methodCreaters.add(0, MethodCreator.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
+        methodCreaters.add(0, MethodCreatorInternal.methodCreatorForAdd(ASConstant.CLINIT, null, null, null, null,
                 Opcodes.ACC_STATIC, body));
     }
 

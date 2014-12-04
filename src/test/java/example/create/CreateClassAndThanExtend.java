@@ -9,8 +9,8 @@ import cn.wensiqun.asmsupport.block.classes.method.common.ModifiedMethodBodyInte
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
-import cn.wensiqun.asmsupport.creator.ClassModifierInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassModifierInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.GlobalVariable;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
@@ -26,7 +26,7 @@ public class CreateClassAndThanExtend extends AbstractExample {
 	public static void main(String[] args) {
 		ClassCreatorInternal superCreator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.create.CreateClassAndThanExtendExampleSuper", null, null);
 		
-		superCreator.createMethod("commonMethod", null, null, null, null, Opcodes.ACC_PUBLIC, new CommonMethodBodyInternal(){
+		superCreator.createMethod(Opcodes.ACC_PUBLIC, "commonMethod", null, null, null, null, new CommonMethodBodyInternal(){
 
 			@Override
 			public void body(LocalVariable... argus) {
@@ -117,8 +117,8 @@ public class CreateClassAndThanExtend extends AbstractExample {
 		});*/
 		
 
-		childCreator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-				Opcodes.ACC_PUBLIC, new StaticMethodBodyInternal(){
+		childCreator.createStaticMethod(Opcodes.ACC_PUBLIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+				new StaticMethodBodyInternal(){
 
 	        @Override
 			public void body(LocalVariable... argus) {

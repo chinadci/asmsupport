@@ -6,7 +6,6 @@ package cn.wensiqun.asmsupport.block.classes.method.common;
 import java.util.List;
 
 import cn.wensiqun.asmsupport.asm.adapter.VisitXInsnAdapter;
-import cn.wensiqun.asmsupport.block.interfaces.operator.KeywordVariableable;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.definition.method.meta.AMethodMeta;
 import cn.wensiqun.asmsupport.utils.ASConstant;

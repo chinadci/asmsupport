@@ -7,7 +7,7 @@ import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.MyList;
@@ -26,7 +26,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
         final MyList testMethodNames = new MyList();
         ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryCatchFinallyBlockGeneratorExample", null, null);
         
-        creator.createStaticMethod("runtimeException", null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "runtimeException", null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -35,7 +35,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod("exception", null, null, null, new AClass[]{AClass.EXCEPTION_ACLASS}, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "exception", null, null, null, new AClass[]{AClass.EXCEPTION_ACLASS},  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -44,7 +44,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchFinally_tryDirectException"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchFinally_tryDirectException"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -79,7 +79,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchFinally_runtimeInTryNoSuitableCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchFinally_runtimeInTryNoSuitableCatch"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -114,7 +114,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchFinally_nestedTryCatchInFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchFinally_nestedTryCatchInFinally"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -167,7 +167,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchFinally_tryMethodException"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchFinally_tryMethodException"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -202,7 +202,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchFinally_catchDirectException"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchFinally_catchDirectException"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -302,7 +302,7 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("complexTryCatchFinally"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("complexTryCatchFinally"), null, null, null, null,  new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -541,8 +541,8 @@ public class TryCatchFinallyBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-            Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+           new StaticMethodBodyInternal(){
                 @Override
                 public void body(LocalVariable... argus) {
                     for(String name : testMethodNames)

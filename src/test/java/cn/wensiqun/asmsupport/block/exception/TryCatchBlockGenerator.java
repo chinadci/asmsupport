@@ -6,7 +6,7 @@ import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
 import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.clazz.AClass;
 import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
 import cn.wensiqun.asmsupport.definition.value.Value;
 import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.utils.MyList;
@@ -24,8 +24,8 @@ public class TryCatchBlockGenerator extends AbstractExample
         final MyList testMethodNames = new MyList();
         ClassCreatorInternal creator = new ClassCreatorInternal(Opcodes.V1_5, Opcodes.ACC_PUBLIC , "generated.block.TryCatchBlockGeneratorExample", null, null);
         
-        creator.createStaticMethod("runtimeException", null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "runtimeException", null, null, null, null, new StaticMethodBodyInternal(){
+        	
             @Override
             public void body(LocalVariable... argus)
             {
@@ -33,7 +33,7 @@ public class TryCatchBlockGenerator extends AbstractExample
             }
         });
         
-        creator.createStaticMethod("exception", null, null, null, new AClass[]{AClass.EXCEPTION_ACLASS}, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "exception", null, null, null, new AClass[]{AClass.EXCEPTION_ACLASS}, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -43,7 +43,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_errorBeforePrintInTry"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_errorBeforePrintInTry"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -71,7 +71,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_errorAfterPrintInTry"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_errorAfterPrintInTry"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -99,7 +99,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_runtimeExceptionBeforePrintInCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_runtimeExceptionBeforePrintInCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -127,7 +127,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_runtimeExceptionAfterPrintInCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_runtimeExceptionAfterPrintInCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -155,7 +155,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_exceptionBeforePrintInTry_runtimeExceptionBeforePrintInCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -184,7 +184,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_exceptionBeforePrintInTry_runtimeExceptionAfterPrintInCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -213,7 +213,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });        
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_exceptionAfterPrintInTry_runtimeExceptionBeforePrintInCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -242,7 +242,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatch_exceptionAfterPrintInTry_runtimeExceptionAfterPrintInCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -271,7 +271,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_runtimeBeforePrintInTry"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_runtimeBeforePrintInTry"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -307,7 +307,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_runtimeAfterPrintInTry"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_runtimeAfterPrintInTry"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -343,7 +343,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -379,7 +379,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -415,7 +415,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -451,7 +451,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -487,7 +487,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_runtimeBeforePrintInExceptionCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_runtimeBeforePrintInExceptionCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -523,7 +523,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
         
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_runtimeAfterPrintInExceptionCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_runtimeAfterPrintInExceptionCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -559,44 +559,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
         
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
-            @Override
-            public void body(LocalVariable... argus)
-            {
-                _try(new TryInternal(){
-
-                    @Override
-                    public void body()
-                    {
-                        _invokeStatic(getMethodOwner(), "exception");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                    }
-                    
-                })._catch(new CatchInternal(runtime){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
-                    }
-                    
-                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
-                    }
-                    
-                });
-                _return();
-            }
-        });
-        
-
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -615,6 +578,43 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
+                    }
+                    
+                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
+                    }
+                    
+                });
+                _return();
+            }
+        });
+        
+
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch"), null, null, null, null, new StaticMethodBodyInternal(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                _try(new TryInternal(){
+
+                    @Override
+                    public void body()
+                    {
+                        _invokeStatic(getMethodOwner(), "exception");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                    }
+                    
+                })._catch(new CatchInternal(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
                         _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                         _invokeStatic(getMethodOwner(), "runtimeException");
                     }
@@ -633,7 +633,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -670,7 +670,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         });
 
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -706,7 +706,7 @@ public class TryCatchBlockGenerator extends AbstractExample
             }
         }); 
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -742,7 +742,7 @@ public class TryCatchBlockGenerator extends AbstractExample
             }
         }); 
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -778,7 +778,7 @@ public class TryCatchBlockGenerator extends AbstractExample
             }
         }); 
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -814,7 +814,7 @@ public class TryCatchBlockGenerator extends AbstractExample
             }
         }); 
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -833,82 +833,6 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
-                    }
-                    
-                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                    }
-                    
-                });
-                _return();
-            }
-        }); 
-        
-
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
-            @Override
-            public void body(LocalVariable... argus)
-            {
-                _try(new TryInternal(){
-
-                    @Override
-                    public void body()
-                    {
-                        _invokeStatic(getMethodOwner(), "exception");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                    }
-                    
-                })._catch(new CatchInternal(runtime){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
-                    }
-                    
-                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
-                    }
-                    
-                });
-                _return();
-            }
-        }); 
-        
-
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
-            @Override
-            public void body(LocalVariable... argus)
-            {
-                _try(new TryInternal(){
-
-                    @Override
-                    public void body()
-                    {
-                        _invokeStatic(getMethodOwner(), "exception");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                    }
-                    
-                })._catch(new CatchInternal(runtime){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(getMethodOwner(), "runtimeException");
                         _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
                     }
                     
@@ -927,7 +851,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         }); 
         
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -939,82 +863,6 @@ public class TryCatchBlockGenerator extends AbstractExample
                     {
                         _invokeStatic(getMethodOwner(), "exception");
                         _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                    }
-                    
-                })._catch(new CatchInternal(runtime){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                    }
-                    
-                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
-                    }
-                    
-                });
-                _return();
-            }
-        }); 
-        
-
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
-            @Override
-            public void body(LocalVariable... argus)
-            {
-                _try(new TryInternal(){
-
-                    @Override
-                    public void body()
-                    {
-                        _invokeStatic(getMethodOwner(), "exception");
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                    }
-                    
-                })._catch(new CatchInternal(runtime){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                    }
-                    
-                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                    }
-                    
-                });
-                _return();
-            }
-        }); 
-        
-
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
-            @Override
-            public void body(LocalVariable... argus)
-            {
-                _try(new TryInternal(){
-
-                    @Override
-                    public void body()
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                        _invokeStatic(getMethodOwner(), "exception");
                     }
                     
                 })._catch(new CatchInternal(runtime){
@@ -1041,7 +889,121 @@ public class TryCatchBlockGenerator extends AbstractExample
         }); 
         
 
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                _try(new TryInternal(){
+
+                    @Override
+                    public void body()
+                    {
+                        _invokeStatic(getMethodOwner(), "exception");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                    }
+                    
+                })._catch(new CatchInternal(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
+                    }
+                    
+                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                    }
+                    
+                });
+                _return();
+            }
+        }); 
+        
+
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                _try(new TryInternal(){
+
+                    @Override
+                    public void body()
+                    {
+                        _invokeStatic(getMethodOwner(), "exception");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                    }
+                    
+                })._catch(new CatchInternal(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                    }
+                    
+                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
+                    }
+                    
+                });
+                _return();
+            }
+        }); 
+        
+
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionBeforePrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                _try(new TryInternal(){
+
+                    @Override
+                    public void body()
+                    {
+                        _invokeStatic(getMethodOwner(), "exception");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                    }
+                    
+                })._catch(new CatchInternal(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                    }
+                    
+                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                    }
+                    
+                });
+                _return();
+            }
+        }); 
+        
+
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -1069,44 +1031,6 @@ public class TryCatchBlockGenerator extends AbstractExample
                     @Override
                     public void body(LocalVariable e)
                     {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                    }
-                    
-                });
-                _return();
-            }
-        }); 
-        
-
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
-
-            @Override
-            public void body(LocalVariable... argus)
-            {
-                _try(new TryInternal(){
-
-                    @Override
-                    public void body()
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
-                        _invokeStatic(getMethodOwner(), "exception");
-                    }
-                    
-                })._catch(new CatchInternal(runtime){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
-                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
-                        _invokeStatic(getMethodOwner(), "runtimeException");
-                    }
-                    
-                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
-
-                    @Override
-                    public void body(LocalVariable e)
-                    {
                         _invokeStatic(getMethodOwner(), "runtimeException");
                         _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
                     }
@@ -1117,9 +1041,7 @@ public class TryCatchBlockGenerator extends AbstractExample
         }); 
         
 
-        
-        
-        creator.createStaticMethod(testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, Opcodes.ACC_PRIVATE + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeBeforePrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
 
             @Override
             public void body(LocalVariable... argus)
@@ -1156,11 +1078,89 @@ public class TryCatchBlockGenerator extends AbstractExample
             }
         }); 
         
+
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeBeforePrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                _try(new TryInternal(){
+
+                    @Override
+                    public void body()
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                        _invokeStatic(getMethodOwner(), "exception");
+                    }
+                    
+                })._catch(new CatchInternal(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                    }
+                    
+                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
+                    }
+                    
+                });
+                _return();
+            }
+        }); 
+        
+
+        
+        
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, testMethodNames.put("tryCatchTwo_exceptionAfterPrintInTry_runtimeAfterPrintInExceptionCatch_runtimeAfterPrintInRuntimeCatch"), null, null, null, null, new StaticMethodBodyInternal(){
+
+            @Override
+            public void body(LocalVariable... argus)
+            {
+                _try(new TryInternal(){
+
+                    @Override
+                    public void body()
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    try"));
+                        _invokeStatic(getMethodOwner(), "exception");
+                    }
+                    
+                })._catch(new CatchInternal(runtime){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    runtime exception"));
+                    }
+                    
+                })._catch(new CatchInternal(AClass.EXCEPTION_ACLASS){
+
+                    @Override
+                    public void body(LocalVariable e)
+                    {
+                        _invokeStatic(TesterStatics.ATesterStatics, "actuallyPrintln", Value.value("    exception"));
+                        _invokeStatic(getMethodOwner(), "runtimeException");
+                    }
+                    
+                });
+                _return();
+            }
+        }); 
         
         
         
-        creator.createStaticMethod("main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
-            Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, new StaticMethodBodyInternal(){
+        
+        creator.createStaticMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", new AClass[]{AClassFactory.getProductClass(String[].class)}, new String[]{"args"}, null, null,
+             new StaticMethodBodyInternal(){
                 @Override
                 public void body(LocalVariable... argus) {
                     for(String name : testMethodNames)
