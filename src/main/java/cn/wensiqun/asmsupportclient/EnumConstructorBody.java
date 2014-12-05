@@ -1,9 +1,9 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.block.classes.method.init.EnumInitBodyInternal;
-import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportgeneric.body.LocalVariablesBody;
-import cn.wensiqun.asmsupportgeneric.method.IEnumContructorBody;
+import cn.wensiqun.asmsupport.core.block.classes.method.init.EnumInitBodyInternal;
+import cn.wensiqun.asmsupport.core.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupport.generic.body.LocalVariablesBody;
+import cn.wensiqun.asmsupport.generic.method.IEnumContructorBody;
 
 public abstract class EnumConstructorBody extends ProgramBlock<EnumInitBodyInternal> implements IEnumContructorBody {
 

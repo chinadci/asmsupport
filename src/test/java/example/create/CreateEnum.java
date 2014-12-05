@@ -8,8 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 
 
 
-import cn.wensiqun.asmsupport.creator.clazz.EnumCreatorInternal;
-import cn.wensiqun.asmsupportasm.Opcodes;
+
+
+import cn.wensiqun.asmsupport.core.creator.clazz.EnumCreatorInternal;
+import cn.wensiqun.asmsupport.org.objectweb.asm.Opcodes;
 import example.AbstractExample;
 
 public class CreateEnum extends AbstractExample {

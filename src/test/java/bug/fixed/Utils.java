@@ -2,8 +2,8 @@ package bug.fixed;
 
 import java.lang.reflect.InvocationTargetException;
 
-import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
-import cn.wensiqun.asmsupportgeneric.creator.IClassContext;
+import cn.wensiqun.asmsupport.core.creator.clazz.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.generic.creator.IClassContext;
 
 public class Utils {
 

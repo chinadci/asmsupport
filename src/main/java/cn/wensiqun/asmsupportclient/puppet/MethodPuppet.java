@@ -1,6 +1,6 @@
 package cn.wensiqun.asmsupportclient.puppet;
 
-import cn.wensiqun.asmsupport.clazz.AClass;
+import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupportclient.MethodBody;
 import cn.wensiqun.asmsupportclient.ProgramBlock;
 

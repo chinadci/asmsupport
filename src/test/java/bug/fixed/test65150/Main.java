@@ -2,14 +2,14 @@ package bug.fixed.test65150;
 
 import junit.framework.Assert;
 import bug.fixed.AbstractFix;
-import cn.wensiqun.asmsupport.block.classes.method.clinit.ClinitBodyInternal;
-import cn.wensiqun.asmsupport.block.classes.method.common.StaticMethodBodyInternal;
-import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.clazz.AClassFactory;
-import cn.wensiqun.asmsupport.creator.clazz.ClassCreatorInternal;
-import cn.wensiqun.asmsupport.definition.value.Value;
-import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportasm.Opcodes;
+import cn.wensiqun.asmsupport.core.block.classes.method.clinit.ClinitBodyInternal;
+import cn.wensiqun.asmsupport.core.block.classes.method.common.StaticMethodBodyInternal;
+import cn.wensiqun.asmsupport.core.clazz.AClass;
+import cn.wensiqun.asmsupport.core.clazz.AClassFactory;
+import cn.wensiqun.asmsupport.core.creator.clazz.ClassCreatorInternal;
+import cn.wensiqun.asmsupport.core.definition.value.Value;
+import cn.wensiqun.asmsupport.core.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupport.org.objectweb.asm.Opcodes;
 
 public class Main extends AbstractFix {
 

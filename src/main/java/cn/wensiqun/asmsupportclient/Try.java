@@ -1,8 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.block.classes.control.exception.TryInternal;
-import cn.wensiqun.asmsupportgeneric.body.CommonBody;
-import cn.wensiqun.asmsupportgeneric.excep.ITry;
+import cn.wensiqun.asmsupport.core.block.classes.control.exception.TryInternal;
+import cn.wensiqun.asmsupport.generic.body.CommonBody;
+import cn.wensiqun.asmsupport.generic.excep.ITry;
 
 public abstract class Try extends ProgramBlock<TryInternal> implements ITry<Catch, Finally> {
 

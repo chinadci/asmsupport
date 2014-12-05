@@ -1,8 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.block.classes.control.exception.FinallyInternal;
-import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupportgeneric.excep.IFinally;
+import cn.wensiqun.asmsupport.core.block.classes.control.exception.FinallyInternal;
+import cn.wensiqun.asmsupport.core.clazz.AClass;
+import cn.wensiqun.asmsupport.generic.excep.IFinally;
 
 public abstract class Finally extends ProgramBlock<FinallyInternal> implements IFinally {
 

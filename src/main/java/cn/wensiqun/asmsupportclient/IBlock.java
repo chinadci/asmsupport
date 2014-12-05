@@ -1,20 +1,20 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.interfaces.operator.ArithmeticOperator;
-import cn.wensiqun.asmsupport.block.interfaces.operator.ArrayOperator;
-import cn.wensiqun.asmsupport.block.interfaces.operator.Bitwise;
-import cn.wensiqun.asmsupport.block.interfaces.operator.CrementOperator;
-import cn.wensiqun.asmsupport.block.interfaces.operator.KeywordVariableable;
-import cn.wensiqun.asmsupport.block.interfaces.operator.LogicalOperator;
-import cn.wensiqun.asmsupport.block.interfaces.operator.MethodInvokeOperator;
-import cn.wensiqun.asmsupport.block.interfaces.operator.RelationalOperator;
-import cn.wensiqun.asmsupport.block.interfaces.operator.VariableOperator;
-import cn.wensiqun.asmsupport.clazz.AClass;
-import cn.wensiqun.asmsupport.operators.Return;
-import cn.wensiqun.asmsupport.operators.checkcast.CheckCast;
-import cn.wensiqun.asmsupport.operators.numerical.posinegative.Negative;
-import cn.wensiqun.asmsupport.operators.ternary.TernaryOperator;
+import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.block.interfaces.ArithmeticOperator;
+import cn.wensiqun.asmsupport.core.block.interfaces.ArrayOperator;
+import cn.wensiqun.asmsupport.core.block.interfaces.Bitwise;
+import cn.wensiqun.asmsupport.core.block.interfaces.CrementOperator;
+import cn.wensiqun.asmsupport.core.block.interfaces.KeywordVariableable;
+import cn.wensiqun.asmsupport.core.block.interfaces.LogicalOperator;
+import cn.wensiqun.asmsupport.core.block.interfaces.MethodInvokeOperator;
+import cn.wensiqun.asmsupport.core.block.interfaces.RelationalOperator;
+import cn.wensiqun.asmsupport.core.block.interfaces.VariableOperator;
+import cn.wensiqun.asmsupport.core.clazz.AClass;
+import cn.wensiqun.asmsupport.core.operator.Return;
+import cn.wensiqun.asmsupport.core.operator.checkcast.CheckCast;
+import cn.wensiqun.asmsupport.core.operator.numerical.posinegative.Negative;
+import cn.wensiqun.asmsupport.core.operator.numerical.ternary.TernaryOperator;
 
 
 /**

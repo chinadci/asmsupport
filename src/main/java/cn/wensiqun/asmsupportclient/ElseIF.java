@@ -1,8 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.control.condition.ElseIFInternal;
-import cn.wensiqun.asmsupportgeneric.branch.IElseIF;
+import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.block.classes.control.condition.ElseIFInternal;
+import cn.wensiqun.asmsupport.generic.branch.IElseIF;
 
 public abstract class ElseIF extends ProgramBlock<ElseIFInternal> implements IElseIF<ElseIF, Else> {
 	

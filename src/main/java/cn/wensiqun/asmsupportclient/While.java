@@ -1,8 +1,8 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.control.loop.WhileInternal;
-import cn.wensiqun.asmsupportgeneric.loop.IWhile;
+import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.block.classes.control.loop.WhileInternal;
+import cn.wensiqun.asmsupport.generic.loop.IWhile;
 
 public abstract class While extends ProgramBlock<WhileInternal> implements IWhile {
     

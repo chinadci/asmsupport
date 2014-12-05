@@ -1,9 +1,9 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.common.SynchronizedInternal;
-import cn.wensiqun.asmsupportgeneric.ISynchronized;
-import cn.wensiqun.asmsupportgeneric.body.ParameterizedBody;
+import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.block.classes.common.SynchronizedInternal;
+import cn.wensiqun.asmsupport.generic.ISynchronized;
+import cn.wensiqun.asmsupport.generic.body.ParameterizedBody;
 
 public abstract class Synchronized extends ProgramBlock<SynchronizedInternal> implements ISynchronized {
 

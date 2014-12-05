@@ -1,9 +1,9 @@
 package cn.wensiqun.asmsupportclient;
 
-import cn.wensiqun.asmsupport.Parameterized;
-import cn.wensiqun.asmsupport.block.classes.method.clinit.EnumClinitBodyInternal;
-import cn.wensiqun.asmsupport.definition.variable.LocalVariable;
-import cn.wensiqun.asmsupportgeneric.method.IEnumStaticBlockBody;
+import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.block.classes.method.clinit.EnumClinitBodyInternal;
+import cn.wensiqun.asmsupport.core.definition.variable.LocalVariable;
+import cn.wensiqun.asmsupport.generic.method.IEnumStaticBlockBody;
 
 public abstract class EnumStaticBlockBody extends ProgramBlock<EnumClinitBodyInternal> implements IEnumStaticBlockBody {
 
