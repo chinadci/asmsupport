@@ -14,7 +14,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.logical;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
@@ -32,12 +32,12 @@ public abstract class UnaryLogical extends AbstractLogical {
     
     private static final Log LOG = LogFactory.getLog(BinaryBitwise.class);
     
-    protected Parameterized factor;
+    protected InternalParameterized factor;
     
     protected Label trueLbl;
     protected Label falseLbl;
     
-    protected UnaryLogical(ProgramBlockInternal block, Parameterized factor) {
+    protected UnaryLogical(ProgramBlockInternal block, InternalParameterized factor) {
         super(block);
         this.factor = factor;
         falseLbl = new Label();

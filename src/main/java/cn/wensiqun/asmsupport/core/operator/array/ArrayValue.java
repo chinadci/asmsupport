@@ -19,7 +19,7 @@ package cn.wensiqun.asmsupport.core.operator.array;
 
 import java.lang.reflect.Array;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -34,7 +34,7 @@ import cn.wensiqun.asmsupport.core.utils.lang.ArrayUtils;
  * @author 温斯群(Joe Wen)
  *
  */
-public class ArrayValue extends AbstractOperator implements Parameterized  {
+public class ArrayValue extends AbstractOperator implements InternalParameterized  {
 
     private static final Log LOG = LogFactory.getLog(ArrayValue.class);
     
@@ -69,7 +69,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
         		return preArrayDoor == - 1 ? over + 1 : preArrayDoor;
         	}else{
         		try{
-                    process((Parameterized) object);
+                    process((InternalParameterized) object);
                 }catch(ClassCastException e){
                 	throw new IllegalArgumentException("exception occur when " + ArrayValue.this.toString(), e);
                 }
@@ -77,12 +77,12 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
         	}
         }
         
-        abstract void process(Parameterized para);
+        abstract void process(InternalParameterized para);
         
     }
     
     private ArrayClass arrayCls;
-    private Parameterized[] allocateDims;
+    private InternalParameterized[] allocateDims;
     //it's array by reflect to parse
     private Object values;
     
@@ -91,14 +91,14 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
     private void batchAsArgument(Object values){
         new EachValue(values){
             @Override
-            void process(Parameterized para) {
+            void process(InternalParameterized para) {
                 para.asArgument();    
             }
             
         }.process();
     }
     
-    protected ArrayValue(ProgramBlockInternal block, ArrayClass arrayCls, Parameterized... allocateDims) {
+    protected ArrayValue(ProgramBlockInternal block, ArrayClass arrayCls, InternalParameterized... allocateDims) {
         super(block);
         if(arrayCls.getDimension() < allocateDims.length){
             throw new IllegalArgumentException("dimension not enough: array type is " + arrayCls + " and allocate dims is " + ArrayUtils.toString(allocateDims));
@@ -123,7 +123,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
     		//check verify
     		int dim = new EachValue(values){
 				@Override
-				void process(Parameterized para) {
+				void process(InternalParameterized para) {
 				    //Nothing TO DO
 				}
     		}.process();
@@ -137,7 +137,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
     protected void verifyArgument() {
     	//当调用ArrayValue(ProgramBlock block, ArrayClass arrayCls, Parameterized... allocateDims)构造方法
     	if(allocateDims != null){
-            for(Parameterized dim : allocateDims){
+            for(InternalParameterized dim : allocateDims){
                 int order = AClassUtils.getPrimitiveAClass(dim.getParamterizedType()).getCastOrder();
                 if(order > AClass.INT_ACLASS.getCastOrder() ||
                    order <= AClass.BOOLEAN_ACLASS.getCastOrder()){
@@ -150,7 +150,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
     	final AClass rootComp = arrayCls.getRootComponentClass();
         new EachValue(values){
             @Override
-            void process(Parameterized para) {
+            void process(InternalParameterized para) {
 				if(!AClassUtils.checkAssignable(para.getParamterizedType(), rootComp)) {
 					throw new IllegalArgumentException("Type mismatch: cannot convert from " + para.getParamterizedType() + " to " + rootComp + "");
 				}
@@ -184,9 +184,9 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
                 }
             }
         }else{
-            ((Parameterized) arrayOrElement).loadToStack(block);
+            ((InternalParameterized) arrayOrElement).loadToStack(block);
             //auto cast each value for array
-            autoCast(((Parameterized)arrayOrElement).getParamterizedType(), acls, false);
+            autoCast(((InternalParameterized)arrayOrElement).getParamterizedType(), acls, false);
         }
     }
 
@@ -212,7 +212,7 @@ public class ArrayValue extends AbstractOperator implements Parameterized  {
                 ih.unbox(allocateDims[0].getParamterizedType().getType());
                 ih.newArray(arrayCls.getNextDimType().getType());
             }else{
-                for(Parameterized allocate : allocateDims){
+                for(InternalParameterized allocate : allocateDims){
                     allocate.loadToStack(block);
                     ih.unbox(allocate.getParamterizedType().getType());
                 }

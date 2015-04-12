@@ -15,7 +15,7 @@
 package cn.wensiqun.asmsupport.core.block.control.condition;
 
 import cn.wensiqun.asmsupport.core.Executable;
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
@@ -25,9 +25,9 @@ import cn.wensiqun.asmsupport.standard.branch.IElseIF;
 
 public abstract class ElseIFInternal extends ConditionBranchBlock implements IElseIF<ElseIFInternal, ElseInternal> {
 
-    private Parameterized condition;
+    private InternalParameterized condition;
 
-    public ElseIFInternal(Parameterized condition) {
+    public ElseIFInternal(InternalParameterized condition) {
         this.condition = condition;
         condition.asArgument();
     }

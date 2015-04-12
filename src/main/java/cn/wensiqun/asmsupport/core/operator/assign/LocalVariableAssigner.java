@@ -14,7 +14,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.assign;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.core.log.Log;
@@ -32,7 +32,7 @@ public class LocalVariableAssigner extends Assigner {
     
     private LocalVariable var;
     
-    protected LocalVariableAssigner(ProgramBlockInternal block, final LocalVariable var, Parameterized value) {
+    protected LocalVariableAssigner(ProgramBlockInternal block, final LocalVariable var, InternalParameterized value) {
         super(block, var, value);
         this.var = var;
     }

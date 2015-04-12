@@ -17,7 +17,7 @@ package cn.wensiqun.asmsupport.core.operator.method;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -43,7 +43,7 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
  *
  */
 public abstract class MethodInvoker extends AbstractOperator implements
-    Parameterized {
+    InternalParameterized {
 
     protected static String METHOD_NAME_INIT = "<init>";
     
@@ -51,7 +51,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
 
     //protected AClass[] argumentClasses;
     protected String name;
-    protected Parameterized[] arguments;
+    protected InternalParameterized[] arguments;
     protected AClass methodOwner;
     
     /** 调用完方法是否需要保存返回值栈 如果是构造方法则是否需要保存新构造的方法的一个引用 */
@@ -69,7 +69,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
      */
     protected MethodInvoker(ProgramBlockInternal block, AClass owner, 
             String name, 
-            Parameterized[] arguments) {
+            InternalParameterized[] arguments) {
         super(block);
         this.methodOwner = owner;
         this.name = name;
@@ -81,7 +81,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
      */
     protected void argumentsToStack() {
     	for(int i=0; i<arguments.length; i++){
-            Parameterized argu = arguments[i];
+            InternalParameterized argu = arguments[i];
             if(LOG.isPrintEnabled()) {
                 LOG.print("push argument to stack");
             }
@@ -141,16 +141,16 @@ public abstract class MethodInvoker extends AbstractOperator implements
         	   !arguments[ArrayUtils.getLength(arguments) - 1].getParamterizedType().isArray()){
         		
         		int fixedArgsLen = mtdEntity.getArgClasses().length - 1;//argumentClasses.length - 1;
-                Parameterized[] fixedArgs = new Parameterized[fixedArgsLen];
+                InternalParameterized[] fixedArgs = new InternalParameterized[fixedArgsLen];
                 System.arraycopy(arguments, 0, fixedArgs, 0, fixedArgsLen);
 
                 ArrayValue variableVarifyArauments;
                 ArrayClass arrayClass = (ArrayClass)mtdEntity.getArgClasses()[mtdEntity.getArgClasses().length - 1];
                 variableVarifyArauments = block.newarray(arrayClass, 
-                       (Parameterized[]) ArrayUtils.subarray(arguments, fixedArgsLen , arguments.length));
+                       (InternalParameterized[]) ArrayUtils.subarray(arguments, fixedArgsLen , arguments.length));
                 variableVarifyArauments.asArgument();
                 
-                arguments = (Parameterized[]) ArrayUtils.add(fixedArgs, variableVarifyArauments);
+                arguments = (InternalParameterized[]) ArrayUtils.add(fixedArgs, variableVarifyArauments);
         	}
         }
 
@@ -162,7 +162,7 @@ public abstract class MethodInvoker extends AbstractOperator implements
 
     @Override
     protected void checkAsArgument() {
-        for (Parameterized argu : arguments) {
+        for (InternalParameterized argu : arguments) {
             // 将argu从Block的执行队列中删除
             // 因为此时由方法调用负责调用value
             argu.asArgument();

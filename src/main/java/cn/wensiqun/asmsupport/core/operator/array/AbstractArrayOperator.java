@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.array;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -37,11 +37,11 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
 
     private static final Log LOG = LogFactory.getLog(AbstractArrayOperator.class);
     
-    protected Parameterized arrayReference;
+    protected InternalParameterized arrayReference;
     
-    protected Parameterized[] parDims;
+    protected InternalParameterized[] parDims;
     
-    protected AbstractArrayOperator(ProgramBlockInternal block, Parameterized arrayVar) {
+    protected AbstractArrayOperator(ProgramBlockInternal block, InternalParameterized arrayVar) {
         super(block);
         this.arrayReference = arrayVar;
     }
@@ -50,7 +50,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
 	protected void checkAsArgument() {
         arrayReference.asArgument();
         if(parDims != null){
-            for(Parameterized par : parDims){
+            for(InternalParameterized par : parDims){
                 par.asArgument();
             }
         }
@@ -63,7 +63,7 @@ public abstract class AbstractArrayOperator extends AbstractOperator {
         }
 		
 		if(ArrayUtils.isNotEmpty(parDims)){
-			for(Parameterized par : parDims){
+			for(InternalParameterized par : parDims){
 				if(!AClassUtils.checkAssignable(par.getParamterizedType(), AClass.INT_ACLASS)) {
 					throw new IllegalArgumentException("Type mismatch: cannot convert from " + par.getParamterizedType() + " to " + AClass.INT_ACLASS + "");
 				}

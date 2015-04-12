@@ -14,12 +14,12 @@
  */
 package cn.wensiqun.asmsupport.standard.action;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.operator.Return;
 import cn.wensiqun.asmsupport.core.operator.checkcast.CheckCast;
 import cn.wensiqun.asmsupport.core.operator.numerical.posinegative.Negative;
 import cn.wensiqun.asmsupport.core.operator.numerical.ternary.TernaryOperator;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 
 /**
  * 
@@ -28,9 +28,22 @@ import cn.wensiqun.asmsupport.core.operator.numerical.ternary.TernaryOperator;
  * @author wensiqun(at)163.com
  *
  */
-public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> extends ValueAction, AClassDefAction,
-        KeywordAction, VariableAction, MethodInvokeAction, ArrayAction, ArithmeticAction, BitwiseAction, CrementAction,
-        RelationalAction, LogicalAction, CreateBlockAction<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> {
+public interface ActionSet<
+_P extends Parameterized,//Basic Parameterized
+_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized //Basic Block
+> extends 
+ValueAction, 
+AClassDefAction,
+KeywordAction, 
+VariableAction<_P>, 
+MethodInvokeAction<_P>, 
+ArrayAction<_P>, 
+ArithmeticAction<_P>, 
+BitwiseAction<_P>, 
+CrementAction<_P>,
+RelationalAction<_P>, 
+LogicalAction<_P>, 
+CreateBlockAction<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> {
 
     /**
      * check cast object type, such as following code:
@@ -50,7 +63,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      *            the type need to check cast.
      * @return {@link CheckCast}
      */
-    public CheckCast checkcast(Parameterized obj, AClass to);
+    public CheckCast checkcast(_P obj, AClass to);
 
     /**
      * check cast object type, such as following code:
@@ -70,7 +83,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      *            the type need to check cast.
      * @return
      */
-    public CheckCast checkcast(Parameterized cc, Class<?> to);
+    public CheckCast checkcast(_P cc, Class<?> to);
 
     /**
      * the negative operator. following is example.
@@ -88,7 +101,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      *            must a number.
      * @return {@link Negative}
      */
-    public Negative neg(Parameterized factor);
+    public Negative neg(_P factor);
 
     /**
      * The ternary operator in java.
@@ -111,7 +124,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      * @param exp3
      * @return {@link TernaryOperator}
      */
-    public TernaryOperator ternary(Parameterized exp1, Parameterized exp2, Parameterized exp3);
+    public TernaryOperator ternary(_P exp1, _P exp2, _P exp3);
 
     /**
      * 
@@ -137,7 +150,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      * @param pars
      * @return
      */
-    public Parameterized stradd(Parameterized par1, Parameterized... pars);
+    public Parameterized stradd(_P par1, _P... pars);
 
     /**
      * Generate the instanceof instruction.
@@ -156,7 +169,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      * @param type
      * @return {@link Parameterized}a boolean type Parameterized
      */
-    public Parameterized instanceof_(Parameterized obj, AClass type);
+    public Parameterized instanceof_(_P obj, AClass type);
 
     /**
      * Generate the instanceof instruction, the method is same as
@@ -167,7 +180,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      * @param type
      * @return
      */
-    public Parameterized instanceof_(Parameterized obj, Class<?> type);
+    public Parameterized instanceof_(_P obj, Class<?> type);
 
     /**
      * Corresponding to break statement in loop.
@@ -196,7 +209,7 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      * 
      * @param exception
      */
-    public void throw_(Parameterized exception);
+    public void throw_(_P exception);
 
     /**
      * Corresponding to return statement with no return value.
@@ -213,5 +226,5 @@ public interface ActionSet<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized>
      * @return {{@link Return}
      * 
      */
-    public Return return_(Parameterized parame);
+    public Return return_(_P parame);
 }

@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.numerical.arithmetic;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.definition.value.Value;
@@ -29,18 +29,18 @@ import cn.wensiqun.asmsupport.core.utils.AClassUtils;
  *
  */
 public abstract class AbstractArithmetic extends AbstractNumerical implements
-        Parameterized {
+        InternalParameterized {
 
     /**算数因子1 */
-    protected Parameterized factor1;
+    protected InternalParameterized factor1;
 
     /**算数因子2 */
-    protected Parameterized factor2;
+    protected InternalParameterized factor2;
     
     /**该操作是否被其他操作引用 */
     private boolean byOtherUsed;
 
-    protected AbstractArithmetic(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
+    protected AbstractArithmetic(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block);
         this.factor1 = factor1;
         this.factor2 = factor2;

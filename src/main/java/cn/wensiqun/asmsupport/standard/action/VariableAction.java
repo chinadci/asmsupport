@@ -14,19 +14,19 @@
  */
 package cn.wensiqun.asmsupport.standard.action;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
-import cn.wensiqun.asmsupport.core.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.core.clazz.AClassFactory;
+import cn.wensiqun.asmsupport.core.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.core.definition.variable.ExplicitVariable;
 import cn.wensiqun.asmsupport.core.definition.variable.LocalVariable;
 import cn.wensiqun.asmsupport.core.operator.assign.Assigner;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 
 /**
  * 变量操作
  *
  */
-public interface VariableAction {
+public interface VariableAction<_P extends Parameterized> {
 
     /**
      * create a local variable, this method equivalent to following code :
@@ -38,7 +38,7 @@ public interface VariableAction {
      * @param para
      * @return
      */
-    public LocalVariable var(final String name, final Class<?> type, final Parameterized para);
+    public LocalVariable var(final String name, final Class<?> type, final _P para);
 
     /**
      * create a local variable, this method equivalent to following code :
@@ -49,7 +49,7 @@ public interface VariableAction {
      * @param para
      * @return
      */
-    public LocalVariable var(final Class<?> type, final Parameterized para);
+    public LocalVariable var(final Class<?> type, final _P para);
     
 
 
@@ -63,7 +63,7 @@ public interface VariableAction {
      * @param para
      * @return
      */
-    public LocalVariable var(final String name, final AClass type, final Parameterized para);
+    public LocalVariable var(final String name, final AClass type, final _P para);
 
     /**
      * create a local variable, this method equivalent to following code :
@@ -74,7 +74,7 @@ public interface VariableAction {
      * @param para
      * @return
      */
-    public LocalVariable var(final AClass type, final Parameterized para);
+    public LocalVariable var(final AClass type, final _P para);
     
     /**
 	 * create a local variable
@@ -85,7 +85,7 @@ public interface VariableAction {
 	 * @param para this variable initial value, set to null if you want the initial is null.
 	 * @return the LocalVariable
 	 */
-	public LocalVariable var(final String name, final AClass aClass, boolean anonymous, final Parameterized para);
+	public LocalVariable var(final String name, final AClass aClass, boolean anonymous, final _P para);
 	
 	/**
 	 * 
@@ -108,7 +108,7 @@ public interface VariableAction {
 	 * @see #arrayvar2dim(String, Class, Parameterized...)
 	 */
 	@Deprecated
-	public LocalVariable arrayvar2dim(final String name, final ArrayClass type, boolean anonymous, Parameterized... dim);
+	public LocalVariable arrayvar2dim(final String name, final ArrayClass type, boolean anonymous, _P... dim);
 
 	/**
 	 * Create an array variable with specify dimension.
@@ -118,7 +118,7 @@ public interface VariableAction {
 	 * @param dims the dimension.
 	 * @return
 	 */
-	public LocalVariable arrayvar2dim(final String name, final ArrayClass type, Parameterized... dims);
+	public LocalVariable arrayvar2dim(final String name, final ArrayClass type, _P... dims);
 
 	/**
 	 * Create an array variable with specify dimension.
@@ -128,7 +128,7 @@ public interface VariableAction {
 	 * @param dims
 	 * @return
 	 */
-	public LocalVariable arrayvar2dim(final String name, Class<?> type, Parameterized... dims);
+	public LocalVariable arrayvar2dim(final String name, Class<?> type, _P... dims);
 	
 	/**
 	 * Create an anonymous array variable with specify dimension.
@@ -137,7 +137,7 @@ public interface VariableAction {
 	 * @param dims the dimension.
 	 * @return
 	 */
-	public LocalVariable arrayvar2dim(ArrayClass type, Parameterized... dims);
+	public LocalVariable arrayvar2dim(ArrayClass type, _P... dims);
 	
 	/**
 	 * Create an anonymous array variable with specify dimension.
@@ -146,7 +146,7 @@ public interface VariableAction {
 	 * @param dims the dimension.
 	 * @return
 	 */
-	public LocalVariable arrayvar2dim(Class<?> arrayType, Parameterized... dims);
+	public LocalVariable arrayvar2dim(Class<?> arrayType, _P... dims);
 
 	/**
 	 * Create an array variable with specify value reference.
@@ -158,7 +158,7 @@ public interface VariableAction {
 	 * @return
 	 */
 	@Deprecated
-	public LocalVariable arrayvar(final String name, final ArrayClass type, boolean anonymous, final Parameterized value);
+	public LocalVariable arrayvar(final String name, final ArrayClass type, boolean anonymous, final _P value);
 	
 	/**
 	 * Create an array variable with specify value reference.
@@ -168,7 +168,7 @@ public interface VariableAction {
 	 * @param value
 	 * @return
 	 */
-	public LocalVariable arrayvar(String name, ArrayClass type, Parameterized value);
+	public LocalVariable arrayvar(String name, ArrayClass type, _P value);
 	
 	/**
 	 * Create an array variable with specify value reference.
@@ -178,7 +178,7 @@ public interface VariableAction {
 	 * @param value
 	 * @return
 	 */
-	public LocalVariable arrayvar(String name, Class<?> type, Parameterized value);
+	public LocalVariable arrayvar(String name, Class<?> type, _P value);
 
 	
 	/**
@@ -189,7 +189,7 @@ public interface VariableAction {
 	 * @param value
 	 * @return
 	 */
-	public LocalVariable arrayvar(ArrayClass type, Parameterized value);
+	public LocalVariable arrayvar(ArrayClass type, _P value);
 	
 	/**
 	 * Create an anonymous array variable with specify value reference.
@@ -199,7 +199,7 @@ public interface VariableAction {
 	 * @param value
 	 * @return
 	 */
-	public LocalVariable arrayvar(Class<?> type, Parameterized value);
+	public LocalVariable arrayvar(Class<?> type, _P value);
 	
 	/**
 	 * 
@@ -269,5 +269,5 @@ public interface VariableAction {
 	 * @param val
 	 * @return
 	 */
-	public Assigner assign(ExplicitVariable variable, Parameterized val);
+	public Assigner assign(ExplicitVariable variable, _P val);
 }

@@ -14,12 +14,12 @@
  */
 package cn.wensiqun.asmsupport.standard.action;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
 import cn.wensiqun.asmsupport.core.clazz.ArrayClass;
 import cn.wensiqun.asmsupport.core.operator.array.ArrayLength;
 import cn.wensiqun.asmsupport.core.operator.array.ArrayLoader;
 import cn.wensiqun.asmsupport.core.operator.array.ArrayStorer;
 import cn.wensiqun.asmsupport.core.operator.array.ArrayValue;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 
 
 /**
@@ -27,9 +27,8 @@ import cn.wensiqun.asmsupport.core.operator.array.ArrayValue;
  *
  * @author wensiqun(at)163.com
  */
-public interface ArrayAction {
+public interface ArrayAction<_P extends Parameterized> {
     
-
 	/**
      * <p>
      * 根据传入的数组类型以及每一维度的长度创建一个空数组，对应下面的红色java代码
@@ -55,7 +54,7 @@ public interface ArrayAction {
 	 * @see #newarray(ArrayClass, Parameterized[][][])
 	 * @see #newarray(ArrayClass, Parameterized[][][][])
 	 */
-	public ArrayValue makeArray(final ArrayClass aClass, final Parameterized... allocateDims);
+	public ArrayValue makeArray(final ArrayClass aClass, final _P... allocateDims);
 	
 	/**
 	 * 
@@ -63,7 +62,7 @@ public interface ArrayAction {
 	 * @param dimensions
 	 * @return
 	 */
-	public ArrayValue makeArray(Class<?> arraytype, final Parameterized... dimensions);
+	public ArrayValue makeArray(Class<?> arraytype, final _P... dimensions);
 
 	/**
 	 * 
@@ -106,126 +105,6 @@ public interface ArrayAction {
 	 * @return
 	 */
 	public ArrayValue newarray(Class<?> type, Object arrayObject);
-	
-	
-	/**
-	 * <p>
-	 * 这个方法其实底层就是调用{@link #newarray(ArrayClass, Object)}实现的，只是这里显式的说明了我创建的是一个一维数组，主要是为了便于开发，
-	 * 使用方法对应于下面红色代码部分。
-	 * </p>
-	 * 
-	 * <p style="border:1px solid;width:550px;padding:10px;">
-     * <b style="color:#FF3300">new String[]{"00", "01"}</b>;
-     * </p>
-     * 
-     * 上面红色部分对应的asmsupport代码
-     * <pre style="border:1px solid;width:550px;padding:10px;">
-     * Parameterized[] values = new Parameterized[]{
-     *     Value.value("00"), Value.value("01")
-     * };
-     * newArrayWithValue(AClassFactory.getArrayClass(String[].class), values);
-     * </pre>
-	 * 
-	 * @param aClass 数组类型
-	 * @param values 创建一维数组的初始值
-	 * @return {@link ArrayValue}
-	 * @see ActionSet#arrayvar(String, ArrayClass, Parameterized, Parameterized...)
-	 * @see #makeArray(ArrayClass, Parameterized...)
-	 * @see #newarray(ArrayClass, Object)
-	 * @see #newarray(ArrayClass, Parameterized[][])
-	 * @see #newarray(ArrayClass, Parameterized[][][])
-	 * @see #newarray(ArrayClass, Parameterized[][][][])
-	 */
-	public ArrayValue newarray(final ArrayClass aClass, Parameterized[] values);
-
-    /**
-     * newarray 
-     * 
-     * @param type
-     * @param values
-     * @return
-     */
-	public ArrayValue newarray(Class<?> type, Parameterized[] values);
-	
-	/**
-	 * <p>
-	 * 这个方法其实底层就是调用{@link #newarray(ArrayClass, Object)}实现的，只是这里显式的说明了我创建的是一个二维数组，主要是为了便于开发，
-	 * </p>
-     *
-	 * @param aClass 数组类型
-	 * @param values 创建二维数组的初始值
-	 * @return {@link ArrayValue}
-	 * @see ActionSet#arrayvar(String, ArrayClass, Parameterized, Parameterized...)
-	 * @see #makeArray(ArrayClass, Parameterized...)
-	 * @see #newarray(ArrayClass, Object)
-	 * @see #newarray(ArrayClass, Parameterized[])
-	 * @see #newarray(ArrayClass, Parameterized[][][])
-	 * @see #newarray(ArrayClass, Parameterized[][][][])
-	 */
-	public ArrayValue newarray(final ArrayClass aClass, final Parameterized[][] values);
-
-	/**
-     * newarray 
-     * 
-     * @param type
-     * @param values
-     * @return
-     */
-	public ArrayValue newarray(Class<?> type, Parameterized[][] values);
-	
-	
-	/**
-	 * <p>
-	 * 这个方法其实底层就是调用{@link #newarray(ArrayClass, Object)}实现的，只是这里显式的说明了我创建的是一个三维数组，主要是为了便于开发，
-	 * </p>
-     *
-	 * @param aClass 数组类型
-	 * @param values 创建三维数组的初始值
-	 * @return {@link ArrayValue}
-	 * @see ActionSet#arrayvar(String, ArrayClass, Parameterized, Parameterized...)
-	 * @see #makeArray(ArrayClass, Parameterized...)
-	 * @see #newarray(ArrayClass, Object)
-	 * @see #newarray(ArrayClass, Parameterized[])
-	 * @see #newarray(ArrayClass, Parameterized[][])
-	 * @see #newarray(ArrayClass, Parameterized[][][][])
-	 */
-	public ArrayValue newarray(final ArrayClass aClass, final Parameterized[][][] values);
-
-	/**
-     * newarray 
-     * 
-     * @param type
-     * @param values
-     * @return
-     */
-	public ArrayValue newarray(Class<?> type, Parameterized[][][] values);
-	
-	/**
-	 * 
-	 * <p>
-	 * 这个方法其实底层就是调用{@link #newarray(ArrayClass, Object)}实现的，只是这里显式的说明了我创建的是一个四维数组，主要是为了便于开发，
-	 * </p>
-     *
-	 * @param aClass 数组类型
-	 * @param values 创建四维数组的初始值
-	 * @return {@link ArrayValue}
-	 * @see ActionSet#arrayvar(String, ArrayClass, Parameterized, Parameterized...)
-	 * @see #makeArray(ArrayClass, Parameterized...)
-	 * @see #newarray(ArrayClass, Object)
-	 * @see #newarray(ArrayClass, Parameterized[])
-	 * @see #newarray(ArrayClass, Parameterized[][])
-	 * @see #newarray(ArrayClass, Parameterized[][][])
-	 */
-	public ArrayValue newarray(final ArrayClass aClass, final Parameterized[][][][] values);
-	
-	/**
-     * newarray 
-     * 
-     * @param type
-     * @param values
-     * @return
-     */
-	public ArrayValue newarray(Class<?> type, Parameterized[][][][] values);
     
     /**
      * 
@@ -250,7 +129,7 @@ public interface ArrayAction {
      * @param parDims 除第一维以外的所有维度下标
      * @return {@link ArrayLoader}
      */
-    public ArrayLoader arrayLoad(Parameterized arrayReference, Parameterized pardim, Parameterized... parDims);
+    public ArrayLoader arrayLoad(_P arrayReference, _P pardim, _P... parDims);
     
 
     /**
@@ -272,7 +151,7 @@ public interface ArrayAction {
      * @param dims 除第一维以外的所有维度下标
      * @return {@link ArrayStorer}
      */
-    public ArrayStorer arrayStore(Parameterized arrayReference, Parameterized value, Parameterized dim, Parameterized... dims);
+    public ArrayStorer arrayStore(_P arrayReference, _P value, _P dim, _P... dims);
     
     
     /**
@@ -292,7 +171,7 @@ public interface ArrayAction {
      * @param dims 下标列表
      * @return {@link ArrayLength}
      */
-    public ArrayLength arrayLength(Parameterized arrayReference, Parameterized... dims);
+    public ArrayLength arrayLength(_P arrayReference, _P... dims);
     
 
 }

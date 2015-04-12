@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.clazz.AnyException;
@@ -29,14 +29,14 @@ import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
  */
 public class Throw extends BreakStack {
 
-    private Parameterized exception;
+    private InternalParameterized exception;
 
-    protected Throw(ProgramBlockInternal block, Parameterized exception) {
+    protected Throw(ProgramBlockInternal block, InternalParameterized exception) {
         super(block, false);
         this.exception = exception;
     }
 
-    protected Throw(ProgramBlockInternal block, Parameterized exception, boolean autoCreate) {
+    protected Throw(ProgramBlockInternal block, InternalParameterized exception, boolean autoCreate) {
         super(block, true);
         this.exception = exception;
     }

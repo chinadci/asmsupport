@@ -2,7 +2,7 @@ package oldApi.variable;
 
 
 import cn.wensiqun.asmsupport.core.AbstractExample;
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.method.common.StaticMethodBodyInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.clazz.AClassFactory;
@@ -76,7 +76,7 @@ public class LocalVariableExample extends AbstractExample {
                          * 也可以直接设置为null 
                          * 
                          */
-                        LocalVariable localArrayVariable3 = arrayvar2dim("localArrayVariable3", AClassFactory.defArrayType(String[][].class), false, (Parameterized[])null);
+                        LocalVariable localArrayVariable3 = arrayvar2dim("localArrayVariable3", AClassFactory.defArrayType(String[][].class), false, (InternalParameterized[])null);
                         call(systemOut, "println", stradd(Value.value("example 3 : "), call(AClassFactory.defType(ArrayUtils.class), "toString", localArrayVariable3)));
                         
                         return_();

@@ -18,7 +18,7 @@
 package cn.wensiqun.asmsupport.core.operator.numerical.ternary;
 
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -33,18 +33,18 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Label;
  * @author 温斯群(Joe Wen)
  *
  */
-public class TernaryOperator extends AbstractOperator implements Parameterized{
+public class TernaryOperator extends AbstractOperator implements InternalParameterized{
     
-    private Parameterized exp1;
-    private Parameterized exp2;
-    private Parameterized exp3;
+    private InternalParameterized exp1;
+    private InternalParameterized exp2;
+    private InternalParameterized exp3;
     
     private boolean byOtherUsed;
     
     private AClass resultClass;
     
-    protected TernaryOperator(ProgramBlockInternal block, Parameterized expression1,
-            Parameterized expression2, Parameterized expression3) {
+    protected TernaryOperator(ProgramBlockInternal block, InternalParameterized expression1,
+            InternalParameterized expression2, InternalParameterized expression3) {
         super(block);
         this.exp1 = expression1;
         this.exp2 = expression2;

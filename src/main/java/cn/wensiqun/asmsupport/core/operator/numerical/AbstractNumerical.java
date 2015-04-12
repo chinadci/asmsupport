@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.numerical;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.log.Log;
@@ -30,7 +30,7 @@ import cn.wensiqun.asmsupport.core.utils.AClassUtils;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class AbstractNumerical extends AbstractOperator implements Parameterized {
+public abstract class AbstractNumerical extends AbstractOperator implements InternalParameterized {
 
     private static final Log LOG = LogFactory.getLog(AbstractArithmetic.class);
 
@@ -52,7 +52,7 @@ public abstract class AbstractNumerical extends AbstractOperator implements Para
      * 
      * @param factor
      */
-    protected void pushFactorToStack(Parameterized factor) {
+    protected void pushFactorToStack(InternalParameterized factor) {
 
         AClass factorCls = factor.getParamterizedType();
 

@@ -15,7 +15,7 @@
 package cn.wensiqun.asmsupport.core.block.control.condition;
 
 import cn.wensiqun.asmsupport.core.ByteCodeExecutor;
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
@@ -24,9 +24,9 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Label;
 import cn.wensiqun.asmsupport.standard.branch.IIF;
 
 public abstract class IFInternal extends ConditionBranchBlock implements IIF<ElseIFInternal, ElseInternal> {
-    private Parameterized condition;
+    private InternalParameterized condition;
 
-    public IFInternal(Parameterized condition) {
+    public IFInternal(InternalParameterized condition) {
         this.condition = condition;
         condition.asArgument();
     }

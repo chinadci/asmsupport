@@ -14,11 +14,11 @@
  */
 package cn.wensiqun.asmsupport.standard.method;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
 import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 import cn.wensiqun.asmsupport.standard.body.LocalVariablesBody;
 
-public interface IContructorBody extends LocalVariablesBody {
+public interface IContructorBody<T extends Parameterized> extends LocalVariablesBody {
 	
     /**
      * Call super constructor, corresponding to following java code : 
@@ -28,6 +28,6 @@ public interface IContructorBody extends LocalVariablesBody {
      * @param arguments
      * @return
      */
-	MethodInvoker supercall(Parameterized... arguments);
+	MethodInvoker supercall(T... arguments);
 
 }

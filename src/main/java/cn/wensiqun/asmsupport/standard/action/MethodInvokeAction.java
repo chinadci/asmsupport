@@ -14,9 +14,9 @@
  */
 package cn.wensiqun.asmsupport.standard.action;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 
 
 /**
@@ -26,7 +26,7 @@ import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
  * @author wensiqun(at)163.com
  *
  */
-public interface MethodInvokeAction {
+public interface MethodInvokeAction<_P extends Parameterized> {
     
     /**
      * <p>
@@ -65,7 +65,7 @@ public interface MethodInvokeAction {
      * @param arguments
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker call(Parameterized objRef, String methodName, Parameterized... arguments);
+    public MethodInvoker call(_P objRef, String methodName, _P... arguments);
 
     /**
      * Generate method invoke, this method equivalence to 
@@ -77,7 +77,7 @@ public interface MethodInvokeAction {
      * @param args
      * @return
      */
-    public MethodInvoker call(String methodName, Parameterized... args);
+    public MethodInvoker call(String methodName, _P... args);
     
     /**
      * 
@@ -102,7 +102,7 @@ public interface MethodInvokeAction {
      * @param arguments
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker call(AClass owner, String methodName, Parameterized... arguments);
+    public MethodInvoker call(AClass owner, String methodName, _P... arguments);
     
     /**
      * Invoke static method. the method is similar method {@link #call(AClass, String, Parameterized...)}
@@ -112,7 +112,7 @@ public interface MethodInvokeAction {
      * @param arguments
      * @return
      */
-    public MethodInvoker call(Class<?> owner, String name, Parameterized... arguments);
+    public MethodInvoker call(Class<?> owner, String name, _P... arguments);
     
     
     /**
@@ -138,7 +138,7 @@ public interface MethodInvokeAction {
      * @param arguments
      * @return {@link MethodInvoker}
      */
-    public MethodInvoker new_(AClass owner, Parameterized... arguments);
+    public MethodInvoker new_(AClass owner, _P... arguments);
     
     /**
      * @param owner
@@ -146,7 +146,7 @@ public interface MethodInvokeAction {
      * @return
      * @see #new_(AClass, Parameterized...)
      */
-    public MethodInvoker new_(Class<?> owner, Parameterized... arguments);
+    public MethodInvoker new_(Class<?> owner, _P... arguments);
     
     
     /**

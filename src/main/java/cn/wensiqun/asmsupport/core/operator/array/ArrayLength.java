@@ -14,7 +14,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.array;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -26,7 +26,7 @@ import cn.wensiqun.asmsupport.core.log.LogFactory;
  * @author 温斯群(Joe Wen)
  *
  */
-public class ArrayLength extends AbstractArrayOperator implements Parameterized {
+public class ArrayLength extends AbstractArrayOperator implements InternalParameterized {
 
 
     private static final Log LOG = LogFactory.getLog(ArrayLength.class);
@@ -39,7 +39,7 @@ public class ArrayLength extends AbstractArrayOperator implements Parameterized 
      * @param arrayReference
      * @param parDims
      */
-    protected ArrayLength(ProgramBlockInternal block, Parameterized arrayReference, Parameterized... parDims) {
+    protected ArrayLength(ProgramBlockInternal block, InternalParameterized arrayReference, InternalParameterized... parDims) {
         super(block, arrayReference);
         this.parDims = parDims;
     }
@@ -80,7 +80,7 @@ public class ArrayLength extends AbstractArrayOperator implements Parameterized 
     @Override
 	public String toString() {
 		StringBuilder toString = new StringBuilder(arrayReference.toString());
-		for(Parameterized p : parDims){
+		for(InternalParameterized p : parDims){
 			toString.append("[").append(p).append("]");
 		}
 		toString.append(".length");

@@ -18,7 +18,7 @@
 package cn.wensiqun.asmsupport.core.operator.logical;
 
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.operator.Jumpable;
 import cn.wensiqun.asmsupport.core.operator.Operators;
@@ -36,7 +36,7 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
  */
 public class ShortCircuitOr extends ConditionOperator implements Jumpable {
     
-    protected ShortCircuitOr(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
+    protected ShortCircuitOr(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
         operator = Operators.CONDITION_OR;
     }
@@ -63,7 +63,7 @@ public class ShortCircuitOr extends ConditionOperator implements Jumpable {
     }
 
     @Override
-    public void jumpPositive(Parameterized from, Label posLbl, Label negLbl) {
+    public void jumpPositive(InternalParameterized from, Label posLbl, Label negLbl) {
         MethodVisitor mv = insnHelper.getMv();
         Label label4And = new Label();
         if(factor1 instanceof ShortCircuitAnd) {
@@ -87,7 +87,7 @@ public class ShortCircuitOr extends ConditionOperator implements Jumpable {
     }
 
     @Override
-    public void jumpNegative(Parameterized from, Label posLbl, Label negLbl) {
+    public void jumpNegative(InternalParameterized from, Label posLbl, Label negLbl) {
         MethodVisitor mv = insnHelper.getMv();
         Label label4And = new Label();
         if(factor1 instanceof ShortCircuitAnd) {

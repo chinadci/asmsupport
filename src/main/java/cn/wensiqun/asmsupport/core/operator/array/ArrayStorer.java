@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.array;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -35,15 +35,15 @@ public class ArrayStorer extends AbstractArrayOperator {
 
     private static final Log LOG = LogFactory.getLog(ArrayStorer.class);
     
-    private Parameterized value;
+    private InternalParameterized value;
     
     private AClass storeClass;
     
-    private Parameterized lastDim;
+    private InternalParameterized lastDim;
 
-    private void init(Parameterized value, Parameterized pardim, Parameterized... parDims){
+    private void init(InternalParameterized value, InternalParameterized pardim, InternalParameterized... parDims){
     	this.value = value;
-        this.parDims = new Parameterized[parDims.length];
+        this.parDims = new InternalParameterized[parDims.length];
         
         if(parDims.length != 0){
             this.parDims[0] = pardim;
@@ -59,7 +59,7 @@ public class ArrayStorer extends AbstractArrayOperator {
         }
     }
 
-    protected ArrayStorer(ProgramBlockInternal block, Parameterized arrayReference, Parameterized value, Parameterized pardim, Parameterized... parDims) {
+    protected ArrayStorer(ProgramBlockInternal block, InternalParameterized arrayReference, InternalParameterized value, InternalParameterized pardim, InternalParameterized... parDims) {
         super(block, arrayReference);
         init(value, pardim, parDims);
     }

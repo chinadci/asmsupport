@@ -19,7 +19,7 @@ package cn.wensiqun.asmsupport.core.block.sync;
 
 
 import cn.wensiqun.asmsupport.core.Executable;
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.block.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -37,9 +37,9 @@ import cn.wensiqun.asmsupport.standard.sync.ISynchronized;
  * @author 温斯群(Joe Wen)
  * 
  */
-public abstract class SynchronizedInternal extends ProgramBlockInternal implements ISynchronized {
+public abstract class SynchronizedInternal extends ProgramBlockInternal implements ISynchronized<InternalParameterized> {
 
-	private Parameterized lock;
+	private InternalParameterized lock;
 	private LocalVariable dupSynArgument;
 	
 	private Label monitorenter;
@@ -50,7 +50,7 @@ public abstract class SynchronizedInternal extends ProgramBlockInternal implemen
 	
 	private Marker flag1;
 
-	public SynchronizedInternal(Parameterized lock) {
+	public SynchronizedInternal(InternalParameterized lock) {
 		super();
 		this.lock = lock;
 		monitorenter = new Label();

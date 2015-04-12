@@ -14,18 +14,18 @@
  */
 package cn.wensiqun.asmsupport.client;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.sync.SynchronizedInternal;
 import cn.wensiqun.asmsupport.standard.sync.ISynchronized;
 
-public abstract class Synchronized extends ProgramBlock<SynchronizedInternal> implements ISynchronized {
+public abstract class Synchronized extends ProgramBlock<SynchronizedInternal> implements ISynchronized<ClientParameterized> {
 
-	public Synchronized(Parameterized lock) {
-		target = new SynchronizedInternal(lock) {
+	public Synchronized(ClientParameterized lock) {
+		target = new SynchronizedInternal(lock.target) {
 
 			@Override
-			public void body(Parameterized e) {
-				Synchronized.this.body(e);
+			public void body(InternalParameterized e) {
+				Synchronized.this.body(new ClientParameterized(e));
 			}
 			
 		};

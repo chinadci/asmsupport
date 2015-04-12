@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.block.method.init;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.block.method.AbstractMethodBody;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -33,9 +33,9 @@ import cn.wensiqun.asmsupport.standard.method.IContructorBody;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class ConstructorBodyInternal extends AbstractMethodBody implements IContructorBody {
+public abstract class ConstructorBodyInternal extends AbstractMethodBody implements IContructorBody<InternalParameterized> {
 
-	public MethodInvoker supercall(Parameterized... arguments) {
+	public MethodInvoker supercall(InternalParameterized... arguments) {
     	AClass owner = getMethodOwner();
     	if(ModifierUtils.isEnum(getMethodOwner().getModifiers())){
     		throw new ASMSupportException("Cannot invoke super constructor from enum type " + owner);
@@ -43,7 +43,7 @@ public abstract class ConstructorBodyInternal extends AbstractMethodBody impleme
         invokeVerify(owner);
 
         return OperatorFactory.newOperator(SuperConstructorInvoker.class, 
-        		new Class<?>[]{ProgramBlockInternal.class, AClass.class, Parameterized[].class}, 
+        		new Class<?>[]{ProgramBlockInternal.class, AClass.class, InternalParameterized[].class}, 
         		getExecutor(), owner, arguments);
 	}
     

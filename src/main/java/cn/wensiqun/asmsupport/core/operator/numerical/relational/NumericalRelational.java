@@ -14,7 +14,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.numerical.relational;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.log.Log;
@@ -30,7 +30,7 @@ public abstract class NumericalRelational extends AbstractRelational {
 
     private static final Log LOG = LogFactory.getLog(NumericalRelational.class);
 
-    protected NumericalRelational(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
+    protected NumericalRelational(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
     }
 
@@ -81,7 +81,7 @@ public abstract class NumericalRelational extends AbstractRelational {
         pushFactorToStack(factor2);
     }
 
-    private void pushFactorToStack(Parameterized factor) {
+    private void pushFactorToStack(InternalParameterized factor) {
 
         AClass factorCls = factor.getParamterizedType();
 

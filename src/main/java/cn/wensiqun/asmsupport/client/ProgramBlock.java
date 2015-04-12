@@ -14,8 +14,7 @@
  */
 package cn.wensiqun.asmsupport.client;
 
-import cn.wensiqun.asmsupport.core.Crementable;
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.clazz.ArrayClass;
@@ -67,7 +66,7 @@ import cn.wensiqun.asmsupport.core.operator.numerical.ternary.TernaryOperator;
 import cn.wensiqun.asmsupport.standard.action.ActionSet;
 
 public class ProgramBlock<B extends ProgramBlockInternal> implements
-		ActionSet<IF, While, DoWhile, ForEach, Try, Synchronized> {
+		ActionSet<ClientParameterized, IF, While, DoWhile, ForEach, Try, Synchronized> {
 
 	B target;
 
@@ -100,63 +99,62 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public LocalVariable var(String name, Class<?> type, Parameterized para) {
-		return target.var(name, type, para);
+	public LocalVariable var(String name, Class<?> type, ClientParameterized para) {
+		return target.var(name, type, para.target);
 	}
 
 	@Override
-	public LocalVariable var(Class<?> type, Parameterized para) {
-		return target.var(type, para);
+	public LocalVariable var(Class<?> type, ClientParameterized para) {
+		return target.var(type, para.target);
 	}
 
 	@Override
-	public LocalVariable var(String name, AClass type, Parameterized para) {
-		return target.var(name, type, para);
+	public LocalVariable var(String name, AClass type, ClientParameterized para) {
+		return target.var(name, type, para.target);
 	}
 
 	@Override
-	public LocalVariable var(AClass type, Parameterized para) {
-		return target.var(type, para);
+	public LocalVariable var(AClass type, ClientParameterized para) {
+		return target.var(type, para.target);
 	}
 
 	@Override
-	public LocalVariable var(String name, AClass aClass, boolean anonymous,
-			Parameterized para) {
-		return target.var(name, aClass, anonymous, para);
+	public LocalVariable var(String name, AClass aClass, boolean anonymous, ClientParameterized para) {
+		return target.var(name, aClass, anonymous, para.target);
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(String name, ArrayClass aClass,
-			boolean anonymous, Parameterized... allocateDim) {
-		return target.arrayvar2dim(name, aClass, anonymous, allocateDim);
+			boolean anonymous, ClientParameterized... allocateDim) {
+		return target.arrayvar2dim(name, aClass, anonymous, this.convert2Client(allocateDim));
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(String name, ArrayClass type,
-			Parameterized... dims) {
-		return target.arrayvar2dim(name, type, dims);
+			ClientParameterized... dims) {
+		return target.arrayvar2dim(name, type, this.convert2Client(dims));
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(String name, Class<?> type,
-			Parameterized... dims) {
-		return target.arrayvar2dim(name, type, dims);
+			ClientParameterized... dims) {
+		return target.arrayvar2dim(name, type, this.convert2Client(dims));
 	}
 
 	@Override
-	public LocalVariable arrayvar2dim(ArrayClass type, Parameterized... dims) {
-		return target.arrayvar2dim(type, dims);
+	public LocalVariable arrayvar2dim(ArrayClass type, ClientParameterized... dims) {
+		return target.arrayvar2dim(type, this.convert2Client(dims));
 	}
 
 	@Override
-	public LocalVariable arrayvar2dim(Class<?> arrayType, Parameterized... dims) {
-		return target.arrayvar2dim(arrayType, dims);
+	public LocalVariable arrayvar2dim(Class<?> arrayType, ClientParameterized... dims) {
+		return target.arrayvar2dim(arrayType, this.convert2Client(dims));
 	}
 
 	@Override
 	public LocalVariable arrayvar(String name, ArrayClass aClass,
-			boolean anonymous, Parameterized value) {
-		return target.arrayvar(name, aClass, anonymous, value);
+			boolean anonymous, ClientParameterized value) {
+		return target.arrayvar(name, aClass, anonymous, value.target);
 	}
 
 	@Override
@@ -166,36 +164,32 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public LocalVariable arrayvar(String name, ArrayClass type,
-			Parameterized value) {
-		return target.arrayvar(name, type, value);
+	public LocalVariable arrayvar(String name, ArrayClass type, ClientParameterized value) {
+		return target.arrayvar(name, type, value.target);
 	}
 
 	@Override
-	public LocalVariable arrayvar(String name, Class<?> type,
-			Parameterized value) {
-		return target.arrayvar(name, type, value);
+	public LocalVariable arrayvar(String name, Class<?> type, ClientParameterized value) {
+		return target.arrayvar(name, type, value.target);
 	}
 
 	@Override
-	public LocalVariable arrayvar(ArrayClass type, Parameterized value) {
-		return target.arrayvar(type, value);
+	public LocalVariable arrayvar(ArrayClass type, ClientParameterized value) {
+		return target.arrayvar(type, value.target);
 	}
 
 	@Override
-	public LocalVariable arrayvar(Class<?> type, Parameterized value) {
-		return target.arrayvar(type, value);
+	public LocalVariable arrayvar(Class<?> type, ClientParameterized value) {
+		return target.arrayvar(type, value.target);
 	}
 
 	@Override
-	public LocalVariable arrayvar(String name, ArrayClass type,
-			Object parameterizedArray) {
+	public LocalVariable arrayvar(String name, ArrayClass type, Object parameterizedArray) {
 		return target.arrayvar(name, type, parameterizedArray);
 	}
 
 	@Override
-	public LocalVariable arrayvar(String name, Class<?> type,
-			Object parameterizedArray) {
+	public LocalVariable arrayvar(String name, Class<?> type, Object parameterizedArray) {
 		return target.arrayvar(name, type, parameterizedArray);
 	}
 
@@ -210,39 +204,39 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public Assigner assign(ExplicitVariable variable, Parameterized val) {
-		return target.assign(variable, val);
+	public Assigner assign(ExplicitVariable variable, ClientParameterized val) {
+		return target.assign(variable, val.target);
 	}
 
 	@Override
-	public MethodInvoker call(Parameterized objRef, String methodName,
-			Parameterized... arguments) {
-		return target.call(objRef, methodName, arguments);
+	public MethodInvoker call(ClientParameterized objRef, String methodName,
+			ClientParameterized... arguments) {
+		return target.call(objRef.target, methodName, this.convert2Client(arguments));
 	}
 
 	@Override
-	public MethodInvoker call(String methodName, Parameterized... args) {
-		return target.call(methodName, args);
+	public MethodInvoker call(String methodName, ClientParameterized... args) {
+		return target.call(methodName, this.convert2Client(args));
 	}
 
 	@Override
-	public MethodInvoker call(AClass owner, String methodName, Parameterized... arguments) {
-		return target.call(owner, methodName, arguments);
+	public MethodInvoker call(AClass owner, String methodName, ClientParameterized... arguments) {
+		return target.call(owner, methodName, this.convert2Client(arguments));
 	}
     
 	@Override
-    public final MethodInvoker call(Class<?> owner, String methodName, Parameterized... arguments) {
-    	return target.call(owner, methodName, arguments);
+    public final MethodInvoker call(Class<?> owner, String methodName, ClientParameterized... arguments) {
+    	return target.call(owner, methodName, this.convert2Client(arguments));
     }
 
 	@Override
-	public MethodInvoker new_(Class<?> owner, Parameterized... arguments) {
-		return target.new_(owner, arguments);
+	public MethodInvoker new_(Class<?> owner, ClientParameterized... arguments) {
+		return target.new_(owner, this.convert2Client(arguments));
 	}
 
 	@Override
-	public MethodInvoker new_(AClass owner, Parameterized... arguments) {
-		return target.new_(owner, arguments);
+	public MethodInvoker new_(AClass owner, ClientParameterized... arguments) {
+		return target.new_(owner, this.convert2Client(arguments));
 	}
 
 	@Override
@@ -252,13 +246,13 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 
 	@Override
 	public ArrayValue makeArray(ArrayClass aClass,
-			Parameterized... allocateDims) {
-		return target.makeArray(aClass, allocateDims);
+			ClientParameterized... allocateDims) {
+		return target.makeArray(aClass, this.convert2Client(allocateDims));
 	}
 
 	@Override
-	public ArrayValue makeArray(Class<?> arraytype, Parameterized... dimensions) {
-		return target.makeArray(arraytype, dimensions);
+	public ArrayValue makeArray(Class<?> arraytype, ClientParameterized... dimensions) {
+		return target.makeArray(arraytype, this.convert2Client(dimensions));
 	}
 
 	@Override
@@ -272,239 +266,198 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public ArrayValue newarray(ArrayClass aClass, Parameterized[] values) {
-		return target.newarray(aClass, values);
-	}
-
-	@Override
-	public ArrayValue newarray(Class<?> type, Parameterized[] values) {
-		return target.newarray(type, values);
-	}
-
-	@Override
-	public ArrayValue newarray(ArrayClass aClass, Parameterized[][] values) {
-		return target.newarray(aClass, values);
-	}
-
-	@Override
-	public ArrayValue newarray(Class<?> type, Parameterized[][] values) {
-		return target.newarray(type, values);
-	}
-
-	@Override
-	public ArrayValue newarray(ArrayClass aClass, Parameterized[][][] values) {
-		return target.newarray(aClass, values);
-	}
-
-	@Override
-	public ArrayValue newarray(Class<?> type, Parameterized[][][] values) {
-		return target.newarray(type, values);
-	}
-
-	@Override
-	public ArrayValue newarray(ArrayClass aClass, Parameterized[][][][] values) {
-		return target.newarray(aClass, values);
-	}
-
-	@Override
-	public ArrayValue newarray(Class<?> type, Parameterized[][][][] values) {
-		return target.newarray(type, values);
-	}
-
-	@Override
-	public ArrayLoader arrayLoad(Parameterized arrayReference,
-			Parameterized pardim, Parameterized... parDims) {
-		return target.arrayLoad(arrayReference, pardim, parDims);
+	public ArrayLoader arrayLoad(ClientParameterized arrayReference,
+			ClientParameterized pardim, ClientParameterized... parDims) {
+		return target.arrayLoad(arrayReference.target, pardim.target, convert2Client(parDims));
 	}
 	
 	@Override
-	public ArrayStorer arrayStore(Parameterized arrayReference,
-			Parameterized value, Parameterized dim, Parameterized... dims) {
-		return target.arrayStore(arrayReference, value, dim, dims);
+	public ArrayStorer arrayStore(ClientParameterized arrayReference,
+			ClientParameterized value, ClientParameterized dim, ClientParameterized... dims) {
+		return target.arrayStore(arrayReference.target, value.target, dim.target, convert2Client(dims));
 	}
 
 	@Override
-	public ArrayLength arrayLength(Parameterized arrayReference,
-			Parameterized... dims) {
-		return target.arrayLength(arrayReference, dims);
+	public ArrayLength arrayLength(ClientParameterized arrayReference, ClientParameterized... dims) {
+		return target.arrayLength(arrayReference.target, convert2Client(dims));
 	}
 	
 	@Override
-	public Addition add(Parameterized factor1, Parameterized factor2) {
-		return target.add(factor1, factor2);
+	public Addition add(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.add(factor1.target, factor2.target);
 	}
 
 	@Override
-	public Subtraction sub(Parameterized factor1, Parameterized factor2) {
-		return target.sub(factor1, factor2);
+	public Subtraction sub(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.sub(factor1.target, factor2.target);
 	}
 
 	@Override
-	public Multiplication mul(Parameterized factor1, Parameterized factor2) {
-		return target.mul(factor1, factor2);
+	public Multiplication mul(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.mul(factor1.target, factor2.target);
 	}
 
 	@Override
-	public Division div(Parameterized factor1, Parameterized factor2) {
-		return target.div(factor1, factor2);
+	public Division div(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.div(factor1.target, factor2.target);
 	}
 
 	@Override
-	public Modulus mod(Parameterized factor1, Parameterized factor2) {
-		return target.mod(factor1, factor2);
+	public Modulus mod(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.mod(factor1.target, factor2.target);
 	}
 
 	@Override
-	public Reverse reverse(Parameterized factor) {
-		return target.reverse(factor);
+	public Reverse reverse(ClientParameterized factor) {
+		return target.reverse(factor.target);
 	}
 
 	@Override
-	public BitAnd band(Parameterized factor1, Parameterized factor2) {
-		return target.band(factor1, factor2);
+	public BitAnd band(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.band(factor1.target, factor2.target);
 	}
 
 	@Override
-	public BitOr bor(Parameterized factor1, Parameterized factor2) {
-		return target.bor(factor1, factor2);
+	public BitOr bor(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.bor(factor1.target, factor2.target);
 	}
 
 	@Override
-	public BitXor bxor(Parameterized factor1, Parameterized factor2) {
-		return target.bxor(factor1, factor2);
+	public BitXor bxor(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.bxor(factor1.target, factor2.target);
 	}
 
 	@Override
-	public ShiftLeft shl(Parameterized factor1, Parameterized factor2) {
-		return target.shl(factor1, factor2);
+	public ShiftLeft shl(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.shl(factor1.target, factor2.target);
 	}
 
 	@Override
-	public ShiftRight shr(Parameterized factor1, Parameterized factor2) {
-		return target.shr(factor1, factor2);
+	public ShiftRight shr(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.shr(factor1.target, factor2.target);
 	}
 
 	@Override
-	public UnsignedShiftRight ushr(Parameterized factor1, Parameterized factor2) {
-		return target.ushr(factor1, factor2);
+	public UnsignedShiftRight ushr(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.ushr(factor1.target, factor2.target);
 	}
 
 	@Override
-	public PreposeDecrment predec(Crementable crement) {
-		return target.predec(crement);
+	public PreposeDecrment predec(ClientParameterized crement) {
+		return target.predec(crement.target);
 	}
 
 	@Override
-	public PostposeDecrment postdec(Crementable crement) {
-		return target.postdec(crement);
+	public PostposeDecrment postdec(ClientParameterized crement) {
+		return target.postdec(crement.target);
 	}
 
 	@Override
-	public PreposeIncrment preinc(Crementable crement) {
-		return target.preinc(crement);
+	public PreposeIncrment preinc(ClientParameterized crement) {
+		return target.preinc(crement.target);
 	}
 
 	@Override
-	public PostposeIncrment postinc(Crementable crement) {
-		return target.postinc(crement);
+	public PostposeIncrment postinc(ClientParameterized crement) {
+		return target.postinc(crement.target);
 	}
 
 	@Override
-	public GreaterThan gt(Parameterized factor1, Parameterized factor2) {
-		return target.gt(factor1, factor2);
+	public GreaterThan gt(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.gt(factor1.target, factor2.target);
 	}
 
 	@Override
-	public GreaterEqual ge(Parameterized factor1, Parameterized factor2) {
-		return target.ge(factor1, factor2);
+	public GreaterEqual ge(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.ge(factor1.target, factor2.target);
 	}
 
 	@Override
-	public LessThan lt(Parameterized factor1, Parameterized factor2) {
-		return target.lt(factor1, factor2);
+	public LessThan lt(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.lt(factor1.target, factor2.target);
 	}
 
 	@Override
-	public LessEqual le(Parameterized factor1, Parameterized factor2) {
-		return target.le(factor1, factor2);
+	public LessEqual le(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.le(factor1.target, factor2.target);
 	}
 
 	@Override
-	public Equal eq(Parameterized factor1, Parameterized factor2) {
-		return target.eq(factor1, factor2);
+	public Equal eq(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.eq(factor1.target, factor2.target);
 	}
 
 	@Override
-	public NotEqual ne(Parameterized factor1, Parameterized factor2) {
-		return target.ne(factor1, factor2);
+	public NotEqual ne(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.ne(factor1.target, factor2.target);
 	}
 
 	@Override
-	public LogicalAnd logicalAnd(Parameterized factor1, Parameterized factor2) {
-		return target.logicalAnd(factor1, factor2);
+	public LogicalAnd logicalAnd(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.logicalAnd(factor1.target, factor2.target);
 	}
 
 	@Override
-	public LogicalOr logicalOr(Parameterized factor1, Parameterized factor2) {
-		return target.logicalOr(factor1, factor2);
+	public LogicalOr logicalOr(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.logicalOr(factor1.target, factor2.target);
 	}
 
 	@Override
-	public LogicalXor logicalXor(Parameterized factor1, Parameterized factor2) {
-		return target.logicalXor(factor1, factor2);
+	public LogicalXor logicalXor(ClientParameterized factor1, ClientParameterized factor2) {
+		return target.logicalXor(factor1.target, factor2.target);
 	}
 
 	@Override
-	public ShortCircuitAnd and(Parameterized factor1, Parameterized factor2,
-			Parameterized... otherFactor) {
-		return target.and(factor1, factor2, otherFactor);
+	public ShortCircuitAnd and(ClientParameterized factor1, ClientParameterized factor2,
+			ClientParameterized... otherFactor) {
+		return target.and(factor1.target, factor2.target, convert2Client(otherFactor));
 	}
 
 	@Override
-	public ShortCircuitOr or(Parameterized factor1, Parameterized factor2,
-			Parameterized... otherFactor) {
-		return target.or(factor1, factor2, otherFactor);
+	public ShortCircuitOr or(ClientParameterized factor1, ClientParameterized factor2,
+			ClientParameterized... otherFactor) {
+		return target.or(factor1.target, factor2.target, convert2Client(otherFactor));
 	}
 
 	@Override
-	public Not no(Parameterized factor) {
-		return target.no(factor);
+	public Not no(ClientParameterized factor) {
+		return target.no(factor.target);
 	}
 
 	@Override
-	public CheckCast checkcast(Parameterized cc, AClass to) {
-		return target.checkcast(cc, to);
+	public CheckCast checkcast(ClientParameterized cc, AClass to) {
+		return target.checkcast(cc.target, to);
 	}
 
 	@Override
-	public CheckCast checkcast(Parameterized cc, Class<?> to) {
-		return target.checkcast(cc, to);
+	public CheckCast checkcast(ClientParameterized cc, Class<?> to) {
+		return target.checkcast(cc.target, to);
 	}
 
 	@Override
-	public Negative neg(Parameterized factor) {
-		return target.neg(factor);
+	public Negative neg(ClientParameterized factor) {
+		return target.neg(factor.target);
 	}
 
 	@Override
-	public TernaryOperator ternary(Parameterized exp1, Parameterized exp2,
-			Parameterized exp3) {
-		return target.ternary(exp1, exp2, exp3);
+	public TernaryOperator ternary(ClientParameterized exp1, ClientParameterized exp2,
+			ClientParameterized exp3) {
+		return target.ternary(exp1.target, exp2.target, exp3.target);
 	}
 
 	@Override
-	public Parameterized stradd(Parameterized par1, Parameterized... pars) {
-		return target.stradd(par1, pars);
+	public ClientParameterized stradd(ClientParameterized par1, ClientParameterized... pars) {
+		return new ClientParameterized(target.stradd(par1.target, convert2Client(pars)));
 	}
 
 	@Override
-	public Parameterized instanceof_(Parameterized obj, AClass type) {
-		return target.instanceof_(obj, type);
+	public ClientParameterized instanceof_(ClientParameterized obj, AClass type) {
+		return new ClientParameterized(target.instanceof_(obj.target, type));
 	}
 
 	@Override
-	public Parameterized instanceof_(Parameterized obj, Class<?> type) {
-		return target.instanceof_(obj, type);
+	public ClientParameterized instanceof_(ClientParameterized obj, Class<?> type) {
+		return new ClientParameterized(target.instanceof_(obj.target, type));
 	}
 
 	@Override
@@ -518,8 +471,8 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public void throw_(Parameterized exception) {
-		target.throw_(exception);
+	public void throw_(ClientParameterized exception) {
+		target.throw_(exception.target);
 	}
 
 	@Override
@@ -528,8 +481,8 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public Return return_(Parameterized parame) {
-		return target.return_(parame);
+	public Return return_(ClientParameterized para) {
+		return target.return_(para.target);
 	}
 
 	@Override
@@ -651,6 +604,17 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	@Override
 	public ArrayClass defArrayType(AClass rootComponent, int dim) {
 		return target.defArrayType(rootComponent, dim);
+	}
+	
+	InternalParameterized[] convert2Client(ClientParameterized... pars) {
+		if(pars == null) {
+			return null;
+		}
+		InternalParameterized[] paras = new InternalParameterized[pars.length];
+		for(int i=0; i<pars.length; i++) {
+			paras[i] = pars[i].target;
+		}
+		return paras;
 	}
 
 }

@@ -16,7 +16,7 @@ package cn.wensiqun.asmsupport.core.block.control.loop;
 
 
 import cn.wensiqun.asmsupport.core.Executable;
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.asm.InstructionHelper;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -40,8 +40,8 @@ import cn.wensiqun.asmsupport.standard.loop.IForEach;
  */
 public abstract class ForEachInternal extends ProgramBlockInternal implements Loop, IForEach {
     
-    private Parameterized iterable;
-    private Parameterized condition;
+    private InternalParameterized iterable;
+    private InternalParameterized condition;
     private AClass elementType;
     
     private Label startLbl = new Label();
@@ -49,11 +49,11 @@ public abstract class ForEachInternal extends ProgramBlockInternal implements Lo
     private Label continueLbl = new Label();
     private Label endLbl = new Label();
     
-    public ForEachInternal(Parameterized iterable) {
+    public ForEachInternal(InternalParameterized iterable) {
         this(iterable, null);
     }
     
-    public ForEachInternal(Parameterized iterable, AClass elementType) {
+    public ForEachInternal(InternalParameterized iterable, AClass elementType) {
         this.iterable = iterable;
         this.elementType = elementType;
         

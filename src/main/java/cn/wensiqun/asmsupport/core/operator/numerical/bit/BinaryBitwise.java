@@ -17,7 +17,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.numerical.bit;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.definition.value.Value;
@@ -33,10 +33,10 @@ public abstract class BinaryBitwise extends AbstractBitwise {
 
     private static final Log LOG = LogFactory.getLog(BinaryBitwise.class);
     
-    protected Parameterized factor1;
-    protected Parameterized factor2;
+    protected InternalParameterized factor1;
+    protected InternalParameterized factor2;
     
-    protected BinaryBitwise(ProgramBlockInternal block, Parameterized factor1, Parameterized factor2) {
+    protected BinaryBitwise(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block);
         this.factor1 = factor1;
         this.factor2 = factor2;

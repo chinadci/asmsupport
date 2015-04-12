@@ -14,12 +14,12 @@
  */
 package cn.wensiqun.asmsupport.standard.action;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Addition;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Division;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Modulus;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Multiplication;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Subtraction;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 
 
 /**
@@ -27,7 +27,7 @@ import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Subtraction;
  *
  * @author wensiqun(at)163.com
  */
-public interface ArithmeticAction {
+public interface ArithmeticAction<_P extends Parameterized> {
     
     /**
      * 生成加法操作指令例如：factor1 + factor2,对应下面的红色java代码
@@ -40,7 +40,7 @@ public interface ArithmeticAction {
      * @param factor2
      * @return {@link Addition}
      */
-    public Addition add(Parameterized factor1, Parameterized factor2);
+    public Addition add(_P factor1, _P factor2);
 
     /**
      * 生成减法操作指令例如：factor1 - factor2,对应下面的红色java代码
@@ -53,7 +53,7 @@ public interface ArithmeticAction {
      * @param factor2
      * @return {@link Subtraction}
      */
-    public Subtraction sub(Parameterized factor1, Parameterized factor2);
+    public Subtraction sub(_P factor1, _P factor2);
     
     /**
      * 生成乘法操作指令例如：factor1 * factor2,对应下面的红色java代码
@@ -66,7 +66,7 @@ public interface ArithmeticAction {
      * @param factor2
      * @return {@link Multiplication}
      */
-    public Multiplication mul(Parameterized factor1, Parameterized factor2);
+    public Multiplication mul(_P factor1, _P factor2);
     
     /**
      * generate division instruction : factor1 / factor2
@@ -79,7 +79,7 @@ public interface ArithmeticAction {
      * @param factor2
      * @return {@link Division}
      */
-    public Division div(Parameterized factor1, Parameterized factor2);
+    public Division div(_P factor1, _P factor2);
     
     /**
      * 
@@ -94,6 +94,6 @@ public interface ArithmeticAction {
      * @param factor2
      * @return {@link Modulus}
      */
-    public Modulus mod(Parameterized factor1, Parameterized factor2);
+    public Modulus mod(_P factor1, _P factor2);
     
 }

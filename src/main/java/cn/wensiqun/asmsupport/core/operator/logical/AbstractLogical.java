@@ -14,7 +14,7 @@
  */
 package cn.wensiqun.asmsupport.core.operator.logical;
 
-import cn.wensiqun.asmsupport.core.Parameterized;
+import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.operator.AbstractOperator;
@@ -24,7 +24,7 @@ import cn.wensiqun.asmsupport.core.operator.AbstractOperator;
  * @author 温斯群(Joe Wen)
  *
  */
-public abstract class AbstractLogical extends AbstractOperator implements Parameterized {
+public abstract class AbstractLogical extends AbstractOperator implements InternalParameterized {
 
     protected boolean byOtherUsed;
     
