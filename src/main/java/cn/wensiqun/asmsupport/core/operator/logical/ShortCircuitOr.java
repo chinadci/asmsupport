@@ -110,9 +110,29 @@ public class ShortCircuitOr extends ConditionOperator implements Jumpable, IShor
         }
     }
 
+	@Override
+	public LogicalAnd logicalAnd(InternalParameterized para) {
+		return block.logicalAnd(this, para);
+	}
+
+	@Override
+	public LogicalOr logicalOr(InternalParameterized para) {
+		return block.logicalOr(this, para);
+	}
+
+	@Override
+	public LogicalXor logicalXor(InternalParameterized para) {
+		return block.logicalXor(this, para);
+	}
+
     @Override
-    public ShortCircuitOr or(InternalParameterized para) {
-        return block.or(this, para);
+    public ShortCircuitAnd and(InternalParameterized para) {
+        return block.and(this, para);
     }
+
+	@Override
+	public ShortCircuitOr or(InternalParameterized para) {
+        return block.or(this, para);
+	}
 
 }

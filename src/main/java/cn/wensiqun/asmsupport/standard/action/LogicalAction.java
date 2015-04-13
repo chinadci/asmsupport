@@ -21,6 +21,9 @@ import cn.wensiqun.asmsupport.core.operator.logical.Not;
 import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitAnd;
 import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitOr;
 import cn.wensiqun.asmsupport.standard.Parameterized;
+import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalAnd;
+import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalOr;
+import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalXor;
 import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitAnd;
 import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitOr;
 
@@ -43,7 +46,7 @@ public interface LogicalAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link LogicalAnd}
      */
-    public LogicalAnd logicalAnd(_P factor1, _P factor2);
+    public ILogicalAnd<_P> logicalAnd(_P factor1, _P factor2);
     
     /**
      * 生成逻辑或操作指令,对应下面的红色java代码
@@ -57,7 +60,7 @@ public interface LogicalAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link LogicalOr}
      */
-    public LogicalOr logicalOr(_P factor1, _P factor2);
+    public ILogicalOr<_P> logicalOr(_P factor1, _P factor2);
 
     /**
      * 
@@ -71,7 +74,7 @@ public interface LogicalAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link LogicalXor}
      */
-    public LogicalXor logicalXor(_P factor1, _P factor2);
+    public ILogicalXor<_P> logicalXor(_P factor1, _P factor2);
     
     /**
      * 

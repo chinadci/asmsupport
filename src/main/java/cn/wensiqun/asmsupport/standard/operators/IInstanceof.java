@@ -12,7 +12,7 @@ public interface IInstanceof<_P extends Parameterized> extends Parameterized {
      * @param para
      * @return
      */
-    IShortCircuitAnd<_P> and(_P para);
+	IShortCircuitAnd<_P> and(_P para);
     
     /**
      * Execute || with other parameter.
@@ -20,6 +20,6 @@ public interface IInstanceof<_P extends Parameterized> extends Parameterized {
      * @param para
      * @return
      */
-    IShortCircuitOr<_P> or(_P para);
+	IShortCircuitOr<_P> or(_P para);
     
 }

@@ -24,46 +24,45 @@ import cn.wensiqun.asmsupport.standard.Parameterized;
  * @author 温斯群(Joe Wen)
  *
  */
-public interface ILogicalAnd<_P extends Parameterized> extends Parameterized {
+public interface ILogicalXor<_P extends Parameterized> extends Parameterized {
 
 	/**
-     * Execute & with other parameter.
-     * 
-     * @param para
-     * @return
-     */
+	 * Execute & with other parameter.
+	 * 
+	 * @param para
+	 * @return
+	 */
 	ILogicalAnd<_P> logicalAnd(_P para);
-	
+
 	/**
-     * Execute | with other parameter.
-     * 
-     * @param para
-     * @return
-     */
+	 * Execute | with other parameter.
+	 * 
+	 * @param para
+	 * @return
+	 */
 	ILogicalOr<_P> logicalOr(_P para);
-	
+
 	/**
-     * Execute ^ with other parameter.
-     * 
-     * @param para
-     * @return
-     */
+	 * Execute ^ with other parameter.
+	 * 
+	 * @param para
+	 * @return
+	 */
 	ILogicalXor<_P> logicalXor(_P para);
 
-    /**
-     * Execute && with other parameter.
-     * 
-     * @param para
-     * @return
-     */
+	/**
+	 * Execute && with other parameter.
+	 * 
+	 * @param para
+	 * @return
+	 */
 	IShortCircuitAnd<_P> and(_P para);
 
-    /**
-     * Execute || with other parameter.
-     * 
-     * @param para
-     * @return
-     */
+	/**
+	 * Execute || with other parameter.
+	 * 
+	 * @param para
+	 * @return
+	 */
 	IShortCircuitOr<_P> or(_P para);
-
 }

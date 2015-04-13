@@ -34,9 +34,6 @@ import cn.wensiqun.asmsupport.core.operator.array.ArrayStorer;
 import cn.wensiqun.asmsupport.core.operator.array.ArrayValue;
 import cn.wensiqun.asmsupport.core.operator.assign.Assigner;
 import cn.wensiqun.asmsupport.core.operator.checkcast.CheckCast;
-import cn.wensiqun.asmsupport.core.operator.logical.LogicalAnd;
-import cn.wensiqun.asmsupport.core.operator.logical.LogicalOr;
-import cn.wensiqun.asmsupport.core.operator.logical.LogicalXor;
 import cn.wensiqun.asmsupport.core.operator.logical.Not;
 import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Addition;
@@ -393,18 +390,18 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public LogicalAnd logicalAnd(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.logicalAnd(factor1.target, factor2.target);
+	public ClientLogicalAnd logicalAnd(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientLogicalAnd(target.logicalAnd(factor1.target, factor2.target));
 	}
 
 	@Override
-	public LogicalOr logicalOr(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.logicalOr(factor1.target, factor2.target);
+	public ClientLogicalOr logicalOr(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientLogicalOr(target.logicalOr(factor1.target, factor2.target));
 	}
 
 	@Override
-	public LogicalXor logicalXor(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.logicalXor(factor1.target, factor2.target);
+	public ClientLogicalXor logicalXor(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientLogicalXor(target.logicalXor(factor1.target, factor2.target));
 	}
 
 	@Override

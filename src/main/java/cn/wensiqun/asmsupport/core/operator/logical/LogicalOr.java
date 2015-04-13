@@ -21,13 +21,14 @@ import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalOr;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public class LogicalOr extends BinaryLogical {
+public class LogicalOr extends BinaryLogical implements ILogicalOr<InternalParameterized>{
     
     protected LogicalOr(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -38,5 +39,30 @@ public class LogicalOr extends BinaryLogical {
     protected void executing() {
         insnHelper.bitOr(AClass.BOOLEAN_ACLASS.getType());
     }
+
+	@Override
+	public LogicalAnd logicalAnd(InternalParameterized para) {
+		return block.logicalAnd(this, para);
+	}
+
+	@Override
+	public LogicalOr logicalOr(InternalParameterized para) {
+		return block.logicalOr(this, para);
+	}
+
+	@Override
+	public LogicalXor logicalXor(InternalParameterized para) {
+		return block.logicalXor(this, para);
+	}
+
+    @Override
+    public ShortCircuitAnd and(InternalParameterized para) {
+        return block.and(this, para);
+    }
+
+	@Override
+	public ShortCircuitOr or(InternalParameterized para) {
+        return block.or(this, para);
+	}
 
 }
