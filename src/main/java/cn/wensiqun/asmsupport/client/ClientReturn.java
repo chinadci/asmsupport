@@ -14,12 +14,15 @@
  */
 package cn.wensiqun.asmsupport.client;
 
-import cn.wensiqun.asmsupport.core.InternalParameterized;
+import cn.wensiqun.asmsupport.core.operator.Return;
+import cn.wensiqun.asmsupport.standard.operators.IReturn;
 
-public class ClientParameterized extends AbstractParameterized<InternalParameterized> {
+public class ClientReturn implements IReturn {
 
-    public ClientParameterized(InternalParameterized target) {
-        super(target);
+    Return target;
+    
+    public ClientReturn(Return target) {
+        this.target = target;
     }
 
 }

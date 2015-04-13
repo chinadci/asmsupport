@@ -774,7 +774,7 @@ public abstract class ProgramBlockInternal extends AbstractBlockInternal impleme
     // *******************************************************************************************//
 
     @Override
-    public final InternalParameterized stradd(InternalParameterized par1, InternalParameterized... pars) {
+    public final StringAppender stradd(InternalParameterized par1, InternalParameterized... pars) {
         return OperatorFactory.newOperator(StringAppender.class, new Class<?>[] { ProgramBlockInternal.class,
                 InternalParameterized.class, InternalParameterized[].class }, getExecutor(), par1, pars);
     }
@@ -784,7 +784,7 @@ public abstract class ProgramBlockInternal extends AbstractBlockInternal impleme
     // *******************************************************************************************//
 
     @Override
-    public final InternalParameterized instanceof_(InternalParameterized obj, AClass type) {
+    public final InstanceofOperator instanceof_(InternalParameterized obj, AClass type) {
         return OperatorFactory.newOperator(InstanceofOperator.class, new Class<?>[] { ProgramBlockInternal.class,
                 InternalParameterized.class, AClass.class }, getExecutor(), obj, type);
     }
@@ -912,8 +912,8 @@ public abstract class ProgramBlockInternal extends AbstractBlockInternal impleme
     }
 
     @Override
-    public final void throw_(InternalParameterized exception) {
-        OperatorFactory.newOperator(Throw.class, new Class<?>[] { ProgramBlockInternal.class, InternalParameterized.class },
+    public final Throw throw_(InternalParameterized exception) {
+        return OperatorFactory.newOperator(Throw.class, new Class<?>[] { ProgramBlockInternal.class, InternalParameterized.class },
                 getExecutor(), exception);
     }
 

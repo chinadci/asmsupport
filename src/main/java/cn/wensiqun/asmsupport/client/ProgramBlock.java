@@ -14,6 +14,8 @@
  */
 package cn.wensiqun.asmsupport.client;
 
+import java.lang.reflect.Array;
+
 import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
@@ -36,8 +38,6 @@ import cn.wensiqun.asmsupport.core.operator.logical.LogicalAnd;
 import cn.wensiqun.asmsupport.core.operator.logical.LogicalOr;
 import cn.wensiqun.asmsupport.core.operator.logical.LogicalXor;
 import cn.wensiqun.asmsupport.core.operator.logical.Not;
-import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitAnd;
-import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitOr;
 import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Addition;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Division;
@@ -126,29 +126,29 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	@Override
 	public LocalVariable arrayvar2dim(String name, ArrayClass aClass,
 			boolean anonymous, ClientParameterized... allocateDim) {
-		return target.arrayvar2dim(name, aClass, anonymous, this.convert2Client(allocateDim));
+		return target.arrayvar2dim(name, aClass, anonymous, this.client2Internal(allocateDim));
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(String name, ArrayClass type,
 			ClientParameterized... dims) {
-		return target.arrayvar2dim(name, type, this.convert2Client(dims));
+		return target.arrayvar2dim(name, type, this.client2Internal(dims));
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(String name, Class<?> type,
 			ClientParameterized... dims) {
-		return target.arrayvar2dim(name, type, this.convert2Client(dims));
+		return target.arrayvar2dim(name, type, this.client2Internal(dims));
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(ArrayClass type, ClientParameterized... dims) {
-		return target.arrayvar2dim(type, this.convert2Client(dims));
+		return target.arrayvar2dim(type, this.client2Internal(dims));
 	}
 
 	@Override
 	public LocalVariable arrayvar2dim(Class<?> arrayType, ClientParameterized... dims) {
-		return target.arrayvar2dim(arrayType, this.convert2Client(dims));
+		return target.arrayvar2dim(arrayType, this.client2Internal(dims));
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	@Override
 	public LocalVariable arrayvar(String name, ArrayClass aClass,
 			boolean anonymous, Object parameterizedArray) {
-		return target.arrayvar(name, aClass, anonymous, parameterizedArray);
+		return target.arrayvar(name, aClass, anonymous, client2Internal(parameterizedArray));
 	}
 
 	@Override
@@ -185,22 +185,22 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 
 	@Override
 	public LocalVariable arrayvar(String name, ArrayClass type, Object parameterizedArray) {
-		return target.arrayvar(name, type, parameterizedArray);
+		return target.arrayvar(name, type, client2Internal(parameterizedArray));
 	}
 
 	@Override
 	public LocalVariable arrayvar(String name, Class<?> type, Object parameterizedArray) {
-		return target.arrayvar(name, type, parameterizedArray);
+		return target.arrayvar(name, type, client2Internal(parameterizedArray));
 	}
 
 	@Override
 	public LocalVariable arrayvar(ArrayClass type, Object parameterizedArray) {
-		return target.arrayvar(type, parameterizedArray);
+		return target.arrayvar(type, client2Internal(parameterizedArray));
 	}
 
 	@Override
 	public LocalVariable arrayvar(Class<?> type, Object parameterizedArray) {
-		return target.arrayvar(type, parameterizedArray);
+		return target.arrayvar(type, client2Internal(parameterizedArray));
 	}
 
 	@Override
@@ -211,32 +211,32 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	@Override
 	public MethodInvoker call(ClientParameterized objRef, String methodName,
 			ClientParameterized... arguments) {
-		return target.call(objRef.target, methodName, this.convert2Client(arguments));
+		return target.call(objRef.target, methodName, this.client2Internal(arguments));
 	}
 
 	@Override
 	public MethodInvoker call(String methodName, ClientParameterized... args) {
-		return target.call(methodName, this.convert2Client(args));
+		return target.call(methodName, this.client2Internal(args));
 	}
 
 	@Override
 	public MethodInvoker call(AClass owner, String methodName, ClientParameterized... arguments) {
-		return target.call(owner, methodName, this.convert2Client(arguments));
+		return target.call(owner, methodName, this.client2Internal(arguments));
 	}
     
 	@Override
     public final MethodInvoker call(Class<?> owner, String methodName, ClientParameterized... arguments) {
-    	return target.call(owner, methodName, this.convert2Client(arguments));
+    	return target.call(owner, methodName, this.client2Internal(arguments));
     }
 
 	@Override
 	public MethodInvoker new_(Class<?> owner, ClientParameterized... arguments) {
-		return target.new_(owner, this.convert2Client(arguments));
+		return target.new_(owner, this.client2Internal(arguments));
 	}
 
 	@Override
 	public MethodInvoker new_(AClass owner, ClientParameterized... arguments) {
-		return target.new_(owner, this.convert2Client(arguments));
+		return target.new_(owner, this.client2Internal(arguments));
 	}
 
 	@Override
@@ -247,39 +247,39 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	@Override
 	public ArrayValue makeArray(ArrayClass aClass,
 			ClientParameterized... allocateDims) {
-		return target.makeArray(aClass, this.convert2Client(allocateDims));
+		return target.makeArray(aClass, this.client2Internal(allocateDims));
 	}
 
 	@Override
 	public ArrayValue makeArray(Class<?> arraytype, ClientParameterized... dimensions) {
-		return target.makeArray(arraytype, this.convert2Client(dimensions));
+		return target.makeArray(arraytype, this.client2Internal(dimensions));
 	}
 
 	@Override
 	public ArrayValue newarray(ArrayClass aClass, Object arrayObject) {
-		return target.newarray(aClass, arrayObject);
+		return target.newarray(aClass, client2Internal(arrayObject));
 	}
 
 	@Override
 	public ArrayValue newarray(Class<?> type, Object arrayObject) {
-		return target.newarray(type, arrayObject);
+		return target.newarray(type, client2Internal(arrayObject));
 	}
 
 	@Override
 	public ArrayLoader arrayLoad(ClientParameterized arrayReference,
 			ClientParameterized pardim, ClientParameterized... parDims) {
-		return target.arrayLoad(arrayReference.target, pardim.target, convert2Client(parDims));
+		return target.arrayLoad(arrayReference.target, pardim.target, client2Internal(parDims));
 	}
 	
 	@Override
 	public ArrayStorer arrayStore(ClientParameterized arrayReference,
 			ClientParameterized value, ClientParameterized dim, ClientParameterized... dims) {
-		return target.arrayStore(arrayReference.target, value.target, dim.target, convert2Client(dims));
+		return target.arrayStore(arrayReference.target, value.target, dim.target, client2Internal(dims));
 	}
 
 	@Override
 	public ArrayLength arrayLength(ClientParameterized arrayReference, ClientParameterized... dims) {
-		return target.arrayLength(arrayReference.target, convert2Client(dims));
+		return target.arrayLength(arrayReference.target, client2Internal(dims));
 	}
 	
 	@Override
@@ -408,15 +408,15 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public ShortCircuitAnd and(ClientParameterized factor1, ClientParameterized factor2,
+	public ClientShortCircuitAnd and(ClientParameterized factor1, ClientParameterized factor2,
 			ClientParameterized... otherFactor) {
-		return target.and(factor1.target, factor2.target, convert2Client(otherFactor));
+		return new ClientShortCircuitAnd(target.and(factor1.target, factor2.target, client2Internal(otherFactor)));
 	}
 
 	@Override
-	public ShortCircuitOr or(ClientParameterized factor1, ClientParameterized factor2,
+	public ClientShortCircuitOr or(ClientParameterized factor1, ClientParameterized factor2,
 			ClientParameterized... otherFactor) {
-		return target.or(factor1.target, factor2.target, convert2Client(otherFactor));
+		return new ClientShortCircuitOr(target.or(factor1.target, factor2.target, client2Internal(otherFactor)));
 	}
 
 	@Override
@@ -446,13 +446,13 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public ClientParameterized stradd(ClientParameterized par1, ClientParameterized... pars) {
-		return new ClientParameterized(target.stradd(par1.target, convert2Client(pars)));
+	public ClientStringAppender stradd(ClientParameterized par1, ClientParameterized... pars) {
+		return new ClientStringAppender(target.stradd(par1.target, client2Internal(pars)));
 	}
 
 	@Override
-	public ClientParameterized instanceof_(ClientParameterized obj, AClass type) {
-		return new ClientParameterized(target.instanceof_(obj.target, type));
+	public ClientInstanceof instanceof_(ClientParameterized obj, AClass type) {
+		return new ClientInstanceof(target.instanceof_(obj.target, type));
 	}
 
 	@Override
@@ -471,8 +471,8 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public void throw_(ClientParameterized exception) {
-		target.throw_(exception.target);
+	public ClientThrow throw_(ClientParameterized exception) {
+		return new ClientThrow(target.throw_(exception.target));
 	}
 
 	@Override
@@ -481,8 +481,8 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 
 	@Override
-	public Return return_(ClientParameterized para) {
-		return target.return_(para.target);
+	public ClientReturn return_(ClientParameterized para) {
+		return new ClientReturn(target.return_(para.target));
 	}
 
 	@Override
@@ -606,7 +606,13 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 		return target.defArrayType(rootComponent, dim);
 	}
 	
-	InternalParameterized[] convert2Client(ClientParameterized... pars) {
+	/**
+	 * Convert ClientParameterized to InternalParameterized
+	 * 
+	 * @param pars
+	 * @return
+	 */
+	InternalParameterized[] client2Internal(ClientParameterized... pars) {
 		if(pars == null) {
 			return null;
 		}
@@ -616,5 +622,29 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 		}
 		return paras;
 	}
+	
+	/**
+	 * Convert multiple dimension ClientParameterized array to  InternalParameterized array.
+	 * 
+	 * @param clientArray
+	 * @return
+	 */
+	Object client2Internal(Object clientArray) {
+	    if(clientArray == null) {
+	        throw new NullPointerException("Client is null.");
+	    }
+	    if(clientArray.getClass().isArray()) {
+            int len = Array.getLength(clientArray);
+	        Object[] internalArray = new Object[len];
+	        for(int i=0; i<len; i++) {
+	            internalArray[i] = client2Internal(Array.get(clientArray, i));
+	        }
+	        return internalArray;
+	    } else if (clientArray instanceof ClientParameterized){
+	        return ((ClientParameterized)clientArray).target;
+	    }
+	    throw new IllegalArgumentException();
+	}
+	
 
 }

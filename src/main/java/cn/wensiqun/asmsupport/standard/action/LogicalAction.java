@@ -21,6 +21,8 @@ import cn.wensiqun.asmsupport.core.operator.logical.Not;
 import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitAnd;
 import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitOr;
 import cn.wensiqun.asmsupport.standard.Parameterized;
+import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitAnd;
+import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitOr;
 
 
 /**
@@ -84,7 +86,7 @@ public interface LogicalAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link ShortCircuitAnd}
      */
-    public ShortCircuitAnd and(_P factor1, _P factor2, _P... otherFactors);
+    public IShortCircuitAnd<_P> and(_P factor1, _P factor2, _P... otherFactors);
     
     /**
      * 
@@ -98,7 +100,7 @@ public interface LogicalAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link ShortCircuitOr}
      */
-    public ShortCircuitOr or(_P factor1, _P factor2, _P... otherFactors);
+    public IShortCircuitOr<_P> or(_P factor1, _P factor2, _P... otherFactors);
     
     /**
      * 生成条件非操作指令,对应下面的红色java代码

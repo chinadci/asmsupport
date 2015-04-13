@@ -34,6 +34,6 @@ public abstract class ConstructorBody extends ProgramBlock<ConstructorBodyIntern
 
 	@Override
 	public MethodInvoker supercall(ClientParameterized... arguments) {
-    	return target.supercall(convert2Client(arguments));
+    	return target.supercall(client2Internal(arguments));
 	}
 }

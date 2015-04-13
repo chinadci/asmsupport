@@ -27,6 +27,7 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Label;
 import cn.wensiqun.asmsupport.org.objectweb.asm.MethodVisitor;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Opcodes;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
+import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitAnd;
 
 
 /**
@@ -34,7 +35,7 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
  * @author 温斯群(Joe Wen)
  *
  */
-public class ShortCircuitAnd extends ConditionOperator implements Jumpable {
+public class ShortCircuitAnd extends ConditionOperator implements Jumpable, IShortCircuitAnd<InternalParameterized> {
     
     protected ShortCircuitAnd(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -49,23 +50,6 @@ public class ShortCircuitAnd extends ConditionOperator implements Jumpable {
         MethodVisitor mv = insnHelper.getMv();
 
         jumpNegative(this, trueLbl, falseLbl);
-        
-        /*if(factor1 instanceof Jumpable) {
-            ((Jumpable) factor1).jumpNegative(this, trueLbl, falseLbl);
-        } else {
-            factor1.loadToStack(block);
-            insnHelper.unbox(factor1.getParamterizedType().getType());
-            mv.visitJumpInsn(Opcodes.IFEQ, falseLbl);
-        }
-        
-
-        if(factor2 instanceof Jumpable) {
-            ((Jumpable) factor2).jumpNegative(this, trueLbl, falseLbl);
-        } else {
-            factor2.loadToStack(block);
-            insnHelper.unbox(factor2.getParamterizedType().getType());
-            mv.visitJumpInsn(Opcodes.IFEQ, falseLbl);
-        }*/
 
         mv.visitInsn(Opcodes.ICONST_1);
         mv.visitJumpInsn(Opcodes.GOTO, trueLbl);
@@ -126,6 +110,12 @@ public class ShortCircuitAnd extends ConditionOperator implements Jumpable {
             mv.visitJumpInsn(Opcodes.IFEQ, negLbl);
         }
         insnHelper.mark(label4Or);
+    }
+
+
+    @Override
+    public ShortCircuitAnd and(InternalParameterized para) {
+        return block.and(this, para);
     }
 
 }

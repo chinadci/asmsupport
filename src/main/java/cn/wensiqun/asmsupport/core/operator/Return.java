@@ -22,13 +22,14 @@ import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.log.Log;
 import cn.wensiqun.asmsupport.core.log.LogFactory;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
+import cn.wensiqun.asmsupport.standard.operators.IReturn;
 
 /**
  * 用于执行Return
  * @author 温斯群(Joe Wen)
  *
  */
-public class Return extends BreakStack {
+public class Return extends BreakStack implements IReturn {
 
     private static final Log LOG = LogFactory.getLog(Return.class);
     

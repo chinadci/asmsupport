@@ -14,12 +14,28 @@
  */
 package cn.wensiqun.asmsupport.client;
 
-import cn.wensiqun.asmsupport.core.InternalParameterized;
+import cn.wensiqun.asmsupport.core.operator.StringAppender;
+import cn.wensiqun.asmsupport.standard.operators.IStringAppender;
 
-public class ClientParameterized extends AbstractParameterized<InternalParameterized> {
+/**
+ * 
+ * @author sqwen
+ *
+ */
+public class ClientStringAppender extends AbstractParameterized<StringAppender> implements IStringAppender<ClientParameterized> {
 
-    public ClientParameterized(InternalParameterized target) {
+    /**
+     * Constructor a client string appender
+     * 
+     * @param target
+     */
+    public ClientStringAppender(StringAppender target) {
         super(target);
+    }
+
+    @Override
+    public ClientStringAppender append(ClientParameterized arg) {
+        return new ClientStringAppender(target.append(arg.target));
     }
 
 }

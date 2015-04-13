@@ -23,12 +23,13 @@ import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.clazz.AClassFactory;
 import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
 import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
+import cn.wensiqun.asmsupport.standard.operators.IStringAppender;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class StringAppender extends AbstractOperator implements InternalParameterized{
+public class StringAppender extends AbstractOperator implements InternalParameterized, IStringAppender<InternalParameterized>{
     
     private InternalParameterized[] paras;
 
@@ -102,6 +103,11 @@ public class StringAppender extends AbstractOperator implements InternalParamete
         }else{
             invoker.asArgument();
         }
+    }
+
+    @Override
+    public StringAppender append(InternalParameterized arg) {
+        return block.stradd(this, arg);
     }
 
 }

@@ -37,7 +37,7 @@ public abstract class EnumStaticBlockBody extends ProgramBlock<EnumStaticBlockBo
 	
 	@Override
 	public void constructEnumConst(String name, ClientParameterized... argus) {
-		target.constructEnumConst(name, convert2Client(argus));
+		target.constructEnumConst(name, client2Internal(argus));
 	}
 	
 }

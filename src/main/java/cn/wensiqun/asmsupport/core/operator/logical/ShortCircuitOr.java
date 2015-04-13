@@ -27,6 +27,7 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Label;
 import cn.wensiqun.asmsupport.org.objectweb.asm.MethodVisitor;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Opcodes;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
+import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitOr;
 
 
 /**
@@ -34,7 +35,7 @@ import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
  * @author 温斯群(Joe Wen)
  *
  */
-public class ShortCircuitOr extends ConditionOperator implements Jumpable {
+public class ShortCircuitOr extends ConditionOperator implements Jumpable, IShortCircuitOr<InternalParameterized> {
     
     protected ShortCircuitOr(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -107,6 +108,11 @@ public class ShortCircuitOr extends ConditionOperator implements Jumpable {
             insnHelper.unbox(factor2.getParamterizedType().getType());
             mv.visitJumpInsn(Opcodes.IFEQ, negLbl);
         }
+    }
+
+    @Override
+    public ShortCircuitOr or(InternalParameterized para) {
+        return block.or(this, para);
     }
 
 }

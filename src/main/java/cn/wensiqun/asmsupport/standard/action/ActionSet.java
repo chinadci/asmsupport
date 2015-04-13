@@ -20,6 +20,10 @@ import cn.wensiqun.asmsupport.core.operator.checkcast.CheckCast;
 import cn.wensiqun.asmsupport.core.operator.numerical.posinegative.Negative;
 import cn.wensiqun.asmsupport.core.operator.numerical.ternary.TernaryOperator;
 import cn.wensiqun.asmsupport.standard.Parameterized;
+import cn.wensiqun.asmsupport.standard.operators.IInstanceof;
+import cn.wensiqun.asmsupport.standard.operators.IReturn;
+import cn.wensiqun.asmsupport.standard.operators.IStringAppender;
+import cn.wensiqun.asmsupport.standard.operators.IThrow;
 
 /**
  * 
@@ -150,7 +154,7 @@ CreateBlockAction<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> {
      * @param pars
      * @return
      */
-    public Parameterized stradd(_P par1, _P... pars);
+    public IStringAppender<_P> stradd(_P par1, _P... pars);
 
     /**
      * Generate the instanceof instruction.
@@ -169,7 +173,7 @@ CreateBlockAction<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> {
      * @param type
      * @return {@link Parameterized}a boolean type Parameterized
      */
-    public Parameterized instanceof_(_P obj, AClass type);
+    public IInstanceof<_P> instanceof_(_P obj, AClass type);
 
     /**
      * Generate the instanceof instruction, the method is same as
@@ -209,14 +213,14 @@ CreateBlockAction<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> {
      * 
      * @param exception
      */
-    public void throw_(_P exception);
+    public IThrow throw_(_P exception);
 
     /**
      * Corresponding to return statement with no return value.
      * 
      * @return {{@link Return}
      */
-    public Return return_();
+    public IReturn return_();
 
     /**
      * Corresponding to return statement with return value.
@@ -226,5 +230,5 @@ CreateBlockAction<_IF, _While, _DoWhile, _ForEach, _Try, _Synchronized> {
      * @return {{@link Return}
      * 
      */
-    public Return return_(_P parame);
+    public IReturn return_(_P parame);
 }

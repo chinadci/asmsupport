@@ -22,12 +22,13 @@ import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.clazz.AnyException;
 import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
+import cn.wensiqun.asmsupport.standard.operators.IThrow;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class Throw extends BreakStack {
+public class Throw extends BreakStack implements IThrow {
 
     private InternalParameterized exception;
 

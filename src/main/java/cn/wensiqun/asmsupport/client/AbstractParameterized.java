@@ -14,12 +14,20 @@
  */
 package cn.wensiqun.asmsupport.client;
 
-import cn.wensiqun.asmsupport.core.InternalParameterized;
+import cn.wensiqun.asmsupport.core.clazz.AClass;
+import cn.wensiqun.asmsupport.standard.Parameterized;
 
-public class ClientParameterized extends AbstractParameterized<InternalParameterized> {
+public class AbstractParameterized<_P extends Parameterized> implements Parameterized {
 
-    public ClientParameterized(InternalParameterized target) {
-        super(target);
+    _P target;
+    
+    public AbstractParameterized(_P target) {
+        this.target = target;
     }
 
+    @Override
+    public AClass getParamterizedType() {
+        return target.getParamterizedType();
+    }
+    
 }

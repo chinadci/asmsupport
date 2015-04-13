@@ -14,12 +14,15 @@
  */
 package cn.wensiqun.asmsupport.client;
 
-import cn.wensiqun.asmsupport.core.InternalParameterized;
+import cn.wensiqun.asmsupport.core.operator.Throw;
+import cn.wensiqun.asmsupport.standard.operators.IThrow;
 
-public class ClientParameterized extends AbstractParameterized<InternalParameterized> {
+public class ClientThrow implements IThrow {
 
-    public ClientParameterized(InternalParameterized target) {
-        super(target);
+    Throw target;
+    
+    public ClientThrow(Throw target) {
+        this.target = target;
     }
 
 }

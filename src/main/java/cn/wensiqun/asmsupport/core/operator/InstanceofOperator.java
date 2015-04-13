@@ -21,12 +21,15 @@ import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.clazz.AClass;
 import cn.wensiqun.asmsupport.core.exception.ASMSupportException;
+import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitAnd;
+import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitOr;
+import cn.wensiqun.asmsupport.standard.operators.IInstanceof;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class InstanceofOperator extends AbstractOperator implements InternalParameterized{
+public class InstanceofOperator extends AbstractOperator implements InternalParameterized, IInstanceof<InternalParameterized> {
 
     private AClass type; 
     private InternalParameterized obj;
@@ -85,6 +88,16 @@ public class InstanceofOperator extends AbstractOperator implements InternalPara
     public void asArgument() {
         byOtherUsed = true;
         block.removeExe(this);
+    }
+
+    @Override
+    public ShortCircuitAnd and(InternalParameterized para) {
+        return block.and(this, para);
+    }
+
+    @Override
+    public ShortCircuitOr or(InternalParameterized para) {
+        return block.or(this, para);
     }
 
 }
