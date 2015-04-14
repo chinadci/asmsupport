@@ -22,13 +22,14 @@ import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.log.Log;
 import cn.wensiqun.asmsupport.core.log.LogFactory;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.bit.IReverse;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public class Reverse extends UnaryBitwise {
+public class Reverse extends UnaryBitwise implements IReverse<InternalParameterized> {
 
     private static final Log LOG = LogFactory.getLog(Reverse.class);
     

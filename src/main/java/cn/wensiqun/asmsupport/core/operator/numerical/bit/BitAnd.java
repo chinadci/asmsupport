@@ -20,12 +20,13 @@ package cn.wensiqun.asmsupport.core.operator.numerical.bit;
 import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.bit.IBitAnd;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class BitAnd extends BinaryBitwise {
+public class BitAnd extends BinaryBitwise implements IBitAnd<InternalParameterized> {
 
     protected BitAnd(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -36,5 +37,11 @@ public class BitAnd extends BinaryBitwise {
     public void innerRunExe() {
         insnHelper.bitAnd(targetClass.getType());
     }
+
+    @Override
+    public BitAnd band(InternalParameterized para) {
+        return block.band(this, para);
+    }
+    
 
 }

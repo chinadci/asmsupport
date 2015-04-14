@@ -22,13 +22,14 @@ import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.log.Log;
 import cn.wensiqun.asmsupport.core.log.LogFactory;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.IAdd;
 
 /**
  * addition operator
  * @author 温斯群(Joe Wen)
  *
  */
-public class Addition extends AbstractArithmetic {
+public class Addition extends AbstractArithmetic implements IAdd<InternalParameterized> {
 
     private static final Log LOG = LogFactory.getLog(Addition.class);
     
@@ -43,6 +44,16 @@ public class Addition extends AbstractArithmetic {
         factorToStack();
         LOG.print("execute the add instruction");
         insnHelper.add(targetClass.getType());
+    }
+
+    @Override
+    public Addition add(InternalParameterized para) {
+        return block.add(this, para);
+    }
+
+    @Override
+    public Subtraction sub(InternalParameterized para) {
+        return block.sub(this, para);
     }
 
 

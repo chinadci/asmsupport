@@ -26,13 +26,14 @@ import cn.wensiqun.asmsupport.core.utils.memory.Stack;
 import cn.wensiqun.asmsupport.org.objectweb.asm.MethodVisitor;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Opcodes;
 import cn.wensiqun.asmsupport.org.objectweb.asm.Type;
+import cn.wensiqun.asmsupport.standard.operators.logical.INot;
 
 /**
  * 
  * @author 温斯群(Joe Wen)
  *
  */
-public class Not extends UnaryLogical {
+public class Not extends UnaryLogical implements INot {
 
     protected Not(ProgramBlockInternal block, InternalParameterized factor) {
         super(block, factor);

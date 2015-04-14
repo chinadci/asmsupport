@@ -20,12 +20,13 @@ package cn.wensiqun.asmsupport.core.operator.numerical.bit;
 import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.bit.IShiftLeft;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class ShiftLeft extends BinaryBitwise {
+public class ShiftLeft extends BinaryBitwise implements IShiftLeft<InternalParameterized> {
 
     protected ShiftLeft(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -35,6 +36,11 @@ public class ShiftLeft extends BinaryBitwise {
     @Override
     public void innerRunExe() {
         insnHelper.leftShift(targetClass.getType());
+    }
+
+    @Override
+    public ShiftLeft shl(InternalParameterized para) {
+        return block.shl(this, para);
     }
 
 }

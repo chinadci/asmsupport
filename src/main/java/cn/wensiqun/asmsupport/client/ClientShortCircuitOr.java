@@ -1,9 +1,6 @@
 package cn.wensiqun.asmsupport.client;
 
 import cn.wensiqun.asmsupport.core.operator.logical.ShortCircuitOr;
-import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalAnd;
-import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalOr;
-import cn.wensiqun.asmsupport.standard.operators.logical.ILogicalXor;
 import cn.wensiqun.asmsupport.standard.operators.logical.IShortCircuitOr;
 
 public class ClientShortCircuitOr extends AbstractParameterized<ShortCircuitOr> implements IShortCircuitOr<ClientParameterized> {
@@ -12,20 +9,20 @@ public class ClientShortCircuitOr extends AbstractParameterized<ShortCircuitOr> 
         super(target);
     }
 
-	@Override
-	public ILogicalAnd<ClientParameterized> logicalAnd(ClientParameterized para) {
-		return null;
-	}
+    @Override
+    public ClientLogicalAnd logicalAnd(ClientParameterized para) {
+        return new ClientLogicalAnd(target.logicalAnd(para.target));
+    }
 
-	@Override
-	public ILogicalOr<ClientParameterized> logicalOr(ClientParameterized para) {
-		return null;
-	}
+    @Override
+    public ClientLogicalOr logicalOr(ClientParameterized para) {
+        return new ClientLogicalOr(target.logicalOr(para.target));
+    }
 
-	@Override
-	public ILogicalXor<ClientParameterized> logicalXor(ClientParameterized para) {
-		return null;
-	}
+    @Override
+    public ClientLogicalXor logicalXor(ClientParameterized para) {
+        return new ClientLogicalXor(target.logicalXor(para.target));
+    }
 
     @Override
     public ClientShortCircuitAnd and(ClientParameterized para) {

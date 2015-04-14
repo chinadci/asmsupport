@@ -36,11 +36,6 @@ import cn.wensiqun.asmsupport.core.operator.assign.Assigner;
 import cn.wensiqun.asmsupport.core.operator.checkcast.CheckCast;
 import cn.wensiqun.asmsupport.core.operator.logical.Not;
 import cn.wensiqun.asmsupport.core.operator.method.MethodInvoker;
-import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Addition;
-import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Division;
-import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Modulus;
-import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Multiplication;
-import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Subtraction;
 import cn.wensiqun.asmsupport.core.operator.numerical.bit.BitAnd;
 import cn.wensiqun.asmsupport.core.operator.numerical.bit.BitOr;
 import cn.wensiqun.asmsupport.core.operator.numerical.bit.BitXor;
@@ -280,28 +275,28 @@ public class ProgramBlock<B extends ProgramBlockInternal> implements
 	}
 	
 	@Override
-	public Addition add(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.add(factor1.target, factor2.target);
+	public ClientAdd add(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientAdd(target.add(factor1.target, factor2.target));
 	}
 
 	@Override
-	public Subtraction sub(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.sub(factor1.target, factor2.target);
+	public ClientSub sub(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientSub(target.sub(factor1.target, factor2.target));
 	}
 
 	@Override
-	public Multiplication mul(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.mul(factor1.target, factor2.target);
+	public ClientMul mul(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientMul(target.mul(factor1.target, factor2.target));
 	}
 
 	@Override
-	public Division div(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.div(factor1.target, factor2.target);
+	public ClientDiv div(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientDiv(target.div(factor1.target, factor2.target));
 	}
 
 	@Override
-	public Modulus mod(ClientParameterized factor1, ClientParameterized factor2) {
-		return target.mod(factor1.target, factor2.target);
+	public ClientMod mod(ClientParameterized factor1, ClientParameterized factor2) {
+		return new ClientMod(target.mod(factor1.target, factor2.target));
 	}
 
 	@Override

@@ -22,13 +22,14 @@ import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.log.Log;
 import cn.wensiqun.asmsupport.core.log.LogFactory;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.IMul;
 
 /**
  * multiplication operator
  * @author 温斯群(Joe Wen)
  *
  */
-public class Multiplication extends AbstractArithmetic {
+public class Multiplication extends AbstractArithmetic implements IMul<InternalParameterized> {
 
     private static final Log LOG = LogFactory.getLog(Multiplication.class);
     
@@ -37,13 +38,27 @@ public class Multiplication extends AbstractArithmetic {
         operator = Operators.MUL;
     }
 
-
     @Override
     public void doExecute() {
         LOG.print("start execute sub arithmetic operator");
         factorToStack();
         LOG.print("execute the sub instruction");
         insnHelper.mul(targetClass.getType());
+    }
+
+    @Override
+    public Multiplication mul(InternalParameterized para) {
+        return block.mul(this, para);
+    }
+
+    @Override
+    public Division div(InternalParameterized para) {
+        return block.div(this, para);
+    }
+
+    @Override
+    public Modulus mod(InternalParameterized para) {
+        return block.mod(this, para);
     }
 
 

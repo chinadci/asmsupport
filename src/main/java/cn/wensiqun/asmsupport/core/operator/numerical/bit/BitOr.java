@@ -20,12 +20,13 @@ package cn.wensiqun.asmsupport.core.operator.numerical.bit;
 import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.bit.IBitOr;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class BitOr extends BinaryBitwise {
+public class BitOr extends BinaryBitwise implements IBitOr<InternalParameterized> {
 
     protected BitOr(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -35,6 +36,11 @@ public class BitOr extends BinaryBitwise {
     @Override
     public void innerRunExe() {
         insnHelper.bitOr(targetClass.getType());
+    }
+
+    @Override
+    public BitOr bor(InternalParameterized para) {
+        return block.bor(this, para);
     }
 
 }

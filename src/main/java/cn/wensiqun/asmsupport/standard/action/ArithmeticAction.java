@@ -20,6 +20,11 @@ import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Modulus;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Multiplication;
 import cn.wensiqun.asmsupport.core.operator.numerical.arithmetic.Subtraction;
 import cn.wensiqun.asmsupport.standard.Parameterized;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.IAdd;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.IDiv;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.IMod;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.IMul;
+import cn.wensiqun.asmsupport.standard.operators.numerical.arithmetic.ISub;
 
 
 /**
@@ -40,7 +45,7 @@ public interface ArithmeticAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link Addition}
      */
-    public Addition add(_P factor1, _P factor2);
+    public IAdd<_P> add(_P factor1, _P factor2);
 
     /**
      * 生成减法操作指令例如：factor1 - factor2,对应下面的红色java代码
@@ -53,7 +58,7 @@ public interface ArithmeticAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link Subtraction}
      */
-    public Subtraction sub(_P factor1, _P factor2);
+    public ISub<_P> sub(_P factor1, _P factor2);
     
     /**
      * 生成乘法操作指令例如：factor1 * factor2,对应下面的红色java代码
@@ -66,7 +71,7 @@ public interface ArithmeticAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link Multiplication}
      */
-    public Multiplication mul(_P factor1, _P factor2);
+    public IMul<_P> mul(_P factor1, _P factor2);
     
     /**
      * generate division instruction : factor1 / factor2
@@ -79,7 +84,7 @@ public interface ArithmeticAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link Division}
      */
-    public Division div(_P factor1, _P factor2);
+    public IDiv<_P> div(_P factor1, _P factor2);
     
     /**
      * 
@@ -94,6 +99,6 @@ public interface ArithmeticAction<_P extends Parameterized> {
      * @param factor2
      * @return {@link Modulus}
      */
-    public Modulus mod(_P factor1, _P factor2);
+    public IMod<_P> mod(_P factor1, _P factor2);
     
 }

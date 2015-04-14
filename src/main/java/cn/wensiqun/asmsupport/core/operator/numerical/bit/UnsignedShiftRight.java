@@ -20,12 +20,13 @@ package cn.wensiqun.asmsupport.core.operator.numerical.bit;
 import cn.wensiqun.asmsupport.core.InternalParameterized;
 import cn.wensiqun.asmsupport.core.block.ProgramBlockInternal;
 import cn.wensiqun.asmsupport.core.operator.Operators;
+import cn.wensiqun.asmsupport.standard.operators.numerical.bit.IUnsignedShiftRight;
 
 /**
  * @author 温斯群(Joe Wen)
  *
  */
-public class UnsignedShiftRight extends BinaryBitwise {
+public class UnsignedShiftRight extends BinaryBitwise implements IUnsignedShiftRight<InternalParameterized> {
 
     protected UnsignedShiftRight(ProgramBlockInternal block, InternalParameterized factor1, InternalParameterized factor2) {
         super(block, factor1, factor2);
@@ -35,6 +36,11 @@ public class UnsignedShiftRight extends BinaryBitwise {
     @Override
     public void innerRunExe() {
         insnHelper.unsignedRightShift(targetClass.getType());
+    }
+
+    @Override
+    public UnsignedShiftRight ushr(InternalParameterized para) {
+        return block.ushr(this, para);
     }
 
 }
